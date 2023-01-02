@@ -7,40 +7,146 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/kampong_goods.styles.css" asp-append-version="true" />
+
+    <!-- jQuery -->
+    <script src="~/js/jquery-2.0.0.min.js" type="text/javascript"></script>
+
+    <!-- Bootstrap4 files-->
+    <script src="~/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <link href="~/css/bootstrap.css?v=2.0" rel="stylesheet" type="text/css" />
+
+    <!-- Font awesome 5 -->
+    <link href="~/fonts/fontawesome/css/all.min.css?v=2.0" type="text/css" rel="stylesheet">
+
+    <!-- custom style -->
+    <link href="~/css/ui.css?v=2.0" rel="stylesheet" type="text/css" />
+    <link href="~/css/responsive.css?v=2.0" rel="stylesheet" type="text/css" />
+
+    <!-- custom javascript -->
+    <script src="~/js/script.js?v=2.0" type="text/javascript"></script>
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Libre+Baskerville&family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Inter';
+        }
+
+        .loginBtn {
+            color: white;
+            background: #3563E9;
+        }
+    </style>
 </head>
 <body>
+
+    <!-- ========================= NAV ========================= -->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">kampong_goods</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index"><img src="/images/kampongGoods.jpg" alt="logo" width="200" height="80"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="navbarButtonsExample">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Catalogue">Catalogue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Request">Request</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Education">Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Community">Community</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
                         </li>
                     </ul>
-                </div>
+
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn loginBtn" style="justify-content-end">Login</button>
+                    </div>
+                </div> 
             </div>
         </nav>
     </header>
+
+    <!-- ========================= BODY ========================= -->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!-- ========================= FOOTER ========================= -->
+    <footer class="section-footer border-top">
         <div class="container">
-            &copy; 2022 - kampong_goods - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
+            <section class="footer-top padding-y">
+                <div class="row">
+                    <aside class="col-md-4">
+                        <article class="mr-3">
+                            <img src="/images/kampongGoods.jpg" alt="logo" width="250" height="100">
+                            <p class="mt-3">We simplify sustainable living.</p>
+                            <div>
+                                <a class="btn btn-icon btn-light" title="Facebook" target="_blank" href="#">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a class="btn btn-icon btn-light" title="Instagram" target="_blank" href="#">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a class="btn btn-icon btn-light" title="Youtube" target="_blank" href="#">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a class="btn btn-icon btn-light" title="Twitter" target="_blank" href="#">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </article>
+                    </aside>
+                    <aside class="col-sm-3 col-md-2">
+                        <h6 class="title">About Us</h6>
+                        <ul class="list-unstyled">
+                            <li> <a href="#">Natthida</a></li>
+                            <li> <a href="#">Andrea</a></li>
+                            <li> <a href="#">Mei Ling</a></li>
+                            <li> <a href="#">Zhi Yi</a></li>
+                        </ul>
+                    </aside>
+                    <aside class="col-sm-3  col-md-2">
+                        <h6 class="title">For users</h6>
+                        <ul class="list-unstyled">
+                            <li> <a href="#"> User Login </a></li>
+                            <li> <a href="#"> User register </a></li>
+                            <li> <a href="#"> Account Setting </a></li>
+                            <li> <a href="#"> My Orders </a></li>
+                            <li> <a href="#"> My Wishlist </a></li>
+                        </ul>
+                    </aside>
+                </div> <!-- row.// -->
+            </section> <!-- footer-top.// -->
+
+            <section class="footer-copyright border-top">
+                <p class="float-left text-muted"> &copy 2022 EDP - Kampong Goods </p>
+                <p target="_blank" class="float-right text-muted">
+                    <a href="#">Privacy & Cookies</a> &nbsp &nbsp
+                    <a href="#">Accessibility</a>
+                </p>
+            </section>
+        </div><!-- //container -->
     </footer>
+    <!-- ========================= FOOTER END // ========================= -->
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -48,4 +154,6 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
+
