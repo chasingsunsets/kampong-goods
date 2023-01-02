@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "shxh19bWHx7TaRhVcIC3Zh3SuVIFju58C5M2mx5kZlc=",
+  "Hash": "0ANAvq7FbPXwBrvuYD4EBTj1/csn6e8prA7qi4soA58=",
   "Source": "kampong-goods",
   "BasePath": "_content/kampong-goods",
   "Mode": "Default",
@@ -848,6 +848,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\kampongGoods.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\lnnat\\OneDrive\\Documents\\GitHub\\kampong-goods\\kampong-goods\\wwwroot\\images\\landingStreet.svg",
+      "SourceId": "kampong-goods",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lnnat\\OneDrive\\Documents\\GitHub\\kampong-goods\\kampong-goods\\wwwroot\\",
+      "BasePath": "_content/kampong-goods",
+      "RelativePath": "images/landingStreet.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\landingStreet.svg"
     },
     {
       "Identity": "C:\\Users\\lnnat\\OneDrive\\Documents\\GitHub\\kampong-goods\\kampong-goods\\wwwroot\\js\\bootstrap.bundle.min.js",
