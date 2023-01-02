@@ -15,4 +15,38 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: white;
+}
+
+/* Modify Nav bar hover effect */
+.navbar a {
+    display: inline-block;
+    position: relative;
+    color: #000000;
+}
+
+.navbar a:hover {
+    color: #000000;
+}
+
+.navbar a:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.navbar a:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.navBtn {
+    justify-content: end;
 }
