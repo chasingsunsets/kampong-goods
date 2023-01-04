@@ -40,6 +40,12 @@
             color: white;
             background: #3563E9;
         }
+        .registerBtn {
+            color: white;
+            background: #3563E9;
+            margin-left: 25px;
+
+        }
     </style>
 </head>
 <body>
@@ -76,9 +82,14 @@
                     </ul>
 
                     <div class="d-flex align-items-center">
-                        <button type="button" class="btn loginBtn" style="justify-content-end">Login</button>
+
+                        <a class="btn loginBtn " style="color:white;" asp-page="/Customers/Login">Login</a>
+                    
+                        <a class="btn  registerBtn" style="color:white;" asp-page="/Customers/Register">Register</a>
+
                     </div>
-                </div> 
+                </div>
+            </div>
             </div>
         </nav>
     </header>

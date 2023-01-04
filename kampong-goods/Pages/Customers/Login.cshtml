@@ -1,0 +1,41 @@
+﻿@page
+@model kampong_goods.Pages.Customers.LoginModel
+@{
+
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-5">
+@*@Html.ValidationSummary(false)
+*@
+	<div class="row justify-content-center align-items-center">
+
+		<div class="col-sm-12 col-md-12 col-lg-4">
+			<h1 class="mb-3">@ViewData["Title"]</h1>
+
+			<form method="post">
+				
+				<div class="mb-3">
+					<label class="form-label" asp-for="LModel.UserName">Username</label>
+					<input type="Text" asp-for="LModel.UserName" class="form-control" />
+					<span asp-validaton-for="LModel.Email" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label" asp-for="LModel.Password">Password</label>
+					<input type="Text" asp-for="LModel.Password" class="form-control" />
+					<span asp-validaton-for="LModel.Password" class="text-danger"></span>
+				</div>
+
+				<div class="mb-3 form-check">
+					<input type="checkbox" asp-for="LModel.RememberMe" class="form-check-input" />
+					<label class="form-check-label" asp-for="LModel.RememberMe">Remember Me?</label>
+				</div>
+
+				<div class="mb-3">
+					<button type="submit" class="btn btn-primary">Login</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

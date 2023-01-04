@@ -1,0 +1,75 @@
+﻿@page
+@model kampong_goods.Pages.Customers.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1 class="mb-3">@ViewData["Title"]</h1>
+<form class="mt-3" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="RModel.Username"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="RModel.Username" />
+            <span asp-validation-for="RModel.Username" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="RModel.FName"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="RModel.FName" />
+            <span asp-validation-for="RModel.FName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="RModel.LName"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="RModel.LName" />
+            <span asp-validation-for="RModel.LName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="RModel.Password"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="RModel.Password" />
+            <span asp-validation-for="RModel.Password" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="RModel.ConfirmPassword"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="RModel.ConfirmPassword" />
+            <span asp-validation-for="RModel.ConfirmPassword" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="RModel.PhoneNo"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="RModel.PhoneNo" />
+            <span asp-validation-for="RModel.PhoneNo" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="RModel.Email"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="RModel.Email" />
+            <span asp-validation-for="RModel.Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="RModel.Address"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="RModel.Address" oninput="this.value = this.value.toUpperCase()" />
+            <span asp-validation-for="RModel.Address" class="text-danger"></span>
+        </div>
+    </div>
+    <div>
+        <input type="submit" value="Add" class="btn btn-primary" />
+        <a class="btn btn-secondary ms-2" href="/">Cancel</a>
+    </div>
+</form>
