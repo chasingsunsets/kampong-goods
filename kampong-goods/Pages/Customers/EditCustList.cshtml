@@ -1,0 +1,87 @@
+﻿@page
+@model kampong_goods.Pages.Customers.EditCustListModel
+
+@{
+    ViewData["Title"] = "Edit Customer";
+
+}
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+
+<form class="mt-3" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <input class="form-control" asp-for="CustAcc.Id" type="hidden" />
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="CustAcc.UserName"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="CustAcc.UserName" />
+            <span asp-validation-for="CustAcc.UserName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="CustAcc.FName"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="CustAcc.FName" />
+            <span asp-validation-for="CustAcc.FName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="CustAcc.LName"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="CustAcc.LName" />
+            <span asp-validation-for="CustAcc.LName" class="text-danger"></span>
+        </div>
+    </div>
+
+@*    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="RModel.Password"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="RModel.Password" />
+            <span asp-validation-for="RModel.Password" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="RModel.ConfirmPassword"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="RModel.ConfirmPassword" />
+            <span asp-validation-for="RModel.ConfirmPassword" class="text-danger"></span>
+        </div>
+    </div>*@
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="CustAcc.PhoneNumber"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="CustAcc.PhoneNumber" />
+            <span asp-validation-for="CustAcc.PhoneNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="CustAcc.Email"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="CustAcc.Email" />
+            <span asp-validation-for="CustAcc.Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="CustAcc.Address"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="CustAcc.Address" oninput="this.value = this.value.toUpperCase()" />
+            <span asp-validation-for="CustAcc.Address" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" value="Update" class="btn btn-primary" />
+        <a class="btn btn-secondary ms-2" href="/CustList">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

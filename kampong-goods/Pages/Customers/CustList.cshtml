@@ -1,0 +1,48 @@
+﻿@page
+@model kampong_goods.Pages.Customers.CustListModel 
+@{
+    ViewData["Title"] = "Customer";
+}
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+<table class="table mt-3">
+<thead>
+<tr>
+
+<th>Username</th>
+<th>@Html.DisplayNameFor(model => model.CustList[0].FName)</th>
+<th>@Html.DisplayNameFor(model => model.CustList[0].LName)</th>
+<th>Phone Number</th>
+<th>@Html.DisplayNameFor(model => model.CustList[0].Address)</th>
+
+@*<th>@Html.DisplayNameFor(model => model.CustList[0].IsStaff)</th>
+<th>@Html.DisplayNameFor(model => model.CustList[0].GrpName)</th>*@
+
+
+
+
+
+</tr>
+</thead>
+<tbody>
+@{
+@foreach (var item in Model.CustList)
+{
+<tr>
+<td>@item.UserName</td>
+<td>@item.FName</td>
+<td>@item.LName</td>
+<td>@item.PhoneNumber</td>
+<td>@item.Address</td>
+
+
+<td>
+
+<a asp-page="/Customers/EditCustList" asp-route-id="@item.Id">Edit</a>
+</td>
+</tr>
+}
+}
+</tbody>
+</table>
+<a class="btn btn-primary mt-3" href="/Customer/Register">Register</a>

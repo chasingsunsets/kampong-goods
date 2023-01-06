@@ -1,6 +1,8 @@
 using kampong_goods;
 using kampong_goods.Models;
+using kampong_goods.Services;
 using Microsoft.AspNetCore.Identity;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,14 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 
-builder.Services.AddDbContext<CustomersInfoDbContext>();
-builder.Services.AddIdentity<CustomersInfo, IdentityRole>().AddEntityFrameworkStores<CustomersInfoDbContext>();
+builder.Services.AddDbContext<AppUsersDbContext>();
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppUsersDbContext>();
+
 builder.Services.ConfigureApplicationCookie(Config =>
 {
     Config.LoginPath = "/Login";
 });
 
-
+builder.Services.AddScoped<CustomerService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,6 +33,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

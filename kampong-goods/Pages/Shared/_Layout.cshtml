@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using kampong_goods.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -44,8 +49,8 @@
             color: white;
             background: #3563E9;
             margin-left: 25px;
-
         }
+
     </style>
 </head>
 <body>
@@ -60,6 +65,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarButtonsExample">
+
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
@@ -80,22 +86,54 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Events">Events</a>
                         </li>
                     </ul>
+@*                    <div class="d-flex align-items-center">
+*@                        @{
+                            if (SignInManager.IsSignedIn(User))
+                            {
 
-                    <div class="d-flex align-items-center">
 
-                        <a class="btn loginBtn " style="color:white;" asp-page="/Customers/Login">Login</a>
+
+
+                                    <ul class="navbar-nav d-flex justify-content-end">
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-page="/Customers/CustList"> Users</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link"  asp-page="/Customers/Profile"> @UserManager.GetUserName(User)</a>
+                                    </li>
+                                    <li class="nav-item">
+                                            <a class="btn registerBtn" asp-area="" asp-page="/Customers/Logout">Logout</a>
+                                        </li>
+                                    </ul>
+                            }
+
+
+                            else
+                            {
+
+
+                                    <ul class="navbar-nav d-flex justify-content-end flex-grow-1">
+                                        <li class="nav-item">
+                                            <a class="btn loginBtn " style="color:white;" asp-page="/Customers/Login">Login</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="btn  registerBtn" style="color:white;" asp-page="/Customers/Register">Register</a>
+                                        </li>
+                                    </ul>
+                            }
+                        }
                     
-                        <a class="btn  registerBtn" style="color:white;" asp-page="/Customers/Register">Register</a>
 
                     </div>
                 </div>
-            </div>
-            </div>
         </nav>
     </header>
 
     <!-- ========================= BODY ========================= -->
     <div class="container">
+        @await Html.PartialAsync("_FlashMessage")
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

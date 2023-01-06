@@ -10,8 +10,8 @@ namespace kampong_goods.Pages.Customers
         [BindProperty]
         public Login LModel { get; set; }
 
-        private readonly SignInManager<CustomersInfo> signInManager;
-        public LoginModel(SignInManager<CustomersInfo> signInManager)
+        private readonly SignInManager<AppUser> signInManager;
+        public LoginModel(SignInManager<AppUser> signInManager)
         {
             this.signInManager = signInManager;
         }
@@ -27,7 +27,8 @@ namespace kampong_goods.Pages.Customers
                 LModel.RememberMe, false);
                 if (identityResult.Succeeded)
                 {
-                    return RedirectToPage("Profile");
+/*                    var userId = signInManager.UserManager.Users.FirstOrDefault()?.Id; 
+*/                    return RedirectToPage("Profile");
                 }
                 ModelState.AddModelError("", "Username or Password incorrect");
             }
