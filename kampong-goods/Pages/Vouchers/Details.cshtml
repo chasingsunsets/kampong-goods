@@ -1,0 +1,37 @@
+﻿@page
+@model kampong_goods.Pages.Vouchers.DetailsModel
+@{
+    ViewData["Title"] = "Voucher Details";
+}
+<h1 class="display-4">@ViewData["Title"]</h1>
+
+<div>
+    <div>
+        <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(m => m.MyVoucher.VoucherId):</label>
+        <label>@Model.MyVoucher.VoucherId</label>
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(m => m.MyVoucher.VoucherName):</label>
+        <label>@Model.MyVoucher.VoucherName</label>
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(m => m.MyVoucher.VoucherDiscAmt):</label>
+        <label>@Model.MyVoucher.VoucherDiscAmt.ToString("C")</label>
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(m => m.MyVoucher.VoucherMinSpend):</label>
+        <label>@Model.MyVoucher.VoucherMinSpend.ToString("C")</label>
+    </div>
+        <div>
+        <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(m => m.MyVoucher.VoucherCode):</label>
+        <label>@Model.MyVoucher.VoucherCode</label>
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(m => m.MyVoucher.VoucherExpDate):</label>
+        <label>@Model.MyVoucher.VoucherExpDate.ToShortDateString()</label>
+    </div>
+
+    <div class="mt-3">
+        <a class="btn btn-secondary" href="/Vouchers">Back</a>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using kampong_goods.Models;
+using kampong_goods.Services;
+
+
+namespace kampong_goods.Pages.Vouchers
+{
+    public class AddModel : PageModel
+    {
+
+        private readonly VoucherService _voucherService;
+        public AddModel(VoucherService voucherService)
+        { _voucherService = voucherService; }
+
+        public Voucher MyVoucher { get; set; } = new();
+
+        public void OnGet()
+        {
+
+        }
+        public IActionResult OnPost()
+        {
+            if (ModelState.IsValid)
+            {
+                Voucher? voucher = _voucherService.GetVoucherById(MyVoucher.VoucherId);
+                _voucherService.AddVoucher(MyVoucher);
+                return Redirect("/Vouchers");
+            }
+            return Page();
+        }
+    }
+}
