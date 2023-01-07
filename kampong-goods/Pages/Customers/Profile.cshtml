@@ -34,7 +34,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" asp-page="Profile" asp-route-id="@user.Id">Delete</a>
+                        <a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@user.Id">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -106,14 +106,14 @@
                                                 </div>
 
 
-
+                            <a data-toggle="modal" data-target="#deletecustprofile" class="card-link"
+                           style="color: darkred;float: right;">
+                                <i class="far fa-trash-alt"></i>
+                                Delete Account
+                            </a>
                                             </div>
 
-                        <a data-toggle="modal" data-target="#deletecustprofile" class="card-link"
-                       style="color: darkred;float: right;font-size:h4;">
-                            <i class="far fa-trash-alt"></i>
-                            Delete Account
-                        </a>
+
                                         </div>
 
 

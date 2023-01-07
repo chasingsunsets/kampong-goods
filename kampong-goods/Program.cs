@@ -18,6 +18,12 @@ builder.Services.ConfigureApplicationCookie(Config =>
     Config.LoginPath = "/Login";
 });
 
+builder.Services.Configure<SecurityStampValidatorOptions>(options =>
+{
+    // enables immediate logout, after updating the user's security stamp.
+    options.ValidationInterval = TimeSpan.Zero;
+});
+
 builder.Services.AddScoped<CustomerService>();
 var app = builder.Build();
 

@@ -3,6 +3,7 @@ using kampong_goods.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Runtime.ConstrainedExecution;
 
 namespace kampong_goods.Pages.Customers
 {
@@ -54,12 +55,18 @@ namespace kampong_goods.Pages.Customers
             if (ModelState.IsValid)
             {
 
-/*                System.Diagnostics.Debug.WriteLine("eh" + CustProfile.Id);
-*/
-               /* AppUser ser = await userManager.GetUserAsync(HttpContext.User);
-                System.Diagnostics.Debug.WriteLine("context" + ser.Id);*/
+                /*                System.Diagnostics.Debug.WriteLine("eh" + CustProfile.Id);
+                */
+                /* AppUser ser = await userManager.GetUserAsync(HttpContext.User);
+                 System.Diagnostics.Debug.WriteLine("context" + ser.Id);*/
 
                 var user = await userManager.FindByIdAsync(CustProfile.Id);
+/*                System.Diagnostics.Debug.WriteLine("eh" + user);
+                var test = await userManager.FindByIdAsync("84ae787f-18c5-41f9-9bfd-1e85b5d13778");
+                System.Diagnostics.Debug.WriteLine("hard" + test);*/
+
+                /*                var user = _customerService.GetCustomerById(CustProfile.Id);
+                                System.Diagnostics.Debug.WriteLine("context" + user); */
 
                 user.Id = CustProfile.Id;
                 user.UserName = CustProfile.UserName;
