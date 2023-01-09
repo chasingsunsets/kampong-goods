@@ -15,12 +15,44 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\lnnat\OneDrive\Documents\GitHub\kampong-goods\kampong-goods
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/CustList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXEN1c3RMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/EditCustList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXEVkaXRDdXN0TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXEVkaXRQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXExvZ291dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXFByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXFJlZ2lzdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_FlashMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9GbGFzaE1lc3NhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_ValidationScriptsPartial.cshtml]
