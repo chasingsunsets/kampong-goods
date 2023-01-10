@@ -49,3 +49,101 @@ body {
 .navBtn {
     justify-content: end;
 }
+
+.services {
+    text-align: left;
+    margin: auto;
+    padding-top: 60px;
+    /* make text into center */
+}
+
+.ser-card:hover {
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Section: About Us */
+.aboutUs {
+    padding-top: 80px;
+}
+
+.post-container {
+    margin: 20px 20px 0 0;
+    overflow: auto
+}
+
+.post-thumb {
+    float: left
+}
+
+    .post-thumb img {
+        display: block
+    }
+
+.post-content {
+    margin-left: 210px
+}
+
+.post-title {
+    font-weight: bold;
+    font-size: 200%
+}
+
+/* Section: Testimonials */
+.testimonials {
+    width: 80%;
+    margin: auto;
+    padding-top: 80px;
+    text-align: center;
+    /* background-image: url('/img/account-page.PNG');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center; */
+    /* background-position: 0% 0%; */
+    /* the header of the testimonial */
+}
+
+.testimonial-col {
+    flex-basis: 44%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    text-align: left;
+    background: #EDFAFD;
+    padding: 25px;
+    cursor: pointer;
+    display: flex;
+}
+
+    .testimonial-col img {
+        height: 100px;
+        margin-left: 5px;
+        margin-right: 30px;
+        border-radius: 50%;
+    }
+
+    .testimonial-col p {
+        padding: 0;
+    }
+
+    .testimonial-col h3 {
+        margin-top: 15px;
+        text-align: left;
+    }
+
+    .testimonial-col .fa {
+        color: #023E8A;
+    }
+
+@media(max-width: 700) {
+    .testimonial-col img {
+        margin-left: 0px;
+        margin-right: 15px;
+    }
+
+    /* to make use of less space */
+}
+
+/* Section: Newsletter */
+.newsletter {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}

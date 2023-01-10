@@ -8,6 +8,7 @@
 @{
 	 Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -16,10 +17,7 @@
 	<meta http-equiv="cache-control" content="max-age=604800" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<meta name="description" content="Bootstrap e-commerce html template similar to Alibaba">
-	<meta name="keywords" content="Online template, shop, theme, template, html, css, bootstrap 4">
-
-	<title>Website title - bootstrap alistyle html template</title>
+	<title>@ViewData["Title"] - kampong_goods</title>
 
 	<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
@@ -55,7 +53,6 @@
 			background: #3563E9;
 			margin-left: 25px;
 		}
-
 	</style>
 </head>
 
@@ -65,39 +62,34 @@
 		{
 					<section class="section-content padding-y">
 						<div class="container">
+							<div class="row">
+								<aside class="col-md-3">
+									<nav class="list-group">
+										<a class="list-group-item active" href="/Customers/Profile"> Account overview  </a>								
+										<a class="list-group-item" href="/Products/productOrder"> My Orders </a>
+										<a class="list-group-item" href="/Products/productListing"> My Selling Items </a>
+										<a class="list-group-item" href="page-index-1.html"> Log out </a>
+									</nav>
+								</aside> <!-- col.// -->
 
-										<div class="row">
-											<aside class="col-md-3">
-												<nav class="list-group">
-													<a class="list-group-item active" href="/Customers/Profile"> Account overview  </a>
-													<a class="list-group-item" href="page-profile-address.html"> My Address </a>
-													<a class="list-group-item" href="page-profile-orders.html"> My Orders </a>
-													<a class="list-group-item" href="page-profile-wishlist.html"> My wishlist </a>
-													<a class="list-group-item" href="page-profile-seller.html"> My Selling Items </a>
-													<a class="list-group-item" href="page-profile-setting.html"> Settings </a>
-													<a class="list-group-item" href="page-index-1.html"> Log out </a>
-												</nav>
-											</aside> <!-- col.// -->
+								<main class="col-md-9">
 
-											<main class="col-md-9">
+									<article class="card mb-3">
+										<div class="card-body">
 
-												<article class="card mb-3">
-													<div class="card-body">
+											<!-- ========================= BODY ========================= -->
+											<div class="container">
+												<main role="main" class="md-9">
+													@RenderBody()
+												</main>
+											</div>
 
-														<!-- ========================= BODY ========================= -->
-														<div class="container">
-															<main role="main" class="pb-3">
-																@RenderBody()
-															</main>
-														</div>
-
-
-													</div>
-												</article>
-											</main>
 										</div>
-								</section>
+									</article>
 
+								</main>
+							</div>
+						</section>
 		}
 		
 	else{

@@ -16,26 +16,195 @@
 	}
 
 	.simplifyColour {
-		color: #3563E9;
+		color: yellow;
 		text-decoration-line:underline;
+	}
+
+	.lineColour {
+		color: yellow;
 	}
 
 </style>
 
+<br />
+
 <div class="container">
-	<section class="text-left text-sm-start" id="home">
-		<div class="container">
-			<div class="d-sm-flex align-items-center justify-content-between">
-				<div>
-					<h1 class="landing-page">We <span class="simplifyColour">simplify</span> sustainable living.</h1>
-					<p class="lead my-4 ">
-						At lacus vitae nulla sagittis scelerisque nisl. Pellentesque duis cursus vestibulum, facilisi ac, sed faucibus.
-					</p>
-					<button type="button" class="btn btnShop">Shop Now</button>
-					<button type="button" class="btn btnLearn">Learn More</button>
+
+	@*<!-- Section: Landing -->*@
+	<section id="landing">
+		<div class="d-sm-flex align-items-center justify-content-between">
+			<div>
+				<h1 class="landing-page">We <span class="simplifyColour">simplify</span> sustainable living.</h1>
+				<p class="lead my-4 ">
+					At lacus vitae nulla sagittis scelerisque nisl. Pellentesque duis cursus vestibulum, facilisi ac, sed faucibus.
+				</p>
+				<button href="/Products/productCatalogue" type="button" class="btn btnShop">Shop Now</button>
+				<button type="button" class="btn btn-outline-primary">Learn More</button>
+			</div>
+			<img class="img-fluid d-none d-sm-block" src='images/landingStreet.svg' title='' alt="picture" width="1000" height="1000" />
+		</div>
+	</section>
+
+	@*<!-- Section: Services -->*@
+	<section class="services">
+		<h6 style="color: #3563E9"><span class="lineColour" style="font-weight: bold">-</span> Services</h6>
+		<h1>Bound with quality and care</h1>
+		<br />
+		<div class="card-deck">
+			<div class="card ser-card">
+				<br />
+				<img class="card-img-top" src="~/images//undraw_secure_login_pdn4.svg" alt="Card image cap" width="100" height="100">
+				<div class="card-body">
+					<h6 class="card-title" style="text-align: center; color: #616060">Buy & Sell</h6>
 				</div>
-				<img class="img-fluid d-none d-sm-block" src='images/landingStreet.svg' title='' alt="picture" width="1000" height="1000" />
+			</div>
+			<div class="card ser-card">
+				<br />
+				<img class="card-img-top" src="~/images/undraw_pull_request_re_aqi5.svg" alt="Card image cap" width="100" height="100">
+				<div class="card-body">
+					<h6 class="card-title" style="text-align: center; color: #616060">Requesting Services</h6>
+				</div>
+			</div>
+			<div class="card ser-card">
+				<br />
+				<img class="card-img-top" src="~/images/undraw_education_f8ru.svg" alt="Card image cap" width="100" height="100">
+				<div class="card-body">
+					<h6 class="card-title" style="text-align: center; color: #616060">Education</h6>
+				</div>
+			</div>
+			<div class="card ser-card">
+				<br />
+				<img class="card-img-top" src="/images/undraw_gifts_0ceh.svg" alt="Card image cap" width="100" height="100">
+				<div class="card-body">
+					<h6 class="card-title" style="text-align: center; color: #616060">Events</h6>
+				</div>
 			</div>
 		</div>
 	</section>
+
+	@*<!-- Section: About Us -->*@
+	<section class="aboutUs">
+		<div class="post-container">
+			<div class="post-thumb"><img src="/images/undraw_showing_support_re_5f2v.svg" width="500" height="400" /></div>
+			<div class="post-content">
+				<h6 style="color: #3563E9"><span class="lineColour" style="font-weight: bold">-</span> Services</h6>
+				<h1>Your trusted platform here</h1>
+				<br />
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+					Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+					Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+			</div>
+		</div>
+	</section>
+
+	@*<!-- Section: Testimonials -->*@
+	<section class="testimonials">
+		<small class="text-muted">Testimonials</small>
+		<h1>What our customer say</h1>
+		<p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..</p>
+		<div class="row d-flex justify-content-center">
+		<div class="col-md-10">
+		  <div class="card">
+			<div class="card-body m-3">
+				<div class="row">
+					<div class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
+						<img src="/images/dokyeom.jpg"
+								class="rounded-circle img-fluid shadow-1" alt="picture" width="200" height="200" />
+					</div>
+					<div class="col-lg-8">
+						<p class="text-muted fw-light mb-4">
+							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente
+							molestiae numquam quas, voluptates omnis nulla ea odio quia similique
+							corrupti magnam.
+						</p>
+						<p class="fw-bold lead mb-2"><strong>Dokyeom</strong></p>
+						<p class="fw-bold text-muted mb-0">Product manager</p>
+					</div>
+				</div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</section>
+
+	@*<!-- Section: Events -->*@
+	<section class="services">
+		<h6 style="color: #3563E9"><span class="lineColour" style="font-weight: bold">-</span> Schedule</h6>
+		<h1>Upcoming events</h1>
+		<br />
+		<article class="card card-product-list">
+			<div class="row no-gutters">
+				<aside class="col-md-3">
+					<a href="#" class="img-wrap">
+						<span class="badge badge-danger"> NEW </span>
+						<img src="~/images/Donation-in-kind-1-scaled-e1635155009580.jpg">
+					</a>
+				</aside> <!-- col.// -->
+				<div class="col-md-6">
+					<div class="info-main">
+						<a href="#" class="h5 title"> Donation Drive</a>
+						<div class="rating-wrap mb-2">
+							<p>Date: 22/1/2023</p>
+							<p>Time: 9am-2pm</p>
+						</div>
+
+						<p class="mb-3">
+							<span class="tag"> <i class="fa fa-check"></i> Teenagers welcomed!</span>
+							<span class="tag"> No experience needed </span>
+							<span class="tag"> Accepting all products </span>
+						</p>
+
+						<p>
+							Take it as demo specs, ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi enim ad minim  sint occaecat cupidatat non
+							proident, sunt in culpa qui laborum....
+						</p>
+
+					</div> <!-- info-main.// -->
+				</div> <!-- col.// -->
+				<aside class="col-sm-3">
+					<div class="info-aside">
+
+						<p class="text-muted mt-3">NYP Lions Heart</p>
+						<p class="mt-3">
+							<a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Join </a>
+							<a href="#" class="btn btn-light"><i class="fa fa-heart"></i> Save </a>
+						</p>
+
+						<label class="custom-control mt-3 custom-checkbox">
+							<input type="checkbox" class="custom-control-input">
+							<div class="custom-control-label">
+								Add to compare
+							</div>
+						</label>
+
+					</div> <!-- info-aside.// -->
+				</aside> <!-- col.// -->
+			</div> <!-- row.// -->
+		</article> <!-- card-product .// -->
+	</section>
+
+	@*<!-- Section: newsletter -->*@
+	<section class="newsletter">
+		<div class="d-sm-flex align-items-center justify-content-between">
+			<div>
+				<h6 style="color: #3563E9"><span class="lineColour" style="font-weight: bold">-</span> Newsletter</h6>
+				<h1>Keep up to date with us!</h1>
+				<p class="lead my-4 ">
+					At lacus vitae nulla sagittis scelerisque nisl. Pellentesque duis cursus vestibulum, facilisi ac, sed faucibus.
+				</p>
+				<form class="form-row">
+					<div class="col-8">
+						<input class="form-control" placeholder="Your Email" type="email">
+					</div> <!-- col.// -->
+					<div class="col-4">
+						<button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
+					</div> <!-- col.// -->
+				</form>
+				<small class="form-text">We’ll never share your email address with a third-party. </small>
+			</div>
+			<img class="img-fluid d-none d-sm-block" src='images/undraw_subscribe_vspl.svg' title='' alt="picture" width="500" height="500" />
+		</div>
+	</section>
+
 </div>
