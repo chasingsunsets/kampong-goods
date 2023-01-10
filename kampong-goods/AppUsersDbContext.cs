@@ -18,8 +18,8 @@ namespace kampong_goods
         }
 
 
-/*        public DbSet<Account> Customers { get; set; }
-*/
+        public DbSet<StaffInfo> StaffInfos { get; set; }
+
     }
 
 }
