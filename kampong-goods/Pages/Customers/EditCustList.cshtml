@@ -3,6 +3,8 @@
 
 @{
     ViewData["Title"] = "Edit Customer";
+    Layout = "~/Pages/Shared/_StaffLayout.cshtml";
+
 
 }
 
@@ -16,7 +18,7 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="CustAcc.UserName"></label>
         <div class="col-sm-10">
-            <input class="form-control" asp-for="CustAcc.UserName" />
+            <input class="form-control" asp-for="CustAcc.UserName" required/>
             <span asp-validation-for="CustAcc.UserName" class="text-danger"></span>
         </div>
     </div>
@@ -24,14 +26,14 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="CustAcc.FName"></label>
         <div class="col-sm-10">
-            <input class="form-control" asp-for="CustAcc.FName" />
+            <input class="form-control" asp-for="CustAcc.FName" required />
             <span asp-validation-for="CustAcc.FName" class="text-danger"></span>
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="CustAcc.LName"></label>
         <div class="col-sm-10">
-            <input class="form-control" asp-for="CustAcc.LName" />
+            <input class="form-control" asp-for="CustAcc.LName" required />
             <span asp-validation-for="CustAcc.LName" class="text-danger"></span>
         </div>
     </div>
@@ -54,14 +56,14 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="CustAcc.PhoneNumber"></label>
         <div class="col-sm-10">
-            <input class="form-control" asp-for="CustAcc.PhoneNumber" />
+            <input class="form-control" asp-for="CustAcc.PhoneNumber" required />
             <span asp-validation-for="CustAcc.PhoneNumber" class="text-danger"></span>
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="CustAcc.Email"></label>
         <div class="col-sm-10">
-            <input class="form-control" asp-for="CustAcc.Email" />
+            <input class="form-control" asp-for="CustAcc.Email" required />
             <span asp-validation-for="CustAcc.Email" class="text-danger"></span>
         </div>
     </div>
@@ -69,14 +71,14 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="CustAcc.Address"></label>
         <div class="col-sm-10">
-            <input class="form-control" asp-for="CustAcc.Address" oninput="this.value = this.value.toUpperCase()" />
+            <input class="form-control" asp-for="CustAcc.Address" oninput="this.value = this.value.toUpperCase()" required />
             <span asp-validation-for="CustAcc.Address" class="text-danger"></span>
         </div>
     </div>
 
     <div>
         <input type="submit" value="Update" class="btn btn-primary" />
-        <a class="btn btn-secondary ms-2" href="/CustList">Cancel</a>
+        <a class="btn btn-secondary ms-2" href="/Customers/CustList">Cancel</a>
     </div>
 </form>
 

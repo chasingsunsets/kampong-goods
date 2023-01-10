@@ -30,7 +30,9 @@ namespace kampong_goods.Pages.Customers
 /*                    var userId = signInManager.UserManager.Users.FirstOrDefault()?.Id; 
 */                    return RedirectToPage("Profile");
                 }
-                ModelState.AddModelError("", "Username or Password incorrect");
+
+                TempData["FlashMessage.Type"] = "danger";
+                TempData["FlashMessage.Text"] = string.Format("Username or Password incorrect");
             }
             return Page();
         }

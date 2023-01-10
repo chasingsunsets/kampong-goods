@@ -1,5 +1,5 @@
 ﻿@page
-@model kampong_goods.Pages.Customers.CustListModel 
+@model kampong_goods.Pages.Staff.StaffListModel
 @using Microsoft.AspNetCore.Identity;
 @using kampong_goods.Models;
 
@@ -7,14 +7,14 @@
 @{
     Layout = "~/Pages/Shared/_StaffLayout.cshtml";
 
-    var custlist = await UserManager.GetUsersInRoleAsync("Customer");
+    var stafflist = await UserManager.GetUsersInRoleAsync("Staff");
 
 }
 
 
 
    
- @{           if(custlist!=null){
+ @{           if(stafflist!=null){
 
                 <div class="container-fluid">
             
@@ -22,7 +22,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="background-color:#3563E9;">
-                            <h5 class="m-0 font-weight-bold" style="color:white;">Customer List</h5>
+                            <h5 class="m-0 font-weight-bold" style="color:white;">Staff List</h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -34,19 +34,18 @@
                                             <th>&nbsp;ID</th>
                                             <th>&nbsp;Name</th>
                                             <th>&nbsp;Username</th>
-                                            <th>&nbsp;Email</th>
-                                        <th>&nbsp;Address</th>
-
                                             <th>&nbsp;Phone Number</th>
+                                        <th>&nbsp;NRIC</th>
+
                                             <th>&nbsp;Action</th>
                                         </tr>
                                     </thead>
-                                @foreach (var item in custlist)
+                                @foreach (var item in stafflist)
                             {
 
 
                                 <!-- Delete Modal-->
-                                <div class="modal fade" id="deletecust" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                <div class="modal fade" id="deletestaff" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                              aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -74,19 +73,18 @@
                                         <td>@item.Id</td>
                                         <td>&nbsp;@item.FName &nbsp;@item.LName</td>
                                         <td>&nbsp;@item.UserName</td>
-                                        <td>&nbsp;@item.Email</td>
-                                        <td>&nbsp;@item.Address</td>
-
                                         <td>&nbsp;@item.PhoneNumber</td>
+                                        <td>&nbsp;@item.NRIC</td>
+
                                         <td>
                                             <div>
 
-                                                <a asp-page="/Customers/EditCustList" asp-route-id="@item.Id" style="color:#3563E9" class="card-link mb-2"><i class="fas fa-pencil-alt"></i>Edit</a>
+                                                <a asp-page="/Staff/EditCustList" asp-route-id="@item.Id" style="color:#3563E9" class="card-link mb-2"><i class="fas fa-pencil-alt"></i>Edit</a>
                                               
                                             </div> 
                                             <div>
 
-                                            <a data-toggle="modal" data-target="#deletecust" class="card-link" style="color: darkred" asp-page-handler="Delete" asp-route-id="@item.Id">
+                                            <a data-toggle="modal" data-target="#deletestaff" class="card-link" style="color: darkred" asp-page-handler="Delete" asp-route-id="@item.Id">
                                                 <i class="far fa-trash-alt"></i>
                                                 Delete
                                             </a>
@@ -110,7 +108,7 @@
 
         else{
 
-            <h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No Customer</h3>
+            <h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No Staff</h3>
         }
     }
 

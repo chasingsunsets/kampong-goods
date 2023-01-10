@@ -16,6 +16,10 @@ namespace kampong_goods
         {
             string connectionString = _configuration.GetConnectionString("MyConnection"); optionsBuilder.UseSqlServer(connectionString);
         }
+
+
+/*        public DbSet<Account> Customers { get; set; }
+*/
     }
 
 }

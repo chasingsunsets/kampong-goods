@@ -1,10 +1,13 @@
 using kampong_goods.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 
 namespace kampong_goods.Pages.Customers
 {
+    [Authorize(Roles = "Customer")]
     public class LogoutModel : PageModel
     
     {
