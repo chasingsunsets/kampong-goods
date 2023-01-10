@@ -13,6 +13,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<AppUsersDbContext>();
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppUsersDbContext>();
 
+/*builder.Services.AddTransient<IEmailSender, SendGridEmail>();
+*/
 builder.Services.ConfigureApplicationCookie(Config =>
 {
     Config.LoginPath = "/Login";

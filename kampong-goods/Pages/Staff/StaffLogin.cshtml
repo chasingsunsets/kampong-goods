@@ -1,0 +1,58 @@
+﻿@page
+@model kampong_goods.Pages.Staff.StaffLoginModel
+@{
+    Layout = "~/Pages/Shared/_StaffLogin.cshtml";
+
+}
+
+<body id="staffpg" class="staffbg">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card card-body" style="border-radius: 60px ; top:135px;">
+                <div class="text-center">
+@*                    <img class="logo2" src="/img/whitelogo.png">*@
+                    <h1 class="h4 text-gray-900 mb-4" style="padding-top: 15px;">STAFF LOGIN</h1>
+                </div>
+                <form method="post">
+
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="LModel.UserName">Username</label>
+                        <input type="Text" asp-for="LModel.UserName" class="form-control" />
+                        <span asp-validaton-for="LModel.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="LModel.Password">Password</label>
+                        <input type="password" asp-for="LModel.Password" class="form-control" />
+                        <span asp-validaton-for="LModel.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" asp-for="LModel.RememberMe" class="form-check-input" />
+                        <label class="form-check-label" asp-for="LModel.RememberMe">Remember Me?</label>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+@*                {{!--
+                <hr> --}}
+                {{!-- <div class="text-center">
+                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                </div>
+                <div class="text-center">
+                    <a class="small" href="register.html">Create an Account!</a>
+                </div> --}}*@
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    </div>
+
+    </div>
+
+    </div>
+</body>

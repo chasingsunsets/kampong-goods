@@ -42,7 +42,8 @@ namespace kampong_goods.Services
         
        public void AddCustomer(AppUser customer)
        {
-           _db.Users.Add(customer);
+            
+            _db.Users.Add(customer);
            _db.SaveChanges();
 
        }
@@ -53,22 +54,33 @@ namespace kampong_goods.Services
        }
 
 
-/*        [HttpGet]
-        public async Task<string?> GetCurrentUserId()
-        {
-            AppUser usr = await GetCurrentUserAsync();
-            return usr?.Id;
-        }*/
+/*
+        var users = await(from user in _db.Users
+                          join userRole in _db.UserRoles
+                          on user.Id equals userRole.UserId
+                          join role in _db.Roles
+                          on userRole.RoleId equals role.Id
+                          where role.Name == "User"
+                          select user)
+                                 .ToListAsync();*/
 
-/*        private Task<AppUser> GetCurrentUserAsync() => _user.GetUserAsync(HttpContext.User);
-*/        /*        public AppUser?{
-         var userid = userManager.GetUserId(HttpContext.User);
-                    if (userid != null)
-                    {
-                        AppUser user = userManager.FindByIdAsync(userid).Result;
-                        return user;
-                    }
-        }*/
+
+        /*        [HttpGet]
+                public async Task<string?> GetCurrentUserId()
+                {
+                    AppUser usr = await GetCurrentUserAsync();
+                    return usr?.Id;
+                }*/
+
+        /*        private Task<AppUser> GetCurrentUserAsync() => _user.GetUserAsync(HttpContext.User);
+        */        /*        public AppUser?{
+                 var userid = userManager.GetUserId(HttpContext.User);
+                            if (userid != null)
+                            {
+                                AppUser user = userManager.FindByIdAsync(userid).Result;
+                                return user;
+                            }
+                }*/
 
         /*            public IActionResult CustList()
                     {

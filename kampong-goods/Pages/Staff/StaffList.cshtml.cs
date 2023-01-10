@@ -6,30 +6,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data;
 
-namespace kampong_goods.Pages.Customers
+namespace kampong_goods.Pages.Staff
 {
-    [Authorize(Roles = "Staff")]
-
-    public class CustListModel : PageModel
+    [Authorize(Roles ="Staff")]
+    public class StaffListModel : PageModel
     {
-
         private readonly CustomerService _customerService;
         private UserManager<AppUser> userManager { get; }
 
-        public CustListModel(CustomerService customerService, UserManager<AppUser> userManager)
+        public StaffListModel(CustomerService customerService, UserManager<AppUser> userManager)
         {
             _customerService = customerService;
             this.userManager = userManager;
 
-    }
-    public List<AppUser> CustList { get; set; } = new();
-
-
+        }
+        public List<AppUser> CustList { get; set; } = new();
         public void OnGet()
         {
-/*            CustList = _customerService.GetAll();
-*/        }
-
+        }
 
         public async Task<IActionResult> OnGetDelete(string id)
         {
@@ -67,7 +61,7 @@ namespace kampong_goods.Pages.Customers
                     {
                         TempData["FlashMessage.Type"] = "success";
                         TempData["FlashMessage.Text"] = string.Format("Account deleted.");
-                        return RedirectToPage("CustList");
+                        return RedirectToPage("StaffList");
                     }
                 }
 

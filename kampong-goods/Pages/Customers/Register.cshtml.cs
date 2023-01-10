@@ -51,31 +51,42 @@ namespace kampong_goods.Pages.Customers
                 };
 
                 //Create the Customer role if NOT exist
-                IdentityRole role = await roleManager.FindByIdAsync("Customer");
+                IdentityRole role = await roleManager.FindByNameAsync("Customer");
                 if (role == null)
                 {
                     IdentityResult result2 = await roleManager.CreateAsync(new IdentityRole("Customer"));
                     if (!result2.Succeeded)
                     {
                         ModelState.AddModelError("", "Create role customer failed");
+               /*         TempData["FlashMessage.Type"] = "danger";
+                        TempData["FlashMessage.Text"] = string.Format("Account registration fail.");*/
                     }
                 }
 
-
-                var result = await userManager.CreateAsync(user, RModel.Password);
-                if (result.Succeeded)
+                var useremail = await userManager.FindByEmailAsync(user.Email);
+                if (useremail == null) /*if email not used*/
                 {
-                    //Add users to Admin Role
-                    result = await userManager.AddToRoleAsync(user, "Customer");
+                    var result = await userManager.CreateAsync(user, RModel.Password);
+                    if (result.Succeeded)
+                    {
+                        //Add users to Admin Role
+                        result = await userManager.AddToRoleAsync(user, "Customer");
 
-                    TempData["FlashMessage.Type"] = "success";
-                    TempData["FlashMessage.Text"] = string.Format("Account {0} successfully registered.", RModel.Username);
-                    await signInManager.SignInAsync(user, false);
-                    return RedirectToPage("Profile");
+                        TempData["FlashMessage.Type"] = "success";
+                        TempData["FlashMessage.Text"] = string.Format("Account {0} successfully registered.", RModel.Username);
+                        await signInManager.SignInAsync(user, false);
+                        return RedirectToPage("Profile");
+                    }
+
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
                 }
-                foreach (var error in result.Errors)
+                else
                 {
-                    ModelState.AddModelError("", error.Description);
+                    TempData["FlashMessage.Type"] = "danger";
+                    TempData["FlashMessage.Text"] = string.Format("Account with email: {0} is registered already.", user.Email);
                 }
             }
             return Page();

@@ -1,0 +1,105 @@
+﻿@page
+@model kampong_goods.Pages.Staff.AddStaffModel
+@{
+    Layout = "~/Pages/Shared/_StaffLayout.cshtml";
+
+    ViewData["Title"] = "Add Staff";
+
+}
+
+<h1 class="mb-3">@ViewData["Title"]</h1>
+<form class="mt-3" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="AModel.NRIC"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="AModel.NRIC" />
+            <span asp-validation-for="AModel.NRIC" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="AModel.Username"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="AModel.Username" />
+            <span asp-validation-for="AModel.Username" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="AModel.FName"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="AModel.FName" onblur="initialiseFirstname()" />
+            <span asp-validation-for="AModel.FName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="AModel.LName"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="AModel.LName" onblur="initialiseLastname()" />
+            <span asp-validation-for="AModel.LName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="AModel.Password"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="AModel.Password" />
+            <span asp-validation-for="AModel.Password" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="AModel.ConfirmPassword"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="AModel.ConfirmPassword" />
+            <span asp-validation-for="AModel.ConfirmPassword" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="AModel.PhoneNo"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="AModel.PhoneNo" />
+            <span asp-validation-for="AModel.PhoneNo" class="text-danger"></span>
+        </div>
+    </div>
+   
+        <input type="submit" value="Add" class="btn btn-primary" />
+        <a class="btn btn-secondary ms-2" href="/">Cancel</a>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    <script>
+ 
+  
+function initialiseFirstname() {
+    let firstname = $('#firstname').val();
+    let titleArr = [];
+    let initTitle = '';
+    if (firstname) {
+        titleArr = firstname.trim().split(' ');
+        for (let i = 0; i < titleArr.length; i++) {
+            initTitle += titleArr[i].charAt(0).toUpperCase() + titleArr[i].slice(1) + (i == titleArr.length - 1 ? '' : ' ');
+        }
+        $('#firstname').val(initTitle);
+    }
+}
+
+function initialiseLastname() {
+    let lastname = $('#lastname').val();
+    let titleArr = [];
+    let initTitle = '';
+    if (lastname) {
+        titleArr = lastname.trim().split(' ');
+        for (let i = 0; i < titleArr.length; i++) {
+            initTitle += titleArr[i].charAt(0).toUpperCase() + titleArr[i].slice(1) + (i == titleArr.length - 1 ? '' : ' ');
+        }
+        $('#lastname').val(initTitle);
+    }
+}
+    </script>
+    }
