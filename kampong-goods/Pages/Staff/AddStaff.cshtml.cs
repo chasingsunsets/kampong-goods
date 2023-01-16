@@ -1,4 +1,5 @@
 using kampong_goods.Models;
+using kampong_goods.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,16 +17,20 @@ namespace kampong_goods.Pages.Staff
 
         private readonly RoleManager<IdentityRole> roleManager;
 
+        private readonly StaffService _staffService;
+
+
         [BindProperty]
         public AddStaff AModel { get; set; }
 
 
 
-        public AddStaffModel(UserManager<AppUser> userManager,
+        public AddStaffModel(StaffService staffService, UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager,
         RoleManager<IdentityRole> roleManager)
         {
-            this.userManager = userManager;
+                _staffService = staffService;
+                this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
 
@@ -41,22 +46,22 @@ namespace kampong_goods.Pages.Staff
 
                 var user = new AppUser()
                 {
-                    NRIC=AModel.NRIC,
-                    UserName = AModel.Username,
-                   /* Email = RModel.Email,*/
+/*                    NRIC=AModel.NRIC,
+*/                    UserName = AModel.Username,
+                    Email = AModel.Email,
 
                     LName = AModel.LName,
                     FName = AModel.FName,
 
                     PhoneNumber = AModel.PhoneNo,
-/*                    Address = RModel.Address,
-*/
+                    Address = AModel.Address,
+
                 };
 
                 //Create the Customer role if NOT exist
                 IdentityRole role = await roleManager.FindByNameAsync("Staff");
                 if (role == null)
-                {
+                {   
                     IdentityResult result2 = await roleManager.CreateAsync(new IdentityRole("Staff"));
                     if (!result2.Succeeded)
                     {
@@ -67,12 +72,26 @@ namespace kampong_goods.Pages.Staff
                 }
 
 
+                /*var staffs= _staffService.GetAll();
+*/
+                
                     var result = await userManager.CreateAsync(user, AModel.Password);
                     if (result.Succeeded)
                     {
-                        //Add users to Admin Role
-                        result = await userManager.AddToRoleAsync(user, "Staff");
 
+                    var staff = new StaffInfo()
+                    {
+
+                        NRIC = AModel.NRIC,
+                        User=user
+              
+                    };
+
+                    
+
+                    //Add users to Admin Role
+                    result = await userManager.AddToRoleAsync(user, "Staff");
+                    _staffService.AddStaff(staff);
                         TempData["FlashMessage.Type"] = "success";
                         TempData["FlashMessage.Text"] = string.Format("Account {0} successfully registered.", AModel.Username);
                         await signInManager.SignInAsync(user, false);
