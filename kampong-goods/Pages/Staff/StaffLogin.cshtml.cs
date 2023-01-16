@@ -1,4 +1,5 @@
 using kampong_goods.Models;
+using kampong_goods.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,12 +15,13 @@ namespace kampong_goods.Pages.Staff
 
 
         private readonly SignInManager<AppUser> signInManager;
-  
+        private readonly StaffService _staffService;
 
-        public StaffLoginModel(UserManager<AppUser> userManager,
+        public StaffLoginModel(StaffService staffService, UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager,
         RoleManager<IdentityRole> roleManager)
         {
+            _staffService = staffService;
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
@@ -38,28 +40,38 @@ namespace kampong_goods.Pages.Staff
                 }
             }
 
-            var staff = await userManager.FindByNameAsync("specialstaffonly");
+
+            var staff = await userManager.FindByNameAsync("mainstaff");
             if (staff==null)
             {
                 var user = new AppUser()
                 {
-                    NRIC = "T0498998Z",
-                    UserName = "specialstaffonly",
-                    /* Email = RModel.Email,*/
+                    
+                    UserName = "mainstaff",
+                    Email = "kamponggoods@gmail.com",
 
                     LName = "Main",
                     FName = "Staff",
 
                     PhoneNumber = "98554466",
-                    /*                    Address = RModel.Address,
-                    */
+                    Address = "BLK 22 QUEENSTOWN 219288",
+
                 };
+
 
                 var result = await userManager.CreateAsync(user, "P@ssw0rd");
                 if (result.Succeeded)
                 {
                     //Add users to Admin Role
                     result = await userManager.AddToRoleAsync(user, "Staff");
+
+                    var createstaff = new StaffInfo()
+                    {
+                        NRIC = "T0498998Z",
+                        User = user
+                    };
+                    //Add users to db
+                    _staffService.AddStaff(createstaff);
 
                 }
 

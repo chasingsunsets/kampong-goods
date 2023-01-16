@@ -45,7 +45,7 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="AModel.Password"></label>
         <div class="col-sm-10">
-            <input class="form-control" asp-for="AModel.Password" />
+            <input class="form-control" type="password" asp-for="AModel.Password" />
             <span asp-validation-for="AModel.Password" class="text-danger"></span>
         </div>
     </div>
@@ -53,7 +53,7 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="AModel.ConfirmPassword"></label>
         <div class="col-sm-10">
-            <input class="form-control" asp-for="AModel.ConfirmPassword" />
+            <input class="form-control" type="password" asp-for="AModel.ConfirmPassword" />
             <span asp-validation-for="AModel.ConfirmPassword" class="text-danger"></span>
         </div>
     </div>
@@ -62,6 +62,22 @@
         <div class="col-sm-10">
             <input class="form-control" asp-for="AModel.PhoneNo" />
             <span asp-validation-for="AModel.PhoneNo" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="AModel.Email"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="AModel.Email" oninput="this.value = this.value.toLowerCase()" />
+            <span asp-validation-for="AModel.Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="AModel.Address"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="AModel.Address" oninput="this.value = this.value.toUpperCase()" />
+            <span asp-validation-for="AModel.Address" class="text-danger"></span>
         </div>
     </div>
    

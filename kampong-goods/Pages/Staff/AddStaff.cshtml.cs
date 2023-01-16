@@ -48,14 +48,14 @@ namespace kampong_goods.Pages.Staff
                 {
 /*                    NRIC=AModel.NRIC,
 */                    UserName = AModel.Username,
-                   /* Email = RModel.Email,*/
+                    Email = AModel.Email,
 
                     LName = AModel.LName,
                     FName = AModel.FName,
 
                     PhoneNumber = AModel.PhoneNo,
-/*                    Address = RModel.Address,
-*/
+                    Address = AModel.Address,
+
                 };
 
                 //Create the Customer role if NOT exist
