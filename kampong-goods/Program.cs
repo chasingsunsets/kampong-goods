@@ -1,3 +1,4 @@
+using kampong_goods;
 using kampong_goods.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,8 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddScoped<VoucherService>();
+//builder.Services.AddDbContext<MyDbContext>();
 
+builder.Services.AddScoped<VoucherService>();
+builder.Services.AddDbContext<VoucherDbContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

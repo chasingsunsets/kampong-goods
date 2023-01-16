@@ -4,7 +4,7 @@ namespace kampong_goods.Models
 {
     public class Voucher
     {
-        [Required, MaxLength(8)]
+        [MaxLength(1000)]
         public string VoucherId { get; set; } = string.Empty;
 
         [Required, MinLength(3, ErrorMessage = "Enter at least 3 characters."), MaxLength(30)]
@@ -21,7 +21,7 @@ namespace kampong_goods.Models
 
         [DataType(DataType.Date)]
         [Display(Name = "Expiry")]
-        public DateTime VoucherExpDate { get; set; } = new DateTime(DateTime.Now.Year - 18, 1, 1);
+        public DateTime VoucherExpDate { get; set; } = new DateTime(DateTime.Now.Year - 0, 1, 1);
 
     }
 }

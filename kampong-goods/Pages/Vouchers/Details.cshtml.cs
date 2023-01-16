@@ -11,6 +11,7 @@ namespace kampong_goods.Pages.Vouchers
         public DetailsModel(VoucherService voucherService)
         { _voucherService = voucherService; }
 
+        [BindProperty]
         public Voucher MyVoucher { get; set; } = new();
 
         public IActionResult OnGet(string id)
@@ -25,6 +26,17 @@ namespace kampong_goods.Pages.Vouchers
             {
                 return Redirect("/Vouchers");
             }
+        }
+
+        public IActionResult OnPost()
+        {
+            if (ModelState.IsValid)
+            {
+                //Voucher? voucher = MyVoucher;
+                _voucherService.UpdateVoucher(MyVoucher);
+                return Redirect("/Vouchers");
+            }
+            return Page();
         }
     }
 }
