@@ -22,6 +22,7 @@
 
     <!-- Font awesome 5 -->
     <link href="~/fonts/fontawesome/css/all.min.css?v=2.0" type="text/css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f93b590445.js" crossorigin="anonymous"></script>
 
     <!-- custom style -->
     <link href="~/css/ui.css?v=2.0" rel="stylesheet" type="text/css" />
@@ -94,7 +95,10 @@
                                 <ul class="navbar-nav d-flex justify-content-end">
 
                                 <li class="nav-item">
-                                    <a class="nav-link"  asp-page="/Customers/Profile"> @UserManager.GetUserName(User)</a>
+                                    <a class="nav-link"  asp-page="/Customers/Profile">Hi, <span style="font-weight: bold">@UserManager.GetUserName(User)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-page="/Customers/Profile"><i class="fa-solid fa-comments"></i></a>
                                 </li>
                                 <li class="nav-item">
                                         <a class="btn registerBtn" asp-area="" asp-page="/Customers/Logout" style="color: white;">Logout</a>
