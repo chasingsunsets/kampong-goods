@@ -1,0 +1,66 @@
+﻿@page
+@model kampong_goods.Pages.Vouchers.IndexModel
+@{
+    ViewData["Title"] = "Vouchers";
+}
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.VoucherList[0].VoucherId)</th>
+            <th>@Html.DisplayNameFor(model => model.VoucherList[0].VoucherName)</th>
+            <th>@Html.DisplayNameFor(model => model.VoucherList[0].VoucherDiscAmt)</th>
+            <th>@Html.DisplayNameFor(model => model.VoucherList[0].VoucherMinSpend)</th>
+            <th>@Html.DisplayNameFor(model => model.VoucherList[0].VoucherCode)</th>
+            <th>@Html.DisplayNameFor(model => model.VoucherList[0].VoucherExpDate)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            @foreach (var item in Model.VoucherList)
+            {
+                <tr>
+                    <td>@item.VoucherId</td>
+                    <td>@item.VoucherName</td>
+                    <td>@item.VoucherDiscAmt</td>
+                    <td>@item.VoucherMinSpend</td>
+                    <td>@item.VoucherCode</td>
+                    <td>@item.VoucherExpDate.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <a asp-page="/Vouchers/Details" asp-route-id="@item.VoucherId">View</a>
+                        <a data-toggle="modal" class="btn btn-danger btn-block" data-target="#deleteProduct">  Delete </a>
+                        <!-- Delete Modal-->
+						<div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+					 	aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">
+											Delete Product
+										</h5>
+										<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">×</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										Select "Delete" below if you are
+										deleting your product.
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+										<a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@item.VoucherId">Delete</a>
+									</div>
+								</div>
+							</div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary mt-3" href="/Vouchers/Add">Add Voucher</a>
+<a class="btn btn-primary mt-3" href="/Vouchers/VoucherCatalogue">Voucher</a>

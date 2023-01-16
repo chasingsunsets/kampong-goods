@@ -30,6 +30,10 @@ builder.Services.AddScoped<CustomerService>();
 
 builder.Services.AddScoped<StaffService>();
 
+//builder.Services.AddDbContext<MyDbContext>();
+
+builder.Services.AddScoped<VoucherService>();
+builder.Services.AddDbContext<VoucherDbContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
