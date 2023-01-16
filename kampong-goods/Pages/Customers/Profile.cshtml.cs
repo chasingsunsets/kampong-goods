@@ -9,7 +9,7 @@ using System.Data;
 
 namespace kampong_goods.Pages.Customers
 {
-    [Authorize(Roles = "Customer")]
+    [Authorize(Roles = "Customer, Staff")]
     public class ProfileModel : PageModel
 
     {

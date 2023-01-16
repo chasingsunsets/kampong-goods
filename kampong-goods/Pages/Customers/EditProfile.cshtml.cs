@@ -14,7 +14,7 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace kampong_goods.Pages.Customers
 {
-    [Authorize(Roles = "Customer")]
+    [Authorize(Roles = "Customer, Staff")]
 
     public class EditProfileModel : PageModel
     {
