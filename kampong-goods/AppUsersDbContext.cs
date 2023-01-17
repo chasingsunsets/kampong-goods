@@ -14,6 +14,11 @@ namespace kampong_goods
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
+            //comment SQLite and uncomment Sqlserver before push
+            // delete all files in Migrations if make any changes
+            //command may be: dotnet ef migration restore
+            // may be: dotnet ef databse update
             string connectionString = _configuration.GetConnectionString("MyConnection"); 
             optionsBuilder.UseSqlServer(connectionString);
 
