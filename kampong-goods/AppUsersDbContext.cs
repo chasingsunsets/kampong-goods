@@ -14,7 +14,13 @@ namespace kampong_goods
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = _configuration.GetConnectionString("MyConnection"); optionsBuilder.UseSqlServer(connectionString);
+            string connectionString = _configuration.GetConnectionString("MyConnection"); 
+            optionsBuilder.UseSqlServer(connectionString);
+
+            // Sorry team, I need to use SQLite to run on my machine :(
+            // Love you lots <3 - Zhiyi
+            // string sqliteConnectionString = _configuration.GetConnectionString("dev");
+            // optionsBuilder.UseSqlite(sqliteConnectionString);
         }
 
 
