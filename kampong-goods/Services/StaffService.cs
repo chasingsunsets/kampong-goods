@@ -27,6 +27,22 @@ namespace kampong_goods.Services
             _db.SaveChanges();
 
         }
+
+        public StaffInfo? GetICById(string id)
+        {
+
+            StaffInfo? staff = _db.StaffInfos.FirstOrDefault(x => x.UserId.Equals(id));
+
+            return staff;
+        }
+
+        public StaffInfo? GetStaffbyIC(string ic)
+        {
+            StaffInfo? staff = _db.StaffInfos.FirstOrDefault(
+            x => x.NRIC.Equals(ic));
+
+            return staff;
+        }
         /*        public List<AppUser> GetAll()
                 {
                     return _db.Users.OrderBy(m => m.Id).ToList();
@@ -43,6 +59,7 @@ namespace kampong_goods.Services
             return customer;
         }
 
+
         public AppUser? GetCustomerById(string id)
         {
 
@@ -57,6 +74,7 @@ namespace kampong_goods.Services
             _db.Users.Update(customer);
             _db.SaveChanges();
         }
+
 
 
         /*
