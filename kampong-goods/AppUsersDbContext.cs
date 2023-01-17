@@ -19,6 +19,11 @@ namespace kampong_goods
 
             // Sorry team, I need to use SQLite to run on my machine :(
             // Love you lots <3 - Zhiyi
+            // TODO: create a script to automatically detect machine type
+            // e.g.
+            // MacOS      SQLite
+            // Windows    SQLServer
+            // Linux      SQLServer
             // string sqliteConnectionString = _configuration.GetConnectionString("dev");
             // optionsBuilder.UseSqlite(sqliteConnectionString);
         }
