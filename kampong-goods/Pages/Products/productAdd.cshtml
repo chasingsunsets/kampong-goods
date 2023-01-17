@@ -1,0 +1,84 @@
+﻿@page
+@model kampong_goods.Pages.Products.AddproductModel
+@{
+	Layout = "~/Pages/Shared/_ProfileNav.cshtml";
+	ViewData["Title"] = "Profile";
+}
+
+<div class="card-body">
+
+	<form class="mt-3" method="post" enctype="multipart/form-data">
+		<div asp-validation-summary="All" class="text-danger"></div>
+
+		<div class="row">
+			<div class="col-md-8">
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label" asp-for="MyProduct.ProductName"></label>
+					<div class="col-sm-10">
+						<input class="form-control" asp-for="MyProduct.ProductName" />
+						<span asp-validation-for="MyProduct.ProductName" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label" asp-for="MyProduct.CategoryId"></label>
+					<div class="col-sm-10">
+						@Html.DropDownListFor(m => m.MyProduct.CategoryId, new SelectList(AddproductModel.CategoryList, "CategoryId", "CategoryName"), "-- Select --", new {@class = "form-select"})
+						<span asp-validation-for="MyProduct.CategoryId" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label" asp-for="MyProduct.Description"></label>
+					<div class="col-sm-10">
+						<input class="form-control" asp-for="MyProduct.Description" />
+						<span asp-validation-for="MyProduct.Description" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label" asp-for="MyProduct.ConditionId"></label>
+					<div class="col-sm-10">
+						@Html.DropDownListFor(m => m.MyProduct.ConditionId, new SelectList(AddproductModel.ConditionList, "ConditionId", "ConditionName"), "-- Select --", new {@class = "form-select"})
+						<span asp-validation-for="MyProduct.ConditionId" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label" asp-for="MyProduct.Price"></label>
+					<div class="col-sm-10">
+						<input class="form-control" type="number" asp-for="MyProduct.Price" />
+						<span asp-validation-for="MyProduct.Price" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-4">
+			<div class="mb-3">
+				<input type="file" accept="image/*" asp-for="Upload" class="form-control" onchange="showImgPreview(this)" />
+				<span asp-validation-for="Upload" class="text-danger"></span>
+			</div>
+			<img id="imgPreview" class="rounded-circle" style="height:300px;width:300px;object-fit:cover" src="/uploads/image.png" />
+		</div>
+
+		<div>
+			<input type="submit" value="Add" class="btn btn-primary" />
+			<a class="btn btn-secondary ms-2" href="/Products/productListing">Cancel</a>
+		</div>
+	</form>
+
+</div> <!-- card-body.// -->
+
+<script>
+	function showImgPreview(input) {
+		if (input.files[0]) {
+			var uploadimg = new FileReader();
+			uploadimg.onload = function (displayimg) {
+				$("#imgPreview").attr('src', displayimg.target.result);
+			}
+			uploadimg.readAsDataURL(input.files[0]);
+		}
+	}
+</script>
+

@@ -1,114 +1,94 @@
 ﻿@page
-@model kampong_goods.Pages.Products.productListingModel
+@using Microsoft.AspNetCore.Identity;
+@using kampong_goods.Models;
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@model kampong_goods.Pages.Products.IndexModel
 @{
 	Layout = "~/Pages/Shared/_ProfileNav.cshtml";
 	ViewData["Title"] = "Profile";
+	AppUser user = await UserManager.GetUserAsync(HttpContext.User);
 }
 
-<div class="card-body">
+@{ 
 
-	<div class="row">
-		<div class="col-md-4">
-			<figure class="card card-product-grid">
-				<div class="img-wrap">
-					<img src="images/items/1.jpg">
-				</div> <!-- img-wrap.// -->
-				<figcaption class="info-wrap">
-					<a href="#" class="title mb-2">Hot sale unisex New Design Shirt for sport polo shirts latest design</a>
-					<div class="price-wrap mb-3">
-						<span class="price">$32.00-$40.00</span>
-						<small class="text-muted">/per item</small>
-					</div> <!-- price-wrap.// -->
-					<a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-					<a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
+    if (user!=null)
+    {
+		<div class="card-body">
 
-					<hr>
-					<a href="#" class="btn btn-success btn-block">  Promote </a>
-				</figcaption>
-			</figure>
-		</div> <!-- col.// -->
+			<table class="table mt-3">
+				<thead>
+					<tr>
+						<th>@Html.DisplayNameFor(model => model.ProductList[0].ProductId)</th>
+						<th>@Html.DisplayNameFor(model => model.ProductList[0].ProductName)</th>
+						<th>@Html.DisplayNameFor(model => model.ProductList[0].Description)</th>
+						<th>@Html.DisplayNameFor(model => model.ProductList[0].CategoryId)</th>
+						<th>@Html.DisplayNameFor(model => model.ProductList[0].ConditionId)</th>
+						<th>@Html.DisplayNameFor(model => model.ProductList[0].Price)</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@{
+						@foreach (var item in Model.ProductList)
+						{
+							<tr>
+								<td>@item.ProductId</td>
+								<td>@item.ProductName</td>
+								<td>@item.Description</td>
+								<td>@item.CategoryId</td>
+								<td>@item.ConditionId</td>
+								<td>@item.Price</td>
+								<td>
+									<a asp-page="/Products/productDetails"
+					   asp-route-id="@item.ProductId">View</a>
+								</td>
+							</tr>
+						}
+					}
+				</tbody>
+			</table>
+			<a class="btn btn-primary mt-3" href="/Products/productAdd">Add Product</a>
 
-		<div class="col-md-4">
-			<figure class="card card-product-grid">
-				<div class="img-wrap">
-					<img src="images/items/2.jpg">
-				</div> <!-- img-wrap.// -->
-				<figcaption class="info-wrap">
-					<a href="#" class="title mb-2">High Quality Winter PU Rain Jacket with Padding for Men's outdoor</a>
-					<div class="price-wrap mb-3">
-						<span class="price">$41.00-$50.00</span>
-						<small class="text-muted">/per item</small>
-					</div> <!-- price-wrap.// -->
-					<a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-					<a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
+			<div class="row">
+				@{
+					@foreach (var item in Model.ProductList)
+					{
+						<div class="col-md-4">
+							<figure class="card card-product-grid">
+								<div class="img-wrap">
+									<img src="@item.ImageURL" onerror="this.src='/uploads/image.png'">
+								</div> <!-- img-wrap.// -->
+								<figcaption class="info-wrap">
+									<a href="#" class="title mb-2">@item.ProductName</a>
+									<div class="price-wrap mb-3">
+										<span class="price">$@item.Price</span>
+									</div> <!-- price-wrap.// -->
+									<a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
+									<a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
+									<hr>
+									<a href="#" class="btn btn-success btn-block">  Promote </a>
+								</figcaption>
+							</figure>
+						</div> <!-- col.// -->
+					}
+				}
 
-					<hr>
-					<a href="#" class="btn btn-success btn-block">  Promote </a>
-				</figcaption>
-			</figure>
-		</div> <!-- col.// -->
+			</div> <!-- row .//  -->
 
-		<div class="col-md-4">
-			<figure class="card card-product-grid">
-				<div class="img-wrap">
-					<img src="images/items/1.jpg">
-				</div> <!-- img-wrap.// -->
-				<figcaption class="info-wrap">
-					<a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
-					<div class="price-wrap mb-3">
-						<span class="price">$32.00-$40.00</span>
-						<small class="text-muted">/per item</small>
-					</div> <!-- price-wrap.// -->
-					<a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-					<a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
+		</div> <!-- card-body.// -->
 
-					<hr>
-					<a href="#" class="btn btn-success btn-block">  Promote </a>
-				</figcaption>
-			</figure>
-		</div> <!-- col.// -->
 
-		<div class="col-md-4">
-			<figure class="card card-product-grid">
-				<div class="img-wrap">
-					<img src="images/items/4.jpg">
-				</div> <!-- img-wrap.// -->
-				<figcaption class="info-wrap">
-					<a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
-					<div class="price-wrap mb-3">
-						<span class="price">$32.00-$40.00</span>
-						<small class="text-muted">/per item</small>
-					</div> <!-- price-wrap.// -->
-					<a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-					<a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
+        
+    }
 
-					<hr>
-					<a href="#" class="btn btn-success btn-block">  Promote </a>
-				</figcaption>
-			</figure>
-		</div> <!-- col.// -->
 
-		<div class="col-md-4">
-			<figure class="card card-product-grid">
-				<div class="img-wrap">
-					<img src="images/items/5.jpg">
-				</div> <!-- img-wrap.// -->
-				<figcaption class="info-wrap">
-					<a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
-					<div class="price-wrap mb-3">
-						<span class="price">$32.00-$40.00</span>
-						<small class="text-muted">/per item</small>
-					</div> <!-- price-wrap.// -->
-					<a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-					<a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
+    else
+    {
 
-					<hr>
-					<a href="#" class="btn btn-success btn-block">  Promote </a>
-				</figcaption>
-			</figure>
-		</div> <!-- col.// -->
 
-	</div> <!-- row .//  -->
-
-</div> <!-- card-body.// -->
+    <h1>Please log in to view profile.</h1>
+    }
+}
 

@@ -12,6 +12,9 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<AppUsersDbContext>();
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppUsersDbContext>();
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<ConditionService>();
 
 /*builder.Services.AddTransient<IEmailSender, SendGridEmail>();
 */
@@ -34,6 +37,7 @@ builder.Services.AddScoped<StaffService>();
 
 builder.Services.AddScoped<VoucherService>();
 builder.Services.AddDbContext<VoucherDbContext>();
+builder.Services.AddDbContext<ProductDbContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
