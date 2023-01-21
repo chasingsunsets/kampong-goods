@@ -10,6 +10,8 @@ namespace kampong_goods.Models
     {
         public string ProductId { get; set; } = string.Empty;
 
+        public string UserId { get; set; } = string.Empty;
+
         [Required, MaxLength(50)]
         [Display(Name = "Product Name")]
         public string ProductName { get; set; } = string.Empty;

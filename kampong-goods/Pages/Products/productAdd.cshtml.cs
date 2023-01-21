@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using kampong_goods.Models;
 using kampong_goods.Services;
+using System.Security.Claims;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 
 namespace kampong_goods.Pages.Products
 {
@@ -45,6 +48,10 @@ namespace kampong_goods.Pages.Products
             {
                 Guid myuuid = Guid.NewGuid();
                 MyProduct.ProductId = myuuid.ToString();
+
+                var userid = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
+                Debug.WriteLine(userid);
+                MyProduct.UserId = userid;
 
                 //check id
                 Product? product = _productService.GetProductById(MyProduct.ProductId);

@@ -8,87 +8,78 @@
 @{
 	Layout = "~/Pages/Shared/_ProfileNav.cshtml";
 	ViewData["Title"] = "Profile";
-	AppUser user = await UserManager.GetUserAsync(HttpContext.User);
+	AppUser user = await UserManager.GetUserAsync(HttpContext.User); //current logged in user
+	var noOfProducts = Model.ProductList.Count();
 }
 
-@{ 
+<header class="mb-3">
+	<div class="form-inline">
+		<strong class="mr-md-auto">@noOfProducts Items found </strong>
+		<a class="btn btn-primary mt-3" style="float: right;" href="/Products/productAdd">Add Product</a>
+	</div>
+</header><!-- sect-heading -->
 
-    if (user!=null)
-    {
-		<div class="card-body">
+<div class="row">
+	@{
+		@foreach (var item in Model.ProductList)
+		{
+			if (item.UserId == user.Id) //only show the product current user have created
+			{
+				<div class="col-md-4">
+					<figure class="card card-product-grid">
+						<div class="img-wrap">
+							<img src="@item.ImageURL" onerror="this.src='/uploads/image.png'">
+						</div> <!-- img-wrap.// -->
+						<figcaption class="info-wrap">
+							<a href="#" class="title mb-2">@item.ProductName</a>
+							<div class="price-wrap mb-3">
+								<span class="price">$@item.Price</span>
+							</div> <!-- price-wrap.// -->
+							<a asp-page="/Products/productEdit" asp-route-id="@item.ProductId" class="btn btn-outline-primary btn-block"> <i class="fa fa-pen"></i> Edit </a>
 
-			<table class="table mt-3">
-				<thead>
-					<tr>
-						<th>@Html.DisplayNameFor(model => model.ProductList[0].ProductId)</th>
-						<th>@Html.DisplayNameFor(model => model.ProductList[0].ProductName)</th>
-						<th>@Html.DisplayNameFor(model => model.ProductList[0].Description)</th>
-						<th>@Html.DisplayNameFor(model => model.ProductList[0].CategoryId)</th>
-						<th>@Html.DisplayNameFor(model => model.ProductList[0].ConditionId)</th>
-						<th>@Html.DisplayNameFor(model => model.ProductList[0].Price)</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					@{
-						@foreach (var item in Model.ProductList)
-						{
-							<tr>
-								<td>@item.ProductId</td>
-								<td>@item.ProductName</td>
-								<td>@item.Description</td>
-								<td>@item.CategoryId</td>
-								<td>@item.ConditionId</td>
-								<td>@item.Price</td>
-								<td>
-									<a asp-page="/Products/productDetails"
-					   asp-route-id="@item.ProductId">View</a>
-								</td>
-							</tr>
-						}
-					}
-				</tbody>
-			</table>
-			<a class="btn btn-primary mt-3" href="/Products/productAdd">Add Product</a>
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalCenter_@item.ProductId">
+								More Details
+							</button>
 
-			<div class="row">
-				@{
-					@foreach (var item in Model.ProductList)
-					{
-						<div class="col-md-4">
-							<figure class="card card-product-grid">
-								<div class="img-wrap">
-									<img src="@item.ImageURL" onerror="this.src='/uploads/image.png'">
-								</div> <!-- img-wrap.// -->
-								<figcaption class="info-wrap">
-									<a href="#" class="title mb-2">@item.ProductName</a>
-									<div class="price-wrap mb-3">
-										<span class="price">$@item.Price</span>
-									</div> <!-- price-wrap.// -->
-									<a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-									<a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
-									<hr>
-									<a href="#" class="btn btn-success btn-block">  Promote </a>
-								</figcaption>
-							</figure>
-						</div> <!-- col.// -->
-					}
-				}
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModalCenter_@item.ProductId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLongTitle">@item.ProductName</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<div class="img-wrap">
+												<img src="@item.ImageURL" width="100" height="100" onerror="this.src='/uploads/image.png' ">
+											</div> <!-- img-wrap.// -->
+											<hr>
+											<p>Product Name: @item.ProductName</p>
+											<p>Description: @item.Description</p>
+											<p>Category: @item.CategoryId</p>
+											<p>Condition of product: @item.ConditionId</p>
+											<p>Selling price: $@item.Price</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										</div>
+									</div>
+								</div>
+							</div>
 
-			</div> <!-- row .//  -->
-
-		</div> <!-- card-body.// -->
-
-
-        
-    }
+							<hr>
+							<a href="#" class="btn btn-success btn-block">  Promote </a>
+						</figcaption>
+					</figure>
+				</div> <!-- col.// -->
+			}
+		}
+	}
+</div> <!-- row .//  -->
 
 
-    else
-    {
 
-
-    <h1>Please log in to view profile.</h1>
-    }
-}
 

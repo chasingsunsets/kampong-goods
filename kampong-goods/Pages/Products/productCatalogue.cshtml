@@ -1,6 +1,13 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity;
+@using kampong_goods.Models;
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 @model kampong_goods.Pages.Products.CatalogueModel
 @{
+	AppUser user = await UserManager.GetUserAsync(HttpContext.User); //current signed in
+	var custlist = await UserManager.GetUsersInRoleAsync("Customer"); //gets users list
 }
 
 <header class="mb-3">
@@ -37,7 +44,7 @@
 						<a href="#" class="title mb-2">@item.ProductName</a>
 						<div class="price-wrap">
 							<span class="price">$@item.Price</span>
-						</div> <!-- price-wrap.// -->		
+						</div> <!-- price-wrap.// -->
 
 						<hr>
 
@@ -48,7 +55,13 @@
 
 						<hr>
 
-						<p class="text-muted ">Seller: Natthida</p>
+						@foreach (var cust in custlist) //use userid to get user name
+						{
+							if (item.UserId == cust.Id)
+							{
+								<p class="text-muted ">Seller: @cust.UserName</p>
+							}
+						}
 
 						<a href="#" class="btn btn-outline-primary btn-block">  Chat </a>
 						<a href="#" class="btn btn-success btn-block">  Add To Cart </a>
@@ -58,6 +71,7 @@
 			</div> <!-- col.// -->
 		}
 	}
+</div>
 
 <nav class="mb-4" aria-label="Page navigation sample">
 	<ul class="pagination">

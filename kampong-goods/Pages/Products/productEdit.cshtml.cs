@@ -2,17 +2,19 @@ using kampong_goods.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using kampong_goods.Models;
+using System.Diagnostics;
+using System.Security.Claims;
 
 namespace kampong_goods.Pages.Products
 {
-    public class productDetailsModel : PageModel
+    public class productEditModel : PageModel
     {
         private readonly ProductService _productService;
         private readonly CategoryService _categoryService;
         private readonly ConditionService _conditionService;
         private IWebHostEnvironment _environment;
 
-        public productDetailsModel(ProductService productService,
+        public productEditModel(ProductService productService,
             CategoryService categoryService,
             ConditionService conditionService,
             IWebHostEnvironment environment)
@@ -35,8 +37,8 @@ namespace kampong_goods.Pages.Products
             if (product != null)
             {
                 MyProduct = product;
-                //MyProduct.Condition = _conditionService.GetConditionById(product.ConditionId);
-                //MyProduct.Category = _categoryService.GetCategoryById(product.CategoryId);
+                MyProduct.Condition = _conditionService.GetConditionById(product.ConditionId);
+                MyProduct.Category = _categoryService.GetCategoryById(product.CategoryId);
                 return Page();
             }
 
@@ -79,9 +81,13 @@ namespace kampong_goods.Pages.Products
                     MyProduct.ImageURL = string.Format("/{0}/{1}", uploadsFolder, imageFile);
                 }
 
+                var userid = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
+                MyProduct.UserId = userid;
+
                 _productService.UpdateProduct(MyProduct);
                 TempData["FlashMessage.Type"] = "success";
                 TempData["FlashMessage.Text"] = string.Format("Product {0} is updated", MyProduct.ProductName);
+                return Redirect("/Products/productListing");
             }
             return Page();
         }
