@@ -11,6 +11,14 @@
 		<div asp-validation-summary="All" class="text-danger"></div>
 
 		<div class="row">
+			<div class="col-md-4">
+				<div class="mb-3">
+					<input type="file" accept="image/*" asp-for="Upload" class="form-control" onchange="showImgPreview(this)" />
+					<span asp-validation-for="Upload" class="text-danger"></span>
+				</div>
+				<img id="imgPreview" class="rounded-circle" style="height:300px;width:300px;object-fit:cover" src="/uploads/image.png" />
+			</div>
+
 			<div class="col-md-8">
 				<div class="row mb-3">
 					<label class="col-sm-2 col-form-label" asp-for="MyProduct.ProductName"></label>
@@ -53,14 +61,8 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="col-md-4">
-			<div class="mb-3">
-				<input type="file" accept="image/*" asp-for="Upload" class="form-control" onchange="showImgPreview(this)" />
-				<span asp-validation-for="Upload" class="text-danger"></span>
-			</div>
-			<img id="imgPreview" class="rounded-circle" style="height:300px;width:300px;object-fit:cover" src="/uploads/image.png" />
-		</div>
+
+		<br />
 
 		<div>
 			<input type="submit" value="Add" class="btn btn-primary" />

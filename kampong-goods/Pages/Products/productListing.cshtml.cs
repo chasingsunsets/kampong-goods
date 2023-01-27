@@ -21,5 +21,27 @@ namespace kampong_goods.Pages.Products
         {
             ProductList = _productService.GetAll();
         }
+
+        public async Task<IActionResult> OnGetDelete(string id)
+        {
+            if(id == null)
+            {
+                return Page();
+            }
+
+            var product = _productService.GetProductById(id);
+            System.Diagnostics.Debug.WriteLine("await" + product);
+
+            if(product != null)
+            {
+                _productService.DeleteProduct(product);
+                System.Diagnostics.Debug.WriteLine("await" + product);
+                TempData["FlashMessage.Type"] = "success";
+                TempData["FlashMessage.Text"] = string.Format("Product deleted.");
+                return RedirectToPage("productListing");
+            }
+
+            return RedirectToPage();
+        }
     }
 }

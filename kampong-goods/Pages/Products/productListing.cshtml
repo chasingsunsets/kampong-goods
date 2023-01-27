@@ -21,60 +21,82 @@
 
 <div class="row">
 	@{
-		@foreach (var item in Model.ProductList)
+			@foreach (var item in Model.ProductList)
 		{
 			if (item.UserId == user.Id) //only show the product current user have created
 			{
-				<div class="col-md-4">
-					<figure class="card card-product-grid">
-						<div class="img-wrap">
-							<img src="@item.ImageURL" onerror="this.src='/uploads/image.png'">
-						</div> <!-- img-wrap.// -->
-						<figcaption class="info-wrap">
-							<a href="#" class="title mb-2">@item.ProductName</a>
-							<div class="price-wrap mb-3">
-								<span class="price">$@item.Price</span>
-							</div> <!-- price-wrap.// -->
-							<a asp-page="/Products/productEdit" asp-route-id="@item.ProductId" class="btn btn-outline-primary btn-block"> <i class="fa fa-pen"></i> Edit </a>
+					<div class="col-md-4">
+						<figure class="card card-product-grid">
+							<div class="img-wrap">
+								<img src="@item.ImageURL" onerror="this.src='/uploads/image.png'">
+							</div> <!-- img-wrap.// -->
+							<figcaption class="info-wrap">
+								<a href="#" class="title mb-2">@item.ProductName</a>
+								<div class="price-wrap mb-3">
+									<span class="price">$@item.Price</span>
+								</div> <!-- price-wrap.// -->
+								<a asp-page="/Products/productEdit" asp-route-id="@item.ProductId" class="btn btn-outline-primary btn-block"> <i class="fa fa-pen"></i> Edit </a>
+							<a asp-page="/Products/productEdit" class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#deleteModal_@item.ProductId"> <i class="fa fa-trash"></i> Delete </a>
 
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalCenter_@item.ProductId">
-								More Details
-							</button>
-
-							<!-- Modal -->
-							<div class="modal fade" id="exampleModalCenter_@item.ProductId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-								<div class="modal-dialog modal-dialog-centered" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLongTitle">@item.ProductName</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<div class="img-wrap">
-												<img src="@item.ImageURL" width="100" height="100" onerror="this.src='/uploads/image.png' ">
-											</div> <!-- img-wrap.// -->
-											<hr>
-											<p>Product Name: @item.ProductName</p>
-											<p>Description: @item.Description</p>
-											<p>Category: @item.CategoryId</p>
-											<p>Condition of product: @item.ConditionId</p>
-											<p>Selling price: $@item.Price</p>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<!-- Modal: Delete -->
+								<div class="modal fade" id="deleteModal_@item.ProductId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+									<div class="modal-dialog modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLongTitle">Delete Confirmation</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												Are you sure you want to delete Product: @item.ProductName ?
+											</div>
+											<div class="modal-footer">
+												<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+												<a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@item.ProductId">Delete</a>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
 
-							<hr>
-							<a href="#" class="btn btn-success btn-block">  Promote </a>
-						</figcaption>
-					</figure>
-				</div> <!-- col.// -->
+								<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalCenter_@item.ProductId">
+									More Details
+								</button>
+
+								<!-- Modal: More details-->
+								<div class="modal fade" id="exampleModalCenter_@item.ProductId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLongTitle">@item.ProductName</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<div class="img-wrap">
+													<img src="@item.ImageURL" width="100" height="100" onerror="this.src='/uploads/image.png' ">
+												</div> <!-- img-wrap.// -->
+												<hr>
+												<p>Product Name: @item.ProductName</p>
+												<p>Description: @item.Description</p>
+												<p>Category: @item.CategoryId</p>
+												<p>Condition of product: @item.ConditionId</p>
+												<p>Selling price: $@item.Price</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<hr>
+								<a href="#" class="btn btn-success btn-block">  Promote </a>
+							</figcaption>
+						</figure>
+					</div> <!-- col.// -->
 			}
 		}
 	}
