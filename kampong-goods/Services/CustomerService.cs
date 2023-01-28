@@ -22,6 +22,11 @@ namespace kampong_goods.Services
 
         }
 
+        public List<Message> GetAllMessages()
+        {
+            return _db.Messages.OrderBy(m => m.Id).ToList();
+        }
+
         /*        TAKE NOTE Role thing later
         */
         public AppUser? GetCustomerByUN(string username)
@@ -52,7 +57,6 @@ namespace kampong_goods.Services
            _db.Users.Update(customer);
            _db.SaveChanges();
        }
-
 
 /*
         var users = await(from user in _db.Users

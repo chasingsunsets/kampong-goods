@@ -20,6 +20,18 @@ namespace kampong_goods
 
         public DbSet<StaffInfo> StaffInfos { get; set; }
 
+        // for chat: relationships
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<Message>()
+                .HasOne<AppUser>(a => a.Sender)
+                .WithMany(d => d.Messages)
+                .HasForeignKey(d => d.UserId);
+        }
+
+        public DbSet<Message> Messages { get; set; }
+
     }
 
 }

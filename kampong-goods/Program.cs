@@ -1,4 +1,5 @@
 using kampong_goods;
+using kampong_goods.Hubss;
 using kampong_goods.Models;
 using kampong_goods.Services;
 using Microsoft.AspNetCore.Identity;
@@ -15,6 +16,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<A
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ConditionService>();
+builder.Services.AddSignalR();
 
 /*builder.Services.AddTransient<IEmailSender, SendGridEmail>();
 */
@@ -57,6 +59,17 @@ app.UseRouting();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+//app.UseSignalR(Route =>
+//{
+//    Route.MapHub<ChatHub>("/Chat/Index");
+//});
+
+//end point
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/Chathub");
+});
 
 app.MapRazorPages();
 

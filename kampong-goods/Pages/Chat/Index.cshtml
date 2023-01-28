@@ -1,0 +1,69 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity;
+@using kampong_goods.Models;
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@model kampong_goods.Pages.Chat.IndexModel
+@{
+    AppUser user = await UserManager.GetUserAsync(HttpContext.User); //current signed in
+    var custlist = await UserManager.GetUsersInRoleAsync("Customer"); //gets users list
+    var username = User.Identity.Name;
+}
+
+<div>
+    <h1>TALK BITHC</h1>
+
+    <div class="row">
+        <div class="col-md-12" id="chat">
+            @if(Model != null)
+            {
+                @foreach(var message in Model.MessageList)
+                {
+                    string containerClass, timePosition, textAlign, contcolor, offset;
+                    if(username == message.UserName)
+                    {
+                        containerClass = "container darker";
+                        timePosition = "time-right text-light";
+                        textAlign = "text-right text-white";
+                        contcolor = "bg-primary";
+                        offset = "col-md-6 offset-md-6";
+                    }
+                    else
+                    {
+                        containerClass = "container";
+                        timePosition = "time-left";
+                        textAlign = "text-left";
+                        contcolor = "bg-light";
+                        offset = "";
+                    }
+
+                    <div class="row">
+                        <div class="@offset">
+                            <div class="@containerClass @contcolor">
+                                <p class="sender @textAlign">@message.UserName</p>
+                                <p class="@textAlign">@message.Text</p>
+                                <span class="@timePosition">@message.When.ToString()</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-md-12">
+            <form class="mt-3" method="post" asp-action="Create">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger">
+                    <div class="form-group">
+                        <input name="Text" class="form-control" id="messageText"/>
+                    </div>
+                    <div class="form-group">
+                        <input name="submit" value="Send" id="submitButton" class="btn-block" />
+                    </div>
+                    <input type="hidden" value="@username" name="username"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
