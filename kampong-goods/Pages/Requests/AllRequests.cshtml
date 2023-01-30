@@ -1,5 +1,117 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity;
+@using kampong_goods.Models;
 @model kampong_goods.Pages.Requests.AllRequestsModel
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 @{
+
 }
- <a class="btn registerBtn" asp-area="" asp-page="/Requests/AddRequest" style="color: white;">Add Request</a>
+ 
+@*<header class="mb-3">
+	<div class="form-inline">
+		<strong class="mr-md-auto">1 Items found </strong>
+		<select class="mr-2 form-control">
+			<option>Latest items</option>
+			<option>Trending</option>
+			<option>Most Popular</option>
+			<option>Cheapest</option>
+		</select>
+		<div class="btn-group">
+			<a href="#" class="btn btn-light active" data-toggle="tooltip" title="List view">
+				<i class="fa fa-bars"></i>
+			</a>
+			<a href="#" class="btn btn-light" data-toggle="tooltip" title="Grid view">
+				<i class="fa fa-th"></i>
+			</a>
+		</div>
+	</div>
+</header><!-- sect-heading -->*@
+@{
+	if (SignInManager.IsSignedIn(User))
+	{
+	<div class="container">
+				<div class="subforum">
+					<div class="subforum-title">
+					<h1>All Requests  <a class="btn registerBtn" style="float:right" asp-area="" asp-page="/Requests/AddRequest" style="color: white;"><i class="fa-solid fa-plus"></i> Add Request</a> <a class="btn" style="float:right" asp-area="" asp-page="/Requests/MyRequests"><i class="fa-solid fa-user"></i> My Requests</a></h1>
+					</div>
+				</div>
+	</div>
+	}
+	
+	else
+	{
+		<div class="container">
+			<div class="subforum">
+				<div class="subforum-title">
+					<h1>All Requests</h1>
+				</div>
+			</div>
+		</div>
+	}
+
+}
+
+           
+<div class="row">
+	@{ if(Model.RequestList!=null){
+
+			@foreach (var item in Model.RequestList)
+		{
+				<div class="col-md-3">
+					<figure class="card card-product-grid">
+
+						<figcaption class="info-wrap">
+							<a href="#" class="h3">Title: @item.ReqTitle</a>
+							<div class="price-wrap">
+								<span class="price">Budget: $@item.Budget</span>
+							</div> <!-- price-wrap.// -->
+							@foreach (var cat in AllRequestsModel.CategoryList) //use id catid get cat name
+						{
+							if (item.categoryId == cat.CategoryId)
+							{
+							//<p class="text-muted ">Requester: @cust.UserName</p>
+									<p class="mb-3">
+										<span class="tag"> @cat.CategoryName </span>
+									</p>
+
+
+							}
+						}
+
+							<hr>
+
+
+							<a class="title mb-2">Description: @item.Description</a>
+
+
+							<hr>
+
+							@foreach (var cust in Model.CustList) //use userid to get user name
+						{
+							if (item.UserId == cust.Id)
+							{
+								//<p class="text-muted ">Requester: @cust.UserName</p>
+									<p><b>Requested by</b> @cust.UserName </p>
+
+
+						}
+						}
+
+							<a href="#" class="btn btn-outline-primary btn-block">  Accept </a>
+
+						</figcaption>
+					</figure>
+				</div> <!-- col.// -->
+		}
+	}
+		else
+		{
+
+				<h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No Request</h3>
+		}
+	}
+
+</div>
+
+		

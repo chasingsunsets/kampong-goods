@@ -22,10 +22,10 @@ namespace kampong_goods.Services
         }
 
 
-        public Request? GetRequestById(string id)
+        public Request? GetRequestById(int id)
         {
 
-            Request? request = _db.Requests.FirstOrDefault(x => x.UserId.Equals(id));
+            Request? request = _db.Requests.FirstOrDefault(x => x.ID.Equals(id));
 
             //nv get all
             return request;

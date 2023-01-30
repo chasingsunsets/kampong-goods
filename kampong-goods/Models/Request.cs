@@ -15,8 +15,7 @@ namespace kampong_goods.Models
 
         [Required]
         [Display(Name = "Category")]
-        public string CategoryId { get; set; } = string.Empty;
-        public Category? Category { get; set; }
+        public string categoryId { get; set; } = string.Empty;
 
         [Required, MaxLength(1000)]
         [Display(Name = "Description")]

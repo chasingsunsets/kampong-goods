@@ -1,20 +1,18 @@
 using kampong_goods.Models;
 using kampong_goods.Services;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace kampong_goods.Pages.Requests
 {
-    public class AllRequestsModel : PageModel
+    public class MyRequestsModel : PageModel
     {
         private readonly RequestService _requestService;
         private readonly CustomerService _customerService;
         private readonly CategoryService _categoryService;
 
 
-
-        public AllRequestsModel(CategoryService categoryService, RequestService requestService, CustomerService customerService)
+        public MyRequestsModel(CategoryService categoryService, RequestService requestService, CustomerService customerService)
         {
             _requestService = requestService;
             _customerService = customerService;
@@ -34,6 +32,5 @@ namespace kampong_goods.Pages.Requests
             CategoryList = _categoryService.GetAll();
 
         }
-
     }
 }

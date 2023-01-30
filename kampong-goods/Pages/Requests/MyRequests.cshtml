@@ -1,0 +1,93 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity;
+@using kampong_goods.Models;
+@model kampong_goods.Pages.Requests.MyRequestsModel
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@{
+	AppUser user = await UserManager.GetUserAsync(HttpContext.User);
+
+}
+
+@{
+	if (SignInManager.IsSignedIn(User))
+	{
+	<div class="container">
+				<div class="subforum">
+					<div class="subforum-title">
+					<h1>My Requests  <a class="btn registerBtn" style="float:right" asp-area="" asp-page="/Requests/AddRequest" style="color: white;"><i class="fa-solid fa-plus"></i> Add Request</a> <a class="btn" style="float:right" asp-area="" asp-page="/Requests/AllRequests"><i class="fa-sharp fa-solid fa-globe"></i> All Requests</a></h1>
+					</div>
+				</div>
+	</div>
+	}
+	
+	else
+	{
+		<div class="container">
+			<div class="subforum">
+				<div class="subforum-title">
+					<h1>Access Denied, Please log in to view.</h1>
+				</div>
+			</div>
+		</div>
+	}
+
+}
+
+           
+<div class="row">
+	@{
+		if (Model.RequestList != null) {
+
+			@foreach (var item in Model.RequestList)
+			{ if (item.UserId == user.Id){ 
+				<div class="col-md-3">
+					<figure class="card card-product-grid">
+
+						<figcaption class="info-wrap">
+							<h3>Title: @item.ReqTitle</h3>
+							<div class="price-wrap">
+								<span class="price">Budget: $@item.Budget</span>
+							</div> <!-- price-wrap.// -->
+							@foreach (var cat in AllRequestsModel.CategoryList) //use id catid get cat name
+							{
+								if (item.categoryId == cat.CategoryId)
+								{
+								//<p class="text-muted ">Requester: @cust.UserName</p>
+									<p class="mb-3">
+										<span class="tag"> @cat.CategoryName </span>
+									</p>
+
+
+								}
+							}
+
+							<hr>
+
+
+							<p class="title mb-2">Description: @item.Description</p>
+
+
+							<hr>
+
+
+								<a class="btn loginBtn" style="color:white;float: right;font-size:h4;" asp-page="/Requests/EditRequest" asp-route-id="@item.ID">Edit</a>
+
+						</figcaption>
+					</figure>
+				</div>
+			}
+            //no need else(?
+
+		}
+	}
+		else
+		{
+
+				<h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No Request</h3>
+		}
+	}
+
+</div>
+
+		

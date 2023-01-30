@@ -33,14 +33,17 @@ namespace kampong_goods.Pages.Requests
         public AddRequest ReqModel { get; set; }
 
 
-/*        [BindProperty]
-        public Request MyRequest { get; set; } = new();*/
+        /*        [BindProperty]
+                public Request MyRequest { get; set; } = new();*/
 
         public static List<Category> CategoryList { get; set; } = new();
 
         public void OnGet()
         {
             CategoryList = _categoryService.GetAll();
+            if (CategoryList.Count == 0)
+            { System.Diagnostics.Debug.WriteLine("EMPTYYY"); }
+
         }
 
 
@@ -58,9 +61,9 @@ namespace kampong_goods.Pages.Requests
                 {
 
                     ReqTitle = ReqModel.ReqTitle,
-                    Description=ReqModel.Description,
-                    CategoryId=ReqModel.CategoryId,
-                    Budget= ReqModel.Budget,
+                    Description = ReqModel.Description,
+                    categoryId = ReqModel.CategoryId,
+                    Budget = ReqModel.Budget,
                     User = user,
 
                 };
@@ -70,27 +73,7 @@ namespace kampong_goods.Pages.Requests
                 TempData["FlashMessage.Text"] = string.Format("Request {0} successfully published.", ReqModel.ReqTitle);
                 return Redirect("/Requests/AllRequests");
 
-                /*                await signInManager.SignInAsync(user, false);
-                                return RedirectToPage("Dashboard");*/
-
-                /*                var userid = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
-                                Debug.WriteLine(userid);
-                                MyRequest.UserId = userid;*/
-
-                //check id
-/*                Request? request = _requestService.GetRequestById(MyRequest.Id);
-*//*                if (product != null)
-                {
-                    TempData["FlashMessage.Type"] = "danger";
-                    TempData["FlashMessage.Text"] = string.Format("Product ID {0} already exists", MyProduct.ProductId);
-                    return Page();
-                }
-
-
-*//*                _requestService.AddRe(MyProduct);
-*//*                TempData["FlashMessage.Type"] = "Success";
-                TempData["FlashMessage.Text"] = string.Format("Request {0} published, MyRequest.reqTitle);
-                return Redirect("/Requests/AllRequests");*/
+              
             }
             return Page();
         }
