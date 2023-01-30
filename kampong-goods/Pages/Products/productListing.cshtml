@@ -35,7 +35,7 @@
 								<div class="price-wrap mb-3">
 									<span class="price">$@item.Price</span>
 								</div> <!-- price-wrap.// -->
-								<a asp-page="/Products/productEdit" asp-route-id="@item.ProductId" class="btn btn-outline-primary btn-block"> <i class="fa fa-pen"></i> Edit </a>
+							<a asp-page="/Products/productEdit" asp-route-id="@item.ProductId" class="btn btn-outline-primary btn-block"> <i class="fa fa-pen"></i> Edit </a>
 							<a asp-page="/Products/productEdit" class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#deleteModal_@item.ProductId"> <i class="fa fa-trash"></i> Delete </a>
 
 								<!-- Modal: Delete -->
@@ -58,6 +58,8 @@
 										</div>
 									</div>
 								</div>
+
+							<hr>
 
 								<!-- Button trigger modal -->
 							<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalCenter_@item.ProductId">

@@ -9,15 +9,15 @@
 	<form class="mt-3" method="post">
 		<div asp-validation-summary="All" class="text-danger"></div>
 		<div class="col-md-4">
-            <div class="mb-3">
-                <input type="file" accept="image/*" asp-for="Upload" class="form-control" onchange="showImgPreview(this)" />
-                <span asp-validation-for="Upload" class="text-danger"></span>
-            </div>
-            <img id="imgPreview" class="rounded-circle" style="height:300px;width:300px;object-fit:cover"
-                 src="@(string.IsNullOrEmpty(Model.MyProduct.ImageURL) ? "/uploads/user.png" : Model.MyProduct.ImageURL)" 
-                 onerror="this.src='/uploads/user.png'" />
-            <input class="form-control d-none" asp-for="MyProduct.ImageURL" />
-        </div>
+			<div class="mb-3">
+				<input type="file" accept="image/*" asp-for="Upload" class="form-control" onchange="showImgPreview(this)" />
+				<span asp-validation-for="Upload" class="text-danger"></span>
+			</div>
+			<img id="imgPreview" class="rounded-circle" style="height:300px;width:300px;object-fit:cover"
+				 src="@(string.IsNullOrEmpty(Model.MyProduct.ImageURL) ? "/uploads/image.png" : Model.MyProduct.ImageURL)"
+				 onerror="this.src='/uploads/user.png'" />
+			<input class="form-control d-none" asp-for="MyProduct.ImageURL" />
+		</div>
 
 		<br />
 
@@ -40,7 +40,7 @@
 		<div class="row mb-3">
 			<label class="col-sm-2 col-form-label">Category</label>
 			<div class="col-sm-10">
-				@Html.DropDownListFor(m => m.MyProduct.CategoryId, new SelectList(AddproductModel.CategoryList, "CategoryId", "CategoryName"), "-- Select --", new {@class = "form-select"})
+				@Html.DropDownListFor(m => m.MyProduct.CategoryId, new SelectList(productEditModel.CategoryList, "CategoryId", "CategoryName"), "-- Select --", new {@class = "form-select"})
 				<span asp-validation-for="MyProduct.CategoryId" class="text-danger"></span>
 			</div>
 		</div>
@@ -56,7 +56,7 @@
 		<div class="row mb-3">
 			<label class="col-sm-2 col-form-label">Condition</label>
 			<div class="col-sm-10">
-				@Html.DropDownListFor(m => m.MyProduct.ConditionId, new SelectList(AddproductModel.ConditionList, "ConditionId", "ConditionName"), "-- Select --", new {@class = "form-select"})
+				@Html.DropDownListFor(m => m.MyProduct.ConditionId, new SelectList(productEditModel.ConditionList, "ConditionId", "ConditionName"), "-- Select --", new {@class = "form-select"})
 				<span asp-validation-for="MyProduct.ConditionId" class="text-danger"></span>
 			</div>
 		</div>

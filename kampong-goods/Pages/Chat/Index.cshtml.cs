@@ -1,12 +1,10 @@
-using kampong_goods.Models;
-using kampong_goods.Services;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
+using kampong_goods.Models;
 
 namespace kampong_goods.Pages.Chat
 {
@@ -16,7 +14,7 @@ namespace kampong_goods.Pages.Chat
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
 
 
         [BindProperty]
@@ -24,7 +22,7 @@ namespace kampong_goods.Pages.Chat
 
         [BindProperty]
         public string MyUser { get; set; }
-        public IndexModel(ILogger<IndexModel> logger, UserManager<IdentityUser> userManager)
+        public IndexModel(ILogger<IndexModel> logger, UserManager<AppUser> userManager)
         {
             _logger = logger;
             _userManager = userManager;
