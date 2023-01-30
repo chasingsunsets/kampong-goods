@@ -32,8 +32,9 @@ builder.Services.Configure<SecurityStampValidatorOptions>(options =>
 });
 
 builder.Services.AddScoped<CustomerService>();
-
+builder.Services.AddScoped<RequestService>();
 builder.Services.AddScoped<StaffService>();
+
 
 //builder.Services.AddDbContext<MyDbContext>();
 

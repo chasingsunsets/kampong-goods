@@ -51,6 +51,11 @@
             color: white;
             background: #3563E9;
             margin-left: 25px;
+        }
+        .sellBtn {
+            color: white;
+            background: #3563E9;
+            margin-left: 25px;
             width: 80px;
         }
     </style>
@@ -77,7 +82,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Products/productCatalogue">Catalogue</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Request">Request</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Requests/AllRequests">Request</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Education">Education</a>
@@ -105,7 +110,7 @@
                                             <a class="nav-link" asp-page="/Chat/Index"><i class="fa-solid fa-comments"></i></a>
                                         </li>
                                         <li class="nav-item">
-                                                <a class="btn registerBtn" asp-area="" asp-page="/Products/productAdd" style="color: white;">Sell</a>
+                                                <a class="btn sellBtn" asp-area="" asp-page="/Products/productAdd" style="color: white;">Sell</a>
                                             </li>
                                         </ul>
                             }

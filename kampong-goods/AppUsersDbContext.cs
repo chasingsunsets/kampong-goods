@@ -19,6 +19,8 @@ namespace kampong_goods
 
 
         public DbSet<StaffInfo> StaffInfos { get; set; }
+        public DbSet<Request> Requests { get; set; }
+
 
         // for chat: relationships
         protected override void OnModelCreating(ModelBuilder builder)
