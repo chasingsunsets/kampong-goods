@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lnnat\\OneDrive\\Documents\\GitHub\\kampong-goods\\kampong-goods\\kampong-goods.csproj": {}
+    "D:\\Users\\213590z\\Documents\\GitHub\\kampong-goods\\kampong-goods\\kampong-goods.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lnnat\\OneDrive\\Documents\\GitHub\\kampong-goods\\kampong-goods\\kampong-goods.csproj": {
+    "D:\\Users\\213590z\\Documents\\GitHub\\kampong-goods\\kampong-goods\\kampong-goods.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lnnat\\OneDrive\\Documents\\GitHub\\kampong-goods\\kampong-goods\\kampong-goods.csproj",
+        "projectUniqueName": "D:\\Users\\213590z\\Documents\\GitHub\\kampong-goods\\kampong-goods\\kampong-goods.csproj",
         "projectName": "kampong-goods",
-        "projectPath": "C:\\Users\\lnnat\\OneDrive\\Documents\\GitHub\\kampong-goods\\kampong-goods\\kampong-goods.csproj",
-        "packagesPath": "C:\\Users\\lnnat\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lnnat\\OneDrive\\Documents\\GitHub\\kampong-goods\\kampong-goods\\obj\\",
+        "projectPath": "D:\\Users\\213590z\\Documents\\GitHub\\kampong-goods\\kampong-goods\\kampong-goods.csproj",
+        "packagesPath": "D:\\Users\\213590z\\.nuget\\packages\\",
+        "outputPath": "D:\\Users\\213590z\\Documents\\GitHub\\kampong-goods\\kampong-goods\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\lnnat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\Users\\213590z\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +47,10 @@
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Client": {
+              "target": "Package",
+              "version": "[7.0.2, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -78,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

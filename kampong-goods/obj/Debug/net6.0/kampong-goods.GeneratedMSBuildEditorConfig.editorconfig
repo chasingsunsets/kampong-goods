@@ -8,145 +8,157 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = kampong_goods
 build_property.RootNamespace = kampong_goods
-build_property.ProjectDir = C:\Users\lnnat\OneDrive\Documents\GitHub\kampong-goods\kampong-goods\
+build_property.ProjectDir = D:\Users\213590z\Documents\GitHub\kampong-goods\kampong-goods\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\lnnat\OneDrive\Documents\GitHub\kampong-goods\kampong-goods
+build_property.MSBuildProjectDirectory = D:\Users\213590z\Documents\GitHub\kampong-goods\kampong-goods
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Chat/Index.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Chat/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/CustList.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/CustList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXEN1c3RMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/EditCustList.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/EditCustList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXEVkaXRDdXN0TGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/EditProfile.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/EditProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXEVkaXRQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/ForgotPassword.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/ForgotPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXEZvcmdvdFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/Login.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/Logout.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXExvZ291dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/Profile.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXFByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/Register.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXFJlZ2lzdGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Error.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Education/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWR1Y2F0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Index.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productAdd.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productAdd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHNccHJvZHVjdEFkZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productCatalogue.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productCart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHNccHJvZHVjdENhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productCatalogue.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHNccHJvZHVjdENhdGFsb2d1ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productEdit.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productCheckout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHNccHJvZHVjdENoZWNrb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHNccHJvZHVjdEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productListing.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productListing.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHNccHJvZHVjdExpc3RpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productOrder.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHNccHJvZHVjdE9yZGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_FlashMessage.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_FlashMessage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9GbGFzaE1lc3NhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_ProfileNav.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_ProfileNav.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Qcm9maWxlTmF2LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_StaffLayout.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_StaffLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9TdGFmZkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_StaffLogin.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_StaffLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9TdGFmZkxvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Staff/AddStaff.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Staff/AddStaff.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcQWRkU3RhZmYuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Staff/Dashboard.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Staff/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Staff/EditStaffList.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Staff/EditStaffList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcRWRpdFN0YWZmTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Staff/StaffList.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Staff/StaffList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcU3RhZmZMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Staff/StaffLogin.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Staff/StaffLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcU3RhZmZMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Staff/StaffProfile.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Staff/StaffProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhZmZcU3RhZmZQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Vouchers/Add.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Vouchers/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVm91Y2hlcnNcQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Vouchers/Details.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Vouchers/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVm91Y2hlcnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Vouchers/Index.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Vouchers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVm91Y2hlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Vouchers/VoucherCatalogue.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Vouchers/VoucherCatalogue.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVm91Y2hlcnNcVm91Y2hlckNhdGFsb2d1ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/_ViewImports.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/_ViewStart.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lnnat/OneDrive/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_Layout.cshtml]
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-vl0i5eqld2
