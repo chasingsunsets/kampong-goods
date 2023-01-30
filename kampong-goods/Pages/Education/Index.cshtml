@@ -6,31 +6,6 @@
 
 <h1 class="display-4">@ViewData["Title"]</h1>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-
-    <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-</head>
-
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -57,7 +32,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>@Html.DisplayNameFor(model => model.FAQlist[0].ID)</th>
+                                    <th>@Html.DisplayNameFor(model => model.FAQlist[0].FAQId)</th>
                                             <th>@Html.DisplayNameFor(model => model.FAQlist[0].Question)</th>
                                             <th>@Html.DisplayNameFor(model => model.FAQlist[0].Answer)</th>
                                             <th>@Html.DisplayNameFor(model => model.FAQlist[0].Creator)</th>
@@ -68,7 +43,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>@Html.DisplayNameFor(model => model.FAQlist[0].ID)</th>
+                                    <th>@Html.DisplayNameFor(model => model.FAQlist[0].FAQId)</th>
                                             <th>@Html.DisplayNameFor(model => model.FAQlist[0].Question)</th>
                                             <th>@Html.DisplayNameFor(model => model.FAQlist[0].Answer)</th>
                                             <th>@Html.DisplayNameFor(model => model.FAQlist[0].Creator)</th>
@@ -82,7 +57,7 @@
                                     @foreach(var item in Model.FAQlist)
                                     {
                                         <tr>
-                                            <td>@item.ID</td>
+                                            <td>@item.FAQId</td>
                                             <td>@item.Question</td>
                                             <td>@item.Answer</td>
                                             <td>@item.Creator</td>
@@ -91,10 +66,10 @@
                                             <td>@item.Date_Created</td>
                                             <td>
                                                 <a asp-page="/Materials/Details"
-                                           asp-route-id="@item.ID">Detail</a>
+                                           asp-route-id="@item.FAQId">Detail</a>
                                             </td>
                                             <td>
-                                                <a class="btn btn-danger" asp-page="/Materials/Index" asp-page-handler="DeleteFAQ" asp-route-id="@item.ID" >Delete</a>
+                                                <a class="btn btn-danger" asp-page="/Materials/Index" asp-page-handler="DeleteFAQ" asp-route-id="@item.FAQId">Delete</a>
                                                 <a class="btn btn-danger" asp-page="/Materials/Add" >Test</a>
                                             </td>
 
@@ -104,7 +79,7 @@
                                 }
                                     </tbody>
                                 </table>
-                        <a class="btn btn-primary mt-3" href="/Materials/Add">Add FAQ</a>
+                        <a class="btn btn-primary mt-3" href="/Education/AddFAQ">Add FAQ</a>
                             </div>
                         </div>
                     </div>

@@ -15,9 +15,8 @@ namespace kampong_goods
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string faqString = _configuration.GetConnectionString("dev");
-            optionsBuilder
-                    .UseSqlServer(faqString);
+            string faqString = _configuration.GetConnectionString("MyConnection");
+            optionsBuilder.UseSqlServer(faqString);
         }
 
         public DbSet<FAQ> FAQs { get; set; }

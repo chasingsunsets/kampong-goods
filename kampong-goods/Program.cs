@@ -35,11 +35,14 @@ builder.Services.AddScoped<CustomerService>();
 
 builder.Services.AddScoped<StaffService>();
 
+builder.Services.AddScoped<FAQService>();
+
 //builder.Services.AddDbContext<MyDbContext>();
 
 builder.Services.AddScoped<VoucherService>();
 builder.Services.AddDbContext<VoucherDbContext>();
 builder.Services.AddDbContext<ProductDbContext>();
+builder.Services.AddDbContext<FAQDbContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

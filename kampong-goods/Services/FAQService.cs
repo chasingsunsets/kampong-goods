@@ -23,13 +23,13 @@ namespace kampong_goods.Services
 
         public List<FAQ> GetAll()
         {
-            return _context.FAQs.OrderBy(m => m.ID).ToList();
+            return _context.FAQs.OrderBy(m => m.FAQId).ToList();
             //return AllFAQs.OrderBy(a => a.ID).ToList();
         }
 
         public FAQ? GetFAQById(string ID)
         {
-            FAQ? faq = _context.FAQs.FirstOrDefault(x => x.ID.Equals(ID));
+            FAQ? faq = _context.FAQs.FirstOrDefault(x => x.FAQId.Equals(ID));
             //FAQ? faq = AllFAQs.FirstOrDefault(x => x.ID.Equals(ID));
             return faq;
         }
