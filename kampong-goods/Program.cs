@@ -13,9 +13,12 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<AppUsersDbContext>();
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppUsersDbContext>();
+
+//product
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ConditionService>();
+builder.Services.AddScoped<CheckoutService>();
 builder.Services.AddSignalR();
 
 /*builder.Services.AddTransient<IEmailSender, SendGridEmail>();

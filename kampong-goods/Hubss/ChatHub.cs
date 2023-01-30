@@ -1,25 +1,25 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using Microsoft.AspNetCore.SignalR.Client;
 
 namespace kampong_goods.Hubss
 {
     public class ChatHub : Hub
     {
-        public Task JoinGroup(string group)
+        public override Task OnConnectedAsync()
         {
-            return Groups.AddToGroupAsync(Context.ConnectionId, group);
+            Groups.AddToGroupAsync(Context.ConnectionId, Context.User.Identity.Name);
+            return base.OnConnectedAsync();
         }
-
-        // no restriction on the parameter
         public async Task SendMessage(string user, string message)
         {
+            //message send to all users
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
-        public Task SendMessageToGroup(string groupname, string sender, string message)
+        public Task SendMessageToGroup(string sender, string receiver, string message)
         {
-            return Clients.Group(groupname).SendAsync("SendMessage", sender, message);
+            //message send to receiver only
+            return Clients.Group(receiver).SendAsync("ReceiveMessage", sender, message);
         }
-
     }
+
 }
