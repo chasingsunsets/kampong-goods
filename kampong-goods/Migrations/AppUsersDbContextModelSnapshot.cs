@@ -8,7 +8,7 @@ using kampong_goods;
 
 #nullable disable
 
-namespace kamponggoods.Migrations
+namespace kampong_goods.Migrations
 {
     [DbContext(typeof(AppUsersDbContext))]
     partial class AppUsersDbContextModelSnapshot : ModelSnapshot
@@ -135,7 +135,7 @@ namespace kamponggoods.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Message");
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("kampong_goods.Models.StaffInfo", b =>

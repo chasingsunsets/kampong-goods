@@ -60,11 +60,6 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-//app.UseSignalR(Route =>
-//{
-//    Route.MapHub<ChatHub>("/Chat/Index");
-//});
-
 //end point
 app.UseEndpoints(endpoints =>
 {
