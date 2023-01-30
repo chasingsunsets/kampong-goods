@@ -45,7 +45,7 @@ namespace kampong_goods.Pages.Education
                 _faqService.AddFAQ(myFAQ);
                 TempData["FlashMessage.Type"] = "success";
                 TempData["FlashMessage.Text"] = string.Format("FAQ {0} is added", myFAQ.FAQId);
-                return Redirect("/Materials");
+                return Redirect("/Education");
             }
             return Page();
         }
