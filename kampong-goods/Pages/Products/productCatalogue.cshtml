@@ -12,7 +12,6 @@
 
 <header class="mb-3">
 	<div class="form-inline">
-		<strong class="mr-md-auto">1 Items found </strong>
 		<select class="mr-2 form-control">
 			<option>Latest items</option>
 			<option>Trending</option>
@@ -34,41 +33,44 @@
 	@{
 		@foreach (var item in Model.ProductList)
 		{
-			<div class="col-md-3">
-				<figure class="card card-product-grid">
-					<div class="img-wrap">
-						<span class="badge badge-danger"> NEW </span>
-						<img src="@item.ImageURL">
-					</div> <!-- img-wrap.// -->
-					<figcaption class="info-wrap">
-						<a href="#" class="title mb-2">@item.ProductName</a>
-						<div class="price-wrap">
-							<span class="price">$@item.Price</span>
-						</div> <!-- price-wrap.// -->
+			//don't show your own stuff
+			@if(item.UserId != user.Id)
+			{
+				<div class="col-md-3">
+					<figure class="card card-product-grid">
+						<div class="img-wrap">
+							<span class="badge badge-danger"> NEW </span>
+							<img src="@item.ImageURL">
+						</div> <!-- img-wrap.// -->
+						<figcaption class="info-wrap">
+							<a href="#" class="title mb-2">@item.ProductName</a>
+							<div class="price-wrap">
+								<span class="price">$@item.Price</span>
+							</div> <!-- price-wrap.// -->
 
-						<hr>
+							<hr>
 
-						<p class="mb-3">
-							<span class="tag"> @item.CategoryId </span>
-							<span class="tag"> @item.ConditionId </span>
-						</p>
+							<p class="mb-3">
+								<span class="tag"> @item.CategoryId </span>
+								<span class="tag"> @item.ConditionId </span>
+							</p>
 
-						<hr>
+							<hr>
 
-						@foreach (var cust in custlist) //use userid to get user name
-						{
-							if (item.UserId == cust.Id)
+							@foreach (var cust in custlist) //use userid to get user name
 							{
-								<p class="text-muted ">Seller: @cust.UserName</p>
+								if (item.UserId == cust.Id)
+								{
+									<p class="text-muted ">Seller: @cust.UserName</p>
+								}
 							}
-						}
 
-						<a href="#" class="btn btn-outline-primary btn-block">  Chat </a>
-						<a href="/Products/productCart" class="btn btn-success btn-block">  Buy </a>
-
-					</figcaption>
-				</figure>
-			</div> <!-- col.// -->
+							<a href="#" class="btn btn-outline-primary btn-block">  Chat </a>
+							<a asp-page="/Products/productCheckout" asp-route-id="@item.ProductId" class="btn btn-success btn-block">  Purchase Now </a>
+						</figcaption>
+					</figure>
+				</div> <!-- col.// -->
+			}
 		}
 	}
 </div>

@@ -12,17 +12,20 @@ namespace kampong_goods.Pages.Products
         private readonly ProductService _productService;
         private readonly CategoryService _categoryService;
         private readonly ConditionService _conditionService;
+        private readonly CustomerService _customerService;
         private IWebHostEnvironment _environment;
 
         public AddproductModel(ProductService productService,
             CategoryService categoryService,
             ConditionService conditionService,
-            IWebHostEnvironment environment)
+            IWebHostEnvironment environment,
+            CustomerService customerService)
         {
             _productService = productService;
             _categoryService = categoryService;
             _conditionService = conditionService;
             _environment = environment;
+            _customerService = customerService;
         }
 
         [BindProperty]
@@ -34,11 +37,13 @@ namespace kampong_goods.Pages.Products
         public static List<Category> CategoryList { get; set; } = new();
 
         public static List<Condition> ConditionList { get; set; } = new();
+        public static List<AppUser> UserList { get; set; } = new();
 
         public void OnGet()
         {
             CategoryList = _categoryService.GetAll();
             ConditionList = _conditionService.GetAll();
+            UserList = _customerService.GetAll();
         }
 
         public async Task<IActionResult> OnPostAsync()

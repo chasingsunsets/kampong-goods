@@ -1,41 +1,33 @@
 ﻿@page
-@using Microsoft.AspNetCore.Identity;
-@using kampong_goods.Models;
-
-@inject SignInManager<AppUser> SignInManager
-@inject UserManager<AppUser> UserManager
-@model kampong_goods.Pages.Chat.IndexModel
+@model IndexModel
 @{
-    AppUser user = await UserManager.GetUserAsync(HttpContext.User); //current signed in
-    var custlist = await UserManager.GetUsersInRoleAsync("Customer"); //gets users list
-    var username = User.Identity.Name;
+    ViewData["Title"] = "Home page";
 }
-
 <div class="container">
-    <div class="row p-1">
-        <div class="col-1">User</div>
-        <div class="col-5"><input type="text" id="userInput" /></div>
+    <div class="row">
+        <div class="col-2">Receiver</div>
+        <div class="col-4">@Html.DropDownList("receiver",Model.Users, "All")</div>
     </div>
-    <div class="row p-1">
-        <div class="col-1">Message</div>
-        <div class="col-5"><input type="text" class="w-100" id="messageInput" /></div>
+    <div class="row">
+        <div class="col-2">Message</div>
+        <div class="col-4"><input type="text" id="message" /></div>
     </div>
-    <div class="row p-1">
-        <div class="col-6 text-end">
-            <input type="button" id="sendButton" value="Send Message" />
-        </div>
-    </div>
-    <div class="row p-1">
+    <div class="row">
         <div class="col-6">
-            <hr />
+            <input type="button" id="sendMessage" value="Send Message" />
         </div>
     </div>
-    <div class="row p-1">
+
+    <div class="row">
         <div class="col-6">
             <ul id="messagesList"></ul>
         </div>
     </div>
 </div>
 
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
+@Html.Hidden("sender", "nat") <!--Current logged in username-->
+@section Scripts
+    {
+    <script src="~/js/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+}

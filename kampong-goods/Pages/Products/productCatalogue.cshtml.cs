@@ -2,6 +2,7 @@ using kampong_goods.Models;
 using kampong_goods.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics;
 
 namespace kampong_goods.Pages.Products
 {
