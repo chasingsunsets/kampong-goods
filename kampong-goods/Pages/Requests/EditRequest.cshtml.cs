@@ -1,8 +1,11 @@
+using kampong_goods.Migrations.ProductDb;
 using kampong_goods.Models;
 using kampong_goods.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 
 namespace kampong_goods.Pages.Requests
 {
@@ -29,8 +32,8 @@ namespace kampong_goods.Pages.Requests
         [BindProperty]
         public Request MyRequest { get; set; } = new();
 
-        [BindProperty]
-        public AddRequest ReqModel { get; set; }
+/*        [BindProperty]
+        public AddRequest ReqModel { get; set; }*/
 
 
         /*        [BindProperty]
@@ -80,5 +83,54 @@ namespace kampong_goods.Pages.Requests
                 return Redirect("/Requests/MyRequests");
             }
         }
+        public async Task<IActionResult> OnPostAsync()
+        {
+
+
+            var requestlist = _requestService.GetAll();
+
+
+            if (ModelState.IsValid)
+                {
+                var request = _requestService.GetRequestById(MyRequest.ID);
+                /* var user = await userManager.FindByIdAsync(CustProfile.Id);
+                     var prevusername = user.UserName;
+                     var prevemail = user.Email;
+
+
+                     user.Id = CustProfile.Id;
+                     user.UserName = CustProfile.UserName;
+                     user.Email = CustProfile.Email;
+                     user.LName = CustProfile.LName;
+                     user.FName = CustProfile.FName;
+                     user.PhoneNumber = CustProfile.PhoneNumber;
+                     user.Address = CustProfile.Address;*/
+
+                request.Description = MyRequest.Description;
+                request.ReqTitle = MyRequest.ReqTitle;
+                request.Budget = MyRequest.Budget;
+                request.categoryId = MyRequest.categoryId;
+
+
+                _requestService.UpdateRequest(request);
+                TempData["FlashMessage.Type"] = "success";
+                TempData["FlashMessage.Text"] = string.Format("Request {0} edited successfully.", MyRequest.ReqTitle);
+                return Redirect("/Requests/MyRequests");
+
+
+            }
+
+
+
+
+            return Page();
+
+
+
+
+        }
+
+
+
     }
 }
