@@ -12,8 +12,8 @@ using kampong_goods;
 namespace kampong_goods.Migrations.ProductDb
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20230128090539_checkoutCart")]
-    partial class checkoutCart
+    [Migration("20230130055518_productInitialCreate")]
+    partial class productInitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
