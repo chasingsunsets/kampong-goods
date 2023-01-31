@@ -1,15 +1,16 @@
 ﻿@page
-@model kampong_goods.Pages.Vouchers.DetailsModel
+@model kampong_goods.Pages.Vouchers.AddModel
 @{
-    ViewData["Title"] = "Voucher Details";
+    Guid myuuid = Guid.NewGuid();
+    var VoucherID = myuuid.ToString();
+    Layout = "~/Pages/Shared/_StaffLayout.cshtml";
+    ViewData["Title"] = "Add Voucher";
 }
 
 <h1 class="display-4">@ViewData["Title"]</h1>
 
 <form class="mt-3" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
-
-    <input class="form-control" asp-for="MyVoucher.VoucherId" hidden />
 
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="MyVoucher.VoucherName"></label>
@@ -52,9 +53,8 @@
     </div>
 
     <div>
-        <input type="submit" value="Update" class="btn btn-primary" />
+        <input type="submit" value="Add" class="btn btn-primary" />
         <a class="btn btn-secondary ms-2" href="/Vouchers">Cancel</a>
-
     </div>
 </form>
 
