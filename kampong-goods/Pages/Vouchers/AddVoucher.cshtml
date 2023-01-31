@@ -13,7 +13,7 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label" asp-for="MyVoucher.VoucherName"></label>
+        <label class="col-sm-2 col-form-label" asp-for="MyVoucher.VoucherName">Voucher Name</label>
         <div class="col-sm-10">
             <input class="form-control" asp-for="MyVoucher.VoucherName" />
             <span asp-validation-for="MyVoucher.VoucherName" class="text-danger"></span>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label" asp-for="MyVoucher.VoucherDiscAmt"></label>
+        <label class="col-sm-2 col-form-label" asp-for="MyVoucher.VoucherDiscAmt">Discount Amount</label>
         <div class="col-sm-10">
             <input class="form-control" type="number" asp-for="MyVoucher.VoucherDiscAmt" />
             <span asp-validation-for="MyVoucher.VoucherDiscAmt" class="text-danger"></span>
@@ -29,7 +29,7 @@
     </div>
 
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label" asp-for="MyVoucher.VoucherMinSpend"></label>
+        <label class="col-sm-2 col-form-label" asp-for="MyVoucher.VoucherMinSpend">Minimum Spend</label>
         <div class="col-sm-10">
             <input class="form-control" type="number" asp-for="MyVoucher.VoucherMinSpend" />
             <span asp-validation-for="MyVoucher.VoucherMinSpend" class="text-danger"></span>
@@ -37,7 +37,7 @@
     </div>
 
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label" asp-for="MyVoucher.VoucherCode"></label>
+        <label class="col-sm-2 col-form-label" asp-for="MyVoucher.VoucherCode">Voucher Code</label>
         <div class="col-sm-10">
             <input class="form-control" asp-for="MyVoucher.VoucherCode" />
             <span asp-validation-for="MyVoucher.VoucherCode" class="text-danger"></span>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label" asp-for="MyVoucher.VoucherExpDate"></label>
+        <label class="col-sm-2 col-form-label" asp-for="MyVoucher.VoucherExpDate">Expiry Date</label>
         <div class="col-sm-10">
             <input class="form-control" asp-for="MyVoucher.VoucherExpDate" />
             <span asp-validation-for="MyVoucher.VoucherExpDate" class="text-danger"></span>
