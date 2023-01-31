@@ -70,9 +70,37 @@
 
 							<hr>
 
+								<!-- Delete Modal-->
+								<div class="modal fade" id="deletereq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+					 	aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">
+													Delete
+												</h5>
+												<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">×</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												Select "Delete" below if you are
+												deleting your request.
+											</div>
+											<div class="modal-footer">
+												<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+												<a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@item.ID">Delete</a>
+											</div>
+										</div>
+									</div>
+								</div>
 
-								<a class="btn loginBtn" style="color:white;float: right;font-size:h4;" asp-page="/Requests/EditRequest" asp-route-id="@item.ID">Edit</a>
-
+								<a class="btn loginBtn" style="color:white;float: left;font-size:h4;" asp-page="/Requests/EditRequest" asp-route-id="@item.ID">Edit</a>
+								   <a data-toggle="modal" data-target="#deletereq" class="card-link"
+                           style="color: darkred;float: right;">
+                                <i class="far fa-trash-alt"></i>
+                                Delete
+                            </a>
 						</figcaption>
 					</figure>
 				</div>
@@ -90,4 +118,12 @@
 
 </div>
 
-		
+
+
+@section Scripts {
+	<script>
+		$('[data-toggle=confirmation]').confirmation({
+			rootSelector: '[data-toggle=confirmation]',
+		});
+	</script>
+    }		
