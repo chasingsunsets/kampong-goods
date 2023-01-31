@@ -37,15 +37,22 @@ namespace kampong_goods.Pages.Education
             FAQlist = _FAQService.GetAll();
         }
 
-        public void OnGetSortFAQ(string ID)
+        public void OnGetSortFAQAesc(string ID)
         {
             FAQlist = _FAQService.GetAll();
             FAQlist_sorted = FAQlist.OrderBy(x => x.Date_Created).ToList();
             FAQlist = FAQlist_sorted;
         }
 
+        public void OnGetSortFAQDesc(string ID)
+        {
+            FAQlist = _FAQService.GetAll();
+            FAQlist_sorted = FAQlist.OrderByDescending(x => x.Date_Created).ToList();
+            FAQlist = FAQlist_sorted;
+        }
 
-       
+
+
         public IActionResult OnPost(string searchItem)
         {
             FAQlist = _FAQService.GetAll();

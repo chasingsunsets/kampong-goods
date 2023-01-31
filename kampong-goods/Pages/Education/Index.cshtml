@@ -37,7 +37,8 @@
                                 <input type="submit" value="Search" class="btn btn-primary" />
                             </div> <!-- col.// -->
                         </form>
-                        <a class="" asp-page="/Education/Index" asp-page-handler="SortFAQ">Sort by username</a>
+                        <a class="" asp-page="/Education/Index" asp-page-handler="SortFAQAesc">Date from Oldest</a>
+                        <a class="" asp-page="/Education/Index" asp-page-handler="SortFAQDesc">Date from Newset</a>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -66,7 +67,7 @@
                                             <td>@item.Date_Created</td>
                                             <td>@item.Date_Modified</td>
                                             <td>
-                                                <a asp-page="/Education/Answer" asp-route-id="@item.FAQId">Answer</a>
+                                                <a asp-page="/Education/Edit" asp-route-id="@item.FAQId">Edit</a>
                                                 <a class="btn btn-danger" asp-page="/Education/Index" asp-page-handler="DeleteFAQ" asp-route-id="@item.FAQId">Delete</a>
                                             </td>
 
