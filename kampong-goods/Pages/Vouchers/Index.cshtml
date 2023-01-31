@@ -1,6 +1,7 @@
 ﻿@page
 @model kampong_goods.Pages.Vouchers.IndexModel
 @{
+    Layout = "~/Pages/Shared/_StaffLayout.cshtml";
     ViewData["Title"] = "Vouchers";
 }
 
@@ -30,7 +31,7 @@
                     <td>@item.VoucherCode</td>
                     <td>@item.VoucherExpDate.ToString("dd/MM/yyyy")</td>
                     <td>
-                        <a asp-page="/Vouchers/Details" asp-route-id="@item.VoucherId">View</a>
+                        <a asp-page="/Vouchers/VoucherDetails" asp-route-id="@item.VoucherId">View</a>
                         <a data-toggle="modal" class="btn btn-danger btn-block" data-target="#deleteProduct">  Delete </a>
                         <!-- Delete Modal-->
 						<div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -62,5 +63,5 @@
     </tbody>
 </table>
 
-<a class="btn btn-primary mt-3" href="/Vouchers/Add">Add Voucher</a>
-<a class="btn btn-primary mt-3" href="/Vouchers/VoucherCatalogue">Voucher</a>
+<a class="btn btn-primary mt-3" href="/Vouchers/AddVoucher">Add Voucher</a>
+<a class="btn btn-primary mt-3" href="/Vouchers/VoucherCatalogue">Customer View</a>

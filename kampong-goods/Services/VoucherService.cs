@@ -36,7 +36,7 @@ namespace kampong_goods.Services
 
         public void DeleteVoucher(Voucher voucher)
         {
-            _context.Vouchers.Update(voucher);
+            _context.Vouchers.Remove(voucher);
             _context.SaveChanges();
         }
     }
