@@ -1,0 +1,106 @@
+﻿@page
+@model kampong_goods.Pages.Education.List_CustModel
+@{
+}
+
+<div id="wrapper">
+
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Frequently Asked Question</h1>
+        <p class="mb-4">
+            We have made this specified Website for answering your doubt while you are using our Website.
+            If you still confused, you may leave your feedback <a href="#"><b>here</b></a>.
+        </p>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">frequently asked question</h6>
+            </div>
+            <div class="card-body">
+                <div class="">
+                    @{
+                            @foreach (var item in Model.FAQlist)
+                        {
+                                <div class="faq__item">
+                                <h2 class="faq__question">@item.Question <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></h2>
+                                    <p class="faq__answer">
+                                        @item.Answer
+                                    </p>
+                                </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+</div>
+
+<head>
+    <style>
+            .faq__item {
+        width: 100 %;
+        margin - bottom: 1.5em;
+        border - bottom: 1px solid var(--Light - grayish - blue);}
+
+        .faq__question {
+            cursor: pointer;
+            position: relative;
+            margin-bottom: 1em;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+            .faq__question:hover {
+                color: var(--Soft-red);
+            }
+
+        .faq__answer {
+            display: none;
+            padding-bottom: 1.5em;
+            color: var(--Dark-grayish-blue);
+            line-height: 1.5em;
+        }
+    </style>
+
+    <script>
+        const questions = document.querySelectorAll(".faq__question");
+
+        questions.forEach((question) => {
+            question.addEventListener("click", function () {
+                let answer = question.nextElementSibling;
+                if (answer.style.display === "block") {
+                    hideAnswer(question);
+                } else {
+                    questions.forEach((question) => {
+                        hideAnswer(question);
+                    });
+                    displayAnswer(question);
+                }
+            });
+        });
+
+        function displayAnswer(target) {
+            let answer = target.nextElementSibling;
+            let arrowIcon = target.firstElementChild;
+            answer.style.display = "block";
+            arrowIcon.style.transform = "rotate(180deg)";
+            target.style.fontWeight = "700";
+        }
+
+        function hideAnswer(target) {
+            let answer = target.nextElementSibling;
+            let arrowIcon = target.firstElementChild;
+            answer.style.display = "none";
+            arrowIcon.style.transform = "rotate(0deg)";
+            target.style.fontWeight = "400";
+        }
+
+    </script>
+</head>
