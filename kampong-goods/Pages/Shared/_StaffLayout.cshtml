@@ -180,13 +180,54 @@
                     </div>
                 </div>
             </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                VOUCHER MANAGEMENT
+            </div>
+
+            <!-- Voucher Dropdown -->
             <li class="nav-item">
-                <a class="nav-link" href="/Vouchers">
-                    <i class="fa-solid fa-ticket"></i>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVoucher"
+                   aria-expanded="true" aria-controls="collapseVoucher">
+                    <i class="fa-solid fa-dolly"></i>
                     <span>Voucher</span>
                 </a>
+                <div id="collapseVoucher" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Inventory:</h6>
+                        <a class="collapse-item" href="/Vouchers/AddVoucher">Add Voucher</a>
+                        <a class="collapse-item" href="/Vouchers">Manage Vouchers</a>
+                    </div>
+                </div>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                EVENT MANAGEMENT
+            </div>
+
+            <!-- Event Dropdown -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvent"
+                   aria-expanded="true" aria-controls="collapseEvent">
+                    <i class="fa-solid fa-dolly"></i>
+                    <span>Event</span>
+                </a>
+                <div id="collapseEvent" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Inventory:</h6>
+                        <a class="collapse-item" href="/Events/AddEvent">Add Event</a>
+                        <a class="collapse-item" href="/Events">Manage Events</a>
+                    </div>
+                </div>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
