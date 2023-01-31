@@ -1,9 +1,11 @@
 ﻿@page
 @model kampong_goods.Pages.Staff.StaffListModel
+@using kampong_goods.Services;
 @using Microsoft.AspNetCore.Identity;
 @using kampong_goods.Models;
 
 @inject UserManager<AppUser> UserManager
+@inject StaffService _staffService
 @{
     Layout = "~/Pages/Shared/_StaffLayout.cshtml";
 
@@ -16,92 +18,94 @@
    
  @{           if(stafflist!=null){
 
-                <div class="container-fluid">
-            
+    <div class="container-fluid">
+                
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3" style="background-color:#3563E9;">
-                            <h5 class="m-0 font-weight-bold" style="color:white;">Staff List</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead style="background-color: #F1EDE5;">
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3" style="background-color:#3563E9;">
+                                <h5 class="m-0 font-weight-bold" style="color:white;">Staff List</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead style="background-color: #F1EDE5;">
 
-                                    
-                                        <tr>
-                                            <th>&nbsp;ID</th>
-                                            <th>&nbsp;Name</th>
-                                            <th>&nbsp;Username</th>
-                                            <th>&nbsp;Phone Number</th>
-                                        <th>&nbsp;NRIC</th>
+                                        
+                                            <tr>
+                                                <th>&nbsp;ID</th>
+                                                <th>&nbsp;Name</th>
+                                                <th>&nbsp;Username</th>
+                                                <th>&nbsp;Phone Number</th>
+                                            <th>&nbsp;NRIC</th>
 
-                                            <th>&nbsp;Action</th>
-                                        </tr>
-                                    </thead>
-                                @foreach (var item in stafflist)
-                            {
+                                                <th>&nbsp;Action</th>
+                                            </tr>
+                                        </thead>
+                                    @foreach (var item in stafflist)
+                            { 
 
 
-                                <!-- Delete Modal-->
-                                <div class="modal fade" id="deletestaff" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                             aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">
-                                                    Delete Customer Account
-                                                </h5>
-                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Select "Delete" below if you are
-                                                deleting your account.
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@item.Id">Delete</a>
+                                    <!-- Delete Modal-->
+                                    <div class="modal fade" id="deletestaff" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                        Delete Customer Account
+                                                    </h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Select "Delete" below if you are
+                                                    deleting your account.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                    <a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@item.Id">Delete</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                    <tr>
-                                        <td>@item.Id</td>
-                                        <td>&nbsp;@item.FName &nbsp;@item.LName</td>
-                                        <td>&nbsp;@item.UserName</td>
-                                        <td>&nbsp;@item.PhoneNumber</td>
+                                        <tr>
+                                            <td>@item.Id</td>
+                                            <td>&nbsp;@item.FName &nbsp;@item.LName</td>
+                                            <td>&nbsp;@item.UserName</td>
+                                            <td>&nbsp;@item.PhoneNumber</td>
+                                    @{
+                                        var staff= _staffService.GetICById(item.Id);
+                                    }
+                                            <td>&nbsp;@staff.NRIC</td>
 
-                                    <td>tbc</td>
+                                            <td>
+                                                <div>
 
-                                        <td>
-                                            <div>
+                                                    <a asp-page="/Staff/EditCustList" asp-route-id="@item.Id" style="color:#3563E9" class="card-link mb-2"><i class="fas fa-pencil-alt"></i>Edit</a>
+                                                  
+                                                </div> 
+                                                <div>
 
-                                                <a asp-page="/Staff/EditCustList" asp-route-id="@item.Id" style="color:#3563E9" class="card-link mb-2"><i class="fas fa-pencil-alt"></i>Edit</a>
-                                              
-                                            </div> 
-                                            <div>
+                                                <a data-toggle="modal" data-target="#deletestaff" class="card-link" style="color: darkred" asp-page-handler="Delete" asp-route-id="@item.Id">
+                                                    <i class="far fa-trash-alt"></i>
+                                                    Delete
+                                                </a>
 
-                                            <a data-toggle="modal" data-target="#deletestaff" class="card-link" style="color: darkred" asp-page-handler="Delete" asp-route-id="@item.Id">
-                                                <i class="far fa-trash-alt"></i>
-                                                Delete
-                                            </a>
-
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                </div>
+                                            </td>
+                                        </tr>
 
 
                                 }
-                                </table>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
+    </div>
 
             
         
@@ -109,7 +113,7 @@
 
         else{
 
-            <h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No Staff</h3>
+    <h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No Staff</h3>
         }
     }
 

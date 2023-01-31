@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Users\213590z\Documents\GitHub\kampong-goods\kampong-goods
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Chat/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Customers/CustList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXEN1c3RMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -47,6 +51,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzXFJlZ2lzdGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Education/AddFAQ.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWR1Y2F0aW9uXEFkZEZBUS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Education/Answer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWR1Y2F0aW9uXEFuc3dlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Education/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWR1Y2F0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -55,8 +71,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHNccHJvZHVjdEFkZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productCart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHNccHJvZHVjdENhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productCatalogue.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHNccHJvZHVjdENhdGFsb2d1ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productCheckout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHNccHJvZHVjdENoZWNrb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHNccHJvZHVjdEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Users/213590z/Documents/GitHub/kampong-goods/kampong-goods/Pages/Products/productListing.cshtml]

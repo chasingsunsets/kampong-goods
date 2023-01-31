@@ -6,6 +6,12 @@ namespace kampong_goods.Models
     public class AppUser : IdentityUser
     {
 
+        // for chat message function: constructor
+        public AppUser()
+        {
+            Messages = new HashSet<Message>();
+        }
+
 /*        [RegularExpression(@"^[STFG]\d{7}[A-Z]$", ErrorMessage = "Invalid NRIC."), MaxLength(9)]
         public string NRIC { get; set; } = string.Empty;*/
 
@@ -20,12 +26,14 @@ namespace kampong_goods.Models
         [Required]
         public string Address { get; set; } = string.Empty;
 
-
         /*  andrea*/
         public float WalletAmt { get; set; } = 0;
 
         /*  zhiyi*/
         public string GrpName { get; set; } = string.Empty;
+
+        // for message: 1 to many relationship
+        public virtual ICollection<Message> Messages { get; set; }
 
 
 

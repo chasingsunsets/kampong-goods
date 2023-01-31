@@ -58,53 +58,88 @@ namespace kampong_goods.Pages.Staff
 
                 };
 
-                //Create the Customer role if NOT exist
+                //Create the Staff role if NOT exist
                 IdentityRole role = await roleManager.FindByNameAsync("Staff");
                 if (role == null)
                 {   
-                    IdentityResult result2 = await roleManager.CreateAsync(new IdentityRole("Staff"));
-                    if (!result2.Succeeded)
+                    IdentityResult result1 = await roleManager.CreateAsync(new IdentityRole("Staff"));
+                    if (!result1.Succeeded)
                     {
                         ModelState.AddModelError("", "Create role staff failed");
-                        /*         TempData["FlashMessage.Type"] = "danger";
-                                 TempData["FlashMessage.Text"] = string.Format("Account registration fail.");*/
+                 
                     }
                 }
 
-
-                /*var staffs= _staffService.GetAll();
-*/
-                
-                    var result = await userManager.CreateAsync(user, AModel.Password);
-                    if (result.Succeeded)
+                //Create the Customer role if NOT exist
+                IdentityRole role2 = await roleManager.FindByNameAsync("Customer");
+                if (role2 == null)
+                {
+                    IdentityResult result2 = await roleManager.CreateAsync(new IdentityRole("Customer"));
+                    if (!result2.Succeeded)
                     {
+                        ModelState.AddModelError("", "Create role customer failed");
 
-                    var staff = new StaffInfo()
+                    }
+                }
+
+                var useremail = await userManager.FindByEmailAsync(user.Email);
+                if (useremail == null) /*if email not used*/
+                {
+
+                    StaffInfo? hvstaff = _staffService.GetStaffbyIC(AModel.NRIC);
+                    if (hvstaff == null)
                     {
+                            var createuser = await userManager.CreateAsync(user, AModel.Password);
+                            if (createuser.Succeeded)
+                            {
 
-                        NRIC = AModel.NRIC,
-                        User=user
-              
-                    };
+                                var staff = new StaffInfo()
+                                {
 
-                    
+                                    NRIC = AModel.NRIC,
+                                    User = user
 
-                    //Add users to Admin Role
-                    result = await userManager.AddToRoleAsync(user, "Staff");
-                    _staffService.AddStaff(staff);
-                        TempData["FlashMessage.Type"] = "success";
-                        TempData["FlashMessage.Text"] = string.Format("Account {0} successfully registered.", AModel.Username);
-                        await signInManager.SignInAsync(user, false);
-                        return RedirectToPage("Dashboard");
+                                };
+
+                                //Add users to Admin Role
+                                createuser = await userManager.AddToRoleAsync(user, "Customer");
+                                createuser = await userManager.AddToRoleAsync(user, "Staff");
+                                _staffService.AddStaff(staff);
+                                TempData["FlashMessage.Type"] = "success";
+                                TempData["FlashMessage.Text"] = string.Format("Account {0} successfully registered.", AModel.Username);
+                                await signInManager.SignInAsync(user, false);
+                                return RedirectToPage("Dashboard");
+                            }
+
+                            foreach (var error in createuser.Errors)
+                            {
+                                ModelState.AddModelError("", error.Description);
+                            }
+
+                    }
+                    else
+                    {
+                        TempData["FlashMessage.Type"] = "danger";
+                        TempData["FlashMessage.Text"] = string.Format("Account with NRIC: {0} is registered already.", AModel.NRIC);
                     }
 
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error.Description);
-                    }
+
+
+
+                }
+                else
+                {
+                    TempData["FlashMessage.Type"] = "danger";
+                    TempData["FlashMessage.Text"] = string.Format("Account with email: {0} is registered already.", user.Email);
+                }
+
+
+                 
            
             }
             return Page();
         }
     }
+
+
 }

@@ -12,17 +12,22 @@ namespace kampong_goods.Pages.Staff
     public class StaffListModel : PageModel
     {
         private readonly CustomerService _customerService;
+        private readonly StaffService _staffService;
+
         private UserManager<AppUser> userManager { get; }
 
-        public StaffListModel(CustomerService customerService, UserManager<AppUser> userManager)
+        public StaffListModel(CustomerService customerService, StaffService staffService, UserManager<AppUser> userManager)
         {
             _customerService = customerService;
+            _staffService = staffService;
             this.userManager = userManager;
 
         }
         public List<AppUser> CustList { get; set; } = new();
+        public List<StaffInfo> IClist { get; set; } = new();
         public void OnGet()
         {
+            IClist=_staffService.GetAll();
         }
 
         public async Task<IActionResult> OnGetDelete(string id)

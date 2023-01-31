@@ -68,7 +68,7 @@
 										<a class="list-group-item active" href="/Customers/Profile"> Account overview  </a>								
 										<a class="list-group-item" href="/Products/productOrder"> My Orders </a>
 										<a class="list-group-item" href="/Products/productListing"> My Selling Items </a>
-										<a class="list-group-item" href="page-index-1.html"> Log out </a>
+										<a class="list-group-item" href="/Customers/Logout"> Log out </a>
 									</nav>
 								</aside> <!-- col.// -->
 
@@ -76,19 +76,14 @@
 
 									<article class="card mb-3">
 										<div class="card-body">
-
 											<!-- ========================= BODY ========================= -->
-											<div class="container">
-												<main role="main" class="md-9">
 													@RenderBody()
-												</main>
-											</div>
-
 										</div>
 									</article>
 
 								</main>
 							</div>
+						</div>
 						</section>
 		}
 		
@@ -99,3 +94,4 @@
 	    @await RenderSectionAsync("Scripts", required: false)
 
 </body>
+</html>
