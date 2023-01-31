@@ -11,8 +11,12 @@ namespace kampong_goods.Pages.Education
     {
         private readonly FAQService _FAQService;
         public FAQ myFAQ { get; set; } = new();
+        public string searchItem { get; set; }
+        
 
         public List<FAQ> FAQlist { get; set; } = new();
+
+        public List<FAQ> FAQlist_sorted { get; set;} = new();
         public IndexModel(FAQService faqService)
         {
             _FAQService = faqService;
@@ -33,40 +37,35 @@ namespace kampong_goods.Pages.Education
             FAQlist = _FAQService.GetAll();
         }
 
-
-
-
-
-
-
-        public IActionResult OnPost()
+        public void OnGetSortFAQ(string ID)
         {
-            if (ModelState.IsValid)
-            {
-                /*_FAQService.DeleteFAQ(myFAQ);
-                TempData["FlashMessage.Type"] = "danger";
-                TempData["FlashMessage.Text"] = string.Format(
-                "FAQ{0} is Delete", myFAQ.ID);*/
-            }
-            return Page();
-
-            //ID = ID;
-            //Answer = string.Format("{0}",
-            //string.IsNullOrWhiteSpace(Answer) ? "null" : Answer);
-            //Question = string.Format("{0}",
-            //string.IsNullOrWhiteSpace(Question) ? "null" : Question);
-            //Creator = string.Format("{0}",
-            //string.IsNullOrWhiteSpace(Creator) ? "null" : Creator);
-            //Editor = string.Format("{0}",
-            //string.IsNullOrWhiteSpace(Editor) ? "null" : Editor);
-            //URL = string.Format("{0}",
-            //string.IsNullOrWhiteSpace(URL) ? "null" : URL);
-            //Date_Created = string.Format("{0}",
-            //string.IsNullOrWhiteSpace(Date_Created) ? "null" : Date_Created);
-
-
-            return Page();
+            FAQlist = _FAQService.GetAll();
+            FAQlist_sorted = FAQlist.OrderBy(x => x.Date_Created).ToList();
+            FAQlist = FAQlist_sorted;
         }
+
+
+       
+        public IActionResult OnPost(string searchItem)
+        {
+            FAQlist = _FAQService.GetAll();
+            if (string.IsNullOrEmpty(searchItem)) 
+            {
+                return Redirect("/Education");
+            }else
+            {
+                FAQlist_sorted = FAQlist.Where(x => x.Question.Contains(searchItem) || x.Answer.Contains(searchItem)).ToList();
+                FAQlist = FAQlist_sorted;
+                return Page();
+            }
+          
+            
+        }
+
+
+
+
+       
     }
 
 }

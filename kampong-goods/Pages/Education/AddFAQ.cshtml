@@ -1,10 +1,17 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity
+@using kampong_goods.Models;
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 @model kampong_goods.Pages.Education.AddFAQModel
 @{
     ViewData["Title"] = "Add FAQ";
     Guid myuuid = Guid.NewGuid();
     var FAQID = myuuid.ToString();
+
+    var currentDate = DateTime.Now;
 }
+
 
 <h1 class="display-4">@ViewData["Title"]</h1>
 
@@ -34,16 +41,16 @@
     </div>
 
     <input class="form-control" type="" asp-for="myFAQ.FAQId" value="@FAQID" oninput="this.value" />
-    <input class="form-control" type="" asp-for="myFAQ.Creator" value="Captain45" oninput="this.value" />
-    <input class="form-control" type="" asp-for="myFAQ.Editor" value="Captain45" oninput="this.value" />
-    <input class="form-control" type="" asp-for="myFAQ.Date_Created" value="Datetime.now" oninput="this.value" />
-    <input class="form-control" type="" asp-for="myFAQ.Date_Modified" value="Datetime.now" oninput="this.value" />
+    <input class="form-control" type="" asp-for="myFAQ.Creator" value="@UserManager.GetUserName(User)" oninput="this.value" />
+    <input class="form-control" type="" asp-for="myFAQ.Editor" value="@UserManager.GetUserName(User)" oninput="this.value" />
+    <input class="form-control" type="" asp-for="myFAQ.Date_Created" value="@currentDate" oninput="this.value" />
+    <input class="form-control" type="" asp-for="myFAQ.Date_Modified" value="@currentDate" oninput="this.value" />
 @*    <input class="form-control" type="" asp-for="myFAQ.StaffID" value="111" oninput="this.value" />*@
 
     </div>
     <div>
         <input type="submit" value="Add" class="btn btn-primary" />
-        <a class="btn btn-secondary ms-2" href="/Materials">Cancel</a>
+        <a class="btn btn-secondary ms-2" href="/Education">Cancel</a>
     </div>
 </form>
 @section Scripts {
