@@ -24,14 +24,18 @@
             <div class="card-body">
                 <div class="">
                     @{
-                            @foreach (var item in Model.FAQlist)
+                                @foreach (var item in Model.FAQlist)
                         {
-                                <div class="faq__item">
-                                <h2 class="faq__question">@item.Question <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></h2>
-                                    <p class="faq__answer">
-                                        @item.Answer
-                                    </p>
-                                </div>
+                                    <div class="faq__item">
+                                        <h2 class="faq__question">@item.Question <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></h2>
+                                        <p class="faq__answer">@item.Answer</p>
+                                    </div>
+                                
+                                    <div class="faq_answer">
+                                    
+                                    </div>
+
+
                         }
                     }
                 </div>
@@ -46,14 +50,14 @@
     <style>
             .faq__item {
         width: 100 %;
-        margin - bottom: 1.5em;
-        border - bottom: 1px solid var(--Light - grayish - blue);}
+        margin-bottom: 1.5em;
+        border-bottom: 2px solid var(--Light - grayish - blue);}
 
         .faq__question {
             cursor: pointer;
             position: relative;
             margin-bottom: 1em;
-            font-size: 0.9rem;
+            font-size: 1.75rem;
             font-weight: 400;
         }
 
@@ -65,6 +69,7 @@
             display: none;
             padding-bottom: 1.5em;
             color: var(--Dark-grayish-blue);
+            font-size: 1.5rem;
             line-height: 1.5em;
         }
     </style>
