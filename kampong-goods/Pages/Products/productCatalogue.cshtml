@@ -6,44 +6,112 @@
 @inject UserManager<AppUser> UserManager
 @model kampong_goods.Pages.Products.CatalogueModel
 @{
-	AppUser user = await UserManager.GetUserAsync(HttpContext.User); //current signed in
-	var custlist = await UserManager.GetUsersInRoleAsync("Customer"); //gets users list
 }
 
-<header class="mb-3">
-	<div class="form-inline">
-		<select class="mr-2 form-control">
-			<option>Latest items</option>
-			<option>Trending</option>
-			<option>Most Popular</option>
-			<option>Cheapest</option>
-		</select>
-		<div class="btn-group">
-			<a href="#" class="btn btn-light active" data-toggle="tooltip" title="List view">
-				<i class="fa fa-bars"></i>
-			</a>
-			<a href="#" class="btn btn-light" data-toggle="tooltip" title="Grid view">
-				<i class="fa fa-th"></i>
-			</a>
-		</div>
-	</div>
-</header><!-- sect-heading -->
+<style>
+	input.empty {
+		font-family: 'Helvetica', FontAwesome, sans-serif;
+	}
+
+	.float-container {
+		border: 3px solid #fff;
+	}
+
+	.float-child {
+		width: 40%;
+		float: left;
+		padding-bottom: 20px;
+	}
+
+	.btn-buy {
+		color: white;
+		background: #3563E9;
+	}
+
+	.btn-chat {
+		border-color: #3563E9;
+	}
+</style>
+
+<script>
+	function searchBar() {
+		var searchQuest = document.getElementById('searchInput').value;
+		console.log(searchQuest);
+
+		var searchFilter = searchQuest.toUpperCase();
+
+		var myDiv = document.getElementById("myTable");
+
+		var aTag = myDiv.getElementsByTagName("h6");
+
+		console.log(aTag);
+
+		// Loop through all list items, and hide those who don't match the search query
+		for (i = 0; i < aTag.length; i++) {
+			a = aTag[i].getElementsByTagName("h6")[0];
+			console.log(a);
+			txtValue = aTag[i].getElementById("productNameTag").value;
+			if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				aTag[i].style.display = "";
+			} else {
+				aTag[i].style.display = "none";
+			}
+		}
+	}
+</script>
 
 <div class="row">
 	@{
-		@foreach (var item in Model.ProductList)
+		<!-- ============================  FILTER TOP  ================================= -->
+		<div class="card mb-3">
+			<div class="card-body">
+				<div class="row">
+					<div style="padding: 50px;">
+						<h2 style="color: #3563E9">We have <span style="color: #FFC90B;">possibly everything</span> that you desire!</h2>
+						<div>
+							<input class="form-control empty" id="searchInput" type="text" placeholder="&#xF002; Search for anything..." onkeyup="javascript:searchBar()">
+						</div>
+						<p class="text-muted" style="padding-top: 5px;">People Often Searched For: Dress, Winter Jacket, Sling Bag</p>
+					</div>
+				</div> <!-- row.// -->
+			</div> <!-- card-body .// -->
+		</div> <!-- card.// -->
+		<!-- ============================ FILTER TOP END.// ================================= -->
+
+		@if (Model.anyUser == null)
 		{
-			//don't show your own stuff
-			@if(item.UserId != user.Id)
+
+			<header class="mb-3">
+				<div class="form-inline">
+					<strong class="mr-md-auto">@Model.ProductList.Count() Item(s) found </strong>
+					<select class="mr-2 form-control">
+						<option>Latest items</option>
+						<option>Trending</option>
+						<option>Most Popular</option>
+						<option>Cheapest</option>
+					</select>
+					<div class="btn-group">
+						<a href="/" class="btn btn-light active" data-toggle="tooltip" title="List view">
+							<i class="fa fa-bars"></i>
+						</a>
+						<a href="/" class="btn btn-light" data-toggle="tooltip" title="Grid view">
+							<i class="fa fa-th"></i>
+						</a>
+					</div>
+				</div>
+			</header>
+
+
+			@foreach (var item in Model.ProductList)
 			{
-				<div class="col-md-3">
+				<div class="col-md-3" id="myTable">
 					<figure class="card card-product-grid">
 						<div class="img-wrap">
-							<span class="badge badge-danger"> NEW </span>
+							<span class="badge badge-danger">@item.Status</span>
 							<img src="@item.ImageURL">
 						</div> <!-- img-wrap.// -->
 						<figcaption class="info-wrap">
-							<a href="#" class="title mb-2">@item.ProductName</a>
+							<h6 id="productNameTag" href="#" class="title mb-2">@item.ProductName</h6>
 							<div class="price-wrap">
 								<span class="price">$@item.Price</span>
 							</div> <!-- price-wrap.// -->
@@ -57,7 +125,7 @@
 
 							<hr>
 
-							@foreach (var cust in custlist) //use userid to get user name
+							@foreach (var cust in Model.CustomerList) //use userid to get user name
 							{
 								if (item.UserId == cust.Id)
 								{
@@ -72,17 +140,80 @@
 				</div> <!-- col.// -->
 			}
 		}
+
+		@if (Model.anyUser != null)
+		{
+			<header class="mb-3">
+				<div class="form-inline">
+					<strong class="mr-md-auto">@Model.showProductList.Count() Item(s) found </strong>
+					<select class="mr-2 form-control">
+						<option>Latest items</option>
+						<option>Trending</option>
+						<option>Most Popular</option>
+						<option>Cheapest</option>
+					</select>
+					<div class="btn-group">
+						<a href="/" class="btn btn-light active" data-toggle="tooltip" title="List view">
+							<i class="fa fa-bars"></i>
+						</a>
+						<a href="/" class="btn btn-light" data-toggle="tooltip" title="Grid view">
+							<i class="fa fa-th"></i>
+						</a>
+					</div>
+				</div>
+			</header>
+
+			@foreach (var item in Model.showProductList)
+			{
+				<div class="col-md-3" id="myTable">
+					<figure class="card card-product-grid" style="padding: 20px;" href="/Products/productDetails">
+
+						@foreach (var cust in Model.CustomerList) //use userid to get user name
+						{
+							if (item.UserId == cust.Id)
+							{
+
+								<div class="float-container">
+
+									<div class="float-child">
+										<img src="/uploads/seventeen-wonwoo-1.jpg" style="width:70px; height:70px; align-items:center;" alt="..." class="rounded-circle">
+									</div>
+
+									<div class="float-child">
+										<h6>@cust.UserName</h6>
+										<p class="text-muted">11 Hours Ago</p>
+									</div>
+
+								</div>
+
+							}
+						}
+
+						<div class="img-wrap">
+							<span class="badge badge-danger">@item.Status</span>
+							<img src="@item.ImageURL" class="rounded" style="width:300px; height:250px; border: solid 1px;">
+						</div> <!-- img-wrap.// -->
+						<figcaption style="padding-top: 10px;">
+							<h6 id="productNameTag" href="#" class="title mb-2">@item.ProductName</h6>
+							<div class="price-wrap">
+								<span class="price">$@item.Price</span>
+							</div> <!-- price-wrap.// -->
+
+							<hr>
+
+							<p class="mb-3">
+								<span class="tag">Category: @item.CategoryId </span>
+								<span class="tag">Condition: @item.ConditionId </span>
+							</p>
+
+							<hr>
+
+							<a href="#" class="btn btn-chat btn-block">  Chat </a>
+							<a asp-page="/Products/productCheckout" asp-route-id="@item.ProductId" class="btn btn-buy btn-block">  Buy Now </a>
+						</figcaption>
+					</figure>
+				</div> <!-- col.// -->
+			}
+		}
 	}
 </div>
-
-<nav class="mb-4" aria-label="Page navigation sample">
-	<ul class="pagination">
-		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-		<li class="page-item active"><a class="page-link" href="#">1</a></li>
-		<li class="page-item"><a class="page-link" href="#">2</a></li>
-		<li class="page-item"><a class="page-link" href="#">3</a></li>
-		<li class="page-item"><a class="page-link" href="#">4</a></li>
-		<li class="page-item"><a class="page-link" href="#">5</a></li>
-		<li class="page-item"><a class="page-link" href="#">Next</a></li>
-	</ul>
-</nav>

@@ -5,23 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace kampong_goods.Migrations.ProductDb
 {
-    public partial class product : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Carts",
-                columns: table => new
-                {
-                    CartId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductId = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Carts", x => x.CartId);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
@@ -35,24 +22,24 @@ namespace kampong_goods.Migrations.ProductDb
                 });
 
             migrationBuilder.CreateTable(
-                name: "Checkout",
+                name: "Checkouts",
                 columns: table => new
                 {
                     CheckoutId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CCName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CCNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Expiration = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CVV = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CCName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CCNo = table.Column<string>(type: "nvarchar(19)", maxLength: 19, nullable: false),
+                    ExpirationDate = table.Column<DateTime>(type: "date", nullable: false),
+                    CVV = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
                     ProductId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Checkout", x => x.CheckoutId);
+                    table.PrimaryKey("PK_Checkouts", x => x.CheckoutId);
                 });
 
             migrationBuilder.CreateTable(
@@ -78,7 +65,8 @@ namespace kampong_goods.Migrations.ProductDb
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     ConditionId = table.Column<string>(type: "nvarchar(8)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(7,2)", nullable: false),
-                    ImageURL = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                    ImageURL = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -111,10 +99,7 @@ namespace kampong_goods.Migrations.ProductDb
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Carts");
-
-            migrationBuilder.DropTable(
-                name: "Checkout");
+                name: "Checkouts");
 
             migrationBuilder.DropTable(
                 name: "Products");
