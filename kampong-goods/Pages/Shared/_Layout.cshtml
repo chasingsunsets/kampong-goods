@@ -53,8 +53,6 @@
             margin-left: 25px;
         }
         .sellBtn {
-            color: white;
-            background: #3563E9;
             margin-left: 25px;
             width: 80px;
         }
@@ -107,10 +105,13 @@
                                             <a class="nav-link"  asp-page="/Customers/Profile">Hi, <span style="font-weight: bold">@UserManager.GetUserName(User)</span></a>
                                         </li>
                                         <li class="nav-item">
+                                            <a class="nav-link" asp-page="/Chat/Index"><i class="fa-solid fa-bell"></i></a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a class="nav-link" asp-page="/Chat/Index"><i class="fa-solid fa-comments"></i></a>
                                         </li>
                                         <li class="nav-item">
-                                                <a class="btn sellBtn" asp-area="" asp-page="/Products/productAdd" style="color: white;">Sell</a>
+                                                <a class="btn sellBtn" asp-area="" asp-page="/Products/productAdd" style="color: white; background: #3563E9;">Sell</a>
                                             </li>
                                         </ul>
                             }
