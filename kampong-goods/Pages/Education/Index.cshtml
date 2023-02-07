@@ -42,7 +42,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>@Html.DisplayNameFor(model => model.FAQlist[0].Category)</th>
+                                            <th>@Html.DisplayNameFor(model => model.FAQlist[0].FAQCategory)</th>
                                             <th>@Html.DisplayNameFor(model => model.FAQlist[0].Question)</th>
                                             <th>@Html.DisplayNameFor(model => model.FAQlist[0].Answer)</th>
                                             <th>@Html.DisplayNameFor(model => model.FAQlist[0].Creator)</th>
@@ -58,7 +58,7 @@
                                     @foreach(var item in Model.FAQlist)
                                     {
                                         <tr>
-                                            <td>@item.Category</td>
+                                            <td>@item.FAQCategory</td>
                                             <td>@item.Question</td>
                                             <td>@item.Answer</td>
                                             <td>@item.Creator</td>

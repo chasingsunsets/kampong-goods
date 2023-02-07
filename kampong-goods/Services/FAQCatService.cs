@@ -16,7 +16,7 @@ namespace kampong_goods.Services
             //return AllFAQs.OrderBy(a => a.ID).ToList();
         }
 
-        public FAQCategory? GetFAQCatById(string ID)
+        public FAQCategory? GetFAQCatById(int ID)
         {
             FAQCategory? faqCat = _context.FAQCategories.FirstOrDefault(x => x.Id.Equals(ID));
             //FAQ? faq = AllFAQs.FirstOrDefault(x => x.ID.Equals(ID));
@@ -34,7 +34,7 @@ namespace kampong_goods.Services
             _context.SaveChanges();
         }
 
-        public void DeleteFAQCat(string ID)
+        public void DeleteFAQCat(int ID)
         {
             var fAQCategory = GetFAQCatById(ID);
             _context.FAQCategories.Remove(fAQCategory);
