@@ -9,18 +9,18 @@
 <form class="mt-3" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label" asp-for="myFAQCat.CategoryName"></label>
+        <label class="col-sm-2 col-form-label" asp-for="myFAQCat.FAQCategoryName"></label>
         <div class="col-sm-10">
-            <input class="form-control" asp-for="myFAQCat.CategoryName" oninput="this.value" />
-            <span asp-validation-for="myFAQCat.CategoryName" class="text-danger"></span>
+            <input class="form-control" asp-for="myFAQCat.FAQCategoryName" oninput="this.value" />
+            <span asp-validation-for="myFAQCat.FAQCategoryName" class="text-danger"></span>
         </div>
     </div>
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label" asp-for="myFAQCat.CatDescription"></label>
+        <label class="col-sm-2 col-form-label" asp-for="myFAQCat.FAQCatDescription"></label>
         <div class="col-sm-10">
-            <input class="form-control" asp-for="myFAQCat.CatDescription"
+            <input class="form-control" asp-for="myFAQCat.FAQCatDescription"
                    oninput="this.value" />
-            <span asp-validation-for="myFAQCat.CatDescription" class="text-danger"></span>
+            <span asp-validation-for="myFAQCat.FAQCatDescription" class="text-danger"></span>
         </div>
     </div>
 

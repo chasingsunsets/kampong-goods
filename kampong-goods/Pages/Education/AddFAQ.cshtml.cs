@@ -23,7 +23,7 @@ namespace kampong_goods.Pages.Education
 
 
         public FAQCategory myFAQCat { get; set; }
-        public List<FAQCategory> FAQCatlist { get; set; }
+        public static List<FAQCategory> FAQCatlist { get; set; } = new();
         public string staffName { get; set; }
 
         public void OnGet()

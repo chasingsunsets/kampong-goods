@@ -35,18 +35,10 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="myFAQ.FAQCategory"></label>
         <div class="col-sm-10">
-            <select name="Categories" id="categories" class="form-control" asp-for="myFAQ.FAQCategory" oninput="this.value">
-                @{ 
-                    foreach (var item in Model.FAQCatlist)
-                    {
-                        <option value="@item.CategoryName">@item.CategoryName</option>
-                    }
-                    
-                }
-            </select>
-            <span asp-validation-for="myFAQ.FAQCategory" class="text-danger"></span>
+            @Html.DropDownListFor(m => m.myFAQ.FAQCategory, new SelectList(AddFAQModel.FAQCatlist, "FAQCategoryName", "FAQCategoryName"), "-- Select --", new {@class = "form-select"})
+                <span asp-validation-for="myFAQ.FAQCategory" class="text-danger"></span>
+            </div>
         </div>
-    </div>
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="myFAQ.URL"></label>
         <div class="col-sm-10">

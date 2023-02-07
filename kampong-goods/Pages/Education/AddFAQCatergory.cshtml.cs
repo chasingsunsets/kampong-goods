@@ -43,7 +43,7 @@ namespace kampong_goods.Pages.Education
                 {
                     TempData["FlashMessage.Type"] = "danger";
                     TempData["FlashMessage.Text"] = string.Format(
-                    "FAQID {0} alreay exists", myFAQCat.CategoryName);
+                    "FAQID {0} alreay exists", myFAQCat.FAQCategoryName);
                     return Page();
                 }
 

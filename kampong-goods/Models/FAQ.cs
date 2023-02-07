@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace kampong_goods.Models
 {
@@ -10,6 +11,8 @@ namespace kampong_goods.Models
         public string Question { get; set; }
         [Required, MaxLength(1000)]
         public string Answer { get; set; }
+        [Display(Name = "Category")]
+        public string FAQCategory { get; set; }
         [Required]
         public string Creator { get; set; }
         [Required]

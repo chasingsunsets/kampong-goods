@@ -21,5 +21,7 @@ namespace kampong_goods
 
         public DbSet<FAQ> FAQs { get; set; }
 
+        public DbSet<FAQCategory> FAQCategorys { get; set; }
+
     }
 }
