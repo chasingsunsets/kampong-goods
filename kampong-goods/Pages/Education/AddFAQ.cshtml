@@ -33,6 +33,21 @@
         </div>
     </div>
     <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="myFAQ.Category"></label>
+        <div class="col-sm-10">
+            <select name="Categories" id="categories" class="form-control" asp-for="myFAQ.Category" oninput="this.value">
+                @{ 
+                    foreach (var item in Model.FAQCatlist)
+                    {
+                        <option value="@item.CategoryName">@item.CategoryName</option>
+                    }
+                    
+                }
+            </select>
+            <span asp-validation-for="myFAQ.Category" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="myFAQ.URL"></label>
         <div class="col-sm-10">
             <input class="form-control" type="url" asp-for="myFAQ.URL" />

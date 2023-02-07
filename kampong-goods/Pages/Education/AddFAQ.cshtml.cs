@@ -19,20 +19,25 @@ namespace kampong_goods.Pages.Education
 
         private readonly FAQService _faqService;
 
+        private readonly FAQCatService _faqCatService;
 
+
+        public FAQCategory myFAQCat { get; set; }
+        public List<FAQCategory> FAQCatlist { get; set; }
         public string staffName { get; set; }
 
         public void OnGet()
         {
-
+            FAQCatlist = _faqCatService.GetAll();
         }
 
-        public AddFAQModel(FAQService faqService, CustomerService customerService, UserManager<AppUser> userManager)
+        public AddFAQModel(FAQService faqService, CustomerService customerService, UserManager<AppUser> userManager, FAQCatService faqCatService)
         {
             _customerService = customerService;
             this.userManager = userManager;
             _faqService = faqService;
-                    }
+            _faqCatService = faqCatService;
+        }
 
 
 

@@ -2,15 +2,14 @@ using kampong_goods.Models;
 using kampong_goods.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Diagnostics;
 
 namespace kampong_goods.Pages.Education
 {
-    public class EditModel : PageModel
+    public class DetailModel : PageModel
     {
         private readonly FAQService _faqService;
 
-        public EditModel(FAQService faqService)
+        public DetailModel(FAQService faqService)
         {
             _faqService = faqService;
         }
@@ -35,30 +34,5 @@ namespace kampong_goods.Pages.Education
                 return Redirect("/Education");
             }
         }
-
-        public IActionResult OnPost()
-        {
-
-
-            if (ModelState.IsValid)
-            {
-                _faqService.UpdateFAQ(myFAQ);
-                TempData["FlashMessage.Type"] = "success";
-                TempData["FlashMessage.Text"] = string.Format("FAQ {0} is Edited", myFAQ.Question);
-                return Redirect("/Education");
-            }
-            return Page();
-        }
-    }
-}
-
-
-namespace EDP_AssN.Pages.Materials
-{
-    public class DetailsModel : PageModel
-    {
-
-        
-
     }
 }
