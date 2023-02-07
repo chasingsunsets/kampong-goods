@@ -166,7 +166,8 @@
 			@foreach (var item in Model.showProductList)
 			{
 				<div class="col-md-3" id="myTable">
-					<figure class="card card-product-grid" style="padding: 20px;">
+					<figure class="card card-product-grid" style="padding: 20px;" href="/Products/productDetails">
+
 						@foreach (var cust in Model.CustomerList) //use userid to get user name
 						{
 							if (item.UserId == cust.Id)

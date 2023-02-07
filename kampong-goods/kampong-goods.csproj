@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\FAQDb\" />
+    <Folder Include="Migrations\ProductDb\" />
   </ItemGroup>
 
 </Project>

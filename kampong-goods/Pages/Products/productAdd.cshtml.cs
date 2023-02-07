@@ -4,9 +4,11 @@ using kampong_goods.Models;
 using kampong_goods.Services;
 using System.Security.Claims;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace kampong_goods.Pages.Products
 {
+    [Authorize]
     public class AddproductModel : PageModel
     {
         private readonly ProductService _productService;
@@ -52,6 +54,7 @@ namespace kampong_goods.Pages.Products
             {
                 Guid myuuid = Guid.NewGuid();
                 MyProduct.ProductId = myuuid.ToString();
+                MyProduct.Status = "Available";
 
                 var userid = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
                 Debug.WriteLine(userid);
