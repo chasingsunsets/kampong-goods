@@ -9,10 +9,12 @@ namespace kampong_goods.Pages.Education
     public class EditModel : PageModel
     {
         private readonly FAQService _faqService;
+        private readonly FAQCatService _faqCatService;
 
-        public EditModel(FAQService faqService)
+        public EditModel(FAQService faqService, FAQCatService faqcatService)
         {
             _faqService = faqService;
+            _faqCatService = faqcatService;
         }
 
         [BindProperty]
@@ -25,6 +27,7 @@ namespace kampong_goods.Pages.Education
             if (FAQ != null)
             {
                 myFAQ = FAQ;
+                myFAQ.FAQCategory = _faqCatService.GetFAQCatById(FAQ.FAQCatId);
                 return Page();
             }
             else

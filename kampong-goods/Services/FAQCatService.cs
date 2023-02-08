@@ -12,13 +12,19 @@ namespace kampong_goods.Services
 
         public List<FAQCategory> GetAll()
         {
-            return _context.FAQCategorys.OrderBy(m => m.Id).ToList();
+            return _context.FAQCategorys.OrderBy(m => m.FAQCatId).ToList();
             //return AllFAQs.OrderBy(a => a.ID).ToList();
         }
 
-        public FAQCategory? GetFAQCatById(int ID)
+        public FAQCategory? GetFAQCatById(string ID)
         {
-            FAQCategory? faqCat = _context.FAQCategorys.FirstOrDefault(x => x.Id.Equals(ID));
+            FAQCategory? faqCat = _context.FAQCategorys.FirstOrDefault(x => x.FAQCatId.Equals(ID));
+            //FAQ? faq = AllFAQs.FirstOrDefault(x => x.ID.Equals(ID));
+            return faqCat;
+        }
+        public FAQCategory? GetIdByFAQCat(FAQCategory Category)
+        {
+            FAQCategory? faqCat = _context.FAQCategorys.FirstOrDefault(x => x.FAQCategoryName.Equals(Category));
             //FAQ? faq = AllFAQs.FirstOrDefault(x => x.ID.Equals(ID));
             return faqCat;
         }
@@ -34,9 +40,10 @@ namespace kampong_goods.Services
             _context.SaveChanges();
         }
 
-        public void DeleteFAQCat(int ID)
+        public void DeleteFAQCat(string ID)
         {
-            var fAQCategory = GetFAQCatById(ID);
+            var fAQCategory = _context.FAQCategorys.FirstOrDefault(x => x.FAQCatId == ID);
+            /*var fAQCategory = GetFAQCatById(ID);*/
             _context.FAQCategorys.Remove(fAQCategory);
             _context.SaveChanges();
         }

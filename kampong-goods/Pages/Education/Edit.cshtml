@@ -31,6 +31,13 @@
             <span asp-validation-for="myFAQ.Answer" class="text-danger"></span>
         </div>
     </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="myFAQ.FAQCategory"></label>
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.myFAQ.FAQCategory, new SelectList(AddFAQModel.FAQCatlist, "FAQCategoryName", "FAQCategoryName"), "-- Select --", new {@class = "form-select"})
+            <span asp-validation-for="myFAQ.FAQCategory" class="text-danger"></span>
+        </div>
+    </div>
 
     <input class="form-control" type="" asp-for="myFAQ.FAQId"  />
     <input class="form-control" type="" asp-for="myFAQ.URL" />

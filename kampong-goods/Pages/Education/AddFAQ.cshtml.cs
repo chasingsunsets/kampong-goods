@@ -46,6 +46,7 @@ namespace kampong_goods.Pages.Education
 
 
 
+
         public IActionResult OnPost()
         {
            
@@ -63,6 +64,9 @@ namespace kampong_goods.Pages.Education
                     return Page();
                 }
 
+                myFAQ.ClickTime = 0;
+                myFAQ.Publish = false;
+/*                myFAQ.FAQCatId = _faqCatService.GetIdByFAQCat();*/
                 _faqService.AddFAQ(myFAQ);
                 TempData["FlashMessage.Type"] = "success";
                 TempData["FlashMessage.Text"] = string.Format("FAQ {0} is added", myFAQ.Question);

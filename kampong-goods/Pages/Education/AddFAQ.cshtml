@@ -33,10 +33,10 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label class="col-sm-2 col-form-label" asp-for="myFAQ.FAQCategory"></label>
+        <label class="col-sm-2 col-form-label" asp-for="myFAQ.FAQCatId"></label>
         <div class="col-sm-10">
-            @Html.DropDownListFor(m => m.myFAQ.FAQCategory, new SelectList(AddFAQModel.FAQCatlist, "FAQCategoryName", "FAQCategoryName"), "-- Select --", new {@class = "form-select"})
-                <span asp-validation-for="myFAQ.FAQCategory" class="text-danger"></span>
+            @Html.DropDownListFor(m => m.myFAQ.FAQCatId, new SelectList(AddFAQModel.FAQCatlist, "FAQCatId", "FAQCategoryName"), "-- Select --", new {@class = "form-select"})
+                <span asp-validation-for="myFAQ.FAQCatId" class="text-danger"></span>
             </div>
         </div>
     <div class="row mb-3">
@@ -47,6 +47,7 @@
         </div>
     </div>
 
+    <input class="form-control" type="" asp-for="myFAQ.FAQCatId" value="null" oninput="this.value"/>
     <input class="form-control" type="" asp-for="myFAQ.FAQId" value="@FAQID" oninput="this.value" />
     <input class="form-control" type="" asp-for="myFAQ.Creator" value="@UserManager.GetUserName(User)" oninput="this.value" />
     <input class="form-control" type="" asp-for="myFAQ.Editor" value="@UserManager.GetUserName(User)" oninput="this.value" />

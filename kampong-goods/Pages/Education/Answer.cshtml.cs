@@ -18,6 +18,7 @@ namespace kampong_goods.Pages.Education
         }
 
         public FAQ myFAQ { get; set; }
+        public static List<FAQCategory> FAQCatlist { get; set; } = new();
 
         public IActionResult OnGet(string ID)
         {

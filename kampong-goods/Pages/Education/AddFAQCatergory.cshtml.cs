@@ -38,7 +38,7 @@ namespace kampong_goods.Pages.Education
             {
 
 
-                FAQCategory? faqcat = _faqCatService.GetFAQCatById(myFAQCat.Id);
+                FAQCategory? faqcat = _faqCatService.GetFAQCatById(myFAQCat.FAQCatId);
                 if (faqcat != null)
                 {
                     TempData["FlashMessage.Type"] = "danger";
@@ -49,7 +49,7 @@ namespace kampong_goods.Pages.Education
 
                 _faqCatService.AddFAQCAt(myFAQCat);
                 TempData["FlashMessage.Type"] = "success";
-                TempData["FlashMessage.Text"] = string.Format("FAQ {0} is added", myFAQCat.Id);
+                TempData["FlashMessage.Text"] = string.Format("FAQ {0} is added", myFAQCat.FAQCatId);
                 return Redirect("/Education");
             }
             return Page();
