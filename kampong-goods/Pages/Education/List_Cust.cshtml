@@ -8,7 +8,7 @@
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
- @*       <a class="btn btn-secondary" asp-page="/Education/Index" asp-page-handler="PublishFAQ" asp-route-id="@item.FAQId">Publish</a>*@
+        <a class="btn btn-secondary" asp-page="/Education/Index" asp-page-handler="PublishFAQ" asp-route-id="@item.FAQId">Publish</a>
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Frequently Asked Question</h1>
         <p class="mb-4">
@@ -24,19 +24,17 @@
             <div class="card-body">
                 <div class="">
                     @{
-                                            @foreach (var item in Model.FAQlist)
+                        @foreach (var item in Model.FAQlist)
                         {
-                                                <div class="faq__item">
-                                                    <h2 class="faq__question">@item.Question <i class="fa fa-chevron-circle-down" style="float:right" aria-hidden="true"></i></h2>
-                                                    <p class="faq__answer">@item.Answer</p>
-                                                </div>
-
-                                        <button class="btn" style="float:right;" onclick="clickTime()">Clicks: <i id="thumbsUp" class="fa-regular fa-thumbs-up"></i><a id="clicks">0</a></button>
-                                                <div class="faq_answer">
-                                                
-                                                </div>
-
-
+                            <div class="faq__item">
+                                <h2 class="faq__question">@item.Question <i class="fa fa-chevron-circle-down" style="float:right" aria-hidden="true"></i></h2>
+                                <p class="faq__answer">@item.Answer
+                                <button class="btn" id="clickTimeBtn" style="float:right;" onclick="clickTime()">
+                                    <i id="thumbsUp" class="fa-regular fa-thumbs-up"></i><p id="clicks">@item.ClickTime</p>
+                                </button></p>                                           
+                            </div>           
+                            <div class="faq_answer">                                      
+                            </div>
                         }
                     }
                 </div>
@@ -49,12 +47,19 @@
 
 <head>
     <script> 
-        var clicks = 0
+        var clicks = parseInt(document.getElementById("clicks").innerHTML);
+        console.log("Click = " + clicks);
         function clickTime() {
             clicks += 1;
             document.getElementById("clicks").innerHTML = clicks;
-            document.getElementById("thumbsUp").className =  "fa-solid fa-thumbs-up";
+            //after click one time
+            document.getElementById("thumbsUp").className = "fa-solid fa-thumbs-up";
+            document.getElementById("clickTimeBtn").onclick = "afterClick()";
         };
+
+        function afterClick(){
+            alert("You can only click Thumbs Up one Time, thanks for your like. www")
+        }
     </script>
     <style>
             .faq__item {
