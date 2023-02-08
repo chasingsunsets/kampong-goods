@@ -25,7 +25,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <a href="/Education/List_Cust" class="m-0 font-weight-bold text-primary">Questions And Anwsers list</a>
+                            <a href="/Education/List_Cust" class="m-0 font-weight-bold text-primary">Go to Customer Side</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -67,7 +67,9 @@
                                             <td>@item.Date_Created</td>
                                             <td>@item.Date_Modified</td>
                                             <td>
+                                                <a asp-page="/Education/FAQDetail" asp-route-id="@item.FAQId">Detail</a>
                                                 <a asp-page="/Education/Edit" asp-route-id="@item.FAQId">Edit</a>
+                                                <a class="btn btn-secondary" asp-page="/Education/Index" asp-page-handler="PublishFAQ" asp-route-id="@item.FAQId">Publish</a>
                                                 <a class="btn btn-danger" asp-page="/Education/Index" asp-page-handler="DeleteFAQ" asp-route-id="@item.FAQId">Delete</a>
                                             </td>
 

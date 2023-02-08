@@ -7,12 +7,12 @@ using kampong_goods.Pages.Vouchers;
 
 namespace kampong_goods.Pages.Education
 {
-    public class AnswerModel : PageModel
+    public class FAQDetailModel : PageModel
     {
 
         private readonly FAQService _FAQService;
 
-        public AnswerModel(FAQService faqService)
+        public FAQDetailModel(FAQService faqService)
         {
             _FAQService = faqService;
         }

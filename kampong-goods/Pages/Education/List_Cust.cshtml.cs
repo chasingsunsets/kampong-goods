@@ -24,6 +24,18 @@ namespace kampong_goods.Pages.Education
 
         }
 
+        //click time count function
+        public void OnGetClickCount(string ID)
+        {
+            myFAQ = _FAQService.GetFAQById(ID);
+            myFAQ.ClickTime += 1;
+            _FAQService.UpdateFAQ(myFAQ);
+            //test code
+            TempData["FlashMessage.Type"] = "success";
+            TempData["FlashMessage.Text"] = string.Format("FAQ {0} click time is added", myFAQ.Question);
+            FAQlist = _FAQService.GetAll();
+        }
+
         public void OnGetDeleteFAQ(string ID)
         {
             _FAQService.DeleteFAQ(ID);
