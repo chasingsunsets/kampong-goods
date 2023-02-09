@@ -1,0 +1,74 @@
+﻿@page
+@model kampong_goods.Pages.Events.IndexModel
+@{
+    Layout = "~/Pages/Shared/_StaffLayout.cshtml";
+    ViewData["Title"] = "Events";
+}
+
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.EventList[0].EventId)</th>
+            <th>@Html.DisplayNameFor(model => model.EventList[0].EventName)</th>
+            <th>@Html.DisplayNameFor(model => model.EventList[0].EventDesc)</th>
+            <th>@Html.DisplayNameFor(model => model.EventList[0].EventType)</th>
+            <th>@Html.DisplayNameFor(model => model.EventList[0].EventStart)</th>
+            <th>@Html.DisplayNameFor(model => model.EventList[0].EventEnd)</th>
+            <th>@Html.DisplayNameFor(model => model.EventList[0].EventLocation)</th>
+            <th>@Html.DisplayNameFor(model => model.EventList[0].PostalCode)</th>
+            <th>@Html.DisplayNameFor(model => model.EventList[0].EventSuitability)</th>
+            <th>@Html.DisplayNameFor(model => model.EventList[0].EventOrganiser)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            @foreach (var item in Model.EventList)
+            {
+                <tr>
+                    <td>@item.EventId</td>
+                    <td>@item.EventName</td>
+                    <td>@item.EventDesc</td>
+                    <td>@item.EventType</td>
+                    <td>@item.EventStart.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@item.EventEnd.ToString("dd/MM/YYYY HH:mm")</td>
+                    <td>@item.EventLocation</td>
+                    <td>@item.PostalCode</td>
+                    <td>@item.EventSuitability</td>
+                    <td>@item.EventOrganiser</td>
+
+                    <td>
+                        <a asp-page="/Events/EventDetails" asp-route-id="@item.EventId">View</a>
+                        <a data-toggle="modal" class="btn btn-danger btn-block" data-target="#deleteEvent">  Delete </a>
+                        <!-- Delete -->
+						<div class="modal fade" id="deleteModal_@item.EventId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle">Delete Confirmation</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										Are you sure you want to delete @item.EventName ?
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+										<a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@item.EventId">Delete</a>
+									</div>
+								</div>
+							</div>
+						</div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary mt-3" href="/Events/AddEvent">Add Event</a>
+<a class="btn btn-primary mt-3" href="/Events">Customer View</a>

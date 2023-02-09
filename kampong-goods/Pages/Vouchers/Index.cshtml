@@ -1,6 +1,7 @@
 ﻿@page
 @model kampong_goods.Pages.Vouchers.IndexModel
 @{
+    Layout = "~/Pages/Shared/_StaffLayout.cshtml";
     ViewData["Title"] = "Vouchers";
 }
 
@@ -30,24 +31,22 @@
                     <td>@item.VoucherCode</td>
                     <td>@item.VoucherExpDate.ToString("dd/MM/yyyy")</td>
                     <td>
-                        <a asp-page="/Vouchers/Details" asp-route-id="@item.VoucherId">View</a>
+                        <a asp-page="/Vouchers/VoucherDetails" asp-route-id="@item.VoucherId">View</a>
+
                         <a data-toggle="modal" class="btn btn-danger btn-block" data-target="#deleteProduct">  Delete </a>
-                        <!-- Delete Modal-->
-						<div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-					 	aria-hidden="true">
-							<div class="modal-dialog" role="document">
+
+                        <!-- Delete -->
+						<div class="modal fade" id="deleteModal_@item.VoucherId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">
-											Delete Product
-										</h5>
-										<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">×</span>
+										<h5 class="modal-title" id="exampleModalLongTitle">Delete Confirmation</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
 									<div class="modal-body">
-										Select "Delete" below if you are
-										deleting your product.
+										Are you sure you want to delete @item.VoucherName ?
 									</div>
 									<div class="modal-footer">
 										<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -55,6 +54,7 @@
 									</div>
 								</div>
 							</div>
+						</div>
                     </td>
                 </tr>
             }
@@ -62,5 +62,5 @@
     </tbody>
 </table>
 
-<a class="btn btn-primary mt-3" href="/Vouchers/Add">Add Voucher</a>
-<a class="btn btn-primary mt-3" href="/Vouchers/VoucherCatalogue">Voucher</a>
+<a class="btn btn-primary mt-3" href="/Vouchers/AddVoucher">Add Voucher</a>
+<a class="btn btn-primary mt-3" href="/Vouchers/VoucherCatalogue">Customer View</a>

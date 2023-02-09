@@ -25,6 +25,8 @@ builder.Services.AddScoped<CheckoutService>();
 builder.Services.AddDbContext<ProductDbContext>();
 
 //chat
+builder.Services.AddScoped<VoucherService>();
+builder.Services.AddScoped<EventService>();
 builder.Services.AddSignalR();
 
 //faq
@@ -50,6 +52,18 @@ builder.Services.Configure<SecurityStampValidatorOptions>(options =>
     // enables immediate logout, after updating the user's security stamp.
     options.ValidationInterval = TimeSpan.Zero;
 });
+
+builder.Services.AddScoped<CustomerService>();
+
+builder.Services.AddScoped<StaffService>();
+
+builder.Services.AddScoped<FAQService>();
+
+//builder.Services.AddDbContext<MyDbContext>();
+builder.Services.AddDbContext<VoucherDbContext>();
+builder.Services.AddDbContext<ProductDbContext>();
+builder.Services.AddDbContext<FAQDbContext>();
+builder.Services.AddDbContext<EventDbContext>();
 
 var app = builder.Build();
 

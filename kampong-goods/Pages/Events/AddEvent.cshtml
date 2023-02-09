@@ -1,0 +1,114 @@
+﻿@page
+@model kampong_goods.Pages.Events.AddEventModel
+@{
+    Guid myuuid = Guid.NewGuid();
+    var EventID = myuuid.ToString();
+    Layout = "~/Pages/Shared/_StaffLayout.cshtml";
+    ViewData["Title"] = "Add Event";
+
+}
+<h1 class="display-4">@ViewData["Title"]</h1>
+
+<form class="mt-3" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="row mb-3">
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="MyEvent.EventId" value="@EventID" type="hidden" oninput="this.value = this.value.toUpperCase()" />
+            <span asp-validation-for="MyEvent.EventId" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="MyEvent.EventName"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="MyEvent.EventName" />
+            <span asp-validation-for="MyEvent.EventName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="MyEvent.EventDesc"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="MyEvent.EventDesc" />
+            <span asp-validation-for="MyEvent.EventDesc" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="MyEvent.EventType"></label>
+        <div class="col-sm-10 d-flex align-items-center">
+            <div class="form-check form-check-inline">
+                @Html.RadioButtonFor(m => m.MyEvent.EventType, "Donation", new {@class = "form-check-input"})
+                <label class="form-check-label">Donation Drive</label>
+            </div>
+            <div class="form-check form-check-inline">
+                @Html.RadioButtonFor(m => m.MyEvent.EventType, "Volunteering", new {@class = "form-check-input"})
+                <label class="form-check-label">Volunteering</label>
+            </div>
+            <span asp-validation-for="MyEvent.EventType" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="MyEvent.EventStart"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="MyEvent.EventStart" />
+            <span asp-validation-for="MyEvent.EventStart" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="MyEvent.EventEnd"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="MyEvent.EventEnd" />
+            <span asp-validation-for="MyEvent.EventEnd" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="MyEvent.EventLocation"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="MyEvent.EventLocation" />
+            <span asp-validation-for="MyEvent.EventLocation" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="MyEvent.PostalCode"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="MyEvent.PostalCode" />
+            <span asp-validation-for="MyEvent.PostalCode" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="MyEvent.EventSuitability"></label>
+        <div class="col-sm-10 d-flex align-items-center">
+            <div class="form-check form-check-inline">
+                @Html.RadioButtonFor(m => m.MyEvent.EventSuitability, "FirstTimers", new {@class = "form-check-input"})
+                <label class="form-check-label">First-timers</label>
+            </div>
+            <div class="form-check form-check-inline">
+                @Html.RadioButtonFor(m => m.MyEvent.EventSuitability, "Experienced", new {@class = "form-check-input"})
+                <label class="form-check-label">Experienced Individuals</label>
+            </div>
+            <span asp-validation-for="MyEvent.EventSuitability" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="MyEvent.EventOrganiser"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="MyEvent.EventOrganiser" />
+            <span asp-validation-for="MyEvent.EventOrganiser" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" value="Add" class="btn btn-primary" />
+        <a class="btn btn-secondary ms-2" href="/Events">Cancel</a>
+    </div>
+</form>
+
