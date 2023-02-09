@@ -15,8 +15,8 @@
             <th>@Html.DisplayNameFor(model => model.EventList[0].EventName)</th>
             <th>@Html.DisplayNameFor(model => model.EventList[0].EventDesc)</th>
             <th>@Html.DisplayNameFor(model => model.EventList[0].EventType)</th>
-            <th>@Html.DisplayNameFor(model => model.EventList[0].EventDate)</th>
-            <th>@Html.DisplayNameFor(model => model.EventList[0].EventTime)</th>
+            <th>@Html.DisplayNameFor(model => model.EventList[0].EventStart)</th>
+            <th>@Html.DisplayNameFor(model => model.EventList[0].EventEnd)</th>
             <th>@Html.DisplayNameFor(model => model.EventList[0].EventLocation)</th>
             <th>@Html.DisplayNameFor(model => model.EventList[0].PostalCode)</th>
             <th>@Html.DisplayNameFor(model => model.EventList[0].EventSuitability)</th>
@@ -33,8 +33,8 @@
                     <td>@item.EventName</td>
                     <td>@item.EventDesc</td>
                     <td>@item.EventType</td>
-                    <td>@item.EventDate.ToString("dd/MM/yyyy")</td>
-                    <td>@item.EventTime.ToString("HH:mm")</td>
+                    <td>@item.EventStart.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@item.EventEnd.ToString("dd/MM/YYYY HH:mm")</td>
                     <td>@item.EventLocation</td>
                     <td>@item.PostalCode</td>
                     <td>@item.EventSuitability</td>

@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-//using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace kampong_goods.Models
 {
     public class Event
     {
-        [MaxLength(1000)]
-        [Display(Name = "Event ID")]
+        [Display(Name = "Event Id")]
         public string EventId { get; set; } = string.Empty;
 
         [Required, MinLength(3, ErrorMessage = "Enter at least 3 characters."), MaxLength(30)]
@@ -17,19 +16,15 @@ namespace kampong_goods.Models
         [Display(Name = "Description")]
         public string EventDesc { get; set; } = string.Empty;
 
-        [Required, MaxLength(1)]
+        [Required]
         [Display(Name = "Type of event")]
         public string EventType { get; set; } = string.Empty;
 
-        [DataType(DataType.Date)]
-        [Display(Name = "Event Date")]
-        //[Column(TypeName = "date")]
-        public DateTime EventDate { get; set; } = new DateTime(2024, 1, 1, 1, 1, 1);
+        [Display(Name = "Event Start")]
+        public DateTime EventStart { get; set; } = DateTime.Today;
 
-        [DataType(DataType.Time)]
-        [Display(Name = "Event Time")]
-        //[Column(TypeName = "time")]
-        public DateTime EventTime { get; set; } = new DateTime(2024, 1, 1, 1, 1, 1);
+        [Display(Name = "Event End")]
+        public DateTime EventEnd { get; set; } = DateTime.Today;
 
         [Required, MinLength(3)]
         [Display(Name = "Address")]
@@ -40,7 +35,7 @@ namespace kampong_goods.Models
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; } = string.Empty;
 
-        [Required, MaxLength(1)]
+        [Required]
         [Display(Name = "Suitable for")]
         public string EventSuitability { get; set; } = string.Empty;
 

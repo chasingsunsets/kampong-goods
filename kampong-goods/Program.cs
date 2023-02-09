@@ -17,7 +17,7 @@ builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ConditionService>();
 builder.Services.AddScoped<VoucherService>();
-//builder.Services.AddScoped<EventService>();
+builder.Services.AddScoped<EventService>();
 builder.Services.AddSignalR();
 
 /*builder.Services.AddTransient<IEmailSender, SendGridEmail>();
@@ -40,10 +40,11 @@ builder.Services.AddScoped<StaffService>();
 builder.Services.AddScoped<FAQService>();
 
 //builder.Services.AddDbContext<MyDbContext>();
-//builder.Services.AddDbContext<EventDbContext>();
 builder.Services.AddDbContext<VoucherDbContext>();
 builder.Services.AddDbContext<ProductDbContext>();
 builder.Services.AddDbContext<FAQDbContext>();
+builder.Services.AddDbContext<EventDbContext>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

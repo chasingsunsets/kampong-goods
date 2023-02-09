@@ -8,64 +8,17 @@ namespace kampong_goods.Pages.Events
 {
     public class IndexModel : PageModel
     {
-        public List<Event> EventList { get; set; } = new()
+        private readonly EventService _eventService;
+        public IndexModel(EventService eventService)
         {
-            new Event
-            {
-                EventId = "4",
-                EventName = "DonateAgain",
-                EventDesc = "Donate",
-                EventType = "Donation",
-                EventDate = DateTime.Parse("14/02/2023"),
-                EventTime = DateTime.Parse("09:30"),
-                EventLocation = "Jurong",
-                PostalCode = "123456",
-                EventSuitability = "Experienced",
-                EventOrganiser = "PAP"
-            },
-            new Event
-            {
-                EventId = "4",
-                EventName = "DonateAgain",
-                EventDesc = "Donate",
-                EventType = "Donation",
-                EventDate = DateTime.Parse("14/02/2023"),
-                EventTime = DateTime.Parse("09:30"),
-                EventLocation = "Jurong",
-                PostalCode = "123456",
-                EventSuitability = "Experienced",
-                EventOrganiser = "PAP"
-            },
-            new Event
-            {
-                EventId = "4",
-                EventName = "DonateAgain",
-                EventDesc = "Donate",
-                EventType = "Donation",
-                EventDate = DateTime.Parse("14/02/2023"),
-                EventTime = DateTime.Parse("09:30"),
-                EventLocation = "Jurong",
-                PostalCode = "123456",
-                EventSuitability = "Experienced",
-                EventOrganiser = "PAP"
-            },
-            new Event
-            {
-                EventId = "4",
-                EventName = "DonateAgain",
-                EventDesc = "Donate",
-                EventType = "Donation",
-                EventDate = DateTime.Parse("14/02/2023"),
-                EventTime = DateTime.Parse("09:30"),
-                EventLocation = "Jurong",
-                PostalCode = "123456",
-                EventSuitability = "Experienced",
-                EventOrganiser = "PAP"
-            },
-        };
+            _eventService = eventService;
+        }
+
+        public List<Event> EventList { get; set; } = new();
 
         public void OnGet()
         {
+            EventList = _eventService.GetAll();
         }
     }
  }

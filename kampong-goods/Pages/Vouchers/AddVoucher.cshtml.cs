@@ -19,21 +19,12 @@ namespace kampong_goods.Pages.Vouchers
 
         public void OnGet()
         {
-            // Test Data
-            //MyEmployee.EmployeeId = "MAYT";
-            //MyEmployee.NRIC = "S1111111D";
-            //MyEmployee.Name = "May Tan";
-            //MyEmployee.Gender = "F";
-            //MyEmployee.DepartmentId = "IT";
-            //MyEmployee.Salary = 5000;
         }
 
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
-                //Guid myuuid = Guid.NewGuid();
-                //MyVoucher.VoucherId = myuuid.ToString();
                 Voucher? voucher = _voucherService.GetVoucherById(MyVoucher.VoucherId);
                 if (voucher != null)
                 {
@@ -42,6 +33,8 @@ namespace kampong_goods.Pages.Vouchers
                 }
 
                 _voucherService.AddVoucher(MyVoucher);
+                TempData["FlashMessage.Type"] = "success";
+                TempData["FlashMessage.Text"] = string.Format("{0} is added", MyVoucher.VoucherName);
                 return Redirect("/Vouchers");
             }
             return Page();
