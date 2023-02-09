@@ -18,6 +18,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<A
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ConditionService>();
+builder.Services.AddScoped<FAQCatService>();
 builder.Services.AddSignalR();
 
 /*builder.Services.AddTransient<IEmailSender, SendGridEmail>();
