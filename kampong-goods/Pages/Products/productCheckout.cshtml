@@ -1,0 +1,177 @@
+﻿@page
+@model kampong_goods.Pages.Products.productCheckoutModel
+@using Microsoft.AspNetCore.Identity;
+@using kampong_goods.Models;
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@{
+	Guid myuuid = Guid.NewGuid();
+	var CheckoutId = myuuid.ToString();
+
+	AppUser user = await UserManager.GetUserAsync(HttpContext.User); //current signed in
+	var custlist = await UserManager.GetUsersInRoleAsync("Customer"); //gets users list
+}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+<div class="container">
+	<h1 style="position:center">Product Checkout</h1>
+
+		@*form*@
+		<form class="mt-3" method="post">
+			<div asp-validation-summary="All" class="text-danger"></div>
+
+			<input type="hidden" class="form-control" placeholder="" value="@CheckoutId" asp-for="MyCheckout.CheckoutId">
+			<span asp-validation-for="MyCheckout.CheckoutId" class="text-danger"></span>
+
+			<input type="hidden" class="form-control" placeholder="" value="ProductID" asp-for="MyCheckout.ProductId">
+			<span asp-validation-for="MyCheckout.ProductId" class="text-danger"></span>
+
+			<div class="card mb-4">
+				<div class="card-body">
+					<table class="table table-borderless table-shopping-cart">
+						<thead class="text-muted">
+							<tr class="small text-uppercase">
+								<th scope="col">Product</th>
+								<th scope="col" width="120">SELLER</th>
+								<th scope="col" width="120">Price</th>
+								<th scope="col" class="text-right" width="200"> </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<figure class="itemside">
+										<div class="aside"><img src="@Model.productImage" class="img-sm"></div>
+										<figcaption class="info">
+											<a href="#" class="title text-dark">@Model.productName</a>
+											<p class="small text-muted">Product ID = @Model.MyCheckout.ProductId</p>
+										</figcaption>
+									</figure>
+								</td>
+								<td>
+									<div class="price-wrap">
+										@foreach (var cust in custlist) //use userid to get user name
+										{
+											if (@Model.productSeller == cust.Id)
+											{
+												<var class="seller">@cust.UserName</var>
+											}
+										}
+									</div> <!-- price-wrap .// -->
+								</td>
+								<td>
+									<div class="price-wrap">
+										<var class="price">$@Model.productCost</var>
+									</div> <!-- price-wrap .// -->
+								</td>
+								<td class="text-right">
+									<a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
+									<a href="/Products/productCatalogue" class="btn btn-light btn-round"> Remove</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div> <!-- card-body.// -->
+			</div> <!-- card .// -->
+
+		
+			<div class="card mb-4">
+				<div class="card-body">
+					<h4 class="card-title mb-3">Delivery info</h4>
+						<div class="form-row">
+							<div class="col form-group">
+								<label>First name</label>
+							<input type="text" class="form-control" placeholder="" asp-for="MyCheckout.FName">
+							<span asp-validation-for="MyCheckout.FName" class="text-danger"></span>
+							</div> <!-- form-group end.// -->
+							<div class="col form-group">
+								<label>Last name</label>
+							<input type="text" class="form-control" placeholder="" asp-for="MyCheckout.LName">
+							<span asp-validation-for="MyCheckout.LName" class="text-danger"></span>
+							</div> <!-- form-group end.// -->
+						</div> <!-- form-row end.// -->
+
+						<div class="form-row">
+							<div class="col form-group">
+								<label>Email</label>
+							<input type="email" class="form-control" placeholder="" asp-for="MyCheckout.Email">
+							<span asp-validation-for="MyCheckout.Email" class="text-danger"></span>
+							</div> <!-- form-group end.// -->
+							<div class="col form-group">
+								<label>Phone</label>
+							<input type="text" class="form-control" placeholder="" asp-for="MyCheckout.Phone">
+							<span asp-validation-for="MyCheckout.Phone" class="text-danger"></span>
+							</div> <!-- form-group end.// -->
+						</div> <!-- form-row end.// -->
+
+						<div class="form-group">
+							<label>Address</label>
+						<textarea class="form-control" rows="2" asp-for="MyCheckout.Address"></textarea>
+						<span asp-validation-for="MyCheckout.Address" class="text-danger"></span>
+						</div> <!-- form-group// -->
+
+				</div> <!-- card-body.// -->
+			</div>  <!-- card .// -->
+
+
+			<div class="card mb-4">
+				<div class="card-body">
+					<h4 class="card-title mb-4">Payment</h4>
+					<div class="form-group">
+						<label for="username">Name on card</label>
+						<input type="text" class="form-control" placeholder="Ex. John Smith" required="" asp-for="MyCheckout.CCName">
+						<span asp-validation-for="MyCheckout.CCName" class="text-danger"></span>
+					</div> <!-- form-group.// -->
+
+					<div class="form-group">
+						<label for="cardNumber">Card number</label>
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="" asp-for="MyCheckout.CCNo">
+							<span asp-validation-for="MyCheckout.CCNo" class="text-danger"></span>
+							<div class="input-group-append">
+								<span class="input-group-text">
+									<i class="fab fa-cc-visa"></i> &nbsp; <i class="fab fa-cc-amex"></i> &nbsp;
+									<i class="fab fa-cc-mastercard"></i>
+								</span>
+							</div>
+						</div> <!-- input-group.// -->
+					</div> <!-- form-group.// -->
+
+					<div class="row">
+						<div class="col-md flex-grow-0">
+							<div class="form-group">
+								<label class="hidden-xs">Expiration</label>
+								<input type="text" class="form-control" placeholder="" asp-for="MyCheckout.ExpirationDate">
+								<span asp-validation-for="MyCheckout.ExpirationDate" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label data-toggle="tooltip" title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
+								<input class="form-control" required="" type="text" asp-for="MyCheckout.CVV">
+								<span asp-validation-for="MyCheckout.CVV" class="text-danger"></span>
+							</div> <!-- form-group.// -->
+						</div>
+					</div> <!-- row.// -->
+
+					<div class="card-body border-top">
+						<a href="/Products/productCatalogue" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Back to catalogue </a>
+						<a style="float:right;"><input type="submit" value="Make Purchase" class="btn btn-primary" /></a>
+					</div>
+				</div> <!-- card-body.// -->
+			</div> <!-- card .// -->
+		</form>
+
+<br><br> 
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	}

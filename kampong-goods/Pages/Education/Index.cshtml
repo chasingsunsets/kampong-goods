@@ -1,0 +1,152 @@
+﻿@page
+@model kampong_goods.Pages.Education.IndexModel
+@{
+    ViewData["Title"] = "Education Materials";
+}
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+                                      
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Questions And Answers</h1>
+                    <p class="mb-4">
+                        We have made this specified Website for answering your doubt while you are using our Website.
+                        If you still confused, you may leave your feedback <a href="#"><b>here</b></a>.
+                    </p>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <a href="/Education/List_Cust" class="m-0 font-weight-bold text-primary">Go to Customer Side</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                        <form class="form-row" method="post">
+                            <div class="col-8">
+                                <input class="form-control" asp-for="searchItem" placeholder="Enter the keyword here" type="text">
+                            </div> <!-- col.// -->
+                            <div class="col-4">
+                                <input type="submit" value="Search" class="btn btn-primary" />
+                            </div> <!-- col.// -->
+                        </form>
+                        <a class="" asp-page="/Education/Index" asp-page-handler="SortFAQAesc">Date from Oldest</a>
+                        <a class="" asp-page="/Education/Index" asp-page-handler="SortFAQDesc">Date from Newset</a>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>@Html.DisplayNameFor(model => model.FAQlist[0].FAQCategory)</th>
+                                            <th>@Html.DisplayNameFor(model => model.FAQlist[0].Question)</th>
+                                            <th>@Html.DisplayNameFor(model => model.FAQlist[0].Answer)</th>
+                                            <th>@Html.DisplayNameFor(model => model.FAQlist[0].Creator)</th>
+                                            <th>@Html.DisplayNameFor(model => model.FAQlist[0].Editor)</th>
+                                            <th><a>@Html.DisplayNameFor(model => model.FAQlist[0].URL)</th>
+                                            <th>@Html.DisplayNameFor(model => model.FAQlist[0].Date_Created)</th>
+                                            <th>@Html.DisplayNameFor(model => model.FAQlist[0].Date_Modified)</th>
+                                    <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                    @foreach(var item in Model.FAQlist)
+                                    {
+                                        <tr>
+                                            <td>@item.FAQCatId</td>
+                                            <td>@item.Question</td>
+                                            <td>@item.Answer</td>
+                                            <td>@item.Creator</td>
+                                            <td>@item.Editor</td>
+                                            <td><a href="@item.URL">@item.URL</a></td>
+                                            <td>@item.Date_Created</td>
+                                            <td>@item.Date_Modified</td>
+                                            <td>
+                                                <a asp-page="/Education/FAQDetail" asp-route-id="@item.FAQId">Detail</a>
+                                                <a asp-page="/Education/Edit" asp-route-id="@item.FAQId">Edit</a>
+                                                <a class="btn btn-secondary" asp-page="/Education/Index" asp-page-handler="PublishFAQ" asp-route-id="@item.FAQId">Publish</a>
+                                                <a class="btn btn-danger" asp-page="/Education/Index" asp-page-handler="DeleteFAQ" asp-route-id="@item.FAQId">Delete</a>
+                                            </td>
+
+                                        </tr>   
+                                        
+                                    }
+                                }
+                                    </tbody>
+                                </table>
+                        <a class="btn btn-primary mt-3" href="/Education/AddFAQ">Add FAQ</a>
+                        <a class="btn btn-primary mt-3" href="/Education/AddFAQCatergory">Add Category</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy;</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>

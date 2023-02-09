@@ -1,0 +1,81 @@
+﻿@page
+@model kampong_goods.Pages.Education.FAQDetailModel
+@{
+    var thumbState = "fa-regular fa-thumbs-up";
+}
+
+<h1 class="display-4">Answer @Html.DisplayNameFor(model => model.myFAQ.FAQId)</h1>
+
+<form class="mt-3" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(model => model.myFAQ.Question)</label>
+        <div class="col-sm-10">
+            <i>@Model.myFAQ.Question</i>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(model => model.myFAQ.Answer)</label>
+        <div class="col-sm-10">
+            <i>@Model.myFAQ.Answer</i>
+            <a class="btn" asp-page="/Education/FAQDetail" asp-page-handler="ClickTimeCount" asp-route-id="@Model.myFAQ.FAQId"></a>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(model => model.myFAQ.Creator)</label>
+        <div class="col-sm-10">
+            <i>@Model.myFAQ.Creator</i>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(model => model.myFAQ.Date_Created)</label>
+        <div class="col-sm-10">
+            <i>@Model.myFAQ.Date_Created</i>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(model => model.myFAQ.URL)</label>
+        <div class="col-sm-10">
+            <i>@Model.myFAQ.URL</i>
+        </div>
+    </div>
+
+    <div>
+        <h5>If you like this Article, Please Press Thumbs up, it helps us a lot. Thank you</h5>
+        <a asp-page-handler="ClickTimeCount" asp-route-id="@Model.myFAQ.FAQId" asp-page="/Education/FAQDetail" style="margin-left:20px;">
+        <p id="clicks">@Model.myFAQ.ClickTime<i id="thumbsUp" class="@thumbState"></i></p>
+            </a>
+        </div>
+    <div>
+        <a class="btn btn-secondary" href="/Education/Index">Back</a
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+
+    <script>
+        var clicks = parseInt(document.getElementById("clicks").innerHTML);
+        console.log("Click = " + clicks);
+        function clickTime() {
+            clicks += 1;
+            document.getElementById("clicks").innerHTML = clicks;
+            //after click one time
+            document.getElementById("thumbsUp").className = "fa-solid fa-thumbs-up";
+            document.getElementById("clickTimeBtn").onclick = "afterClick()";
+        };
+
+        function afterClick() {
+            alert("You can only click Thumbs Up one Time, thanks for your like. www")
+        }
+    </script>

@@ -1,114 +1,477 @@
 ﻿@page
-@model kampong_goods.Pages.Products.productListingModel
+@using Microsoft.AspNetCore.Identity;
+@using kampong_goods.Models;
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@model kampong_goods.Pages.Products.IndexModel
 @{
-	Layout = "~/Pages/Shared/_ProfileNav.cshtml";
-	ViewData["Title"] = "Profile";
+    Layout = "~/Pages/Shared/_ProfileNav.cshtml";
+    ViewData["Title"] = "Profile";
+
+    var noOfAvailPrd = Model.availableProducts.Count();
+    var noOfReservedPrd = Model.reservedProducts.Count();
+    var noOfSoldPrd = Model.soldProducts.Count();
+
+    var totalNoOfProducts = Model.availableProducts.Count() + Model.reservedProducts.Count() + Model.soldProducts.Count();
 }
 
-<div class="card-body">
+<style>
+    .project-tab #tabs {
+        color: #eee;
+    }
 
-	<div class="row">
-		<div class="col-md-4">
-			<figure class="card card-product-grid">
-				<div class="img-wrap">
-					<img src="images/items/1.jpg">
-				</div> <!-- img-wrap.// -->
-				<figcaption class="info-wrap">
-					<a href="#" class="title mb-2">Hot sale unisex New Design Shirt for sport polo shirts latest design</a>
-					<div class="price-wrap mb-3">
-						<span class="price">$32.00-$40.00</span>
-						<small class="text-muted">/per item</small>
-					</div> <!-- price-wrap.// -->
-					<a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-					<a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
+    .project-tab #tabs h6.section-title {
+        color: #eee;
+    }
 
-					<hr>
-					<a href="#" class="btn btn-success btn-block">  Promote </a>
-				</figcaption>
-			</figure>
-		</div> <!-- col.// -->
+    .project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+        color: #0062cc;
+        background-color: lightblue;
+        border-color: transparent transparent #f3f3f3;
+        border-bottom: 3px solid !important;
+        font-size: 16px;
+        font-weight: bold;
+    }
 
-		<div class="col-md-4">
-			<figure class="card card-product-grid">
-				<div class="img-wrap">
-					<img src="images/items/2.jpg">
-				</div> <!-- img-wrap.// -->
-				<figcaption class="info-wrap">
-					<a href="#" class="title mb-2">High Quality Winter PU Rain Jacket with Padding for Men's outdoor</a>
-					<div class="price-wrap mb-3">
-						<span class="price">$41.00-$50.00</span>
-						<small class="text-muted">/per item</small>
-					</div> <!-- price-wrap.// -->
-					<a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-					<a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
+    .project-tab .nav-link {
+        border: 1px solid transparent;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        color: #0062cc;
+        font-size: 16px;
+        font-weight: 600;
+    }
 
-					<hr>
-					<a href="#" class="btn btn-success btn-block">  Promote </a>
-				</figcaption>
-			</figure>
-		</div> <!-- col.// -->
+    .project-tab .nav-link:hover {
+        border: 1px solid ;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        color: #0062cc;
+    }
 
-		<div class="col-md-4">
-			<figure class="card card-product-grid">
-				<div class="img-wrap">
-					<img src="images/items/1.jpg">
-				</div> <!-- img-wrap.// -->
-				<figcaption class="info-wrap">
-					<a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
-					<div class="price-wrap mb-3">
-						<span class="price">$32.00-$40.00</span>
-						<small class="text-muted">/per item</small>
-					</div> <!-- price-wrap.// -->
-					<a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-					<a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
+    .project-tab thead {
+        background-color: lightgray;
+        color: #333;
+    }
 
-					<hr>
-					<a href="#" class="btn btn-success btn-block">  Promote </a>
-				</figcaption>
-			</figure>
-		</div> <!-- col.// -->
+    .project-tab a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+    }
 
-		<div class="col-md-4">
-			<figure class="card card-product-grid">
-				<div class="img-wrap">
-					<img src="images/items/4.jpg">
-				</div> <!-- img-wrap.// -->
-				<figcaption class="info-wrap">
-					<a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
-					<div class="price-wrap mb-3">
-						<span class="price">$32.00-$40.00</span>
-						<small class="text-muted">/per item</small>
-					</div> <!-- price-wrap.// -->
-					<a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-					<a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
+    .btn-action {
+        border-color: #3563E9;
+    }
 
-					<hr>
-					<a href="#" class="btn btn-success btn-block">  Promote </a>
-				</figcaption>
-			</figure>
-		</div> <!-- col.// -->
+    .btn-add {
+        color: white;
+            background: #3563E9;
+    }
+</style>
 
-		<div class="col-md-4">
-			<figure class="card card-product-grid">
-				<div class="img-wrap">
-					<img src="images/items/5.jpg">
-				</div> <!-- img-wrap.// -->
-				<figcaption class="info-wrap">
-					<a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
-					<div class="price-wrap mb-3">
-						<span class="price">$32.00-$40.00</span>
-						<small class="text-muted">/per item</small>
-					</div> <!-- price-wrap.// -->
-					<a href="#" class="btn btn-outline-primary"> <i class="fa fa-pen"></i> Edit </a>
-					<a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i> View  </a>
+<header class="mb-3">
+	<div class="form-inline">
+		<strong class="mr-md-auto">@totalNoOfProducts Item(s) found </strong>
+        <a class="btn btn-add mt-3" style="float: right;" href="/Products/productAdd"><i class="fa-solid fa-plus"></i> Add Product</a>
+	</div>
+</header><!-- sect-heading -->
 
-					<hr>
-					<a href="#" class="btn btn-success btn-block">  Promote </a>
-				</figcaption>
-			</figure>
-		</div> <!-- col.// -->
+<div class="row">
+	@{
+                        <section id="tabs" class="project-tab">
+                            <div class="container">
+                                <nav>
+                                    <div class="nav nav-tabs nav-justified" id="nav-tab">
+                                        <a class="nav-item nav-link active" id="nav-available-tab" data-toggle="tab" href="#nav-available" role="tab" aria-controls="nav-available" aria-selected="true">Available Items <span class="badge badge-success">@noOfAvailPrd</span></a>
+                                        <a class="nav-item nav-link" id="nav-reserved-tab" data-toggle="tab" href="#nav-reserved" role="tab" aria-controls="nav-reserved" aria-selected="false">Reserved Items <span class="badge badge-success">@noOfReservedPrd</span></a>
+                                        <a class="nav-item nav-link" id="nav-sold-tab" data-toggle="tab" href="#nav-sold" role="tab" aria-controls="nav-sold" aria-selected="false">Sold Items <span class="badge badge-success">@noOfSoldPrd</span></a>
+                                    </div>
+                                </nav>
 
-	</div> <!-- row .//  -->
+                                <div class="tab-content" id="nav-tabContent">
 
-</div> <!-- card-body.// -->
+                                    <div class="tab-pane fade show active" id="nav-available" role="tabpanel" aria-labelledby="nav-available-tab">
+
+                                        @if (noOfAvailPrd == 0)
+                        {
+                                            <div style="padding-top: 30px;">
+                                                <h6 style="text-align:center">Currently there are no products available to sell!</h6>
+                                                <h6 style="text-align:center">Start selling now!</h6>
+                                            </div>
+                        }
+
+                                        @if (noOfAvailPrd > 0)
+                        {
+                                            <table class="table" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Item Details</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.availableProducts)
+                                    {
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>
+                                                                <article class="card mb-4">
+                                                                    <header class="card-header">
+                                                                        <h5 class="d-inline-block mr-3">Item Name: @item.ProductName</h5>
+                                                                        <strong class="d-block mr-3 text-muted">Item ID: @item.ProductId</strong>
+                                                                    </header>
+                                                                    <div class="card-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-8">
+                                                                                <img src="@item.ImageURL" style="width: 120px;" class="rounded float-left" alt="...">
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <h6 class="text-muted">Details</h6>
+                                                                                <span class="text-success">
+                                                                                    Selling Price: $@item.Price
+                                                                                </span>
+                                                                                <p>
+                                                                                    Condition: @item.ConditionId <br>
+                                                                                    Category:  @item.CategoryId <br>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div> <!-- row.// -->
+                                                                    </div> <!-- card-body .// -->
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-hover">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                    </td>
+
+                                                                                    <td width="30">
+                                                                                        <a asp-page="/Products/productEdit" asp-route-id="@item.ProductId" class="btn btn-action btn-block"> <i class="fa fa-pen"></i> Edit </a>
+                                                                                    </td>
+
+                                                                                    <td width="30">
+                                                                                    <a asp-page="/Products/productEdit" class="btn btn-action btn-block" data-toggle="modal" data-target="#deleteModal_@item.ProductId"> <i class="fa fa-trash"></i> Delete </a>
+
+                                                                                        <!-- Modal: Delete -->
+                                                                                        <div class="modal fade" id="deleteModal_@item.ProductId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog" role="document">
+                                                                                                <div class="modal-content">
+                                                                                                    <div class="modal-header">
+                                                                                                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Confirmation</h5>
+                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body">
+                                                                                                        Are you sure you want to delete Product: @item.ProductName ?
+                                                                                                    </div>
+                                                                                                    <div class="modal-footer">
+                                                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                                                                        <a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@item.ProductId">Delete</a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+
+                                                                                    <td width="30">
+                                                                                        <a class="btn btn-action btn-block" data-toggle="modal" data-target="#exampleModalCenter_@item.ProductId"> <i class="fa fa-see"></i> More Details </a>
+
+                                                                                        <!-- Modal: More details-->
+                                                                                        <div class="modal fade" id="exampleModalCenter_@item.ProductId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                <div class="modal-content">
+                                                                                                    <div class="modal-header">
+                                                                                                        <h5 class="modal-title" id="exampleModalLongTitle">@item.ProductName</h5>
+                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body">
+                                                                                                        <div class="img-wrap">
+                                                                                                            <img src="@item.ImageURL" style="width: 300px;" onerror="this.src='/uploads/image.png' ">
+                                                                                                        </div> <!-- img-wrap.// -->
+                                                                                                        <hr>
+                                                                                                        <p>Product Name: @item.ProductName</p>
+                                                                                                        <p>Description: @item.Description</p>
+                                                                                                        <p>Category: @item.CategoryId</p>
+                                                                                                        <p>Condition of product: @item.ConditionId</p>
+                                                                                                        <p>Selling price: $@item.Price</p>
+                                                                                                    </div>
+                                                                                                    <div class="modal-footer">
+                                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                        </table>
+                                                                    </div> <!-- table-responsive .end// -->
+                                                                </article> <!-- card order-item .// -->
+                                                            </td>
+                                                        </tr>
+                                    }
+                                                </tbody>
+                                            </table>
+                        }
+                                    </div>
+
+                                    <div class="tab-pane fade" id="nav-reserved" role="tabpanel" aria-labelledby="nav-reserved-tab">
+
+                                        @if (noOfReservedPrd == 0)
+                        {
+                                            <div style="padding-top: 30px;">
+                                                <h6 style="text-align:center">Currently there are no reserved products!</h6>
+                                            </div>
+                        }
+
+                                        @if (noOfReservedPrd > 0)
+                        {
+                                            <table class="table" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Item Details</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.reservedProducts)
+                                                    {
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>
+                                                                <article class="card mb-4">
+                                                                    <header class="card-header">
+                                                                        <h5 class="d-inline-block mr-3">Item Name: @item.ProductName</h5>
+                                                                        <strong class="d-block mr-3 text-muted">Item ID: @item.ProductId</strong>
+                                                                    </header>
+                                                                    <div class="card-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-8">
+                                                                                <img src="@item.ImageURL" style="width: 120px;" class="rounded float-left" alt="...">
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <h6 class="text-muted">Details</h6>
+                                                                                <span class="text-success">
+                                                                                    Selling Price: $@item.Price
+                                                                                </span>
+                                                                                <p>
+                                                                                    Condition: @item.ConditionId <br>
+                                                                                    Category:  @item.CategoryId <br>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div> <!-- row.// -->
+                                                                    </div> <!-- card-body .// -->
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-hover">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                    </td>
+
+                                                                                    <td width="30">
+                                                                                        <a asp-page="/Products/productEdit" asp-route-id="@item.ProductId" class="btn btn-action btn-block"> <i class="fa fa-pen"></i> Edit </a>
+                                                                                    </td>
+
+                                                                                    <td width="30">
+                                                                                        <a asp-page="/Products/productEdit" class="btn btn-action btn-block" data-toggle="modal" data-target="#deleteModal_@item.ProductId"> <i class="fa fa-trash"></i> Delete </a>
+
+                                                                                        <!-- Modal: Delete -->
+                                                                                        <div class="modal fade" id="deleteModal_@item.ProductId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog" role="document">
+                                                                                                <div class="modal-content">
+                                                                                                    <div class="modal-header">
+                                                                                                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Confirmation</h5>
+                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body">
+                                                                                                        Are you sure you want to delete Product: @item.ProductName ?
+                                                                                                    </div>
+                                                                                                    <div class="modal-footer">
+                                                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                                                                        <a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@item.ProductId">Delete</a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+
+                                                                                    <td width="30">
+                                                                                        <a class="btn btn-action btn-block" data-toggle="modal" data-target="#exampleModalCenter_@item.ProductId"> <i class="fa fa-see"></i> More Details </a>
+
+                                                                                        <!-- Modal: More details-->
+                                                                                        <div class="modal fade" id="exampleModalCenter_@item.ProductId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                <div class="modal-content">
+                                                                                                    <div class="modal-header">
+                                                                                                        <h5 class="modal-title" id="exampleModalLongTitle">@item.ProductName</h5>
+                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body">
+                                                                                                        <div class="img-wrap">
+                                                                                                            <img src="@item.ImageURL" style="width: 300px;" onerror="this.src='/uploads/image.png' ">
+                                                                                                        </div> <!-- img-wrap.// -->
+                                                                                                        <hr>
+                                                                                                        <p>Product Name: @item.ProductName</p>
+                                                                                                        <p>Description: @item.Description</p>
+                                                                                                        <p>Category: @item.CategoryId</p>
+                                                                                                        <p>Condition of product: @item.ConditionId</p>
+                                                                                                        <p>Selling price: $@item.Price</p>
+                                                                                                    </div>
+                                                                                                    <div class="modal-footer">
+                                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                        </table>
+                                                                    </div> <!-- table-responsive .end// -->
+                                                                </article> <!-- card order-item .// -->
+                                                            </td>
+                                                        </tr>
+                                    }
+                                                </tbody>
+                                            </table>
+                        }
+                                    </div>
+
+                                    <div class="tab-pane fade" id="nav-sold" role="tabpanel" aria-labelledby="nav-sold-tab">
+                                        @if (noOfSoldPrd == 0)
+                        {
+                                            <div style="padding-top: 30px;">
+                                                <h6 style="text-align:center">Currently there are no sold products!</h6>
+                                            </div>
+                        }
+
+                                        @if (noOfSoldPrd > 0)
+                        {
+                                            <table class="table" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>NO.</th>
+                                                        <th>Item Details</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.soldProducts)
+                                    {
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>
+                                                                <article class="card mb-4">
+                                                                    <header class="card-header">
+                                                                        <h5 class="d-inline-block mr-3">Item Name: @item.ProductName</h5>
+                                                                        <strong class="d-block mr-3 text-muted">Item ID: @item.ProductId</strong>
+                                                                    </header>
+                                                                    <div class="card-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-8">
+                                                                                <img src="@item.ImageURL" style="width: 120px;" class="rounded float-left" alt="...">
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <h6 class="text-muted">Details</h6>
+                                                                                <span class="text-success">
+                                                                                    Selling Price: $@item.Price
+                                                                                </span>
+                                                                                <p>
+                                                                                    Condition: @item.ConditionId <br>
+                                                                                    Category:  @item.CategoryId <br>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div> <!-- row.// -->
+                                                                    </div> <!-- card-body .// -->
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-hover">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                    </td>
+
+                                                                                    <td width="30">
+                                                                                        <a asp-page="/Products/productEdit" asp-route-id="@item.ProductId" class="btn btn-action btn-block"> <i class="fa fa-pen"></i> Edit </a>
+                                                                                    </td>
+
+                                                                                    <td width="30">
+                                                                                        <a asp-page="/Products/productEdit" class="btn btn-action btn-block" data-toggle="modal" data-target="#deleteModal_@item.ProductId"> <i class="fa fa-trash"></i> Delete </a>
+
+                                                                                        <!-- Modal: Delete -->
+                                                                                        <div class="modal fade" id="deleteModal_@item.ProductId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog" role="document">
+                                                                                                <div class="modal-content">
+                                                                                                    <div class="modal-header">
+                                                                                                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Confirmation</h5>
+                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body">
+                                                                                                        Are you sure you want to delete Product: @item.ProductName ?
+                                                                                                    </div>
+                                                                                                    <div class="modal-footer">
+                                                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                                                                        <a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@item.ProductId">Delete</a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+
+                                                                                    <td width="30">
+                                                                                        <a class="btn btn-action btn-block" data-toggle="modal" data-target="#exampleModalCenter_@item.ProductId"> <i class="fa fa-see"></i> More Details </a>
+
+                                                                                        <!-- Modal: More details-->
+                                                                                        <div class="modal fade" id="exampleModalCenter_@item.ProductId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                                <div class="modal-content">
+                                                                                                    <div class="modal-header">
+                                                                                                        <h5 class="modal-title" id="exampleModalLongTitle">@item.ProductName</h5>
+                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body">
+                                                                                                        <div class="img-wrap">
+                                                                                                            <img src="@item.ImageURL" style="width: 300px;" onerror="this.src='/uploads/image.png' ">
+                                                                                                        </div> <!-- img-wrap.// -->
+                                                                                                        <hr>
+                                                                                                        <p>Product Name: @item.ProductName</p>
+                                                                                                        <p>Description: @item.Description</p>
+                                                                                                        <p>Category: @item.CategoryId</p>
+                                                                                                        <p>Condition of product: @item.ConditionId</p>
+                                                                                                        <p>Selling price: $@item.Price</p>
+                                                                                                    </div>
+                                                                                                    <div class="modal-footer">
+                                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                        </table>
+                                                                    </div> <!-- table-responsive .end// -->
+                                                                </article> <!-- card order-item .// -->
+                                                            </td>
+                                                        </tr>
+                                    }
+                                                </tbody>
+                                            </table>
+                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+	}
+</div> <!-- row .//  -->
+
+
+
 

@@ -1,0 +1,59 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@using kampong_goods.Models;
+@model kampong_goods.Pages.Education.EditModel
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@{
+    ViewData["Title"] = "FAQ Details";
+
+    var currentDate = DateTime.Now;
+}
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+
+<form class="mt-3" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+ 
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="myFAQ.Question"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="myFAQ.Question"  />
+            <span asp-validation-for="myFAQ.Question" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="myFAQ.Answer"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="myFAQ.Answer"  />
+            <span asp-validation-for="myFAQ.Answer" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="myFAQ.FAQCategory"></label>
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.myFAQ.FAQCategory, new SelectList(AddFAQModel.FAQCatlist, "FAQCategoryName", "FAQCategoryName"), "-- Select --", new {@class = "form-select"})
+            <span asp-validation-for="myFAQ.FAQCategory" class="text-danger"></span>
+        </div>
+    </div>
+
+    <input class="form-control" type="" asp-for="myFAQ.FAQId"  />
+    <input class="form-control" type="" asp-for="myFAQ.URL" />
+    <input class="form-control" type="" asp-for="myFAQ.Creator" value="@UserManager.GetUserName(User)" oninput="this.value" />
+    <input class="form-control" type="" asp-for="myFAQ.Editor" value="@UserManager.GetUserName(User)" oninput="this.value" />
+    <input class="form-control" type="" asp-for="myFAQ.Date_Created" value="@Model.myFAQ.Date_Created" oninput="this.value" />
+    <input class="form-control" type="" asp-for="myFAQ.Date_Modified" value="@currentDate" oninput="this.value" />
+
+    <div>
+        <input type="submit" value="Update" class="btn btn-primary" />
+        <a class="btn btn-secondary ms-2" href="/Education">Back</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

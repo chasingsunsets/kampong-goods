@@ -1,4 +1,5 @@
 using kampong_goods;
+using kampong_goods.Hubss;
 using kampong_goods.Models;
 using kampong_goods.Services;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +13,13 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<AppUsersDbContext>();
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppUsersDbContext>();
+
+//product
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<ConditionService>();
+builder.Services.AddScoped<FAQCatService>();
+builder.Services.AddSignalR();
 
 /*builder.Services.AddTransient<IEmailSender, SendGridEmail>();
 */
@@ -27,13 +35,17 @@ builder.Services.Configure<SecurityStampValidatorOptions>(options =>
 });
 
 builder.Services.AddScoped<CustomerService>();
-
+builder.Services.AddScoped<RequestService>();
 builder.Services.AddScoped<StaffService>();
+
+builder.Services.AddScoped<FAQService>();
 
 //builder.Services.AddDbContext<MyDbContext>();
 
 builder.Services.AddScoped<VoucherService>();
 builder.Services.AddDbContext<VoucherDbContext>();
+builder.Services.AddDbContext<ProductDbContext>();
+builder.Services.AddDbContext<FAQDbContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -53,6 +65,12 @@ app.UseRouting();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+//end point
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/Chathub");
+});
 
 app.MapRazorPages();
 

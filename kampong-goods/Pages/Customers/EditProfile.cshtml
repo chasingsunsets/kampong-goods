@@ -2,6 +2,7 @@
 @model kampong_goods.Pages.Customers.EditProfileModel
 
 @{
+    Layout = "~/Pages/Shared/_ProfileNav.cshtml";
     ViewData["Title"] = "Edit Profile";
 
 }
@@ -76,7 +77,7 @@
 
     <div>
         <input type="submit" value="Edit" class="btn btn-primary" />
-        <a class="btn btn-secondary ms-2" href="/Profile">Cancel</a>
+        <a class="btn btn-secondary ms-2" href="/Customers/Profile">Cancel</a>
     </div>
 </form>
 
