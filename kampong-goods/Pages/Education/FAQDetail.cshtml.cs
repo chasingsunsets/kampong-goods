@@ -45,7 +45,7 @@ namespace kampong_goods.Pages.Education
 
         public void OnGetClickTimeCount(string ID)
         {
-            FAQ? FAQ = _FAQService.GetFAQById(ID);
+            FAQ FAQ = _FAQService.GetFAQById(ID);
             myFAQ = FAQ;
             myFAQ.ClickTime += 1;
             _FAQService.UpdateFAQ(myFAQ);

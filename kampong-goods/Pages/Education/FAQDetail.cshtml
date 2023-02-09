@@ -1,6 +1,7 @@
 ﻿@page
 @model kampong_goods.Pages.Education.FAQDetailModel
 @{
+    var thumbState = "fa-regular fa-thumbs-up";
 }
 
 <h1 class="display-4">Answer @Html.DisplayNameFor(model => model.myFAQ.FAQId)</h1>
@@ -37,10 +38,23 @@
         </div>
     </div>
 
+    <hr />
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(model => model.myFAQ.URL)</label>
+        <div class="col-sm-10">
+            <i>@Model.myFAQ.URL</i>
+        </div>
+    </div>
+
     <div>
-        <a class="btn btn-secondary" href="/Education/Index">Back</a>
-        <i id="thumbsUp" class="fa-regular fa-thumbs-up" style="margin-left:20px;"></i><p id="clicks">@Model.myFAQ.ClickTime</p></a>
-        </button>
+        <h5>If you like this Article, Please Press Thumbs up, it helps us a lot. Thank you</h5>
+        <a asp-page-handler="ClickTimeCount" asp-route-id="@Model.myFAQ.FAQId" asp-page="/Education/FAQDetail" style="margin-left:20px;">
+        <p id="clicks">@Model.myFAQ.ClickTime<i id="thumbsUp" class="@thumbState"></i></p>
+            </a>
+        </div>
+    <div>
+        <a class="btn btn-secondary" href="/Education/Index">Back</a
     </div>
 </form>
 

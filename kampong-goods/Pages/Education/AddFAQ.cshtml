@@ -20,7 +20,7 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label" asp-for="myFAQ.Question"></label>
         <div class="col-sm-10">
-            <input class="form-control" asp-for="myFAQ.Question" oninput="this.value" />
+            <input type="text" class="form-control" asp-for="myFAQ.Question" oninput="this.value" />
             <span asp-validation-for="myFAQ.Question" class="text-danger"></span>
         </div>
     </div>
@@ -66,3 +66,21 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+
+
+
+
+    <head>
+        <link href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.css' rel='stylesheet'>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/htmlmixed/htmlmixed.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/javascript/javascript.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/xml/xml.js'></script>
+    </head>
+
+    <body>
+        <div style="background-color: #FFF; max-width: 800px; margin: auto; padding: 20px;">
+            <a href="https://www.tiny.cloud/"><img width="120" src="https://www.tiny.cloud/docs/images/logos/android-chrome-256x256.png" align="right"></a>
+            <textarea id="mytextarea"></textarea>
+            </div>
