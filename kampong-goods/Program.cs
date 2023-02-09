@@ -10,19 +10,36 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-
+//AppUser
 builder.Services.AddDbContext<AppUsersDbContext>();
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppUsersDbContext>();
+builder.Services.AddScoped<CustomerService>();
+builder.Services.AddScoped<StaffService>();
+
 
 //product
-builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<ConditionService>();
-builder.Services.AddScoped<FAQCatService>();
+builder.Services.AddScoped<CheckoutService>();
+builder.Services.AddDbContext<ProductDbContext>();
+
+//chat
 builder.Services.AddSignalR();
 
-/*builder.Services.AddTransient<IEmailSender, SendGridEmail>();
-*/
+//faq
+builder.Services.AddScoped<FAQCatService>();
+builder.Services.AddScoped<FAQService>();
+builder.Services.AddDbContext<FAQDbContext>();
+
+//request
+builder.Services.AddScoped<RequestService>();
+
+//voucher
+builder.Services.AddScoped<VoucherService>();
+builder.Services.AddDbContext<VoucherDbContext>();
+
+//configs
 builder.Services.ConfigureApplicationCookie(Config =>
 {
     Config.LoginPath = "/Login";
@@ -34,18 +51,6 @@ builder.Services.Configure<SecurityStampValidatorOptions>(options =>
     options.ValidationInterval = TimeSpan.Zero;
 });
 
-builder.Services.AddScoped<CustomerService>();
-builder.Services.AddScoped<RequestService>();
-builder.Services.AddScoped<StaffService>();
-
-builder.Services.AddScoped<FAQService>();
-
-//builder.Services.AddDbContext<MyDbContext>();
-
-builder.Services.AddScoped<VoucherService>();
-builder.Services.AddDbContext<VoucherDbContext>();
-builder.Services.AddDbContext<ProductDbContext>();
-builder.Services.AddDbContext<FAQDbContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
