@@ -107,7 +107,7 @@ namespace kampong_goods.Pages.Staff
                                 _staffService.AddStaff(staff);
                                 TempData["FlashMessage.Type"] = "success";
                                 TempData["FlashMessage.Text"] = string.Format("Account {0} successfully registered.", AModel.Username);
-                                await signInManager.SignInAsync(user, false);
+                                await signInManager.SignInAsync(user, false); ///???
                                 return RedirectToPage("Dashboard");
                             }
 

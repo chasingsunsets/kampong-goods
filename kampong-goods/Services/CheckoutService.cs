@@ -4,44 +4,29 @@ namespace kampong_goods.Services
 {
 	public class CheckoutService
 	{
-        private readonly ProductDbContext _context;
-
-        public CheckoutService(ProductDbContext context)
+		private readonly ProductDbContext _context;
+		public CheckoutService(ProductDbContext context)
+		{
+			_context = context;
+		}
+        public List<Checkout> GetAll()
         {
-            _context = context;
+            return _context.Checkouts.OrderBy(m => m.CheckoutId).ToList();
         }
-
-        public List<Product> GetAll()
+        public Checkout? GetCheckoutById(string id)
         {
-            return _context.Products.OrderBy(m => m.ProductName).ToList();
-        }
-
-        public List<Checkout> GetAllCheckouts()
-        {
-            return _context.Checkout.OrderBy(m => m.CheckoutId).ToList();
-        }
-
-        public Checkout? GetOrderById(string id)
-        {
-            Checkout? checkout = _context.Checkout.FirstOrDefault(x => x.CheckoutId.Equals(id));
+            Checkout? checkout = _context.Checkouts.FirstOrDefault(
+            x => x.CheckoutId.Equals(id));
             return checkout;
         }
-
-        public void AddOrder(Checkout checkout)
+        public void AddCheckout(Checkout checkout)
         {
-            _context.Checkout.Add(checkout);
+            _context.Checkouts.Add(checkout);
             _context.SaveChanges();
         }
-
         public void UpdateCheckout(Checkout checkout)
         {
-            _context.Checkout.Update(checkout);
-            _context.SaveChanges();
-        }
-
-        public void DeleteCheckout(Checkout checkout)
-        {
-            _context.Checkout.Remove(checkout);
+            _context.Checkouts.Update(checkout);
             _context.SaveChanges();
         }
     }

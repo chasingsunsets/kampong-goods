@@ -13,10 +13,11 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<AppUsersDbContext>();
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppUsersDbContext>();
+
+//product
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ConditionService>();
-builder.Services.AddScoped<FAQCatService>();
 builder.Services.AddSignalR();
 
 /*builder.Services.AddTransient<IEmailSender, SendGridEmail>();
@@ -33,7 +34,7 @@ builder.Services.Configure<SecurityStampValidatorOptions>(options =>
 });
 
 builder.Services.AddScoped<CustomerService>();
-
+builder.Services.AddScoped<RequestService>();
 builder.Services.AddScoped<StaffService>();
 
 builder.Services.AddScoped<FAQService>();

@@ -4,25 +4,30 @@ using kampong_goods.Models;
 using kampong_goods.Services;
 using System.Security.Claims;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace kampong_goods.Pages.Products
 {
+    [Authorize]
     public class AddproductModel : PageModel
     {
         private readonly ProductService _productService;
         private readonly CategoryService _categoryService;
         private readonly ConditionService _conditionService;
+        private readonly CustomerService _customerService;
         private IWebHostEnvironment _environment;
 
         public AddproductModel(ProductService productService,
             CategoryService categoryService,
             ConditionService conditionService,
-            IWebHostEnvironment environment)
+            IWebHostEnvironment environment,
+            CustomerService customerService)
         {
             _productService = productService;
             _categoryService = categoryService;
             _conditionService = conditionService;
             _environment = environment;
+            _customerService = customerService;
         }
 
         [BindProperty]
@@ -34,11 +39,13 @@ namespace kampong_goods.Pages.Products
         public static List<Category> CategoryList { get; set; } = new();
 
         public static List<Condition> ConditionList { get; set; } = new();
+        public static List<AppUser> UserList { get; set; } = new();
 
         public void OnGet()
         {
             CategoryList = _categoryService.GetAll();
             ConditionList = _conditionService.GetAll();
+            UserList = _customerService.GetAll();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -47,6 +54,7 @@ namespace kampong_goods.Pages.Products
             {
                 Guid myuuid = Guid.NewGuid();
                 MyProduct.ProductId = myuuid.ToString();
+                MyProduct.Status = "Available";
 
                 var userid = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
                 Debug.WriteLine(userid);

@@ -17,8 +17,9 @@ namespace kampong_goods
             string connectionString = _configuration.GetConnectionString("MyConnection"); optionsBuilder.UseSqlServer(connectionString);
         }
 
-
         public DbSet<StaffInfo> StaffInfos { get; set; }
+        public DbSet<Request> Requests { get; set; }
+
 
         // for chat: relationships
         protected override void OnModelCreating(ModelBuilder builder)
@@ -31,6 +32,7 @@ namespace kampong_goods
         }
 
         public DbSet<Message> Messages { get; set; }
+        //public DbSet<Product> Products { get; set; }
 
     }
 

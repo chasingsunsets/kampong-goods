@@ -1,52 +1,44 @@
-using kampong_goods.Models;
-using kampong_goods.Services;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using kampong_goods.Models;
 
 namespace kampong_goods.Pages.Chat
 {
+
+    //only authenticated can access this page
+    [Authorize]
     public class IndexModel : PageModel
     {
-        private readonly CustomerService _customerService;
-        private readonly AppUsersDbContext _appUsersDbContext;
-        private UserManager<AppUser> _userManager { get; }
+        private readonly ILogger<IndexModel> _logger;
+        private readonly UserManager<AppUser> _userManager;
 
-        public IndexModel(CustomerService customerService, AppUsersDbContext appUsersDbContext, UserManager<AppUser> userManager)
+
+        [BindProperty]
+        public List<SelectListItem> Users { get; set; }
+
+        [BindProperty]
+        public string MyUser { get; set; }
+        public IndexModel(ILogger<IndexModel> logger, UserManager<AppUser> userManager)
         {
-            _customerService = customerService;
-            _appUsersDbContext = appUsersDbContext;
+            _logger = logger;
             _userManager = userManager;
-        }
-
-        public List<Message> MessageList { get; set; } = new();
-
-        public async Task<IActionResult> Index()
-        {
-            var currentUser = await _userManager.GetUserAsync(User);
-            var currentUserName = currentUser.UserName;
-            var messages = await _appUsersDbContext.Messages.ToListAsync();
-            return RedirectToPage();
-        }
-
-        public async Task<IActionResult> Create(Message message)
-        {
-            if(ModelState.IsValid)
-            {
-                message.UserName = User.Identity.Name;
-                var sender = await _userManager.GetUserAsync(User); //get current user
-                message.UserId = sender.Id;
-                await _appUsersDbContext.Messages.AddAsync(message);
-                await _appUsersDbContext.SaveChangesAsync();
-                return Page();
-            }
-            return Page();
         }
 
         public void OnGet()
         {
+            //get all the users from the database
+            Users = _userManager.Users.ToList()
+                .Select(a => new SelectListItem { Text = a.UserName, Value = a.UserName })
+                .OrderBy(s => s.Text).ToList();
+
+            //get logged in user name
+            MyUser = User.Identity.Name;
+
         }
     }
+
 }

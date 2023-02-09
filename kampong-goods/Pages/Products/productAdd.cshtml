@@ -1,8 +1,17 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity;
+@using kampong_goods.Models;
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 @model kampong_goods.Pages.Products.AddproductModel
 @{
 	Layout = "~/Pages/Shared/_ProfileNav.cshtml";
 	ViewData["Title"] = "Profile";
+
+	AppUser user = await UserManager.GetUserAsync(HttpContext.User); //current signed in
+	var custlist = await UserManager.GetUsersInRoleAsync("Customer"); //gets users list
+	var username = User.Identity.Name;
 }
 
 <div class="card-body">
@@ -83,4 +92,10 @@
 		}
 	}
 </script>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	}
 

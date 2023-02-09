@@ -31,14 +31,17 @@ namespace kampong_goods.Pages.Products
         [BindProperty]
         public IFormFile? Upload { get; set; }
 
+        public static List<Category> CategoryList { get; set; } = new();
+        public static List<Condition> ConditionList { get; set; } = new();
         public IActionResult OnGet(string id)
         {
+            CategoryList = _categoryService.GetAll();
+            ConditionList = _conditionService.GetAll();
+
             Product? product = _productService.GetProductById(id);
             if (product != null)
             {
                 MyProduct = product;
-                MyProduct.Condition = _conditionService.GetConditionById(product.ConditionId);
-                MyProduct.Category = _categoryService.GetCategoryById(product.CategoryId);
                 return Page();
             }
 
@@ -55,7 +58,7 @@ namespace kampong_goods.Pages.Products
         {
             if(ModelState.IsValid)
             {
-                if(Upload != null)
+                if (Upload != null)
                 {
                     if (Upload.Length > 2 * 1024 * 1024)
                     {

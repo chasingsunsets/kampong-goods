@@ -1,0 +1,65 @@
+﻿@page
+@model kampong_goods.Pages.Requests.EditRequestModel
+@{
+	ViewData["Title"] = "Edit Request";
+
+}
+
+
+<h1 class="mb-3">@ViewData["Title"]</h1>
+
+<div class="card-body">
+
+	<form class="mt-3" method="post">
+		<div asp-validation-summary="All" class="text-danger"></div>
+
+		<input class="form-control" asp-for="MyRequest.UserId" type="hidden" />
+		<input class="form-control" asp-for="MyRequest.ID" type="hidden" />
+
+
+		<div class="row">
+
+			<div class="col-md-8">
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label" asp-for="MyRequest.ReqTitle"></label>
+					<div class="col-sm-10">
+						<input class="form-control" asp-for="MyRequest.ReqTitle" />
+						<span asp-validation-for="MyRequest.ReqTitle" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label" asp-for="MyRequest.categoryId"></label>
+					<div class="col-sm-10">
+						@Html.DropDownListFor(m => m.MyRequest.categoryId, new SelectList(EditRequestModel.CategoryList, "CategoryId", "CategoryName"), "-- Select --", new {@class = "form-select"})
+						<span asp-validation-for="MyRequest.categoryId" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label" asp-for="MyRequest.Description"></label>
+					<div class="col-sm-10">
+						<input class="form-control" asp-for="MyRequest.Description" />
+						<span asp-validation-for="MyRequest.Description" class="text-danger"></span>
+					</div>
+				</div>
+
+
+
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label" asp-for="MyRequest.Budget"></label>
+					<div class="col-sm-10">
+						<input class="form-control" asp-for="MyRequest.Budget" />
+						<span asp-validation-for="MyRequest.Budget" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br />
+
+		<div>
+			<input type="submit" value="Edit" class="btn btn-primary" />
+			<a class="btn btn-secondary ms-2" href="/Requests/MyRequests">Cancel</a>
+		</div>
+	</form>

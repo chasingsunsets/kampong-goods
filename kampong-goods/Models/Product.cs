@@ -36,5 +36,7 @@ namespace kampong_goods.Models
 
         [MaxLength(50)]
         public string? ImageURL { get; set; }
+
+        public string Status { get; set; } = string.Empty;
     }
 }
