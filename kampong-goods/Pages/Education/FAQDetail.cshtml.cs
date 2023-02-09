@@ -27,6 +27,10 @@ namespace kampong_goods.Pages.Education
             if (FAQ != null)
             {
                 myFAQ = FAQ;
+                myFAQ.ClickTime += 1;
+                _FAQService.UpdateFAQ(myFAQ);
+                TempData["FlashMessage.Type"] = "success";
+                TempData["FlashMessage.Text"] = string.Format("FAQ {0} click time is added", myFAQ.Question);
                 return Page();
             }
             else
@@ -34,10 +38,20 @@ namespace kampong_goods.Pages.Education
                 TempData["FlashMessage.Type"] = "danger";
                 TempData["FlashMessage.Text"] = string.Format(
                 "FAQ({0}) not found", ID);
-                return Redirect("/Educaion");
+                return Redirect("/Educaion/List_Cust");
             }
         }
 
+
+        public void OnGetClickTimeCount(string ID)
+        {
+            FAQ? FAQ = _FAQService.GetFAQById(ID);
+            myFAQ = FAQ;
+            myFAQ.ClickTime += 1;
+            _FAQService.UpdateFAQ(myFAQ);
+            TempData["FlashMessage.Type"] = "success";
+            TempData["FlashMessage.Text"] = string.Format("FAQ {0} click time is added", myFAQ.Question);
+        }
 
         public IActionResult OnPost()
         {

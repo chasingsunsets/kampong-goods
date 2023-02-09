@@ -24,17 +24,15 @@
             <div class="card-body">
                 <div class="">
                     @{
-                        @foreach (var item in Model.FAQlist)
+                                            @foreach (var item in Model.FAQlist)
                         {
-                            <div class="faq__item">
-                                <h2 class="faq__question">@item.Question <i class="fa fa-chevron-circle-down" style="float:right" aria-hidden="true"></i></h2>
-                                <p class="faq__answer">@item.Answer
-                                <button class="btn" id="clickTimeBtn" style="float:right;" onclick="clickTime()">
-                                    <i id="thumbsUp" class="fa-regular fa-thumbs-up"></i><p id="clicks">@item.ClickTime</p>
-                                </button></p>                                           
-                            </div>           
-                            <div class="faq_answer">                                      
-                            </div>
+                                <div class="faq__item">
+                                    <h2 class="faq__question">@item.Question <i class="fa fa-chevron-circle-down" style="float:right" aria-hidden="true"></i></h2>
+                                    <p class="faq__answer">@item.Answer <a class="btn-info" style="float:right;" asp-page="/Education/FAQDetail" asp-route-id="@item.FAQId">Detail-></a></p>
+                                    
+                                </div>           
+                                    <div class="faq_answer">                                      
+                                         </div>
                         }
                     }
                 </div>
@@ -46,6 +44,8 @@
 </div>
 
 <head>
+
+
     <script> 
         var clicks = parseInt(document.getElementById("clicks").innerHTML);
         console.log("Click = " + clicks);
