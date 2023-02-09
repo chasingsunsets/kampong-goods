@@ -13,12 +13,16 @@ namespace kampong_goods.Pages.Products
         private readonly ProductService _productService;
         private readonly UserManager<AppUser> _userManager;
         private readonly CustomerService _customerService;
+        private readonly ConditionService _conditionService;
+        private readonly CategoryService _categoryService;
 
-        public CatalogueModel(ProductService productService, UserManager<AppUser> userManager, CustomerService customerService)
+        public CatalogueModel(ProductService productService, UserManager<AppUser> userManager, CustomerService customerService, ConditionService conditionService, CategoryService categoryService)
         {
             _productService = productService;
             _userManager = userManager;
             _customerService = customerService;
+            _conditionService = conditionService;
+            _categoryService = categoryService;
         }
 
         public List<Product> ProductList { get; set; } = new();
@@ -31,6 +35,10 @@ namespace kampong_goods.Pages.Products
 
         public AppUser anyUser { get; set; } = new();
 
+        public List<Condition> ConditionList { get; set; } = new();
+
+        public List<Category> CategoryList { get; set; } = new();
+
         public async Task<IActionResult> OnGetAsync()
         {
             //see if got any user
@@ -41,6 +49,8 @@ namespace kampong_goods.Pages.Products
                 //will change to login later
                 ProductList = _productService.GetAll();
                 CustomerList = _customerService.GetAll();
+                ConditionList = _conditionService.GetAll();
+                CategoryList = _categoryService.GetAll();
             }
 
             //if got user, only show product of other user
@@ -51,6 +61,8 @@ namespace kampong_goods.Pages.Products
 
                 ProductList = _productService.GetAll();
                 CustomerList = _customerService.GetAll();
+                ConditionList = _conditionService.GetAll();
+                CategoryList = _categoryService.GetAll();
                 foreach (var item in ProductList)
                 {
                     if(item.UserId != userId)

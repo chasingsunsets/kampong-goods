@@ -13,10 +13,25 @@
 	var custlist = await UserManager.GetUsersInRoleAsync("Customer"); //gets users list
 }
 
+<style>
+	.lineColour {
+		color: #FFC90B;
+	}
+
+	.sectionColor {
+		color: #3563E9
+	}
+
+	.btn-buy {
+		color: white;
+		background: #3563E9;
+	}
+</style>
+
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
 <div class="container">
-	<h1 style="position:center">Product Checkout</h1>
+		<h1 style="position:center"><span class="lineColour" style="font-weight: bold;">-</span> Product Checkout</h1>
 
 		@*form*@
 		<form class="mt-3" method="post">
@@ -79,7 +94,7 @@
 		
 			<div class="card mb-4">
 				<div class="card-body">
-					<h4 class="card-title mb-3">Delivery info</h4>
+					<h4 class="card-title mb-3 sectionColor">Delivery info</h4>
 						<div class="form-row">
 							<div class="col form-group">
 								<label>First name</label>
@@ -118,7 +133,7 @@
 
 			<div class="card mb-4">
 				<div class="card-body">
-					<h4 class="card-title mb-4">Payment</h4>
+					<h4 class="card-title mb-4 sectionColor">Payment</h4>
 					<div class="form-group">
 						<label for="username">Name on card</label>
 						<input type="text" class="form-control" placeholder="Ex. John Smith" required="" asp-for="MyCheckout.CCName">
@@ -155,12 +170,57 @@
 							</div> <!-- form-group.// -->
 						</div>
 					</div> <!-- row.// -->
+				</div> <!-- card-body.// -->
+
+
+			</div> <!-- card .// -->
+
+			<div class="card mb-4">
+				<div class="card-body">
+					<h4 class="card-title mb-4 sectionColor">Total Amount</h4>
+
+					<div class="row">
+						<div class="card mb-3">
+							<div class="card-body">
+								<form>
+									<div class="form-group">
+										<label>Have coupon?</label>
+										<div class="input-group">
+											<input type="text" class="form-control" name="" placeholder="Coupon code">
+											<span class="input-group-append">
+												<button class="btn btn-buy">Apply</button>
+											</span>
+										</div>
+									</div>
+								</form>
+							</div> <!-- card-body.// -->
+						</div>  <!-- card .// -->
+						<div class="card">
+							<div class="card-body">
+								<dl class="dlist-align">
+									<dt>Item price:</dt>
+									<dd class="text-right">$@Model.productCost</dd>
+								</dl>
+								<dl class="dlist-align">
+									<dt>Discount:</dt>
+									<dd class="text-right">$0</dd>
+								</dl>
+								<hr>
+								<dl class="dlist-align">
+									<dt>Total:</dt>
+									<dd class="text-right  h5"><strong>$@Model.productCost</strong></dd>
+								</dl>
+							</div> <!-- card-body.// -->
+						</div>  <!-- card .// -->
+					</div> <!-- row.// -->
 
 					<div class="card-body border-top">
 						<a href="/Products/productCatalogue" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Back to catalogue </a>
-						<a style="float:right;"><input type="submit" value="Make Purchase" class="btn btn-primary" /></a>
+						<a style="float:right;"><input type="submit" value="Make Purchase" class="btn btn-buy" /></a>
 					</div>
 				</div> <!-- card-body.// -->
+
+
 			</div> <!-- card .// -->
 		</form>
 
