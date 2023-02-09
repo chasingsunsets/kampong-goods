@@ -19,8 +19,7 @@
         <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(model => model.myFAQ.Answer)</label>
         <div class="col-sm-10">
             <i>@Model.myFAQ.Answer</i>
-            <a class="btn" asp-page="/Education/FAQDetail" asp-page-handler="ClickTimeCount" asp-route-id="@Model.myFAQ.FAQId">
-                <i id="thumbsUp" class="fa-regular fa-thumbs-up"></i><p id="clicks">@Model.myFAQ.ClickTime</p></a>
+            <a class="btn" asp-page="/Education/FAQDetail" asp-page-handler="ClickTimeCount" asp-route-id="@Model.myFAQ.FAQId"></a>
         </div>
     </div>
 
@@ -39,7 +38,8 @@
     </div>
 
     <div>
-        <a class="btn btn-secondary ms-2" href="/Education/Index">Back</a>
+        <a class="btn btn-secondary" href="/Education/Index">Back</a>
+        <i id="thumbsUp" class="fa-regular fa-thumbs-up" style="margin-left:20px;"></i><p id="clicks">@Model.myFAQ.ClickTime</p></a>
         </button>
     </div>
 </form>

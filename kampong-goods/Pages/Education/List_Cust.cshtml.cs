@@ -13,6 +13,10 @@ namespace kampong_goods.Pages.Education
         public FAQ myFAQ { get; set; } = new();
 
         public List<FAQ> FAQlist { get; set; } = new();
+
+        //top 5 FAQ var
+        public List<FAQ> FAQlist_sorted { get; set; } = new();
+        public List<FAQ> FAQlist_top5 { get; set; } = new();
         public List_CustModel(FAQService faqService)
         {
             _FAQService = faqService;
@@ -21,7 +25,9 @@ namespace kampong_goods.Pages.Education
         public void OnGet()
         {
             FAQlist = _FAQService.GetAll();
+            FAQlist_sorted = FAQlist.OrderByDescending(x => x.ClickTime).ToList();
 
+            FAQlist_top5.Add(FAQlist_sorted[0]);
         }
 
         public async void OnPostAddToCartAsync(string ID)
