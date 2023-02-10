@@ -1,0 +1,100 @@
+﻿@page
+@model kampong_goods.Pages.Education.FAQCat_ListModel
+@{
+    ViewData["Title"] = "Education Materials";
+    Layout = "~/Pages/Shared/_StaffLayout.cshtml";
+}
+
+@{
+    if (Model.FAQlist != null)
+    {
+
+    <div class="container-fluid">
+
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3" style="background-color:#3563E9;">
+                            <h5 class="m-0 font-weight-bold" style="color:white;">FAQ  Category List</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead style="background-color: #F1EDE5;">
+
+
+                                        <tr>
+                                            <th>&nbsp; Att.</th>
+                                            <th>&nbsp; Name</th>
+                                            <th>&nbsp; Description</th>
+                                            <th>&nbsp; Action</th>
+                                        </tr>
+                                    </thead>
+                                    @foreach (var item in Model.FAQlist)
+                            {
+
+
+                                        <!-- Delete Modal-->
+                                        <div class="modal fade" id="deletestaff" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                     aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            Delete FAQ
+                                                        </h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Select "Delete" below if you are
+                                                        deleting this FAQ.
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                        <a class="btn btn-primary" asp-page-handler="DeleteFAQ" asp-route-id="@item.FAQCatId">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <tr>
+                                            <td>@item.FAQCatId</td>
+                                            <td>&nbsp;@item.FAQCategoryName</td>
+                                            <td>&nbsp;@item.FAQCatDescription</td>
+
+
+                                            <td>
+                                                <div>
+                                                    <a asp-page="/Education/FAQDetail" asp-route-id="@item.FAQCatId"><i class="fa-solid fa-circle-info"></i>Detail</a>
+                                                    <a asp-page="/Education/Edit" asp-route-id="@item.FAQCatId" style="color:#3563E9; margin-left:30px;" class="card-link mb-2"><i class="fas fa-pencil-alt"></i>Edit</a>
+                                                    <a class="card-link" asp-page="/Education/Index" asp-page-handler="PublishFAQ" asp-route-id="@item.FAQCatId" style="margin-left:50px;"><i class="fa-solid fa-upload"></i>Publish</a>
+                                                    <a data-toggle="modal" data-target="#deletestaff" class="card-link" style="color: darkred;" asp-page-handler="DeleteFAQ" asp-route-id="@item.FAQCatId">
+                                                        <i class="far fa-trash-alt"></i>
+                                                        Delete
+                                                    </a>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+                            }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+    </div>
+
+
+
+    }
+
+    else
+    {
+
+    <h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No FAQ</h3>
+    }
+}

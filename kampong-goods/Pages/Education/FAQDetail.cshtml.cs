@@ -29,8 +29,6 @@ namespace kampong_goods.Pages.Education
                 myFAQ = FAQ;
                 myFAQ.ClickTime += 1;
                 _FAQService.UpdateFAQ(myFAQ);
-                TempData["FlashMessage.Type"] = "success";
-                TempData["FlashMessage.Text"] = string.Format("FAQ {0} click time is added", myFAQ.Question);
                 return Page();
             }
             else
@@ -49,8 +47,6 @@ namespace kampong_goods.Pages.Education
             myFAQ = FAQ;
             myFAQ.ClickTime += 1;
             _FAQService.UpdateFAQ(myFAQ);
-            TempData["FlashMessage.Type"] = "success";
-            TempData["FlashMessage.Text"] = string.Format("FAQ {0} click time is added", myFAQ.Question);
         }
 
         public IActionResult OnPost()
