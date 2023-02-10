@@ -43,7 +43,7 @@
     <div class="row mb-3">
         <label class="col-sm-2 col-form-label">@Html.DisplayNameFor(model => model.myFAQ.URL)</label>
         <div class="col-sm-10">
-            <i>@Model.myFAQ.URL</i>
+            <i><a href="@Model.myFAQ.URL">@Model.myFAQ.URL</a></i>
         </div>
     </div>
 
@@ -54,6 +54,7 @@
             </a>
         </div>
     <div>
+        <a href="javascript:history.back()">Go Back</a>
         <a class="btn btn-secondary" href="/Education/Index">Back</a
     </div>
 </form>
