@@ -69,11 +69,14 @@ namespace kampong_goods.Services
         }
 
         
-        public void UpdateCustomer(AppUser customer)
+        public void UpdateStaffInfo(StaffInfo staff)
         {
-            _db.Users.Update(customer);
+            _db.StaffInfos.Update(staff);
             _db.SaveChanges();
         }
+
+
+
 
 
 

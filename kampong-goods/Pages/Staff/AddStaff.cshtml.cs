@@ -106,9 +106,9 @@ namespace kampong_goods.Pages.Staff
                                 createuser = await userManager.AddToRoleAsync(user, "Staff");
                                 _staffService.AddStaff(staff);
                                 TempData["FlashMessage.Type"] = "success";
-                                TempData["FlashMessage.Text"] = string.Format("Account {0} successfully registered.", AModel.Username);
-                                await signInManager.SignInAsync(user, false); ///???
-                                return RedirectToPage("Dashboard");
+                                TempData["FlashMessage.Text"] = string.Format("Account {0} successfully added.", AModel.Username);
+/*                                await signInManager.SignInAsync(user, false); ///???
+*/                                return RedirectToPage("Dashboard");
                             }
 
                             foreach (var error in createuser.Errors)

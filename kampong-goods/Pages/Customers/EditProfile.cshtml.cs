@@ -106,9 +106,11 @@ namespace kampong_goods.Pages.Customers
 
         public async Task<IActionResult> OnPostAsync()
         {
-            
 
-            var custlist = await userManager.GetUsersInRoleAsync("Customer");
+
+            /*            var custlist = await userManager.GetUsersInRoleAsync("Customer");
+            */
+            var custlist = _customerService.GetAll();
 
 
             if (Regex.IsMatch(CustProfile.Email, @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$") == true && Regex.IsMatch(CustProfile.PhoneNumber, @"^[89][0-9]{7}$")==true)

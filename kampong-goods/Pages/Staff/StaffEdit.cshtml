@@ -1,0 +1,93 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity;
+@using kampong_goods.Models;
+@using kampong_goods.Services;
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+@inject StaffService _staffService
+@model kampong_goods.Pages.Staff.StaffEditModel
+@{
+    Layout = "~/Pages/Shared/_StaffLayout.cshtml";
+
+    ViewData["Title"] = "Edit Profile";
+    //AppUser user = await UserManager.GetUserAsync(HttpContext.User);
+    //var staff = _staffService.GetICById(@user.Id);
+
+
+
+}
+
+<h1 class="mb-3">@ViewData["Title"]</h1>
+<form class="mt-3" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input class="form-control" asp-for="Profile.UserId" type="hidden" />
+
+
+        <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="Profile.NRIC"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Profile.NRIC" required />
+            <span asp-validation-for="Profile.NRIC" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="Profile.User.UserName">Username</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Profile.User.UserName" required />
+            <span asp-validation-for="Profile.User.UserName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="Profile.User.FName"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Profile.User.FName" required />
+            <span asp-validation-for="Profile.User.FName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="Profile.User.LName"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Profile.User.LName" required />
+            <span asp-validation-for="Profile.User.LName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="Profile.User.PhoneNumber">Phone Number</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Profile.User.PhoneNumber" required />
+            <span asp-validation-for="Profile.User.PhoneNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="Profile.User.Email"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Profile.User.Email" required />
+            <span asp-validation-for="Profile.User.Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label" asp-for="Profile.User.Address"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Profile.User.Address" oninput="this.value = this.value.toUpperCase()" required />
+            <span asp-validation-for="Profile.User.Address" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <div>
+        <input type="submit" value="Edit" class="btn btn-primary" />
+        <a class="btn btn-secondary ms-2" href="/Staff/StaffProfile">Cancel</a>
+    </div>
+
+
+    </div>
+</form>
+
+

@@ -1,4 +1,5 @@
 using kampong_goods.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,11 +23,13 @@ namespace kampong_goods.Pages.Customers
         public async Task<IActionResult> OnPostLogoutAsync()
         {
             await signInManager.SignOutAsync();
+            await HttpContext.SignOutAsync("UserAuth");
+            await HttpContext.SignOutAsync("AdminAuth");
             return RedirectToPage("Login");
         }
         public async Task<IActionResult> OnPostDontLogoutAsync()
         {
-            return RedirectToPage("Index");
+            return RedirectToPage("Profile");
         }
     }
 }

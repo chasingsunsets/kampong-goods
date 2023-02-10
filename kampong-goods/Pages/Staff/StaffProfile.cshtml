@@ -1,9 +1,12 @@
 ﻿@page
 @using Microsoft.AspNetCore.Identity;
 @using kampong_goods.Models;
+@using kampong_goods.Services;
 
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
+
+@inject StaffService _staffService
 @model kampong_goods.Pages.Staff.StaffProfileModel
 
 @{ 
@@ -20,103 +23,109 @@
 
     <!-- Delete Modal-->
     <div class="modal fade" id="deletecustprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">
-                                Delete Account
-                            </h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Select "Delete" below if you are
-                            deleting your account.
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@user.Id">Delete</a>
+                 aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">
+                                    Delete Account
+                                </h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Select "Delete" below if you are
+                                deleting your account.
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@user.Id">Delete</a>
+                            </div>
                         </div>
                     </div>
-                </div>
     </div>
 
     <div class="container-fluid mt--7">
-                                <div class="row">
+                                    <div class="row">
 
-                                    <div class="col-xl-8 order-xl-1">
-                                        <div class="card shadow ">
-                                            <div class="card-header bg-white border-0">
-                                        <a class="btn loginBtn" style="color:white;float: right;font-size:h4;" asp-page="/Customers/EditProfile" asp-route-id="@user.Id">Edit</a>
+                                        <div class="col-xl-12 order-xl-1">
+                                            <div class="card shadow ">
+                                                <div class="card-header bg-white border-0">
+                                <a class="btn" style="color:white;background: #3563E9; float: right;font-size:h4;" asp-page="/Staff/StaffEdit" asp-route-id="@user.Id">Edit</a>
 
-                               
-                               <div class="row align-items-center">
-                                                    <div class="col-8">
-                                                        <h3 class="mb-0">My Profile </h3>
-                                                       
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="card-body bg-white">
-                                                <h6 class="heading-small text-muted mb-4">Account information</h6>
-                                                <div class="pl-lg-4">
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <label>Username</label>
-                                                            <h6>@user.UserName</h6>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <label>Email</label>
-                                                            <h6>@user.Email</h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <label>First Name</label>
-                                                            <h6>@user.FName</h6>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <label>Last Name</label>
-                                                            <h6>@user.LName</h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <hr class="my-4">
-                                                <!-- Address -->
-                                                <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                                                <div class="pl-lg-4">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <label>Address</label>
-                                                            <h6>@user.Address</h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <label>Phone Number</label>
-                                                            <h6>@user.PhoneNumber</h6>
-
-                               
+                                   
+                                   <div class="row align-items-center">
+                                                        <div class="col-8">
+                                                            <h3 class="mb-0">My Profile </h3>
+                                                           
                                                         </div>
 
                                                     </div>
                                                 </div>
+                                                <div class="card-body bg-white">
+                                                    <h6 class="heading-small text-muted mb-4">Account information</h6>
+                                                    <div class="pl-lg-4">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label>Username</label>
+                                                                <h6>@user.UserName</h6>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label>Email</label>
+                                                                <h6>@user.Email</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label>Full Name</label>
+                                        <h6>@user.FName @user.LName</h6>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label>NRIC</label>
+                                        @{
+                                            var staff = _staffService.GetICById(@user.Id);
+                                        }
+                                        <h6>@staff.NRIC</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
 
-                            <a data-toggle="modal" data-target="#deletecustprofile" class="card-link"
-                           style="color: darkred;float: right;">
-                                <i class="far fa-trash-alt"></i>
-                                Delete Account
-                            </a>
+
+                                                    <hr class="my-4">
+                                                    <!-- Address -->
+                                                    <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                                                    <div class="pl-lg-4">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <label>Address</label>
+                                                                <h6>@user.Address</h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <label>Phone Number</label>
+                                                                <h6>@user.PhoneNumber</h6>
+
+                                   
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
 
 
-                            <a class="btn btn-primary" asp-area="" asp-page="/Staff/StaffLogout">Logout</a>
+                                <a data-toggle="modal" data-target="#deletecustprofile" class="card-link"
+                               style="color: darkred;float: left;">
+                                    <i class="far fa-trash-alt"></i>
+                                    Delete Account
+                                </a>
+
+
+                                <a class="btn" style="float: right; color: white; background: #3563E9;" asp-area="" asp-page="/Staff/StaffLogout">Logout</a>
+
+                                                </div>
+
 
                                             </div>
 
@@ -124,11 +133,8 @@
                                         </div>
 
 
+
                                     </div>
-
-
-
-                                </div>
 
     </div>
 

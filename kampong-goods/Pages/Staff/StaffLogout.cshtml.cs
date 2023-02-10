@@ -23,6 +23,7 @@ namespace kampong_goods.Pages.Staff
             {
                 await signInManager.SignOutAsync();
             await HttpContext.SignOutAsync("AdminAuth");
+            await HttpContext.SignOutAsync("UserAuth");
 
             /*            HttpContext.Response.Cookies.Delete("AdminAuth");
             */// Clear the existing external cookie
