@@ -8,9 +8,9 @@ namespace kampong_goods.Models
         public string FAQId { get; set; } 
 
         //QnA
-        [Required, MaxLength(1000)]
+        [Required, MaxLength(100)]
         public string Question { get; set; }
-        [Required, MaxLength(1000)]
+        [Required, MaxLength(10000)]
         public string Answer { get; set; }
         [Display(Name = "Reference")]
         public string URL { get; set; }

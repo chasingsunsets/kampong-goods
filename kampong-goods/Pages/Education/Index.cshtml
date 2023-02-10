@@ -27,7 +27,7 @@
                                                                 
                             <tr>
                                 <th>&nbsp;Question</th>
-                                <th>&nbsp; Answer</th>
+                                <th>&nbsp;Answer</th>
                                 <th>&nbsp;Reference</th>
                                 <th>&nbsp;Category</th>
                                 <th>&nbsp;Thread</th>
@@ -66,9 +66,9 @@
 
                         <tr>
                             <td>@item.Question</td>
-                            <td>&nbsp;@item.Answer</td>
-                            <td>&nbsp;@item.URL</td>
-                            <td>&nbsp;@item.FAQCatId</td>
+                                    <td>&nbsp;<a asp-page="/Education/FAQDetail_Staff" asp-route-id="@item.FAQId">View</a></td>
+                                    <td><a href="@item.URL">&nbsp;@item.URL</a></td>
+                                    <td>&nbsp;@item.FAQCatId</td>
                             <td>&nbsp;@item.ClickTime</td>
                                                                     
 
@@ -81,7 +81,7 @@
                                         </a>
                                         <div id="collapseFAQs" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                             <div class="bg-white py-2 collapse-inner rounded">
-                                                <a asp-page="/Education/FAQDetail" asp-route-id="@item.FAQId"><i class="fa-solid fa-circle-info"></i>Detail</a>
+                                                <a asp-page="/Education/FAQDetail_Staff" asp-route-id="@item.FAQId"><i class="fa-solid fa-circle-info"></i>Detail</a>
                                                 <a asp-page="/Education/Edit" asp-route-id="@item.FAQId" style="color:#3563E9" class="card-link mb-2"><i class="fas fa-pencil-alt"></i>Edit</a>
 
                                             </div>
