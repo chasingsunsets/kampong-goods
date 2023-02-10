@@ -10,24 +10,35 @@ namespace kampong_goods.Pages.Education
     {
 
         private readonly FAQService _FAQService;
+        private readonly FAQCatService _FAQCatService;
+
         public FAQ myFAQ { get; set; } = new();
 
         public List<FAQ> FAQlist { get; set; } = new();
+        public List<FAQCategory> FAQCatlist { get; set;} = new();
 
         //top 5 FAQ var
         public List<FAQ> FAQlist_sorted { get; set; } = new();
         public List<FAQ> FAQlist_top5 { get; set; } = new();
-        public List_CustModel(FAQService faqService)
+        public List_CustModel(FAQService faqService, FAQCatService faqCatService)
         {
             _FAQService = faqService;
+            _FAQCatService = faqCatService;
         }
 
         public void OnGet()
         {
             FAQlist = _FAQService.GetAll();
+            FAQCatlist = _FAQCatService.GetAll();
             FAQlist_sorted = FAQlist.OrderByDescending(x => x.ClickTime).ToList();
 
-            FAQlist_top5.Add(FAQlist_sorted[0]);
+            if (FAQlist.Count > 0) { 
+                for (int i = 0; i < FAQlist_top5.Count; i++)
+                {
+                    FAQlist_top5.Add(FAQlist_sorted[i]);
+                }
+            }
+            
         }
 
         public async void OnPostAddToCartAsync(string ID)
