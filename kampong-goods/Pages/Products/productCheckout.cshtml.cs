@@ -2,7 +2,8 @@ using kampong_goods.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using kampong_goods.Models;
-using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace kampong_goods.Pages.Products
 {
@@ -10,11 +11,15 @@ namespace kampong_goods.Pages.Products
     {
         private readonly CheckoutService _checkoutService;
         private readonly ProductService _productService;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly CustomerService _customerService;
 
-        public productCheckoutModel(CheckoutService checkoutService, ProductService productService)
+        public productCheckoutModel(CheckoutService checkoutService, ProductService productService, UserManager<AppUser> userManager, CustomerService customerService)
         {
             _checkoutService = checkoutService;
             _productService = productService;
+            _userManager = userManager;
+            _customerService = customerService;
         }
 
         [BindProperty]
@@ -26,6 +31,10 @@ namespace kampong_goods.Pages.Products
 
         public List<Product> ProductList { get; set; } = new();
 
+        public List<AppUser> CustomerList { get; set; } = new();
+
+        public AppUser user { get; set; } = new();
+
         public IActionResult OnGet(string id)
         {
             Product? product = _productService.GetProductById(id);
@@ -36,6 +45,7 @@ namespace kampong_goods.Pages.Products
                 productImage = product.ImageURL;
                 productSeller = product.UserId;
                 productCost = product.Price.ToString();
+                CustomerList = _customerService.GetAll();
                 return Page();
             }
 
@@ -52,8 +62,17 @@ namespace kampong_goods.Pages.Products
         {
             if (ModelState.IsValid)
             {
+                //gets the logged in user
+                var userId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
+                user = await _userManager.Users.FirstAsync(u => u.Id == userId);
+
                 Product? product = _productService.GetProductById(id);
+
                 MyCheckout.ProductId = product.ProductId;
+                MyCheckout.UserId = user.Id;
+                product.Status = "Sold";
+                MyCheckout.OrderStatus = "Ordered";
+
                 Checkout? checkout = _checkoutService.GetCheckoutById(MyCheckout.CheckoutId);
                 if (checkout != null)
                 {

@@ -25,6 +25,8 @@ namespace kampong_goods.Pages.Products
             _categoryService = categoryService;
         }
 
+        public List<Product> AllProductList { get; set; } = new();
+
         public List<Product> ProductList { get; set; } = new();
 
         public List<Product> showProductList { get; set; } = new();
@@ -47,7 +49,14 @@ namespace kampong_goods.Pages.Products
             if(anyUser == null)
             {
                 //will change to login later
-                ProductList = _productService.GetAll();
+                AllProductList = _productService.GetAll();
+                foreach(var product in AllProductList)
+                {
+                    if(product.Status == "Available" || product.Status == "Reserved")
+                    {
+                        ProductList.Add(product);
+                    }
+                }
                 CustomerList = _customerService.GetAll();
                 ConditionList = _conditionService.GetAll();
                 CategoryList = _categoryService.GetAll();
@@ -59,7 +68,14 @@ namespace kampong_goods.Pages.Products
                 var userId = anyUser.Id;
                 user = await _userManager.Users.FirstAsync(u => u.Id == userId);
 
-                ProductList = _productService.GetAll();
+                AllProductList = _productService.GetAll();
+                foreach (var product in AllProductList)
+                {
+                    if (product.Status == "Available" || product.Status == "Reserved")
+                    {
+                        ProductList.Add(product);
+                    }
+                }
                 CustomerList = _customerService.GetAll();
                 ConditionList = _conditionService.GetAll();
                 CategoryList = _categoryService.GetAll();

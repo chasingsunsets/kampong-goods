@@ -1,4 +1,3 @@
-using kampong_goods.Migrations.ProductDb;
 using kampong_goods.Models;
 using kampong_goods.Services;
 using Microsoft.AspNetCore.Identity;

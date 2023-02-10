@@ -1,16 +1,13 @@
 ﻿@page
-@model kampong_goods.Pages.Products.productCheckoutModel
 @using Microsoft.AspNetCore.Identity;
 @using kampong_goods.Models;
 
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
+@model kampong_goods.Pages.Products.productCheckoutModel
 @{
 	Guid myuuid = Guid.NewGuid();
 	var CheckoutId = myuuid.ToString();
-
-	AppUser user = await UserManager.GetUserAsync(HttpContext.User); //current signed in
-	var custlist = await UserManager.GetUsersInRoleAsync("Customer"); //gets users list
 }
 
 <style>
@@ -43,6 +40,12 @@
 			<input type="hidden" class="form-control" placeholder="" value="ProductID" asp-for="MyCheckout.ProductId">
 			<span asp-validation-for="MyCheckout.ProductId" class="text-danger"></span>
 
+			<input type="hidden" class="form-control" placeholder="" value="UserID" asp-for="MyCheckout.UserId">
+			<span asp-validation-for="MyCheckout.UserId" class="text-danger"></span>
+
+			<input type="hidden" class="form-control" placeholder="" value="OrderStatus" asp-for="MyCheckout.OrderStatus">
+			<span asp-validation-for="MyCheckout.OrderStatus" class="text-danger"></span>
+
 			<div class="card mb-4">
 				<div class="card-body">
 					<table class="table table-borderless table-shopping-cart">
@@ -67,7 +70,7 @@
 								</td>
 								<td>
 									<div class="price-wrap">
-										@foreach (var cust in custlist) //use userid to get user name
+										@foreach (var cust in Model.CustomerList) //use userid to get user name
 										{
 											if (@Model.productSeller == cust.Id)
 											{

@@ -1,0 +1,450 @@
+﻿@page
+@model kampong_goods.Pages.Products.productPurchaseModel
+@{
+    Layout = "~/Pages/Shared/_ProfileNav.cshtml";
+    ViewData["Title"] = "Profile";
+
+    var noOfOrder = Model.ReceivedList.Count() + Model.NotReceivedList.Count();
+    var noOfNotReceived = Model.NotReceivedList.Count();
+    var noOfReceived = Model.ReceivedList.Count();
+}
+
+<style>
+    .project-tab #tabs {
+        color: #eee;
+    }
+
+    .project-tab #tabs h6.section-title {
+        color: #eee;
+    }
+
+    .project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+        color: #0062cc;
+        background-color: lightblue;
+        border-color: transparent transparent #f3f3f3;
+        border-bottom: 3px solid !important;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .project-tab .nav-link {
+        border: 1px solid transparent;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        color: #0062cc;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .project-tab .nav-link:hover {
+        border: 1px solid ;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        color: #0062cc;
+    }
+
+    .project-tab thead {
+        background-color: lightgray;
+        color: #333;
+    }
+
+    .project-tab a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+    }
+
+    .btn-action {
+        border-color: #3563E9;
+    }
+
+    .btn-add {
+        color: white;
+            background: #3563E9;
+    }
+
+	.spanBold {
+		font-weight: bold;
+	}
+
+	.hh-grayBox {
+		background-color: #F8F8F8;
+		margin-bottom: 20px;
+		padding: 35px;
+		margin-top: 20px;
+	}
+
+	.pt45 {
+		padding-top: 45px;
+	}
+
+	.order-tracking {
+		text-align: center;
+		width: 33.33%;
+		position: relative;
+		display: block;
+	}
+
+		.order-tracking .is-complete {
+			display: block;
+			position: relative;
+			border-radius: 50%;
+			height: 30px;
+			width: 30px;
+			border: 0px solid #AFAFAF;
+			background-color: #f7be16;
+			margin: 0 auto;
+			transition: background 0.25s linear;
+			-webkit-transition: background 0.25s linear;
+			z-index: 2;
+		}
+
+			.order-tracking .is-complete:after {
+				display: block;
+				position: absolute;
+				content: '';
+				height: 14px;
+				width: 7px;
+				top: -2px;
+				bottom: 0;
+				left: 5px;
+				margin: auto 0;
+				border: 0px solid #AFAFAF;
+				border-width: 0px 2px 2px 0;
+				transform: rotate(45deg);
+				opacity: 0;
+			}
+
+		.order-tracking.completed .is-complete {
+			border-color: #27aa80;
+			border-width: 0px;
+			background-color: #27aa80;
+		}
+
+			.order-tracking.completed .is-complete:after {
+				border-color: #fff;
+				border-width: 0px 3px 3px 0;
+				width: 7px;
+				left: 11px;
+				opacity: 1;
+			}
+
+		.order-tracking p {
+			color: #A4A4A4;
+			font-size: 16px;
+			margin-top: 8px;
+			margin-bottom: 0;
+			line-height: 20px;
+		}
+
+			.order-tracking p span {
+				font-size: 14px;
+			}
+
+		.order-tracking.completed p {
+			color: #000;
+		}
+
+		.order-tracking::before {
+			content: '';
+			display: block;
+			height: 3px;
+			width: calc(100% - 40px);
+			background-color: #f7be16;
+			top: 13px;
+			position: absolute;
+			left: calc(-50% + 20px);
+			z-index: 0;
+		}
+
+		.order-tracking:first-child:before {
+			display: none;
+		}
+
+		.order-tracking.completed:before {
+			background-color: #27aa80;
+		}
+
+</style>
+
+<header class="mb-3">
+	<div class="form-inline">
+		<strong class="mr-md-auto">@noOfOrder Purchased Item(s) found </strong>
+	</div>
+</header><!-- sect-heading -->
+
+<div class="row">
+	@{
+		<section id="tabs" class="project-tab">
+			<div class="container">
+				<nav>
+					<div class="nav nav-tabs nav-justified" id="nav-tab">
+						<a class="nav-item nav-link active" id="nav-available-tab" data-toggle="tab" href="#nav-available" role="tab" aria-controls="nav-available" aria-selected="true">To Be Received <span class="badge badge-success">@Model.NotReceivedList.Count()</span></a>
+						<a class="nav-item nav-link" id="nav-reserved-tab" data-toggle="tab" href="#nav-reserved" role="tab" aria-controls="nav-reserved" aria-selected="false">Completed Order(s) <span class="badge badge-success">@Model.ReceivedList.Count()</span></a>
+					</div>
+				</nav>
+
+				<div class="tab-content" id="nav-tabContent">
+
+					<div class="tab-pane fade show active" id="nav-available" role="tabpanel" aria-labelledby="nav-available-tab">
+						@if (noOfNotReceived == 0)
+						{
+							<div style="padding-top: 30px;">
+								<h6 style="text-align:center">Currently there are no products purchased/ in pending status!</h6>
+								<h6 style="text-align:center">Start buying now!</h6>
+							</div>
+						}
+
+						@if (noOfNotReceived > 0)
+						{
+							<table class="table" cellspacing="0">
+								<thead>
+									<tr>
+										<th>No.</th>
+										<th>Item Details</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var item in Model.NotReceivedList)
+									{
+										<tr>
+											<td>1</td>
+											<td>
+												<article class="card mb-4">
+													<header class="card-header">
+														<a href="#" class="float-right"> <i class="fa fa-print"></i> Print</a>
+														<strong class="d-inline-block mr-3">Order ID: @item.CheckoutId </strong>
+														<p class="text-muted">Order Date: 16 December 2018</p>
+													</header>
+													<div class="card-body">
+														<div class="row">
+															<div class="col-md-8">
+																<h6 class="text-muted">Delivery to</h6>
+																<p>
+																	<span class="spanBold">@item.FName @item.LName</span> <br>
+																	<span class="spanBold">Phone:</span> +65 @item.Phone <br>
+																	<span class="spanBold">Email:</span> @item.Email <br>
+																	<span class="spanBold">Location:</span> @item.Address
+																</p>
+															</div>
+															<div class="col-md-4">
+																<h6 class="text-muted">Payment</h6>
+																<span class="text-success">
+
+																	<span class="spanBold">Credit Card Name:</span> @item.CCName <br>
+																	<span class="spanBold">Credit Card Number:</span> <i class="fab fa-lg fa-cc-visa"></i> @item.CCNo
+																</span>
+																<p>
+																	<hr>
+																	<span class="b">Total:  $456 </span>
+																</p>
+															</div>
+														</div> <!-- row.// -->
+													</div> <!-- card-body .// -->
+													@foreach (var products in Model.ProductList)
+													{
+														@if (products.ProductId == item.ProductId)
+														{
+															<hr />
+															<div class="container">
+																<div class="row">
+																	<div>
+																		<div class="row justify-content-between">
+																			@if (item.OrderStatus == "Ordered")
+																			{
+																				<div class="order-tracking completed">
+																					<span class="is-complete"></span>
+																					<p>Ordered<br><span>Mon, June 24</span></p>
+																				</div>
+																				<div class="order-tracking">
+																					<span class="is-complete"></span>
+																					<p>Shipped<br><span>Tue, June 25</span></p>
+																				</div>
+																				<div class="order-tracking">
+																					<span class="is-complete"></span>
+																					<p>Delivered<br><span>Fri, June 28</span></p>
+																				</div>
+																			}
+																			@if (item.OrderStatus == "Shipped")
+																			{
+																				<div class="order-tracking completed">
+																					<span class="is-complete"></span>
+																					<p>Ordered<br><span>Mon, June 24</span></p>
+																				</div>
+																				<div class="order-tracking completed">
+																					<span class="is-complete"></span>
+																					<p>Shipped<br><span>Tue, June 25</span></p>
+																				</div>
+																				<div class="order-tracking">
+																					<span class="is-complete"></span>
+																					<p>Delivered<br><span>Fri, June 28</span></p>
+																				</div>
+																			}
+																			@if (item.OrderStatus == "Delivered")
+																			{
+																				<div class="order-tracking completed">
+																					<span class="is-complete"></span>
+																					<p>Ordered<br><span>Mon, June 24</span></p>
+																				</div>
+																				<div class="order-tracking completed">
+																					<span class="is-complete"></span>
+																					<p>Shipped<br><span>Tue, June 25</span></p>
+																				</div>
+																				<div class="order-tracking completed">
+																					<span class="is-complete"></span>
+																					<p>Delivered<br><span>Fri, June 28</span></p>
+																				</div>
+																			}
+
+
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<br>
+															<div class="table-responsive">
+																<table class="table table-hover">
+																	<tbody>
+																		<tr>
+																			<td width="65">
+																				<img src="@products.ImageURL" class="img-xs border">
+																			</td>
+																			<td>
+																				<p class="title mb-0">@products.ProductName</p>
+																				<var class="price text-muted">$ @products.Price</var>
+																			</td>
+																			<td width="250">
+																				<a href="#" class="btn btn-outline-primary">Mark As Received</a>
+																			</td>
+																		</tr>
+																</table>
+															</div> <!-- table-responsive .end// -->
+														}
+													}
+												</article> <!-- card order-item .// -->
+											</td>
+										</tr>
+									}
+								</tbody>
+							</table>
+						}
+					</div>
+
+					<div class="tab-pane fade" id="nav-reserved" role="tabpanel" aria-labelledby="nav-reserved-tab">
+
+						@if (noOfReceived == 0)
+						{
+							<div style="padding-top: 30px;">
+								<h6 style="text-align:center">Currently there are no completed orders!</h6>
+							</div>
+						}
+
+						@if (noOfReceived > 0)
+						{
+							<table class="table" cellspacing="0">
+								<thead>
+									<tr>
+										<th>No.</th>
+										<th>Item Details</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var item in Model.ReceivedList)
+									{
+										<tr>
+											<td>1</td>
+											<td>
+												<article class="card mb-4">
+													<header class="card-header">
+														<a href="#" class="float-right"> <i class="fa fa-print"></i> Print</a>
+														<strong class="d-inline-block mr-3">Order ID: @item.CheckoutId </strong>
+														<p class="text-muted">Order Date: 16 December 2018</p>
+													</header>
+													<div class="card-body">
+														<div class="row">
+															<div class="col-md-8">
+																<h6 class="text-muted">Delivery to</h6>
+																<p>
+																	<span class="spanBold">@item.FName @item.LName</span> <br>
+																	<span class="spanBold">Phone:</span> +65 @item.Phone <br>
+																	<span class="spanBold">Email:</span> @item.Email <br>
+																	<span class="spanBold">Location:</span> @item.Address
+																</p>
+															</div>
+															<div class="col-md-4">
+																<h6 class="text-muted">Payment</h6>
+																<span class="text-success">
+
+																	<span class="spanBold">Credit Card Name:</span> @item.CCName <br>
+																	<span class="spanBold">Credit Card Number:</span> <i class="fab fa-lg fa-cc-visa"></i> @item.CCNo
+																</span>
+																<p>
+																	<hr>
+																	<span class="b">Total:  $456 </span>
+																</p>
+															</div>
+														</div> <!-- row.// -->
+													</div> <!-- card-body .// -->
+													@foreach (var products in Model.ProductList)
+													{
+														@if (products.ProductId == item.ProductId)
+														{
+															<hr />
+															<div class="container">
+																<div class="row">
+																	<div>
+																		<div class="row justify-content-between">
+																			<div class="order-tracking completed">
+																				<span class="is-complete"></span>
+																				<p>Ordered<br><span>Mon, June 24</span></p>
+																			</div>
+																			<div class="order-tracking completed">
+																				<span class="is-complete"></span>
+																				<p>Shipped<br><span>Tue, June 25</span></p>
+																			</div>
+																			<div class="order-tracking completed">
+																				<span class="is-complete"></span>
+																				<p>Delivered<br><span>Fri, June 28</span></p>
+																			</div>
+
+
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<br>
+															<div class="table-responsive">
+																<table class="table table-hover">
+																	<tbody>
+																		<tr>
+																			<td width="65">
+																				<img src="@products.ImageURL" class="img-xs border">
+																			</td>
+																			<td>
+																				<p class="title mb-0">@products.ProductName</p>
+																				<var class="price text-muted">$ @products.Price</var>
+																			</td>
+																			<td width="250">
+																				<a href="#" class="btn btn-outline-primary disabled">Item Received Successfully</a>
+																			</td>
+																		</tr>
+																</table>
+															</div> <!-- table-responsive .end// -->
+														}
+													}
+												</article> <!-- card order-item .// -->
+											</td>
+										</tr>
+									}
+								</tbody>
+							</table>
+						}
+					</div>
+
+
+				</div>
+			</div>
+		</section>
+	}
+</div> <!-- row .//  -->
+
