@@ -19,163 +19,205 @@
         @*Top 5 FAQ*@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary"><b>Top 5 </b>frequently asked question</h6>
+                <h6 class="m-0 font-weight-bold text-primary"><b>Top 5</b> frequently asked question</h6>
             </div>
-            <div class="card-body position-relative" style="width:=60%;">
+            <div class="card-body position-relative" style="width:60%;">
                 <div class="">
                     @{
-                                        @foreach (var item in Model.FAQlist_top5)
-                        {
-                                            <div class="faq__item">
-                                                <h2 class="m-0 faq__question">@item.Question <i class="fa fa-chevron-circle-down" style="float:right" aria-hidden="true"></i></h2>
-                                                <p class="faq__answer">@item.Answer <br><a class="btn" style="float:right;" asp-page="/Education/FAQDetail" asp-route-id="@item.FAQId">Detail-></a></p>
+                        if (Model.FAQlist_top5.Count > 0){
+                                                    @foreach (var item in Model.FAQlist_top5)
+                            {
+                                if (item != null)
+                                {
+                                                            <div class="faq__item">
+                                                                <h2 class="m-0 faq__question">@item.Question <i class="fa fa-chevron-circle-down" style="float:right" aria-hidden="true"></i></h2>
+                                                                <p class="faq__answer">@item.Answer <br><a class="btn" style="float:right;" asp-page="/Education/FAQDetail" asp-route-id="@item.FAQId">Detail-></a></p>
 
-                                            </div>
-                                            <div class="faq_answer">
-                                            </div>
+                                                            </div>
+                                                            <div class="faq_answer">
+                                                            </div>
+                                }
+                                else{
+                                                            <p class="m-0 font-weight-bold" style="color:gray;;padding-left:20px ;">No FAQ for now</p>
+                                }
+                            }
+
                         }
+                        else
+                        {
+                                    <p class="m-0 font-weight-bold" style="color:gray;;padding-left:20px ;">No FAQ for now</p>
+                        }
+
                     }
                 </div>
             </div>
         </div>
 
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">frequently asked question</h6>
-            </div>
-            <div class="card-body">
-                <div class="">
-                    @{
-                                                            @foreach (var item in Model.FAQlist)
-                        {
-                                                <div class="faq__item">
-                                                    <h2 class="faq__question">@item.Question <i class="fa fa-chevron-circle-down" style="float:right" aria-hidden="true"></i></h2>
-                                                    <p class="faq__answer">@item.Answer <a class="btn" style="float:right;" asp-page="/Education/FAQDetail" asp-route-id="@item.FAQId">Detail-></a></p>
-                                                    
-                                                </div>           
-                                                    <div class="faq_answer">                                      
-                                                         </div>
-                        }
-                    }
-                </div>
-            </div>
-        </div>
+        
 
         <!-- By Category -->
         @{
+            if(Model.FAQCatlist.Count > 0){
             foreach (var cat in Model.FAQCatlist)
                 {
-                <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">@cat.FAQCategoryName</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="">
-                    @foreach (var item in Model.FAQlist)
+                    if(cat != null){
+                                        <div class="card shadow mb-4">
+                                                <div class="card-header py-3">
+                                                <h6 class="m-0 font-weight-bold text-primary">@cat.FAQCategoryName</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="">
+                                            @foreach (var item in Model.FAQlist)
                         {
                             if (item != null){
                                 if (item.FAQCatId == cat.FAQCatId)
                                 {
+                                                            <div class="faq__item">
+                                                                <h2 class="faq__question">@item.Question <i class="fa fa-chevron-circle-down" style="float:right" aria-hidden="true"></i></h2>
+                                                                <p class="faq__answer">@item.Answer <a class="btn" style="float:right;" asp-page="/Education/FAQDetail" asp-route-id="@item.FAQId">Detail-></a></p>
+
+                                                            </div>
+                                                            <div class="faq_answer">
+                                                            </div>}
+                                    else{
+                                                    <p class="m-0 font-weight-bold" style="color:gray;;padding-left:20px ;">No FAQ for now</p>
+                                    }
+                                }
+                        }
+                                                    
+                                                </div>
+                                            </div>
+                                            </div>
+                    }
+                    else{
+                            <p class="m-0 font-weight-bold" style="color:gray;;padding-left:20px ;">No FAQ for now</p>
+                    }
+            }
+            }
+            else
+            {
+            }
+            }
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"><b>All</b> Frequently Asked Question</h6>
+            </div>
+            <div class="card-body">
+                <div class="">
+                    @{
+                        if (Model.FAQlist.Count > 0)
+                        {
+                            @foreach (var item in Model.FAQlist)
+                            {
+                                if (item != null)
+                                {
+
+
                                     <div class="faq__item">
                                         <h2 class="faq__question">@item.Question <i class="fa fa-chevron-circle-down" style="float:right" aria-hidden="true"></i></h2>
                                         <p class="faq__answer">@item.Answer <a class="btn" style="float:right;" asp-page="/Education/FAQDetail" asp-route-id="@item.FAQId">Detail-></a></p>
 
                                     </div>
                                     <div class="faq_answer">
-                                    </div>}
-                                    else{
-                                    <h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No FAQ for now</h3>
-                                    }
+                                    </div>
                                 }
+                                else
+                                {
+                                    <p class="m-0 font-weight-bold" style="color:gray;;padding-left:20px ;">No FAQ for now</p>
+                                }
+                            }
                         }
-                            
-                        </div>
-                    </div>
-                    </div>
-            }
-            }
+                        else
+                        {
+                            <p class="m-0 font-weight-bold" style="color:gray;;padding-left:20px ;">No FAQ for now</p>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- /.container-fluid -->
     </div>
-    <!-- /.container-fluid -->
-</div>
 
-<head>
+    <head>
 
 
-    <script> 
-        var clicks = parseInt(document.getElementById("clicks").innerHTML);
-        console.log("Click = " + clicks);
-        function clickTime() {
-            clicks += 1;
-            document.getElementById("clicks").innerHTML = clicks;
-            //after click one time
-            document.getElementById("thumbsUp").className = "fa-solid fa-thumbs-up";
-            document.getElementById("clickTimeBtn").onclick = "afterClick()";
-        };
+        <script> 
+            var clicks = parseInt(document.getElementById("clicks").innerHTML);
+            console.log("Click = " + clicks);
+            function clickTime() {
+                clicks += 1;
+                document.getElementById("clicks").innerHTML = clicks;
+                //after click one time
+                document.getElementById("thumbsUp").className = "fa-solid fa-thumbs-up";
+                document.getElementById("clickTimeBtn").onclick = "afterClick()";
+            };
 
-        function afterClick(){
-            alert("You can only click Thumbs Up one Time, thanks for your like. www")
-        }
-    </script>
-    <style>
-            .faq__item {
-        width: 100 %;
-        margin-bottom: 1.5em;
-        border-bottom: 2px solid var(--Light - grayish - blue);}
+            function afterClick(){
+                alert("You can only click Thumbs Up one Time, thanks for your like. www")
+            }
+        </script>
+        <style>
+                .faq__item {
+            width: 100 %;
+            margin-bottom: 1.5em;
+            border-bottom: 2px solid var(--Light - grayish - blue);}
 
-        .faq__question {
-            cursor: pointer;
-            position: relative;
-            margin-bottom: 1em;
-            font-size: 1.1rem;
-            font-weight: 400;
-        }
-
-            .faq__question:hover {
-                color: var(--Soft-red);
+            .faq__question {
+                cursor: pointer;
+                position: relative;
+                margin-bottom: 1em;
+                font-size: 1.1rem;
+                font-weight: 400;
             }
 
-        .faq__answer {
-            display: none;
-            padding-bottom: 1.5em;
-            color: var(--Dark-grayish-blue);
-            font-size: 1rem;
-            line-height: 1.5em;
-        }
-    </style>
-
-    <script>
-        const questions = document.querySelectorAll(".faq__question");
-
-        questions.forEach((question) => {
-            question.addEventListener("click", function () {
-                let answer = question.nextElementSibling;
-                if (answer.style.display === "block") {
-                    hideAnswer(question);
-                } else {
-                    questions.forEach((question) => {
-                        hideAnswer(question);
-                    });
-                    displayAnswer(question);
+                .faq__question:hover {
+                    color: var(--Soft-red);
                 }
+
+            .faq__answer {
+                display: none;
+                padding-bottom: 1.5em;
+                color: var(--Dark-grayish-blue);
+                font-size: 1rem;
+                line-height: 1.5em;
+            }
+        </style>
+
+        <script>
+            const questions = document.querySelectorAll(".faq__question");
+
+            questions.forEach((question) => {
+                question.addEventListener("click", function () {
+                    let answer = question.nextElementSibling;
+                    if (answer.style.display === "block") {
+                        hideAnswer(question);
+                    } else {
+                        questions.forEach((question) => {
+                            hideAnswer(question);
+                        });
+                        displayAnswer(question);
+                    }
+                });
             });
-        });
 
-        function displayAnswer(target) {
-            let answer = target.nextElementSibling;
-            let arrowIcon = target.firstElementChild;
-            answer.style.display = "block";
-            arrowIcon.style.transform = "rotate(180deg)";
-            target.style.fontWeight = "700";
-        }
+            function displayAnswer(target) {
+                let answer = target.nextElementSibling;
+                let arrowIcon = target.firstElementChild;
+                answer.style.display = "block";
+                arrowIcon.style.transform = "rotate(180deg)";
+                target.style.fontWeight = "700";
+            }
 
-        function hideAnswer(target) {
-            let answer = target.nextElementSibling;
-            let arrowIcon = target.firstElementChild;
-            answer.style.display = "none";
-            arrowIcon.style.transform = "rotate(0deg)";
-            target.style.fontWeight = "400";
-        }
+            function hideAnswer(target) {
+                let answer = target.nextElementSibling;
+                let arrowIcon = target.firstElementChild;
+                answer.style.display = "none";
+                arrowIcon.style.transform = "rotate(0deg)";
+                target.style.fontWeight = "400";
+            }
 
-    </script>
-</head>
+        </script>
+    </head>
