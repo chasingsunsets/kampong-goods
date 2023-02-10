@@ -1,0 +1,19 @@
+﻿@page
+@model kampong_goods.Pages.Staff.StaffLogoutModel
+@{
+	Layout = "~/Pages/Shared/_StaffLayout.cshtml";
+
+}
+<form method="post">
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="col-sm-12 col-md-12 col-lg-4">
+				<p> Are you sure you want to logout? </p>
+				<p>
+					<button class="btn btn-primary" asp-page-handler="StaffLogout">Yes</button>
+					<button class="btn btn-light ml-5 border-dark" asp-page-handler="StaffDontLogout">No</button>
+				</p>
+			</div>
+		</div>
+	</div>
+</form>

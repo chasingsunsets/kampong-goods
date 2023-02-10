@@ -38,6 +38,8 @@ namespace kampong_goods.Pages.Requests
 
         public static List<Category> CategoryList { get; set; } = new();
 
+        public AppUser userprofile { get; set; } = new();
+
         public void OnGet()
         {
             CategoryList = _categoryService.GetAll();
@@ -55,6 +57,11 @@ namespace kampong_goods.Pages.Requests
 
                 var userid = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
                 Debug.WriteLine(userid);
+                
+/*                AppUser test = await userManager.GetUserAsync(HttpContext.User);
+                Debug.WriteLine("tbc"test.Id);*/
+
+
                 var user = _customerService.GetCustomerById(userid);
 
                 var req = new Request()

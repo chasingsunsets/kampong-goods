@@ -17,6 +17,11 @@ builder.Services.AddScoped<CustomerService>();
 builder.Services.AddScoped<StaffService>();
 
 
+/*builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("MustBeStaff",
+    policy => policy.RequireClaim("Staff", "HR"));
+});*/
 //product
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<CategoryService>();
@@ -41,11 +46,37 @@ builder.Services.AddScoped<RequestService>();
 builder.Services.AddScoped<VoucherService>();
 builder.Services.AddDbContext<VoucherDbContext>();
 
-//configs
+/*//configs
 builder.Services.ConfigureApplicationCookie(Config =>
 {
-    Config.LoginPath = "/Login";
+    Config.LoginPath = "/Customers/Login";
+    Config.LoginPath=
+    Config.AccessDeniedPath = "/Account/AccessDenied";
+
 });
+*/
+
+//auth access denied
+/*builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", options
+=>
+{
+    options.Cookie.Name = "MyCookieAuth";
+    options.AccessDeniedPath = "/Account/AccessDenied";
+
+});*/
+
+//two login paths
+builder.Services.AddAuthentication(opt => { opt.DefaultScheme = "AdminAuth"; })
+    .AddCookie("UserAuth", opt =>
+    {
+        opt.LoginPath = "/Customers/Login";
+        opt.AccessDeniedPath = "/Account/AccessDenied/";
+    })
+    .AddCookie("AdminAuth", opt =>
+    {
+        opt.LoginPath = "/Staff/StaffLogin";
+        opt.AccessDeniedPath = "/Account/AccessDenied/";
+    });
 
 builder.Services.Configure<SecurityStampValidatorOptions>(options =>
 {
@@ -78,6 +109,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseStatusCodePagesWithRedirects("/error/{0}");
 
 app.UseRouting();
 

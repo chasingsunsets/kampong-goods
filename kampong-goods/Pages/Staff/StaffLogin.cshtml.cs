@@ -1,8 +1,10 @@
 using kampong_goods.Models;
 using kampong_goods.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace kampong_goods.Pages.Staff
 {
@@ -94,9 +96,17 @@ namespace kampong_goods.Pages.Staff
                 LModel.RememberMe, false);
                     if (identityResult.Succeeded)
                     {
-                        /*                    var userId = signInManager.UserManager.Users.FirstOrDefault()?.Id; 
-                        */
-                        return RedirectToPage("Dashboard");
+                    var claims = new List<Claim> {
+                    new Claim(ClaimTypes.Name, LModel.UserName),
+                     };
+                    var i = new ClaimsIdentity(claims, "AdminAuth");
+                    ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(i);
+                    await HttpContext.SignInAsync("AdminAuth", claimsPrincipal);
+                    
+
+                    /*                    var userId = signInManager.UserManager.Users.FirstOrDefault()?.Id; 
+                    */
+                    return RedirectToPage("Dashboard");
                     }
 
 /*                }

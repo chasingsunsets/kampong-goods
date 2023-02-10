@@ -1,7 +1,9 @@
 using kampong_goods.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace kampong_goods.Pages.Customers
 {
@@ -27,8 +29,18 @@ namespace kampong_goods.Pages.Customers
                 LModel.RememberMe, false);
                 if (identityResult.Succeeded)
                 {
-/*                    var userId = signInManager.UserManager.Users.FirstOrDefault()?.Id; 
-*/                    return RedirectToPage("Profile");
+                    //Create the security context
+                    var claims = new List<Claim> {
+                    new Claim(ClaimTypes.Name, LModel.UserName),
+                     };
+                    var i = new ClaimsIdentity(claims, "UserAuth");
+                    ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(i);
+                    await HttpContext.SignInAsync("UserAuth", claimsPrincipal);
+
+
+                    /*                    var userId = signInManager.UserManager.Users.FirstOrDefault()?.Id; 
+                    */
+                    return RedirectToPage("Profile");
                 }
 
                 TempData["FlashMessage.Type"] = "danger";
