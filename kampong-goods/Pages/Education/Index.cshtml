@@ -66,7 +66,7 @@
 
                         <tr>
                             <td>@item.Question</td>
-                                    <td>&nbsp;<a asp-page="/Education/FAQDetail" asp-route-id="@item.FAQId">View</a></td>
+                                    <td>&nbsp;<a asp-page="/Education/FAQDetail_Staff" asp-route-id="@item.FAQId">View</a></td>
                                     <td><a href="@item.URL">&nbsp;@item.URL</a></td>
                                     <td>&nbsp;@item.FAQCatId</td>
                             <td>&nbsp;@item.ClickTime</td>
@@ -81,7 +81,7 @@
                                         </a>
                                         <div id="collapseFAQs" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                                             <div class="bg-white py-2 collapse-inner rounded">
-                                                <a asp-page="/Education/FAQDetail" asp-route-id="@item.FAQId"><i class="fa-solid fa-circle-info"></i>Detail</a>
+                                                <a asp-page="/Education/FAQDetail_Staff" asp-route-id="@item.FAQId"><i class="fa-solid fa-circle-info"></i>Detail</a>
                                                 <a asp-page="/Education/Edit" asp-route-id="@item.FAQId" style="color:#3563E9" class="card-link mb-2"><i class="fas fa-pencil-alt"></i>Edit</a>
 
                                             </div>
