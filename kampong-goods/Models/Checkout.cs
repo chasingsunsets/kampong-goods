@@ -14,6 +14,7 @@ namespace kampong_goods.Models
         [Required, MaxLength(50)]
         public string LName { get; set; }
 
+        [DataType(DataType.EmailAddress)]
         [Required, RegularExpression(@"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$", ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
@@ -26,10 +27,12 @@ namespace kampong_goods.Models
         [Required, MaxLength(50)]
         public string CCName { get; set; }
 
-        [Required, MaxLength(19)]
+        [DataType(DataType.CreditCard)]
+        [Required, MaxLength(12), RegularExpression(@"^[0-9]{12}$", ErrorMessage = "Invalid credit card format")]
         public string CCNo { get; set; }
 
         [DataType(DataType.Date)]
+        [Required]
         [Column(TypeName = "date")]
         public DateTime ExpirationDate { get; set; }
 
@@ -42,6 +45,22 @@ namespace kampong_goods.Models
 
         public string OrderStatus { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
-	}
+        public DateTime? OrderTime { get; set; }
+
+        public DateTime? ShipTime { get; set; }
+
+        public DateTime? DeliveredTime { get; set; }
+
+        public decimal TotalAmount { get; set; }
+
+        public string VoucherId { get; set; } = string.Empty;
+
+        public Checkout()
+        {
+            Guid myuuid = Guid.NewGuid();
+            CheckoutId = myuuid.ToString();
+            OrderTime = DateTime.Now;
+            OrderStatus = "Ordered";
+        }
+    }
 }

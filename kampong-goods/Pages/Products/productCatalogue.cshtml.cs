@@ -43,7 +43,7 @@ namespace kampong_goods.Pages.Products
 
         public async Task<IActionResult> OnGetAsync()
         {
-            //see if got any user
+            //see if got any user logged in
             anyUser = await _userManager.GetUserAsync(HttpContext.User);
 
             if(anyUser == null)

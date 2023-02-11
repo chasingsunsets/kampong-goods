@@ -38,5 +38,15 @@ namespace kampong_goods.Models
         public string? ImageURL { get; set; }
 
         public string Status { get; set; } = string.Empty;
+
+        public DateTime productCreatedTime { get; set; }
+
+        public Product()
+        {
+            productCreatedTime = DateTime.Now;
+            Guid myuuid = Guid.NewGuid();
+            ProductId = myuuid.ToString();
+            Status = "Available";
+        }
     }
 }

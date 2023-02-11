@@ -71,6 +71,8 @@
 </style>
 
 <header class="mb-3">
+	<h3 class="mb-0" style="color: #3563E9">Orders List</h3>
+	<br />
 	<div class="form-inline">
 		<strong class="mr-md-auto">@noOfOrder Order Item(s) found </strong>
 	</div>
@@ -78,89 +80,89 @@
 
 <div class="row">
 	@{
-							<section id="tabs" class="project-tab">
-								<div class="container">
-									<nav>
-										<div class="nav nav-tabs nav-justified" id="nav-tab">
-											<a class="nav-item nav-link active" id="nav-available-tab" data-toggle="tab" href="#nav-available" role="tab" aria-controls="nav-available" aria-selected="true">Order(s) To Be Fulfilled <span class="badge badge-success">@Model.NotFulfilled.Count()</span></a>
-											<a class="nav-item nav-link" id="nav-reserved-tab" data-toggle="tab" href="#nav-reserved" role="tab" aria-controls="nav-reserved" aria-selected="false">Fulfilled Order(s) <span class="badge badge-success">@Model.Fulfilled.Count()</span></a>
-										</div>
-									</nav>
+		<section id="tabs" class="project-tab">
+			<div class="container">
+				<nav>
+					<div class="nav nav-tabs nav-justified" id="nav-tab">
+						<a class="nav-item nav-link active" id="nav-available-tab" data-toggle="tab" href="#nav-available" role="tab" aria-controls="nav-available" aria-selected="true">Order(s) To Be Fulfilled <span class="badge badge-success">@Model.NotFulfilled.Count()</span></a>
+						<a class="nav-item nav-link" id="nav-reserved-tab" data-toggle="tab" href="#nav-reserved" role="tab" aria-controls="nav-reserved" aria-selected="false">Fulfilled Order(s) <span class="badge badge-success">@Model.Fulfilled.Count()</span></a>
+					</div>
+				</nav>
 
-									<div class="tab-content" id="nav-tabContent">
+				<div class="tab-content" id="nav-tabContent">
 
-										<div class="tab-pane fade show active" id="nav-available" role="tabpanel" aria-labelledby="nav-available-tab">
-											@if (noOfNotFulfilled == 0)
+					<div class="tab-pane fade show active" id="nav-available" role="tabpanel" aria-labelledby="nav-available-tab">
+						@if (noOfNotFulfilled == 0)
 						{
-												<div style="padding-top: 30px;">
-													<h6 style="text-align:center">Currently there are no orders to be fulfilled!</h6>
-													<h6 style="text-align:center">Start selling now!</h6>
-												</div>
+							<div style="padding-top: 30px;">
+								<h6 style="text-align:center">Currently there are no orders to be fulfilled!</h6>
+								<h6 style="text-align:center">Start selling now!</h6>
+							</div>
 						}
 
-											@if (noOfNotFulfilled > 0)
+						@if (noOfNotFulfilled > 0)
 						{
-												<table class="table" cellspacing="0">
-													<thead>
-														<tr>
-															<th>No.</th>
-															<th>Item Details</th>
-														</tr>
-													</thead>
-													<tbody>
-														@foreach (var item in Model.NotFulfilled)
+							<table class="table" cellspacing="0">
+								<thead>
+									<tr>
+										<th>No.</th>
+										<th>Item Details</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var item in Model.NotFulfilled)
 									{
-															<tr>
-																<td>1</td>
-																<td>
-																	<article class="card mb-4">
-																		<header class="card-header">
-																			<a href="#" class="float-right"> <i class="fa fa-print"></i> Print</a>
-																			<strong class="d-inline-block mr-3">Order ID: @item.CheckoutId </strong>
-																			<p class="text-muted">Order Date: @item.CreatedDate</p>
-																		</header>
-																		<div class="card-body">
-																			<div class="row">
-																				<div class="col-md-8">
-																					<h6 class="text-muted">Delivery to</h6>
-																					<p>
-																						<span class="spanBold">@item.FName @item.LName</span> <br>
-																						<span class="spanBold">Phone:</span> +65 @item.Phone <br>
-																						<span class="spanBold">Email:</span> @item.Email <br>
-																						<span class="spanBold">Location:</span> @item.Address
-																					</p>
-																				</div>
-																				<div class="col-md-4">
-																					<h6 class="text-muted">Payment</h6>
-																					<span class="text-success">
+										<tr>
+											<td>1</td>
+											<td>
+												<article class="card mb-4">
+													<header class="card-header">
+														<a href="#" class="float-right"> <i class="fa fa-print"></i> Print</a>
+														<strong class="d-inline-block mr-3">Order ID: @item.CheckoutId </strong>
+														<p class="text-muted">Order Date: @item.OrderTime</p>
+													</header>
+													<div class="card-body">
+														<div class="row">
+															<div class="col-md-8">
+																<h6 class="text-muted">Delivery to</h6>
+																<p>
+																	<span class="spanBold">@item.FName @item.LName</span> <br>
+																	<span class="spanBold">Phone:</span> +65 @item.Phone <br>
+																	<span class="spanBold">Email:</span> @item.Email <br>
+																	<span class="spanBold">Location:</span> @item.Address
+																</p>
+															</div>
+															<div class="col-md-4">
+																<h6 class="text-muted">Payment</h6>
+																<span class="text-success">
 
-																						<span class="spanBold">Credit Card Name:</span> @item.CCName <br>
-																						<span class="spanBold">Credit Card Number:</span> <i class="fab fa-lg fa-cc-visa"></i> @item.CCNo
-																					</span>
-																					<p>
-																						<hr>
-																						<span class="b">Total:  $456 </span>
-																					</p>
-																				</div>
-																			</div> <!-- row.// -->
-																		</div> <!-- card-body .// -->
-																		@foreach (var products in Model.ProductList)
+																	<span class="spanBold">Credit Card Name:</span> @item.CCName <br>
+																	<span class="spanBold">Credit Card Number:</span> <i class="fab fa-lg fa-cc-visa"></i> @item.CCNo
+																</span>
+																<p>
+																	<hr>
+																	<span class="b">Total Cost (After Discount):  $@item.TotalAmount </span>
+																</p>
+															</div>
+														</div> <!-- row.// -->
+													</div> <!-- card-body .// -->
+													@foreach (var products in Model.ProductList)
 													{
-																			@if (products.ProductId == item.ProductId)
+														@if (products.ProductId == item.ProductId)
 														{
-																				<div class="table-responsive">
-																					<table class="table table-hover">
-																						<tbody>
-																							<tr>
-																								<td width="65">
-																									<img src="@products.ImageURL" class="img-xs border">
-																								</td>
-																								<td>
-																									<p class="title mb-0">@products.ProductName</p>
-																									<var class="price text-muted">$ @products.Price</var>
-																								</td>
-																								<td width="250">
-																	
+															<div class="table-responsive">
+																<table class="table table-hover">
+																	<tbody>
+																		<tr>
+																			<td width="65">
+																				<img src="@products.ImageURL" class="img-xs border">
+																			</td>
+																			<td>
+																				<p class="title mb-0">@products.ProductName</p>
+																				<var class="price text-muted">$ @products.Price</var>
+																			</td>
+																			<td width="250">
+
 
 																			<td width="30">
 																				<a class="btn btn-action btn-block" data-toggle="modal" data-target="#fulfillModal_@item.CheckoutId"> Mark As Fulfilled </a>
@@ -169,129 +171,126 @@
 																				<div class="modal fade" id="fulfillModal_@item.CheckoutId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 																					<div class="modal-dialog modal-dialog" role="document">
 																						<div class="modal-content">
-																							<form method="post" asp-action="OnPostSetStatus">
-																								<div class="modal-header">
-																									<h5 class="modal-title" id="exampleModalLongTitle">Order Fulfilled Confirmation</h5>
-																									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																										<span aria-hidden="true">&times;</span>
-																									</button>
-																								</div>
-																								<div class="modal-body">
-																									Are you sure you that Order ID = @item.CheckoutId has been fulfilled ?
-																								</div>
-																								<div class="modal-footer">
-																									<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-																									<button class="btn btn-primary" type="submit">Confirm</button>
-																								</div>
-																						</form>
+																							<div class="modal-header">
+																								<h5 class="modal-title" id="exampleModalLongTitle">Order Fulfilled Confirmation</h5>
+																								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																									<span aria-hidden="true">&times;</span>
+																								</button>
+																							</div>
+																							<div class="modal-body">
+																								Are you sure you that Order ID = @item.CheckoutId has been fulfilled ?
+																							</div>
+																							<div class="modal-footer">
+																								<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+																								<a class="btn btn-primary" asp-page-handler="Status" asp-route-id="@item.CheckoutId">Confirm</a>
+																							</div>
 																						</div>
 																					</div>
 																				</div>
 																			</td>
-																								</td>
-																							</tr>
-																					</table>
-																				</div> <!-- table-responsive .end// -->
-																	
+													</td>
+												</tr>
+										</table>
+									</div> <!-- table-responsive .end// -->
 														}
 													}
-																	</article> <!-- card order-item .// -->
-																</td>
-															</tr>
+							</article> <!-- card order-item .// -->
+							</td>
+							</tr>
 									}
-													</tbody>
-												</table>
+						</tbody>
+						</table>
 						}
-										</div>
+				</div>
 
-										<div class="tab-pane fade" id="nav-reserved" role="tabpanel" aria-labelledby="nav-reserved-tab">
+				<div class="tab-pane fade" id="nav-reserved" role="tabpanel" aria-labelledby="nav-reserved-tab">
 
-											@if (noOfFulfilled == 0)
+						@if (noOfFulfilled == 0)
 						{
-												<div style="padding-top: 30px;">
-													<h6 style="text-align:center">Currently there are no fulfilled orders!</h6>
-												</div>
+						<div style="padding-top: 30px;">
+							<h6 style="text-align:center">Currently there are no fulfilled orders!</h6>
+						</div>
 						}
 
-											@if (noOfFulfilled > 0)
+						@if (noOfFulfilled > 0)
 						{
-												<table class="table" cellspacing="0">
-													<thead>
-														<tr>
-															<th>No.</th>
-															<th>Item Details</th>
-														</tr>
-													</thead>
-													<tbody>
-														@foreach (var item in Model.Fulfilled)
+						<table class="table" cellspacing="0">
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>Item Details</th>
+								</tr>
+							</thead>
+							<tbody>
+									@foreach (var item in Model.Fulfilled)
 									{
-															<tr>
-																<td>1</td>
-																<td>
-																	<article class="card mb-4">
-																		<header class="card-header">
-																			<a href="#" class="float-right"> <i class="fa fa-print"></i> Print</a>
-																			<strong class="d-inline-block mr-3">Order ID: @item.CheckoutId </strong>
-																			<p class="text-muted">Order Date: @item.CreatedDate</p>
-																		</header>
-																		<div class="card-body">
-																			<div class="row">
-																				<div class="col-md-8">
-																					<h6 class="text-muted">Delivery to</h6>
-																					<p>
-																						<span class="spanBold">@item.FName @item.LName</span> <br>
-																						<span class="spanBold">Phone:</span> +65 @item.Phone <br>
-																						<span class="spanBold">Email:</span> @item.Email <br>
-																						<span class="spanBold">Location:</span> @item.Address
-																					</p>
-																				</div>
-																				<div class="col-md-4">
-																					<h6 class="text-muted">Payment</h6>
-																					<span class="text-success">
+									<tr>
+										<td>1</td>
+										<td>
+											<article class="card mb-4">
+												<header class="card-header">
+													<a href="#" class="float-right"> <i class="fa fa-print"></i> Print</a>
+													<strong class="d-inline-block mr-3">Order ID: @item.CheckoutId </strong>
+													<p class="text-muted">Order Date: @item.OrderTime</p>
+												</header>
+												<div class="card-body">
+													<div class="row">
+														<div class="col-md-8">
+															<h6 class="text-muted">Delivery to</h6>
+															<p>
+																<span class="spanBold">@item.FName @item.LName</span> <br>
+																<span class="spanBold">Phone:</span> +65 @item.Phone <br>
+																<span class="spanBold">Email:</span> @item.Email <br>
+																<span class="spanBold">Location:</span> @item.Address
+															</p>
+														</div>
+														<div class="col-md-4">
+															<h6 class="text-muted">Payment</h6>
+															<span class="text-success">
 
-																						<span class="spanBold">Credit Card Name:</span> @item.CCName <br>
-																						<span class="spanBold">Credit Card Number:</span> <i class="fab fa-lg fa-cc-visa"></i> @item.CCNo
-																					</span>
-																					<p>
-																						<hr>
-																						<span class="b">Total:  $456 </span>
-																					</p>
-																				</div>
-																			</div> <!-- row.// -->
-																		</div> <!-- card-body .// -->
-																		@foreach (var products in Model.ProductList)
+																<span class="spanBold">Credit Card Name:</span> @item.CCName <br>
+																<span class="spanBold">Credit Card Number:</span> <i class="fab fa-lg fa-cc-visa"></i> @item.CCNo
+															</span>
+															<p>
+																<hr>
+																<span class="b">Total Cost (After Discount):  $@item.TotalAmount </span>
+															</p>
+														</div>
+													</div> <!-- row.// -->
+												</div> <!-- card-body .// -->
+													@foreach (var products in Model.ProductList)
 													{
-																			@if (products.ProductId == item.ProductId)
+														@if (products.ProductId == item.ProductId)
 														{
-																				<div class="table-responsive">
-																					<table class="table table-hover">
-																						<tbody>
-																							<tr>
-																								<td width="65">
-																									<img src="@products.ImageURL" class="img-xs border">
-																								</td>
-																								<td>
-																									<p class="title mb-0">@products.ProductName</p>
-																									<var class="price text-muted">$ @products.Price</var>
-																								</td>
-																								<td width="250">
-																									<a class="btn btn-outline-primary" onclick="getPrice()">Mark As Fulfilled</a>
-																								</td>
-																							</tr>
-																					</table>
-																				</div> <!-- table-responsive .end// -->
+														<div class="table-responsive">
+															<table class="table table-hover">
+																<tbody>
+																	<tr>
+																		<td width="65">
+																			<img src="@products.ImageURL" class="img-xs border">
+																		</td>
+																		<td>
+																			<p class="title mb-0">@products.ProductName</p>
+																			<var class="price text-muted">$ @products.Price</var>
+																		</td>
+																		<td width="250">
+																			<a href="#" class="btn btn-outline-primary disabled">Item Fulfilled</a>
+																		</td>
+																	</tr>
+															</table>
+														</div> <!-- table-responsive .end// -->
 														}
 													}
-																	</article> <!-- card order-item .// -->
-																</td>
-															</tr>
+											</article> <!-- card order-item .// -->
+										</td>
+									</tr>
 									}
-													</tbody>
-												</table>
+							</tbody>
+						</table>
 						}
-										</div>
-									</div>
-								</div>
-							</section>
+				</div>
+			</div>
+	</div>
+								</section>
 	}
 </div> <!-- row .//  -->

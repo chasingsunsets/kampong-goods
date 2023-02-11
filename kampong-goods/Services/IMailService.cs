@@ -22,7 +22,7 @@ namespace kampong_goods.Services
 		{
 			var apikey = _configuration["SendGridAPIKey"];
 			var client = new SendGridClient(apikey);
-			var from = new EmailAddress("limmeiling108@gmail.com", "TESTINGSSS");
+			var from = new EmailAddress("limmeiling108@gmail.com", "Kampong Goods");
 			var to = new EmailAddress(toEmail);
 			var msg = MailHelper.CreateSingleEmail(from, to, subject, content, content);
 			var response = await client.SendEmailAsync(msg);

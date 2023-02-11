@@ -6,6 +6,8 @@
 }
 
 <div class="card-body">
+	<h3 class="mb-0" style="color: #3563E9">Edit Product</h3>
+
 	<form class="mt-3" method="post">
 		<div asp-validation-summary="All" class="text-danger"></div>
 
@@ -47,18 +49,18 @@
 		</div>
 
 		<div class="row mb-3">
-			<label class="col-sm-2 col-form-label">Description</label>
-			<div class="col-sm-10">
-				<input class="form-control" asp-for="MyProduct.Description" />
-				<span asp-validation-for="MyProduct.Description" class="text-danger"></span>
-			</div>
-		</div>
-
-		<div class="row mb-3">
 			<label class="col-sm-2 col-form-label">Condition</label>
 			<div class="col-sm-10">
 				@Html.DropDownListFor(m => m.MyProduct.ConditionId, new SelectList(productEditModel.ConditionList, "ConditionId", "ConditionName"), "-- Select --", new {@class = "form-select"})
 				<span asp-validation-for="MyProduct.ConditionId" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row mb-3">
+			<label class="col-sm-2 col-form-label">Description</label>
+			<div class="col-sm-10">
+				<textarea class="form-control" asp-for="MyProduct.Description"></textarea>
+				<span asp-validation-for="MyProduct.Description" class="text-danger"></span>
 			</div>
 		</div>
 

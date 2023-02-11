@@ -168,6 +168,8 @@
 </style>
 
 <header class="mb-3">
+	<h3 class="mb-0" style="color: #3563E9">Purchased List</h3>
+	<br />
 	<div class="form-inline">
 		<strong class="mr-md-auto">@noOfOrder Purchased Item(s) found </strong>
 	</div>
@@ -214,7 +216,7 @@
 													<header class="card-header">
 														<a href="#" class="float-right"> <i class="fa fa-print"></i> Print</a>
 														<strong class="d-inline-block mr-3">Order ID: @item.CheckoutId </strong>
-														<p class="text-muted">Order Date: @item.CreatedDate</p>
+														<p class="text-muted">Order Date: @item.OrderTime</p>
 													</header>
 													<div class="card-body">
 														<div class="row">
@@ -236,7 +238,7 @@
 																</span>
 																<p>
 																	<hr>
-																	<span class="b">Total:  $456 </span>
+																	<span class="b">Total Cost (After Discount):  $@item.TotalAmount </span>
 																</p>
 															</div>
 														</div> <!-- row.// -->
@@ -254,45 +256,45 @@
 																			{
 																				<div class="order-tracking completed">
 																					<span class="is-complete"></span>
-																					<p>Ordered<br><span>@item.CreatedDate</span></p>
+																					<p>Ordered<br><span>@item.OrderTime</span></p>
 																				</div>
 																				<div class="order-tracking">
 																					<span class="is-complete"></span>
-																					<p>Shipped<br><span>Tue, June 25</span></p>
+																					<p>Shipped<br><span>@item.ShipTime</span></p>
 																				</div>
 																				<div class="order-tracking">
 																					<span class="is-complete"></span>
-																					<p>Delivered<br><span>Fri, June 28</span></p>
+																					<p>Delivered<br><span>@item.DeliveredTime</span></p>
 																				</div>
 																			}
 																			@if (item.OrderStatus == "Shipped")
 																			{
 																				<div class="order-tracking completed">
 																					<span class="is-complete"></span>
-																					<p>Ordered<br><span>Mon, June 24</span></p>
+																					<p>Ordered<br><span>@item.OrderTime</span></p>
 																				</div>
 																				<div class="order-tracking completed">
 																					<span class="is-complete"></span>
-																					<p>Shipped<br><span>Tue, June 25</span></p>
+																					<p>Shipped<br><span>@item.ShipTime</span></p>
 																				</div>
 																				<div class="order-tracking">
 																					<span class="is-complete"></span>
-																					<p>Delivered<br><span>Fri, June 28</span></p>
+																					<p>Delivered<br><span>@item.DeliveredTime</span></p>
 																				</div>
 																			}
 																			@if (item.OrderStatus == "Delivered")
 																			{
 																				<div class="order-tracking completed">
 																					<span class="is-complete"></span>
-																					<p>Ordered<br><span>Mon, June 24</span></p>
+																					<p>Ordered<br><span>@item.OrderTime</span></p>
 																				</div>
 																				<div class="order-tracking completed">
 																					<span class="is-complete"></span>
-																					<p>Shipped<br><span>Tue, June 25</span></p>
+																					<p>Shipped<br><span>@item.ShipTime</span></p>
 																				</div>
 																				<div class="order-tracking completed">
 																					<span class="is-complete"></span>
-																					<p>Delivered<br><span>Fri, June 28</span></p>
+																					<p>Delivered<br><span>@item.DeliveredTime</span></p>
 																				</div>
 																			}
 
@@ -314,7 +316,32 @@
 																				<var class="price text-muted">$ @products.Price</var>
 																			</td>
 																			<td width="250">
-																				<a href="#" class="btn btn-outline-primary">Mark As Received</a>
+																				@if (item.OrderStatus == "Delivered")
+																				{
+																					<a class="btn btn-action btn-block" data-toggle="modal" data-target="#receiveModel_@item.CheckoutId"> Mark As Received </a>
+
+																					<!-- Modal: Fulfill -->
+																					<div class="modal fade" id="receiveModel_@item.CheckoutId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+																						<div class="modal-dialog modal-dialog" role="document">
+																							<div class="modal-content">
+																								<div class="modal-header">
+																									<h5 class="modal-title" id="exampleModalLongTitle">Order Received Confirmation</h5>
+																									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																										<span aria-hidden="true">&times;</span>
+																									</button>
+																								</div>
+																								<div class="modal-body">
+																									Are you sure you that Order ID = @item.CheckoutId has been received ?
+																								</div>
+																								<div class="modal-footer">
+																									<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+																									<a class="btn btn-primary" asp-page-handler="Receive" asp-route-id="@item.CheckoutId">Confirm</a>
+																								</div>
+																							</div>
+																						</div>
+																					</div>
+																				}
+
 																			</td>
 																		</tr>
 																</table>
@@ -358,7 +385,7 @@
 													<header class="card-header">
 														<a href="#" class="float-right"> <i class="fa fa-print"></i> Print</a>
 														<strong class="d-inline-block mr-3">Order ID: @item.CheckoutId </strong>
-														<p class="text-muted">Order Date: 16 December 2018</p>
+														<p class="text-muted">Order Date: @item.OrderTime</p>
 													</header>
 													<div class="card-body">
 														<div class="row">
@@ -380,7 +407,7 @@
 																</span>
 																<p>
 																	<hr>
-																	<span class="b">Total:  $456 </span>
+																	<span class="b">Total Cost (After Discount):  $@item.TotalAmount </span>
 																</p>
 															</div>
 														</div> <!-- row.// -->
@@ -396,15 +423,15 @@
 																		<div class="row justify-content-between">
 																			<div class="order-tracking completed">
 																				<span class="is-complete"></span>
-																				<p>Ordered<br><span>Mon, June 24</span></p>
+																				<p>Ordered<br><span>@item.OrderTime</span></p>
 																			</div>
 																			<div class="order-tracking completed">
 																				<span class="is-complete"></span>
-																				<p>Shipped<br><span>Tue, June 25</span></p>
+																				<p>Shipped<br><span>@item.ShipTime</span></p>
 																			</div>
 																			<div class="order-tracking completed">
 																				<span class="is-complete"></span>
-																				<p>Delivered<br><span>Fri, June 28</span></p>
+																				<p>Delivered<br><span>@item.DeliveredTime</span></p>
 																			</div>
 
 

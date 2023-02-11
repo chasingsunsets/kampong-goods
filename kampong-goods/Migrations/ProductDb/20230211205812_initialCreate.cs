@@ -32,13 +32,17 @@ namespace kampong_goods.Migrations.ProductDb
                     Phone = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CCName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CCNo = table.Column<string>(type: "nvarchar(19)", maxLength: 19, nullable: false),
+                    CCNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExpirationDate = table.Column<DateTime>(type: "date", nullable: false),
                     CVV = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
                     ProductId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrderStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    OrderTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ShipTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeliveredTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    VoucherId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,7 +73,8 @@ namespace kampong_goods.Migrations.ProductDb
                     ConditionId = table.Column<string>(type: "nvarchar(8)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(7,2)", nullable: false),
                     ImageURL = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    productCreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
