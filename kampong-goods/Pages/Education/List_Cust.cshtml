@@ -3,6 +3,7 @@
 @{
 }
 
+
 <div id="wrapper">
 
 
@@ -27,7 +28,7 @@
                         if (Model.FAQlist_top5.Count > 0){
                                                         @foreach (var item in Model.FAQlist_top5)
                             {
-                                if (item != null)
+                                if (item != null && item.Publish)
                                 {
                                                                 <div class="faq__item">
                                                                     <h2 class="m-0 faq__question">@item.Question <i class="fa fa-chevron-circle-down" style="float:right" aria-hidden="true"></i></h2>
@@ -36,11 +37,11 @@
                                                                 </div>
                                                                 <div class="faq_answer">
                                                                 </div>
-                                }
-                                else{
-                                                                <p class="m-0 font-weight-bold" style="color:gray;;padding-left:20px ;">No FAQ for now</p>
-                                }
-                            }
+                                                                }
+                                                                else{
+                                                                   
+                                                                }
+                                                            }
 
                         }
                         else
@@ -58,9 +59,10 @@
         <!-- By Category -->
         @{
             if(Model.FAQCatlist.Count > 0){
-            foreach (var cat in Model.FAQCatlist)
+                foreach (var cat in Model.FAQCatlist)
                 {
-                    if(cat != null){
+                    if(cat != null)
+                    {
                         <div class="card shadow mb-4" style="width:60%; margin-left:20%;">
                                                     <div class="card-header py-3">
                                                     <h6 class="m-0 font-weight-bold text-primary">@cat.FAQCategoryName</h6>
@@ -68,10 +70,11 @@
                                                 <div class="card-body">
                                                     <div class="">
                                                 @foreach (var item in Model.FAQlist)
-                        {
-                            if (item != null){
-                                if (item.FAQCatId == cat.FAQCatId)
-                                {
+                                                    {
+                                                        if (item != null && item.Publish)
+                                                        {
+                                                            if (item.FAQCatId == cat.FAQCatId)
+                                                            {
                                                                 <div class="faq__item">
                                                                     <h2 class="faq__question">@item.Question <i class="fa fa-chevron-circle-down" style="float:right" aria-hidden="true"></i></h2>
                                                                     <p class="faq__answer">@item.Answer <a class="btn" style="float:right;" asp-page="/Education/FAQDetail" asp-route-id="@item.FAQId">Detail-></a></p>
@@ -111,7 +114,7 @@
                         {
                                 @foreach (var item in Model.FAQlist)
                             {
-                                if (item != null)
+                                if (item != null && item.Publish)
                                 {
 
 
@@ -125,13 +128,12 @@
                                 }
                                 else
                                 {
-                                        <p class="m-0 font-weight-bold" style="color:gray;;padding-left:20px ;">No FAQ for now</p>
                                 }
                             }
                         }
                         else
                         {
-                                <p class="m-0 font-weight-bold" style="color:gray;;padding-left:20px ;">No FAQ for now</p>
+                               <p class="m-0 font-weight-bold" style="color:gray;;padding-left:20px ;">No FAQ for now</p>
                         }
                     }
                 </div>
