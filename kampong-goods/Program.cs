@@ -15,9 +15,13 @@ builder.Services.AddTransient<IMailService, SendGridMailService>();
 
 //AppUser
 builder.Services.AddDbContext<AppUsersDbContext>();
-builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppUsersDbContext>();
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppUsersDbContext>().AddDefaultTokenProviders(); 
 builder.Services.AddScoped<CustomerService>();
 builder.Services.AddScoped<StaffService>();
+/*builder.Services.Configure<IdentityOptions>(opt =>
+{
+    opt.Password.RequiredLength = 5;
+});*/
 
 /*builder.Services.AddAuthorization(options =>
 {
