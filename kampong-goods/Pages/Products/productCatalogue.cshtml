@@ -1,9 +1,6 @@
 ﻿@page
-@using Microsoft.AspNetCore.Identity;
 @using kampong_goods.Models;
 
-@inject SignInManager<AppUser> SignInManager
-@inject UserManager<AppUser> UserManager
 @model kampong_goods.Pages.Products.CatalogueModel
 @{
 }
@@ -14,7 +11,7 @@
 	}
 
 	.float-container {
-		border: 3px solid #fff;
+		border: 5px solid #fff;
 	}
 
 	.float-child {
@@ -39,27 +36,25 @@
 </style>
 
 <script>
-	function searchBar() {
-		var searchQuest = document.getElementById('searchInput').value;
-		console.log(searchQuest);
-
-		var searchFilter = searchQuest.toUpperCase();
-
-		var myDiv = document.getElementById("myTable");
-
-		var aTag = myDiv.getElementsByTagName("h6");
-
-		console.log(aTag);
+	function myFunction() {
+		// Declare variables
+		var input, filter, div, figure, h7, i;
+		input = document.getElementById("mySearch");
+		filter = input.value.toUpperCase();
+		div = document.getElementById("myProducts");
+		console.log(div);
+		figure = div.getElementsByTagName("figure");
+		console.log(figure);
 
 		// Loop through all list items, and hide those who don't match the search query
-		for (i = 0; i < aTag.length; i++) {
-			a = aTag[i].getElementsByTagName("h6")[0];
-			console.log(a);
-			txtValue = aTag[i].getElementById("productNameTag").value;
-			if (txtValue.toUpperCase().indexOf(filter) > -1) {
-				aTag[i].style.display = "";
+		for (i = 0; i < figure.length; i++) {
+			h7 = figure[i].getElementsByTagName("h7")[0];
+			console.log(h7);
+			if (h7.innerHTML.toUpperCase().indexOf(filter) > -1) {
+				figure[i].style.display = "";
 			} else {
-				aTag[i].style.display = "none";
+				figure[i].style.display = "none";
+				document.getElementById("count").innerHTML = "0 Item(s) found";
 			}
 		}
 	}
@@ -67,199 +62,228 @@
 
 <div class="row">
 	@{
-		<!-- ============================  FILTER TOP  ================================= -->
-		<div class="card mb-3">
-			<div class="card-body">
-				<div class="row">
-					<div style="padding: 50px;">
-						<h2 style="color: #3563E9">We have <span style="color: #FFC90B;">possibly everything</span> that you desire!</h2>
-						<div>
-							<input class="form-control empty" id="searchInput" type="text" placeholder="&#xF002; Search for anything..." onkeyup="javascript:searchBar()">
+			<!-- ============================  FILTER TOP  ================================= -->
+			<div class="card mb-3">
+				<div class="card-body">
+					<div class="row">
+						<div style="padding: 50px;">
+							<h2 style="color: #3563E9">We have <span style="color: #FFC90B;">possibly everything</span> that you desire!</h2>
+							<div>
+								<input class="form-control empty" id="mySearch" type="text" placeholder="&#xF002; Search for anything..." onkeyup="javascript:myFunction()">
+							</div>
+							<p class="text-muted" style="padding-top: 5px;">People Often Searched For: Dress, Winter Jacket, Sling Bag</p>
 						</div>
-						<p class="text-muted" style="padding-top: 5px;">People Often Searched For: Dress, Winter Jacket, Sling Bag</p>
-					</div>
-				</div> <!-- row.// -->
-			</div> <!-- card-body .// -->
-		</div> <!-- card.// -->
-		<!-- ============================ FILTER TOP END.// ================================= -->
-		@if (Model.anyUser == null)
-		{
-			<header class="mb-3">
-				<div class="form-inline">
-					<strong class="mr-md-auto">@Model.ProductList.Count() Item(s) found </strong>
-					<select class="mr-2 form-control">
-						<option>Latest items</option>
-						<option>Trending</option>
-						<option>Most Popular</option>
-						<option>Cheapest</option>
-					</select>
-					<div class="btn-group">
-						<a href="/" class="btn btn-light active" data-toggle="tooltip" title="List view">
-							<i class="fa fa-bars"></i>
-						</a>
-						<a href="/" class="btn btn-light" data-toggle="tooltip" title="Grid view">
-							<i class="fa fa-th"></i>
-						</a>
-					</div>
-				</div>
-			</header>
-
-			@foreach (var item in Model.ProductList)
+					</div> <!-- row.// -->
+				</div> <!-- card-body .// -->
+			</div> <!-- card.// -->
+			<!-- ============================ FILTER TOP END.// ================================= -->
+			@if (Model.anyUser == null)
 			{
-				<div class="col-md-3" id="myTable">
-					<figure class="card card-product-grid" style="padding: 20px; border-radius: 30px;">
-
-						@foreach (var cust in Model.CustomerList) //use userid to get user name
-						{
-							if (item.UserId == cust.Id)
-							{
-
-								<div class="float-container">
-
-									<div class="float-child">
-										<img src="/uploads/seventeen-wonwoo-1.jpg" style="width:50px; height:50px; align-items:center;" alt="..." class="rounded-circle">
-									</div>
-
-									<div class="float-child">
-										<h6>@cust.UserName</h6>
-										<p class="text-muted">11 Hours Ago</p>
-									</div>
-
-								</div>
-
-							}
-						}
-
-						<div class="img-wrap" style="width:288px; height:150px; align-items: center;">
-							<span class="badge badge-danger">@item.Status</span>
-							<a asp-page="/Products/productDetails" asp-route-id="@item.ProductId">
-								<img src="@item.ImageURL" class="rounded" style="width:288px; height:150px; border: solid 1px;">
+				<header class="mb-3">
+					<div class="form-inline">
+						<strong class="mr-md-auto" id="count">@Model.ProductList.Count() Item(s) found </strong>
+						<select class="mr-2 form-control">
+							<option onclick="filterSelection('bleh')">Latest items</option>
+							<option onclick="filterSelection('all')">Trending</option>
+							<option onclick="filterSelection('all')">Most Popular</option>
+						<option onclick="filterSelection('all')">Cheapest</option>
+						</select>
+						<div class="btn-group">
+							<a href="/" class="btn btn-light active" data-toggle="tooltip" title="List view">
+								<i class="fa fa-bars"></i>
 							</a>
-						</div> <!-- img-wrap.// -->
-						<figcaption style="padding-top: 10px;">
-							<h6 id="productNameTag" href="#" class="title mb-2">@item.ProductName</h6>
-							<div class="price-wrap">
-								<span class="price">$@item.Price</span>
-							</div> <!-- price-wrap.// -->
+							<a href="/" class="btn btn-light" data-toggle="tooltip" title="Grid view">
+								<i class="fa fa-th"></i>
+							</a>
+						</div>
+					</div>
+				</header>
 
-							<hr>
+				@if (Model.ProductList.Count() == 0)
+				{
+					<br />
+					<div class="container justify-content-center">
+						<h6 style="text-align: center;">Sorry! There's no product available at the moment.</h6>
+					</div>
+				}
 
-							<p class="mb-3">
-								@foreach (var cat in Model.CategoryList)
+				@if (Model.ProductList.Count() > 0)
+				{
+				<div id="myProducts" class="row">
+					@foreach (var item in Model.ProductList)
+					{
+						<div class="col-md-3" id="myTable">
+							<figure class="card card-product-grid" style="padding: 20px; border-radius: 30px;">
+
+								@foreach (var cust in Model.CustomerList) //use userid to get user name
 								{
-									@if (item.CategoryId == cat.CategoryId)
+									if (item.UserId == cust.Id)
 									{
-										<span class="tag">Category: @cat.CategoryName </span>
+
+										<div class="float-container">
+
+											<div class="float-child">
+												<img src="/uploads/seventeen-wonwoo-1.jpg" style="width:50px; height:50px; align-items:center;" alt="..." class="rounded-circle">
+											</div>
+
+											<div class="float-child">
+												<h6>@cust.UserName</h6>
+												<p class="text-muted">@DateTime.Now.Subtract(item.productCreatedTime).Minutes mins ago</p>
+											</div>
+
+										</div>
+
 									}
 								}
 
-								@foreach (var con in Model.ConditionList)
-								{
-									@if (item.ConditionId == con.ConditionId)
-									{
-										<span class="tag">Condition: @con.ConditionName </span>
-									}
-								}
-							</p>
+								<div class="img-wrap" style="width:288px; height:150px; align-items: center;">
+									<span class="badge badge-danger">@item.Status</span>
+									<a asp-page="/Products/productDetails" asp-route-id="@item.ProductId">
+										<img src="@item.ImageURL" class="rounded" style="width:288px; height:150px; border: solid 1px;">
+									</a>
+								</div> <!-- img-wrap.// -->
+								<figcaption style="padding-top: 10px;">
+									<h7 id="productNameTag" href="#" class="title mb-2">@item.ProductName</h7>
+									<div class="price-wrap">
+										<span class="price">$@item.Price</span>
+									</div> <!-- price-wrap.// -->
 
-							<hr>
+									<hr>
 
-							<a asp-page="/Chat/Index" asp-route-id="@item.UserId" class="btn btn-chat btn-block">  Chat </a>
-							<a asp-page="/Products/productCheckout" asp-route-id="@item.ProductId" class="btn btn-buy btn-block">  Buy Now </a>
-						</figcaption>
-					</figure>
-				</div> <!-- col.// -->
+									<p class="mb-3">
+										@foreach (var cat in Model.CategoryList)
+										{
+											@if (item.CategoryId == cat.CategoryId)
+											{
+												<span class="tag">Category: @cat.CategoryName </span>
+											}
+										}
+
+										@foreach (var con in Model.ConditionList)
+										{
+											@if (item.ConditionId == con.ConditionId)
+											{
+												<span class="tag">Condition: @con.ConditionName </span>
+											}
+										}
+									</p>
+
+									<hr>
+
+									<a asp-page="/Chat/Index" asp-route-id="@item.UserId" class="btn btn-chat btn-block">  Chat </a>
+									<a asp-page="/Products/productCheckout" asp-route-id="@item.ProductId" class="btn btn-buy btn-block">  Buy Now </a>
+								</figcaption>
+							</figure>
+						</div> <!-- col.// -->
+					}
+				</div>
 			}
+
 		}
 
-		@if (Model.anyUser != null)
+			@if (Model.anyUser != null)
 		{
-			<header class="mb-3">
-				<div class="form-inline">
-					<strong class="mr-md-auto">@Model.showProductList.Count() Item(s) found </strong>
-					<select class="mr-2 form-control">
-						<option>Latest items</option>
-						<option>Trending</option>
-						<option>Most Popular</option>
-						<option>Cheapest</option>
-					</select>
-					<div class="btn-group">
-						<a href="/" class="btn btn-light active" data-toggle="tooltip" title="List view">
-							<i class="fa fa-bars"></i>
-						</a>
-						<a href="/" class="btn btn-light" data-toggle="tooltip" title="Grid view">
-							<i class="fa fa-th"></i>
-						</a>
-					</div>
-				</div>
-			</header>
-
-			@foreach (var item in Model.showProductList)
-			{
-				<div class="col-md-3" id="myTable">
-					<figure class="card card-product-grid" style="padding: 20px; border-radius: 30px;">
-
-						@foreach (var cust in Model.CustomerList) //use userid to get user name
-						{
-							if (item.UserId == cust.Id)
-							{
-
-								<div class="float-container">
-
-									<div class="float-child">
-										<img src="/uploads/seventeen-wonwoo-1.jpg" style="width:50px; height:50px; align-items:center;" alt="..." class="rounded-circle">
-									</div>
-
-									<div class="float-child">
-										<h6>@cust.UserName</h6>
-										<p class="text-muted">11 Hours Ago</p>
-									</div>
-
-								</div>
-
-							}
-						}
-
-						<div class="img-wrap" style="width:288px; height:150px; align-items: center;">
-							<span class="badge badge-danger">@item.Status</span>
-							<a asp-page="/Products/productDetails" asp-route-id="@item.ProductId">
-							<img src="@item.ImageURL" class="rounded" style="width:288px; height:150px; border: solid 1px;">
+				<header class="mb-3">
+					<div class="form-inline">
+					<strong class="mr-md-auto" id="count">@Model.showProductList.Count() Item(s) found </strong>
+						<select class="mr-2 form-control">
+							<option>Latest items</option>
+							<option>Trending</option>
+							<option>Most Popular</option>
+							<option>Cheapest</option>
+						</select>
+						<div class="btn-group">
+							<a href="/" class="btn btn-light active" data-toggle="tooltip" title="List view">
+								<i class="fa fa-bars"></i>
 							</a>
-						</div> <!-- img-wrap.// -->
-						<figcaption style="padding-top: 10px;">
-							<h6 id="productNameTag" href="#" class="title mb-2">@item.ProductName</h6>
-							<div class="price-wrap">
-								<span class="price">$@item.Price</span>
-							</div> <!-- price-wrap.// -->
+							<a href="/" class="btn btn-light" data-toggle="tooltip" title="Grid view">
+								<i class="fa fa-th"></i>
+							</a>
+						</div>
+					</div>
+				</header>
 
-							<hr>
-
-							<p class="mb-3">
-								@foreach (var cat in Model.CategoryList)
-								{
-									@if (item.CategoryId == cat.CategoryId)
-									{
-										<span class="tag">Category: @cat.CategoryName </span>
-									}
-								}
-
-								@foreach (var con in Model.ConditionList)
-								{
-									@if (item.ConditionId == con.ConditionId)
-									{
-										<span class="tag">Condition: @con.ConditionName </span>
-									}
-								}
-							</p>
-
-							<hr>
-
-							<a asp-page="/Chat/Index" asp-route-id="@item.UserId" class="btn btn-chat btn-block">  Chat </a>
-							<a asp-page="/Products/productCheckout" asp-route-id="@item.ProductId" class="btn btn-buy btn-block">  Buy Now </a>
-						</figcaption>
-					</figure>
-				</div> <!-- col.// -->
+				@if (Model.showProductList.Count() == 0)
+			{
+					<br />
+					<div class="container justify-content-center">
+						<h6 style="text-align: center;">Sorry! There's no product available at the moment.</h6>
+					</div>
 			}
+
+				@if (Model.showProductList.Count() > 0)
+			{
+					<div id="myProducts" class="row">
+						@foreach (var item in Model.showProductList)
+					{
+							<div class="col-md-3">
+								<figure class="card card-product-grid" style="padding: 20px; border-radius: 30px;">
+									@foreach (var cust in Model.CustomerList) //use userid to get user name
+								{
+									if (item.UserId == cust.Id)
+									{
+
+											<div class="float-container">
+
+												<div class="float-child">
+													<img src="/uploads/seventeen-wonwoo-1.jpg" style="width:50px; height:50px; align-items:center;" alt="..." class="rounded-circle">
+												</div>
+
+												<div class="float-child">
+													<h6>@cust.UserName</h6>
+													<p class="text-muted">@DateTime.Now.Subtract(item.productCreatedTime).Minutes mins ago</p>
+												</div>
+
+											</div>
+
+									}
+								}
+
+									<div class="img-wrap" style="width:288px; height:150px; align-items: center;">
+										<span class="badge badge-danger">@item.Status</span>
+										<a asp-page="/Products/productDetails" asp-route-id="@item.ProductId">
+											<img src="@item.ImageURL" class="rounded" style="width:288px; height:150px; border: solid 1px;">
+										</a>
+									</div> <!-- img-wrap.// -->
+									<figcaption style="padding-top: 10px;">
+										<h7 id="productNameTag" href="#" class="title mb-2">@item.ProductName</h7>
+										<div class="price-wrap">
+											<span class="price">$@item.Price</span>
+										</div> <!-- price-wrap.// -->
+
+										<hr>
+
+										<p class="mb-3">
+											@foreach (var cat in Model.CategoryList)
+										{
+												@if (item.CategoryId == cat.CategoryId)
+											{
+													<span class="tag">Category: @cat.CategoryName </span>
+											}
+										}
+
+											@foreach (var con in Model.ConditionList)
+										{
+												@if (item.ConditionId == con.ConditionId)
+											{
+													<span class="tag">Condition: @con.ConditionName </span>
+											}
+										}
+										</p>
+
+										<hr>
+
+										<a asp-page="/Chat/Index" asp-route-id="@item.UserId" class="btn btn-chat btn-block">  Chat </a>
+										<a asp-page="/Products/productCheckout" asp-route-id="@item.ProductId" class="btn btn-buy btn-block">  Buy Now </a>
+									</figcaption>
+								</figure>
+							</div> <!-- col.// -->
+					}
+					</div>
+
+			}
+
+
 		}
 	}
 </div>

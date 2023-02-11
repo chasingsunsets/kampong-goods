@@ -55,15 +55,14 @@ namespace kampong_goods.Migrations.ProductDb
 
                     b.Property<string>("CCNo")
                         .IsRequired()
-                        .HasMaxLength(19)
-                        .HasColumnType("nvarchar(19)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CVV")
                         .IsRequired()
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
 
-                    b.Property<DateTime?>("CreatedDate")
+                    b.Property<DateTime?>("DeliveredTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -87,6 +86,9 @@ namespace kampong_goods.Migrations.ProductDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("OrderTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasMaxLength(8)
@@ -96,7 +98,17 @@ namespace kampong_goods.Migrations.ProductDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("ShipTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VoucherId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -158,6 +170,9 @@ namespace kampong_goods.Migrations.ProductDb
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("productCreatedTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("ProductId");
 

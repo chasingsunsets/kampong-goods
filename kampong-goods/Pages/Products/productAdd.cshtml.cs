@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using kampong_goods.Models;
 using kampong_goods.Services;
 using System.Security.Claims;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 
 namespace kampong_goods.Pages.Products
@@ -15,19 +14,21 @@ namespace kampong_goods.Pages.Products
         private readonly CategoryService _categoryService;
         private readonly ConditionService _conditionService;
         private readonly CustomerService _customerService;
+
+        //image
         private IWebHostEnvironment _environment;
 
         public AddproductModel(ProductService productService,
             CategoryService categoryService,
             ConditionService conditionService,
-            IWebHostEnvironment environment,
-            CustomerService customerService)
+            CustomerService customerService,
+            IWebHostEnvironment environment)
         {
             _productService = productService;
             _categoryService = categoryService;
             _conditionService = conditionService;
-            _environment = environment;
             _customerService = customerService;
+            _environment = environment;
         }
 
         [BindProperty]
@@ -39,6 +40,7 @@ namespace kampong_goods.Pages.Products
         public static List<Category> CategoryList { get; set; } = new();
 
         public static List<Condition> ConditionList { get; set; } = new();
+
         public static List<AppUser> UserList { get; set; } = new();
 
         public void OnGet()
@@ -52,12 +54,7 @@ namespace kampong_goods.Pages.Products
         {
             if(ModelState.IsValid)
             {
-                Guid myuuid = Guid.NewGuid();
-                MyProduct.ProductId = myuuid.ToString();
-                MyProduct.Status = "Available";
-
                 var userid = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
-                Debug.WriteLine(userid);
                 MyProduct.UserId = userid;
 
                 //check id
@@ -88,8 +85,8 @@ namespace kampong_goods.Pages.Products
                 }
 
                 _productService.AddProduct(MyProduct);
-                TempData["FlashMessage.Type"] = "Success";
-                TempData["FlashMessage.Text"] = string.Format("Product {0} is added", MyProduct.ProductName);
+                TempData["FlashMessage.Type"] = "success";
+                TempData["FlashMessage.Text"] = string.Format("Product = {0} is created!", MyProduct.ProductName);
                 return Redirect("/Products/productListing");
             }
             return Page();

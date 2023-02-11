@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace kampong_goods.Pages.Products
 {
@@ -54,7 +55,12 @@ namespace kampong_goods.Pages.Products
                 {
                     ProductList = _productService.GetAll();
 
-                    if(checkouts.OrderStatus == "Ordered" || checkouts.OrderStatus == "Shipped" || checkouts.OrderStatus == "Delivered")
+                    if (DateTime.Now > checkouts.DeliveredTime && checkouts.OrderStatus != "Received")
+                    {
+                        checkouts.OrderStatus = "Delivered";
+                    }
+
+                    if (checkouts.OrderStatus == "Ordered" || checkouts.OrderStatus == "Shipped" || checkouts.OrderStatus == "Delivered")
                     {
                         //add inside list
                         NotReceivedList.Add(checkouts);
@@ -68,6 +74,32 @@ namespace kampong_goods.Pages.Products
             }
 
             return Page();
+        }
+
+        public async Task<IActionResult> OnGetReceive(string id)
+        {
+            Debug.WriteLine("is it working?");
+            if (id == null)
+            {
+                return Page();
+            }
+
+            var checkout = _checkoutService.GetCheckoutById(id);
+            System.Diagnostics.Debug.WriteLine("changing status" + checkout);
+
+            if (checkout != null)
+            {
+                checkout.OrderStatus = "Received";
+                Debug.WriteLine(checkout.OrderStatus);
+
+                _checkoutService.UpdateCheckout(checkout);
+                Debug.WriteLine(checkout.OrderStatus);
+                TempData["FlashMessage.Type"] = "success";
+                TempData["FlashMessage.Text"] = string.Format("Order has been marked as delivered!");
+                return RedirectToPage("productPurchase");
+            }
+
+            return RedirectToPage();
         }
     }
 }

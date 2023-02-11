@@ -72,6 +72,8 @@
 </style>
 
 <header class="mb-3">
+    <h3 class="mb-0" style="color: #3563E9">Selling List</h3>
+
 	<div class="form-inline">
 		<strong class="mr-md-auto">@totalNoOfProducts Selling Item(s) found </strong>
         <a class="btn btn-add mt-3" style="float: right;" href="/Products/productAdd"><i class="fa-solid fa-plus"></i> Add Product</a>
@@ -394,36 +396,6 @@
                                                                                 <tr>
                                                                                     <td>
                                                                                     </td>
-
-                                                                                    <td width="30">
-                                                                                        <a asp-page="/Products/productEdit" asp-route-id="@item.ProductId" class="btn btn-action btn-block"> <i class="fa fa-pen"></i> Edit </a>
-                                                                                    </td>
-
-                                                                                    <td width="30">
-                                                                                        <a asp-page="/Products/productEdit" class="btn btn-action btn-block" data-toggle="modal" data-target="#deleteModal_@item.ProductId"> <i class="fa fa-trash"></i> Delete </a>
-
-                                                                                        <!-- Modal: Delete -->
-                                                                                        <div class="modal fade" id="deleteModal_@item.ProductId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                                                            <div class="modal-dialog modal-dialog" role="document">
-                                                                                                <div class="modal-content">
-                                                                                                    <div class="modal-header">
-                                                                                                        <h5 class="modal-title" id="exampleModalLongTitle">Delete Confirmation</h5>
-                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                                            <span aria-hidden="true">&times;</span>
-                                                                                                        </button>
-                                                                                                    </div>
-                                                                                                    <div class="modal-body">
-                                                                                                        Are you sure you want to delete Product: @item.ProductName ?
-                                                                                                    </div>
-                                                                                                    <div class="modal-footer">
-                                                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                                                                        <a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@item.ProductId">Delete</a>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </td>
-
                                                                                     <td width="30">
                                                                                         <a class="btn btn-action btn-block" data-toggle="modal" data-target="#exampleModalCenter_@item.ProductId"> <i class="fa fa-see"></i> More Details </a>
 

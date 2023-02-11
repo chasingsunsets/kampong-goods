@@ -89,7 +89,7 @@ namespace kampong_goods.Pages.Products
 
                 _productService.UpdateProduct(MyProduct);
                 TempData["FlashMessage.Type"] = "success";
-                TempData["FlashMessage.Text"] = string.Format("Product {0} is updated", MyProduct.ProductName);
+                TempData["FlashMessage.Text"] = string.Format("Product = {0} is updated!", MyProduct.ProductName);
                 return Redirect("/Products/productListing");
             }
             return Page();

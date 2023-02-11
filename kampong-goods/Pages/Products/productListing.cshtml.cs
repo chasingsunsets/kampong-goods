@@ -5,9 +5,11 @@ using kampong_goods.Services;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace kampong_goods.Pages.Products
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ProductService _productService;
@@ -75,9 +77,8 @@ namespace kampong_goods.Pages.Products
             if(product != null)
             {
                 _productService.DeleteProduct(product);
-                System.Diagnostics.Debug.WriteLine("await" + product);
                 TempData["FlashMessage.Type"] = "success";
-                TempData["FlashMessage.Text"] = string.Format("Product deleted.");
+                TempData["FlashMessage.Text"] = string.Format("Product = {0} is deleted!", product.ProductName);
                 return RedirectToPage("productListing");
             }
 

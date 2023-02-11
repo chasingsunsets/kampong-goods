@@ -8,27 +8,26 @@
 @{
 	Layout = "~/Pages/Shared/_ProfileNav.cshtml";
 	ViewData["Title"] = "Profile";
-
-	AppUser user = await UserManager.GetUserAsync(HttpContext.User); //current signed in
-	var custlist = await UserManager.GetUsersInRoleAsync("Customer"); //gets users list
-	var username = User.Identity.Name;
 }
 
 <div class="card-body">
+	<h3 class="mb-0" style="color: #3563E9">Add Product</h3>
 
 	<form class="mt-3" method="post" enctype="multipart/form-data">
 		<div asp-validation-summary="All" class="text-danger"></div>
-
 		<div class="row">
+			@*image*@
 			<div class="col-md-4">
 				<div class="mb-3">
 					<input type="file" accept="image/*" asp-for="Upload" class="form-control" onchange="showImgPreview(this)" />
 					<span asp-validation-for="Upload" class="text-danger"></span>
 				</div>
-				<img id="imgPreview" class="rounded-circle" style="height:300px;width:300px;object-fit:cover" src="/uploads/image.png" />
+				<img id="imgPreview" class="rounded-circle" style="height:300px;width:300px;object-fit:cover; border: solid 2px;" src="/uploads/image.png" />
 			</div>
 
 			<div class="col-md-8">
+
+				@*product name*@
 				<div class="row mb-3">
 					<label class="col-sm-2 col-form-label" asp-for="MyProduct.ProductName"></label>
 					<div class="col-sm-10">
@@ -37,6 +36,7 @@
 					</div>
 				</div>
 
+				@*product category*@
 				<div class="row mb-3">
 					<label class="col-sm-2 col-form-label" asp-for="MyProduct.CategoryId"></label>
 					<div class="col-sm-10">
@@ -45,14 +45,7 @@
 					</div>
 				</div>
 
-				<div class="row mb-3">
-					<label class="col-sm-2 col-form-label" asp-for="MyProduct.Description"></label>
-					<div class="col-sm-10">
-						<input class="form-control" asp-for="MyProduct.Description" />
-						<span asp-validation-for="MyProduct.Description" class="text-danger"></span>
-					</div>
-				</div>
-
+				@*product condition*@
 				<div class="row mb-3">
 					<label class="col-sm-2 col-form-label" asp-for="MyProduct.ConditionId"></label>
 					<div class="col-sm-10">
@@ -61,10 +54,20 @@
 					</div>
 				</div>
 
+				@*product description*@
+				<div class="row mb-3">
+					<label class="col-sm-2 col-form-label" asp-for="MyProduct.Description"></label>
+					<div class="col-sm-10">
+						<textarea class="form-control" asp-for="MyProduct.Description"></textarea>
+						<span asp-validation-for="MyProduct.Description" class="text-danger"></span>
+					</div>
+				</div>
+
+				@*product price*@
 				<div class="row mb-3">
 					<label class="col-sm-2 col-form-label" asp-for="MyProduct.Price"></label>
 					<div class="col-sm-10">
-						<input class="form-control" type="number" asp-for="MyProduct.Price" />
+						<input class="form-control" type="number" min="0" max="10" asp-for="MyProduct.Price" />
 						<span asp-validation-for="MyProduct.Price" class="text-danger"></span>
 					</div>
 				</div>
@@ -81,6 +84,12 @@
 
 </div> <!-- card-body.// -->
 
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	}
+
 <script>
 	function showImgPreview(input) {
 		if (input.files[0]) {
@@ -93,9 +102,4 @@
 	}
 </script>
 
-@section Scripts {
-	@{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial");
-	}
-	}
 
