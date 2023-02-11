@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using kampong_goods.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace kampong_goods.Pages.Products
 {
@@ -14,12 +15,16 @@ namespace kampong_goods.Pages.Products
         private readonly UserManager<AppUser> _userManager;
         private readonly CustomerService _customerService;
 
-        public productCheckoutModel(CheckoutService checkoutService, ProductService productService, UserManager<AppUser> userManager, CustomerService customerService)
+        //SendGrid
+        private IMailService _mailService;
+
+        public productCheckoutModel(CheckoutService checkoutService, ProductService productService, UserManager<AppUser> userManager, CustomerService customerService, IMailService mailService)
         {
             _checkoutService = checkoutService;
             _productService = productService;
             _userManager = userManager;
             _customerService = customerService;
+            _mailService = mailService;
         }
 
         [BindProperty]
@@ -72,6 +77,7 @@ namespace kampong_goods.Pages.Products
                 MyCheckout.UserId = user.Id;
                 product.Status = "Sold";
                 MyCheckout.OrderStatus = "Ordered";
+                MyCheckout.CreatedDate = DateTime.Now;
 
                 Checkout? checkout = _checkoutService.GetCheckoutById(MyCheckout.CheckoutId);
                 if (checkout != null)
@@ -83,10 +89,10 @@ namespace kampong_goods.Pages.Products
                 }
 
                 _checkoutService.AddCheckout(MyCheckout);
+                Debug.WriteLine(MyCheckout.Email);
                 TempData["FlashMessage.Type"] = "success";
-                TempData["FlashMessage.Text"] = string.Format(
-                "Checkout {0} is added", MyCheckout.CheckoutId);
-                return Redirect("/Products/productCatalogue");
+                TempData["FlashMessage.Text"] = string.Format("Order has been placed succesfully!", MyCheckout.CheckoutId);
+                return Redirect("/Products/productPurchase");
             }
             return Page();
         }

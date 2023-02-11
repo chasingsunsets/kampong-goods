@@ -214,7 +214,7 @@
 													<header class="card-header">
 														<a href="#" class="float-right"> <i class="fa fa-print"></i> Print</a>
 														<strong class="d-inline-block mr-3">Order ID: @item.CheckoutId </strong>
-														<p class="text-muted">Order Date: 16 December 2018</p>
+														<p class="text-muted">Order Date: @item.CreatedDate</p>
 													</header>
 													<div class="card-body">
 														<div class="row">
@@ -254,7 +254,7 @@
 																			{
 																				<div class="order-tracking completed">
 																					<span class="is-complete"></span>
-																					<p>Ordered<br><span>Mon, June 24</span></p>
+																					<p>Ordered<br><span>@item.CreatedDate</span></p>
 																				</div>
 																				<div class="order-tracking">
 																					<span class="is-complete"></span>

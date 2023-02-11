@@ -41,5 +41,7 @@ namespace kampong_goods.Models
         public string UserId { get; set; }
 
         public string OrderStatus { get; set; }
+
+        public DateTime? CreatedDate { get; set; }
 	}
 }

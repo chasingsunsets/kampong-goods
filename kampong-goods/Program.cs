@@ -10,12 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+//SendGrid API
+builder.Services.AddTransient<IMailService, SendGridMailService>();
+
 //AppUser
 builder.Services.AddDbContext<AppUsersDbContext>();
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppUsersDbContext>();
 builder.Services.AddScoped<CustomerService>();
 builder.Services.AddScoped<StaffService>();
-
 
 //product
 builder.Services.AddScoped<ProductService>();
