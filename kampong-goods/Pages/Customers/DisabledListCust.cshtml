@@ -1,5 +1,5 @@
 ﻿@page
-@model kampong_goods.Pages.Customers.CustListModel 
+@model kampong_goods.Pages.Customers.DisabledListCustModel
 @using Microsoft.AspNetCore.Identity;
 @using kampong_goods.Models;
 
@@ -7,7 +7,7 @@
 @{
     Layout = "~/Pages/Shared/_StaffLayout.cshtml";
 
-    var custlist = await UserManager.GetUsersInRoleAsync("Customer");
+    var custlist = await UserManager.GetUsersInRoleAsync("CustomerDisabled");
 
 }
 
@@ -24,11 +24,10 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="background-color:#3563E9;">
-                    <h5 class="m-0 font-weight-bold" style="color:white;">
-                        Customer List [Enabled Accounts]
-
-                        <a class="btn btn-secondary " href="/Customers/DisabledListCust" style="float:right;"> View Disabled Customers</a>
-
+                            <h5 class="m-0 font-weight-bold" style="color:white;">
+                        Customer List [Disabled Accounts]
+                        <a class="btn btn-secondary " href="/Customers/CustList" style="float:right;"> View Enabled Customers</a>
+                            
                             </h5>
                         </div>
                         <div class="card-body">
@@ -52,25 +51,25 @@
 
 
                                 <!-- Delete Modal-->
-                                <div class="modal fade" id="dcust_@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                <div class="modal fade" id="encust_@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                              aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                    Disable Customer Account?
+                                                    Enable Customer Account?
                                                 </h5>
                                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">×</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Select "Disable" below if you are
-                                                disabling the customer account.
+                                                Select "Enable" below if you are
+                                                enabling the customer account.
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-primary" asp-page-handler="CustomerDisable" asp-route-id="@item.Id">Disable</a>
+                                                <a class="btn btn-primary" asp-page-handler="CustomerEnable" asp-route-id="@item.Id">Enable</a>
                                             </div>
                                         </div>
                                     </div>
@@ -87,9 +86,9 @@
                                            
                                             <div>
 
-                                            <a data-toggle="modal" data-target="#dcust_@item.Id" class="card-link" style="color: darkred" value=@item.Id>
-                                                <i class="fa-solid fa-ban"></i>
-                                                Disable Account
+                                            <a data-toggle="modal" data-target="#encust_@item.Id" value=@item.Id class="card-link" style="color: #3563E9">
+                                                <i class="fa-sharp fa-regular fa-circle-check"></i>
+                                                Enable Account
                                             </a>
 
                                             </div>
@@ -111,7 +110,8 @@
 
         else{
 
-            <h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No Customer Account Enabled <a class="btn btn-secondary ms-2" href="/Customers/DisabledListCust"> View Disabled Customers</a></h3>
+        <h3 class="m-0 font-weight-bold">No Customer Account Disabled  <a class="btn btn-secondary ms-2" href="/Customers/CustList"> View Enabled Customers</a></h3>
+
 
         }
     }

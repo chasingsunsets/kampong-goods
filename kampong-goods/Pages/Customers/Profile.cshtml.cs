@@ -11,6 +11,7 @@ namespace kampong_goods.Pages.Customers
 {
     [Authorize(Roles = "Customer, Staff")]
 
+
     public class ProfileModel : PageModel
 
     {

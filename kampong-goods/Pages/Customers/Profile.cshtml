@@ -48,7 +48,7 @@
                                     <div class="col-xl-8 order-xl-1">
                                         <div class="card shadow ">
                                             <div class="card-header bg-white border-0">
-                                        <a class="btn loginBtn" style="color:white;float: right;font-size:h4;" asp-page="/Customers/EditProfile" asp-route-id="@user.Id">Edit</a>
+                            <a class="btn loginBtn" style="color:white;float: right;font-size:h4;" asp-page="/Customers/EditProfile" asp-route-id="@user.Id"><i class="fa-sharp fa-solid fa-pencil"></i> Edit</a>
 
                                
                                <div class="row align-items-center">
@@ -108,8 +108,10 @@
                                                 </div>
 
 
+                            <a class="btn" style="float: right; color: white; background: #3563E9;" href="/Customers/Logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+
                             <a data-toggle="modal" data-target="#deletecustprofile" class="card-link"
-                           style="color: darkred;float: right;">
+                           style="color: darkred;float: left;padding-top:15px">
                                 <i class="far fa-trash-alt"></i>
                                 Delete Account
                             </a>

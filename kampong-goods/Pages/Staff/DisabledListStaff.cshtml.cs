@@ -11,7 +11,10 @@ using System.Security.Claims;
 namespace kampong_goods.Pages.Staff
 
 {
-    [Authorize(Roles = "Staff")]
+    /*    [Authorize(Roles = "Staff")]
+    */
+    [Authorize(AuthenticationSchemes = "AdminAuth")]
+
     public class DisabledListStaffModel : PageModel
     {
         private readonly CustomerService _customerService;

@@ -12,11 +12,7 @@
     Layout = "~/Pages/Shared/_StaffLayout.cshtml";
 
   var disabledstafflist = await UserManager.GetUsersInRoleAsync("StaffDisabled");
-    Debug.WriteLine("list" + disabledstafflist);
-    foreach (var i in disabledstafflist){
-        Debug.WriteLine("test" + i);
 
-    }
 
 }
 
@@ -132,7 +128,7 @@
     else
     {
 
-        <h3 class="m-0 font-weight-bold" style="padding-left:10px ;">No Staff Account Disabled  <a class="btn btn-secondary ms-2" href="/Staff/StaffList"> View Staff List</a></h3>
+        <h3 class="m-0 font-weight-bold" style="padding-left:10px ;">No Staff Account Disabled  <a class="btn btn-secondary ms-2" href="/Staff/StaffList"> View Enabled Staff</a></h3>
 
 
     }
