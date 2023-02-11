@@ -35,7 +35,10 @@ namespace kampong_goods.Migrations.ProductDb
                     CCNo = table.Column<string>(type: "nvarchar(19)", maxLength: 19, nullable: false),
                     ExpirationDate = table.Column<DateTime>(type: "date", nullable: false),
                     CVV = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: false),
-                    ProductId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ProductId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrderStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

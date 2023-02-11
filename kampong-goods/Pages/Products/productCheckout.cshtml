@@ -1,16 +1,14 @@
 ﻿@page
-@model kampong_goods.Pages.Products.productCheckoutModel
 @using Microsoft.AspNetCore.Identity;
 @using kampong_goods.Models;
 
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
+@model kampong_goods.Pages.Products.productCheckoutModel
 @{
 	Guid myuuid = Guid.NewGuid();
 	var CheckoutId = myuuid.ToString();
 
-	AppUser user = await UserManager.GetUserAsync(HttpContext.User); //current signed in
-	var custlist = await UserManager.GetUsersInRoleAsync("Customer"); //gets users list
 }
 
 <style>
@@ -28,9 +26,21 @@
 	}
 </style>
 
+<script>
+	getPrice = function() {
+			var numVal1 = @Model.productCost;
+			console.log(numVal1);
+            var numVal2 = Number(document.getElementById("discountCode").value);
+			document.getElementById("discountAmt").innerHTML = "$ " + numVal2;
+			console.log(numVal2);
+            var totalValue = numVal1 - numVal2;
+			document.getElementById("totalPrice").innerHTML = "$ " + totalValue;
+        } 
+</script>
+
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
-<div class="container">
+	<div class="container">
 		<h1 style="position:center"><span class="lineColour" style="font-weight: bold;">-</span> Product Checkout</h1>
 
 		@*form*@
@@ -42,6 +52,12 @@
 
 			<input type="hidden" class="form-control" placeholder="" value="ProductID" asp-for="MyCheckout.ProductId">
 			<span asp-validation-for="MyCheckout.ProductId" class="text-danger"></span>
+
+			<input type="hidden" class="form-control" placeholder="" value="UserID" asp-for="MyCheckout.UserId">
+			<span asp-validation-for="MyCheckout.UserId" class="text-danger"></span>
+
+			<input type="hidden" class="form-control" placeholder="" value="OrderStatus" asp-for="MyCheckout.OrderStatus">
+			<span asp-validation-for="MyCheckout.OrderStatus" class="text-danger"></span>
 
 			<div class="card mb-4">
 				<div class="card-body">
@@ -67,7 +83,7 @@
 								</td>
 								<td>
 									<div class="price-wrap">
-										@foreach (var cust in custlist) //use userid to get user name
+										@foreach (var cust in Model.CustomerList) //use userid to get user name
 										{
 											if (@Model.productSeller == cust.Id)
 											{
@@ -91,41 +107,41 @@
 				</div> <!-- card-body.// -->
 			</div> <!-- card .// -->
 
-		
+
 			<div class="card mb-4">
 				<div class="card-body">
 					<h4 class="card-title mb-3 sectionColor">Delivery info</h4>
-						<div class="form-row">
-							<div class="col form-group">
-								<label>First name</label>
+					<div class="form-row">
+						<div class="col form-group">
+							<label>First name</label>
 							<input type="text" class="form-control" placeholder="" asp-for="MyCheckout.FName">
 							<span asp-validation-for="MyCheckout.FName" class="text-danger"></span>
-							</div> <!-- form-group end.// -->
-							<div class="col form-group">
-								<label>Last name</label>
+						</div> <!-- form-group end.// -->
+						<div class="col form-group">
+							<label>Last name</label>
 							<input type="text" class="form-control" placeholder="" asp-for="MyCheckout.LName">
 							<span asp-validation-for="MyCheckout.LName" class="text-danger"></span>
-							</div> <!-- form-group end.// -->
-						</div> <!-- form-row end.// -->
+						</div> <!-- form-group end.// -->
+					</div> <!-- form-row end.// -->
 
-						<div class="form-row">
-							<div class="col form-group">
-								<label>Email</label>
+					<div class="form-row">
+						<div class="col form-group">
+							<label>Email</label>
 							<input type="email" class="form-control" placeholder="" asp-for="MyCheckout.Email">
 							<span asp-validation-for="MyCheckout.Email" class="text-danger"></span>
-							</div> <!-- form-group end.// -->
-							<div class="col form-group">
-								<label>Phone</label>
+						</div> <!-- form-group end.// -->
+						<div class="col form-group">
+							<label>Phone</label>
 							<input type="text" class="form-control" placeholder="" asp-for="MyCheckout.Phone">
 							<span asp-validation-for="MyCheckout.Phone" class="text-danger"></span>
-							</div> <!-- form-group end.// -->
-						</div> <!-- form-row end.// -->
+						</div> <!-- form-group end.// -->
+					</div> <!-- form-row end.// -->
 
-						<div class="form-group">
-							<label>Address</label>
+					<div class="form-group">
+						<label>Address</label>
 						<textarea class="form-control" rows="2" asp-for="MyCheckout.Address"></textarea>
 						<span asp-validation-for="MyCheckout.Address" class="text-danger"></span>
-						</div> <!-- form-group// -->
+					</div> <!-- form-group// -->
 
 				</div> <!-- card-body.// -->
 			</div>  <!-- card .// -->
@@ -182,15 +198,15 @@
 					<div class="row">
 						<div class="card mb-3">
 							<div class="card-body">
-									<div class="form-group">
-										<label>Have coupon?</label>
-										<div class="input-group">
-											<input type="text" class="form-control" name="" placeholder="Coupon code">
-											<span class="input-group-append">
-												<button class="btn btn-buy">Apply</button>
-											</span>
-										</div>
+								<div class="form-group">
+									<label>Have coupon?</label>
+									<div class="input-group">
+										<input type="text" class="form-control" id="discountCode" placeholder="Coupon code">
+										<span class="input-group-append">
+											<button type="button" class="btn btn-buy" onclick="getPrice()">Apply</button>
+										</span>
 									</div>
+								</div>
 							</div> <!-- card-body.// -->
 						</div>  <!-- card .// -->
 						<div class="card">
@@ -201,12 +217,12 @@
 								</dl>
 								<dl class="dlist-align">
 									<dt>Discount:</dt>
-									<dd class="text-right">$0</dd>
+									<dd class="text-right" id="discountAmt">$0</dd>
 								</dl>
 								<hr>
 								<dl class="dlist-align">
 									<dt>Total:</dt>
-									<dd class="text-right  h5"><strong>$@Model.productCost</strong></dd>
+									<dd class="text-right h5" id="totalPrice"><strong>$ @Model.productCost</strong></dd>
 								</dl>
 							</div> <!-- card-body.// -->
 						</div>  <!-- card .// -->
@@ -221,13 +237,11 @@
 
 			</div> <!-- card .// -->
 		</form>
+		<br><br>
 
-<br><br> 
-
-</div> <!-- container .//  -->
+	</div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
-
 @section Scripts {
 	@{
 		await Html.RenderPartialAsync("_ValidationScriptsPartial");

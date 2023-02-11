@@ -104,11 +104,10 @@
 				</div>
 			</header>
 
-
 			@foreach (var item in Model.ProductList)
 			{
 				<div class="col-md-3" id="myTable">
-					<figure class="card card-product-grid" style="padding: 20px; border-radius: 30px;" href="/Products/productDetails">
+					<figure class="card card-product-grid" style="padding: 20px; border-radius: 30px;">
 
 						@foreach (var cust in Model.CustomerList) //use userid to get user name
 						{
@@ -133,7 +132,9 @@
 
 						<div class="img-wrap" style="width:288px; height:150px; align-items: center;">
 							<span class="badge badge-danger">@item.Status</span>
-							<img src="@item.ImageURL" class="rounded" style="width:288px; height:150px; border: solid 1px;">
+							<a asp-page="/Products/productDetails" asp-route-id="@item.ProductId">
+								<img src="@item.ImageURL" class="rounded" style="width:288px; height:150px; border: solid 1px;">
+							</a>
 						</div> <!-- img-wrap.// -->
 						<figcaption style="padding-top: 10px;">
 							<h6 id="productNameTag" href="#" class="title mb-2">@item.ProductName</h6>
