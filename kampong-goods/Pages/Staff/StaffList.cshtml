@@ -19,91 +19,102 @@
  @{           if(stafflist!=null){
 
     <div class="container-fluid">
-                
+                                                                                
 
-                        <!-- DataTales Example -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3" style="background-color:#3563E9;">
-                                <h5 class="m-0 font-weight-bold" style="color:white;">Staff List</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead style="background-color: #F1EDE5;">
+                                                                                        <!-- DataTales Example -->
+                                                                                        <div class="card shadow mb-4">
 
-                                        
-                                            <tr>
-                                                <th>&nbsp;ID</th>
-                                                <th>&nbsp;Name</th>
-                                                <th>&nbsp;Username</th>
-                                                <th>&nbsp;Phone Number</th>
-                                            <th>&nbsp;NRIC</th>
+                                                                <div class="card-header py-3" style="background-color:#3563E9; ">
+                                                                    <h5 class="m-0 font-weight-bold" style="color:white;">
+                                                                        <span style="padding-top:15px;">
+                                                                            Staff List [Enabled Accounts]</span>
+                                                                                <a href="/staff/addstaff" style="color:white; float:right; padding-top:8px; padding-left:20px;">
+                                                                                    <i class="fa-solid fa-user-plus"></i> Add Staff
+                                                                                    </a>
 
-                                                <th>&nbsp;Action</th>
-                                            </tr>
-                                        </thead>
-                                    @foreach (var item in stafflist)
+                                                                                <a class="btn btn-secondary " href="/Staff/DisabledListStaff" style="float:right;"> View Disabled Staffs</a>
+
+                                                                                </h5>
+                                                                                            </div>
+                                                                                            <div class="card-body">
+                                                                                                <div class="table-responsive">
+                                                                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                                                                        <thead style="background-color: #F1EDE5;">
+
+                                                                                                        
+                                                                                                            <tr>
+                                                                                                                <th>&nbsp;Name</th>
+                                                                                                                <th>&nbsp;Username</th>
+                                                                                                            <th>&nbsp;NRIC</th>
+
+                                                                                                    <th>&nbsp;Email</th>
+                                                                                                    <th>&nbsp;Address</th>
+
+                                                                                                    <th>&nbsp;Phone Number</th>
+
+                                                                                                                <th>&nbsp;Action</th>
+                                                                                                            </tr>
+                                                                                                        </thead>
+                                                                                                    @foreach (var item in stafflist)
                             { 
 
 
-                                    <!-- Delete Modal-->
-                                    <div class="modal fade" id="deletestaff" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">
-                                                        Delete Customer Account
-                                                    </h5>
-                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Select "Delete" below if you are
-                                                    deleting your account.
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                    <a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@item.Id">Delete</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                        <tr>
-                                            <td>@item.Id</td>
-                                            <td>&nbsp;@item.FName &nbsp;@item.LName</td>
-                                            <td>&nbsp;@item.UserName</td>
-                                            <td>&nbsp;@item.PhoneNumber</td>
-                                    @{
+
+                                                                                                        <tr>
+                                                                                                            <td>&nbsp;@item.FName &nbsp;@item.LName</td>
+                                                                                                            <td>&nbsp;@item.UserName</td>
+
+                                                                                                    @{
                                         var staff= _staffService.GetICById(item.Id);
-                                    }
-                                            <td>&nbsp;@staff.NRIC</td>
+                                                                                                    }
+                                                                                                            <td>&nbsp;@staff.NRIC</td>
+                                                                                                    <td>&nbsp;@item.Email</td>
+                                                                                                    <td>&nbsp;@item.Address</td>
 
-                                            <td>
-                                                <div>
+                                                                                                    <td>&nbsp;@item.PhoneNumber</td>
+                                                                                                            <td>
+                                                                                                <!-- Delete Modal-->
+                                                                                                    <div class="modal fade" id="de_@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                                                                 aria-hidden="true">
+                                                                                                        <div class="modal-dialog" role="document">
+                                                                                                            <div class="modal-content">
+                                                                                                                <div class="modal-header">
+                                                                                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                                                                                    Disable Staff Account?
+                                                                                                                    </h5>
+                                                                                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                                                                        <span aria-hidden="true">×</span>
+                                                                                                                    </button>
+                                                                                                                </div>
+                                                                                                                <div class="modal-body">
+                                                                                                                    Select "Disable" below if you are
+                                                                                                                    disabling the staff account.
+                                                                                                                </div>
+                                                                                                                <div class="modal-footer">
+                                                                                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                                                                            <a class="btn btn-primary" asp-page-handler="StaffDisable" asp-route-id="@item.Id">Disable</a>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                                <div>
 
-                                                    <a asp-page="/Staff/EditCustList" asp-route-id="@item.Id" style="color:#3563E9" class="card-link mb-2"><i class="fas fa-pencil-alt"></i>Edit</a>
-                                                  
-                                                </div> 
-                                                <div>
+                                                    <a data-toggle="modal" data-target="#de_@item.Id" class="card-link" style="color: darkred" value=@item.Id>
+                                                                                                            <i class="fa-solid fa-ban"></i>
+                                                                                                                    Disable Account
+                                                                                                                </a>
 
-                                                <a data-toggle="modal" data-target="#deletestaff" class="card-link" style="color: darkred" asp-page-handler="Delete" asp-route-id="@item.Id">
-                                                    <i class="far fa-trash-alt"></i>
-                                                    Delete
-                                                </a>
-
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                                                                                </div>
+                                                                                                            </td>
+                                                                                                        </tr>
 
 
                                 }
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                                                                                                    </table>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
 
     </div>
 

@@ -88,27 +88,47 @@ namespace kampong_goods.Pages.Staff
         {
             if (ModelState.IsValid)
             {
-/*                var userbelong = await userManager.FindByNameAsync(LModel.UserName);
-                if (userbelong != null)
-                {
-                    var isstaff = await userManager.GetRolesAsync("userbelong")*/
-                    var identityResult = await signInManager.PasswordSignInAsync(LModel.UserName, LModel.Password,
-                LModel.RememberMe, false);
-                    if (identityResult.Succeeded)
-                    {
-                    var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, LModel.UserName),
-                     };
-                    var i = new ClaimsIdentity(claims, "AdminAuth");
-                    ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(i);
-                    await HttpContext.SignInAsync("AdminAuth", claimsPrincipal);
-                    
 
-                    /*                    var userId = signInManager.UserManager.Users.FirstOrDefault()?.Id; 
-                    */
-                    return RedirectToPage("Dashboard");
+                var useracc = await userManager.FindByNameAsync(LModel.UserName);
+
+                if (useracc!=null)
+                {
+
+                    bool isDisabledStaff = await userManager.IsInRoleAsync(useracc, "StaffDisabled");
+                    if (isDisabledStaff)
+                    {
+
+
+                        TempData["FlashMessage.Type"] = "danger";
+                        TempData["FlashMessage.Text"] = string.Format("Account is disabled. Contact Staff for help.");
+                        return Page();
+
                     }
 
+                    bool isStaff = await userManager.IsInRoleAsync(useracc, "Staff");
+                    if (isStaff)
+                    {
+
+
+                        var identityResult = await signInManager.PasswordSignInAsync(LModel.UserName, LModel.Password, LModel.RememberMe, false);
+                        if (identityResult.Succeeded)
+                        {
+                            var claims = new List<Claim> {
+                    new Claim(ClaimTypes.Name, LModel.UserName),};
+                            var i = new ClaimsIdentity(claims, "AdminAuth");
+                            ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(i);
+                            await HttpContext.SignInAsync("AdminAuth", claimsPrincipal);
+
+                            return RedirectToPage("Dashboard");
+
+                        }
+                      
+ 
+                     }
+
+       
+
+                 }
 /*                }
 */
                 TempData["FlashMessage.Type"] = "danger";
@@ -116,5 +136,6 @@ namespace kampong_goods.Pages.Staff
             }
             return Page();
         }
+
     }
 }

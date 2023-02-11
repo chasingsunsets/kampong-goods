@@ -1,0 +1,156 @@
+﻿@page
+@model kampong_goods.Pages.Staff.DisabledListStaffModel
+@using kampong_goods.Services;
+@using Microsoft.AspNetCore.Identity;
+@using kampong_goods.Models;
+@using System.Diagnostics;
+
+
+@inject UserManager<AppUser> UserManager
+@inject StaffService _staffService
+@{
+    Layout = "~/Pages/Shared/_StaffLayout.cshtml";
+
+  var disabledstafflist = await UserManager.GetUsersInRoleAsync("StaffDisabled");
+    Debug.WriteLine("list" + disabledstafflist);
+    foreach (var i in disabledstafflist){
+        Debug.WriteLine("test" + i);
+
+    }
+
+}
+
+
+
+
+@{
+    if (disabledstafflist != null && disabledstafflist.Any())
+    {
+
+        <div class="container-fluid">
+
+
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+
+
+                <div class="card-header py-3" style="background-color:#3563E9;">
+                    <h5 class="m-0 font-weight-bold" style="color:white;">
+                        Staff List [Disabled Accounts]
+                        <a class="btn btn-secondary " href="/Staff/StaffList" style="float:right;"> View Enabled Staffs</a>
+
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead style="background-color: #F1EDE5;">
+
+
+                                <tr>
+                                    <th>&nbsp;Name</th>
+                                    <th>&nbsp;Username</th>
+                                    <th>&nbsp;Phone Number</th>
+                                    <th>&nbsp;NRIC</th>
+
+                                    <th>&nbsp;Email</th>
+                                    <th>&nbsp;Address</th>
+
+                                    <th>&nbsp;Phone Number</th>
+
+                                    <th>&nbsp;Action</th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in disabledstafflist)
+                            {
+
+
+                                <!-- Delete Modal-->
+                                <div class="modal fade" id="en_@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                    Enable Staff Account?
+                                                </h5>
+                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Select "Enable" below if you are
+                                                enabling the staff account back.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                <a class="btn btn-primary" asp-page-handler="StaffEnable" asp-route-id="@item.Id">Enable</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <tr>
+                                    <td>&nbsp;@item.FName &nbsp;@item.LName</td>
+                                    <td>&nbsp;@item.UserName</td>
+                                    <td>&nbsp;@item.PhoneNumber</td>
+
+                                    @{
+                                        var staff = _staffService.GetICById(item.Id);
+                                    }
+                                    <td>&nbsp;@staff.NRIC</td>
+                                    <td>&nbsp;@item.Email</td>
+                                    <td>&nbsp;@item.Address</td>
+
+                                    <td>&nbsp;@item.PhoneNumber</td>
+                                    <td>
+
+                                        <div>
+
+                                            <a data-toggle="modal" data-target="#en_@item.Id" value=@item.Id class="card-link" style="color: #3563E9">
+                                                <i class="fa-sharp fa-regular fa-circle-check"></i>
+                                                Enable Account
+                                            </a>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    }
+
+    else
+    {
+
+        <h3 class="m-0 font-weight-bold" style="padding-left:10px ;">No Staff Account Disabled  <a class="btn btn-secondary ms-2" href="/Staff/StaffList"> View Staff List</a></h3>
+
+
+    }
+}
+
+
+
+
+
+
+@section Scripts {
+    <script>
+        $('[data-toggle=confirmation]').confirmation({
+            rootSelector: '[data-toggle=confirmation]',
+        });
+
+
+    </script>
+    }
+
+

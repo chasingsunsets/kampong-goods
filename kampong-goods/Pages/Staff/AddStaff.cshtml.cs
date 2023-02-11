@@ -102,8 +102,8 @@ namespace kampong_goods.Pages.Staff
                                 };
 
                                 //Add users to Admin Role
-                                createuser = await userManager.AddToRoleAsync(user, "Customer");
-                                createuser = await userManager.AddToRoleAsync(user, "Staff");
+/*                                createuser = await userManager.AddToRoleAsync(user, "Customer");
+*/                                await userManager.AddToRoleAsync(user, "Staff");
                                 _staffService.AddStaff(staff);
                                 TempData["FlashMessage.Type"] = "success";
                                 TempData["FlashMessage.Text"] = string.Format("Account {0} successfully added.", AModel.Username);
