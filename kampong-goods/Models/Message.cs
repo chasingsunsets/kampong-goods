@@ -19,5 +19,10 @@ namespace kampong_goods.Models
 
         public virtual AppUser Sender { get; set; }
 
+        public Message()
+        {
+            When = DateTime.Now;
+        }
+
     }
 }

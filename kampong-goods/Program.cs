@@ -19,12 +19,12 @@ builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<A
 builder.Services.AddScoped<CustomerService>();
 builder.Services.AddScoped<StaffService>();
 
-
 /*builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("MustBeStaff",
     policy => policy.RequireClaim("Staff", "HR"));
 });*/
+
 //product
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<CategoryService>();
@@ -33,8 +33,6 @@ builder.Services.AddScoped<CheckoutService>();
 builder.Services.AddDbContext<ProductDbContext>();
 
 //chat
-builder.Services.AddScoped<VoucherService>();
-builder.Services.AddScoped<EventService>();
 builder.Services.AddSignalR();
 
 //faq
@@ -46,6 +44,8 @@ builder.Services.AddDbContext<FAQDbContext>();
 builder.Services.AddScoped<RequestService>();
 
 //voucher
+builder.Services.AddScoped<VoucherService>();
+builder.Services.AddScoped<EventService>();
 builder.Services.AddScoped<VoucherService>();
 builder.Services.AddDbContext<VoucherDbContext>();
 
