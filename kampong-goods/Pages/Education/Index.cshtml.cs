@@ -50,6 +50,28 @@ namespace kampong_goods.Pages.Education
             
         }
 
+        //Pull
+        public void OnGetPullFAQ(string ID)
+        {
+            myFAQ = _FAQService.GetFAQById(ID);
+            if (myFAQ.Publish == false)
+            {
+                TempData["FlashMessage.Type"] = "danger";
+                TempData["FlashMessage.Text"] = string.Format("FAQ {0} cannot be pulled if not published before", myFAQ.Question);
+                FAQlist = _FAQService.GetAll();
+            }
+            else
+            {
+                myFAQ.Publish = false;
+                _FAQService.UpdateFAQ(myFAQ);
+                TempData["FlashMessage.Type"] = "success";
+                TempData["FlashMessage.Text"] = string.Format("FAQ {0} is pulled from Webiste", myFAQ.Question);
+                FAQlist = _FAQService.GetAll();
+            }
+
+        }
+
+
         //Delete
         public void OnGetDeleteFAQ(string ID)
         {

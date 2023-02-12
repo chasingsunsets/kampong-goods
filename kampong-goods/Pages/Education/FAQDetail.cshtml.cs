@@ -85,7 +85,7 @@ namespace kampong_goods.Pages.Education
 
             string? emailAddress = user.Email;
             string? title = "Report from User: " + user.Id;
-            string? content = "you receive a report on FAQ id: " + myFAQ.FAQId;
+            string? content = "Thanks for helping us to improve our Webiste. Hope you have a nice day. \n Report id: " + myFAQ.FAQId;
 
 
             MailMessage message = new MailMessage();
@@ -107,6 +107,11 @@ namespace kampong_goods.Pages.Education
             await client.SendMailAsync(message);
             TempData["FlashMessage.Type"] = "success";
             TempData["FlashMessage.Text"] = string.Format("Message send");
+
+
+            //count report time
+            myFAQ.ReportCount += 1;
+            _FAQService.UpdateFAQ(myFAQ);
             return Redirect("/Education/List_Cust");
         }
 
