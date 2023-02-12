@@ -116,10 +116,11 @@
 
 
                                 <a data-toggle="modal" data-target="#deletestaffprofile" class="card-link"
-                               style="color: darkred;float: left;">
+                               style="color: darkred;">
                                     <i class="far fa-trash-alt"></i>
                                     Delete Account
                                 </a>
+                            <a asp-page-handler="ChangePWS" asp-route-id="@user.Id" style="color:#3563E9; padding-left:15px"><i class="fa-solid fa-gear"></i> Change Password</a>
 
 
                             <a class="btn" style="float: right; color: white; background: #3563E9;" asp-area="" asp-page="/Staff/StaffLogout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>

@@ -122,8 +122,56 @@ namespace kampong_goods.Pages.Customers
 
             return RedirectToPage();
         }
-    
-}
+
+
+
+
+        public async Task<IActionResult> OnGetChangePW(string id)
+        {
+            if (id == null)
+            {
+                return Page();
+            }
+
+            var user = _customerService.GetCustomerById(id);
+            System.Diagnostics.Debug.WriteLine("await" + user);
+
+
+            if (user != null)
+            {
+                if (user.Id != id)
+                {
+
+                    TempData["FlashMessage.Type"] = "danger";
+                    TempData["FlashMessage.Text"] = string.Format("Invalid access, you can only change password of the account you logged in with.");
+                    return Page();
+                }
+
+                else
+                {
+
+                    var code = await userManager.GeneratePasswordResetTokenAsync(user);
+                    var callbackurl = Url.PageLink("ChangePassword", null, new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+
+                    /*                        Url.Action("ResetPassword", "Customers", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                    */
+                    System.Diagnostics.Debug.WriteLine(callbackurl);
+                    return Redirect(callbackurl);
+
+
+                }
+            }
+            TempData["FlashMessage.Type"] = "danger";
+            TempData["FlashMessage.Text"] = string.Format("No user found.");
+
+            return RedirectToPage();
+        }
+
+
+
+
+
+    }
 }
 
 
