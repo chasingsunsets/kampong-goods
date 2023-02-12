@@ -42,9 +42,9 @@
 
                     <td>
                         <a asp-page="/Events/EventDetails" asp-route-id="@item.EventId">View</a>
-                        <a data-toggle="modal" class="btn btn-danger btn-block" data-target="#deleteEvent">  Delete </a>
+                        <a data-toggle="modal" class="btn btn-danger btn-block" data-target="#deleteEvent_@item.EventId">  Delete </a>
                         <!-- Delete -->
-						<div class="modal fade" id="deleteModal_@item.EventId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal fade" id="deleteEvent_@item.EventId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 							<div class="modal-dialog modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header">

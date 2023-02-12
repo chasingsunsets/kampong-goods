@@ -328,6 +328,13 @@
                             </div>
                             <div class="chat-history">
                                 <ul class="m-b-0">
+                                    <li id="messagesList"></li>
+                                <li class="clearfix">
+                                    <div class="message-data">
+                                        <span class="message-data-time">10:12 AM, Today</span>
+                                    </div>
+                                    <div class="message my-message" id="messagesListFromReceiver"></div>
+                                </li>
                                     <li class="clearfix">
                                         <div class="message-data text-right">
                                             <span class="message-data-time">10:10 AM, Today</span>
@@ -340,12 +347,11 @@
                                 </ul>
                             </div>
                             <div class="chat-message clearfix">
-                                <div class="input-group mb-0">
-                                    
-
-                                    @*message*@
-                                    <input type="text" id="message" class="form-control" placeholder="Enter text here...">
-                                <input type="button" id="sendMessage" value="Send" class="btn btn-primary" />
+                                    <div class="input-group mb-0">
+                                        @*message*@
+                                        <input type="text" id="message" asp-for="MyMessage.Text" class="form-control" placeholder="Enter text here...">
+                                        <a class="btn btn-primary" id="sendMessage" asp-page-handler="OnGetMessage">Send</a>
+                                        <a class="btn btn-primary" asp-page-handler="Message">Send</a>
                                 </div>
                             </div>
                         </div>

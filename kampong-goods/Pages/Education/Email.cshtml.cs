@@ -24,47 +24,47 @@ namespace kampong_goods.Pages.Education
         public FAQ myFAQ { get; set; }
         public static List<FAQCategory> FAQCatlist { get; set; } = new();
 
-        public IActionResult OnGet(string ID)
-        {
-/*            FAQlist = _FAQService.GetAll();
-*/        }
-            FAQ? FAQ = _FAQService.GetFAQById(ID);
+//        public IActionResult OnGet(string ID)
+//        {
+///*            FAQlist = _FAQService.GetAll();
+//*/        }
+//            FAQ? FAQ = _FAQService.GetFAQById(ID);
 
-            if (FAQ != null)
-            {
-                return Page();
-            }
-            else
-            {
-                TempData["FlashMessage.Type"] = "danger";
-                TempData["FlashMessage.Text"] = string.Format(
-                "FAQ({0}) not found", ID);
-                return Redirect("/Educaion/List_Cust");
-            }
-        }
+//            if (FAQ != null)
+//            {
+//                return Page();
+//            }
+//            else
+//            {
+//                TempData["FlashMessage.Type"] = "danger";
+//                TempData["FlashMessage.Text"] = string.Format(
+//                "FAQ({0}) not found", ID);
+//                return Redirect("/Educaion/List_Cust");
+//            }
+//        }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            MailMessage message = new MailMessage();
-            message.To.Add("q2467231710@gmail.com");
-            message.Subject = "Test Email";
-            message.Body = "you receive a test email!!!";
-            message.IsBodyHtml = false;
-            message.From = new MailAddress("q2467231710@gmail.com");
+//        public async Task<IActionResult> OnPostAsync()
+//        {
+//            MailMessage message = new MailMessage();
+//            message.To.Add("q2467231710@gmail.com");
+//            message.Subject = "Test Email";
+//            message.Body = "you receive a test email!!!";
+//            message.IsBodyHtml = false;
+//            message.From = new MailAddress("q2467231710@gmail.com");
 
-            SmtpClient client = new SmtpClient();
-            client.Host = "smtp.gmail.com";
-            client.Port = 587;
-            client.UseDefaultCredentials = false;
-            client.EnableSsl = true;
+//            SmtpClient client = new SmtpClient();
+//            client.Host = "smtp.gmail.com";
+//            client.Port = 587;
+//            client.UseDefaultCredentials = false;
+//            client.EnableSsl = true;
 
 
 
-            client.Credentials = new NetworkCredential("q2467231710@gmail.com", "nqwiqatsrtbvybjr");
-            await client.SendMailAsync(message);
-            TempData["FlashMessage.Type"] = "success";
-            TempData["FlashMessage.Text"] = string.Format("Message send");
-            return Redirect("/Education/Index");
-        }
+//            client.Credentials = new NetworkCredential("q2467231710@gmail.com", "nqwiqatsrtbvybjr");
+//            await client.SendMailAsync(message);
+//            TempData["FlashMessage.Type"] = "success";
+//            TempData["FlashMessage.Text"] = string.Format("Message send");
+//            return Redirect("/Education/Index");
+//        }
     }
 }
