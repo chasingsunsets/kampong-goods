@@ -135,8 +135,21 @@
                                                                                     Selling Price: $@item.Price
                                                                                 </span>
                                                                                 <p>
-                                                                                    Condition: @item.ConditionId <br>
-                                                                                    Category:  @item.CategoryId <br>
+                                                                                    @foreach (var cat in Model.CategoryList)
+										                                            {
+											                                            @if (item.CategoryId == cat.CategoryId)
+											                                            {
+                                                                                            <span class="tag">Category: @cat.CategoryName </span>
+											                                            }
+										                                            }
+
+										                                            @foreach (var con in Model.ConditionList)
+										                                            {
+											                                            @if (item.ConditionId == con.ConditionId)
+											                                            {
+												                                            <span class="tag">Condition: @con.ConditionName </span>
+											                                            }
+										                                            }
                                                                                 </p>
                                                                             </div>
                                                                         </div> <!-- row.// -->
@@ -197,9 +210,24 @@
                                                                                                         <hr>
                                                                                                         <p>Product Name: @item.ProductName</p>
                                                                                                         <p>Description: @item.Description</p>
-                                                                                                        <p>Category: @item.CategoryId</p>
-                                                                                                        <p>Condition of product: @item.ConditionId</p>
                                                                                                         <p>Selling price: $@item.Price</p>
+                                                                                                        <p>
+                                                                                                            @foreach (var cat in Model.CategoryList)
+                                                                                                            {
+                                                                                                                @if (item.CategoryId == cat.CategoryId)
+                                                                                                                {
+                                                                                                                    <span class="tag">Category: @cat.CategoryName </span>
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            @foreach (var con in Model.ConditionList)
+                                                                                                            {
+                                                                                                                @if (item.ConditionId == con.ConditionId)
+                                                                                                                {
+                                                                                                                    <span class="tag">Condition: @con.ConditionName </span>
+                                                                                                                }
+                                                                                                            }
+                                                                                                        </p>
                                                                                                     </div>
                                                                                                     <div class="modal-footer">
                                                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
