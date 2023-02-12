@@ -9,7 +9,7 @@ namespace kampong_goods.Models
         public int Id { get; set; }
         [Display(Name = "Abridge")]
         public string FAQCatId { get; set; }
-        [Required, MaxLength(30)]
+        [MaxLength(30)]
         public string FAQCategoryName { get; set; } = string.Empty;
         public string FAQCatDescription { get; set; } = string.Empty;
 

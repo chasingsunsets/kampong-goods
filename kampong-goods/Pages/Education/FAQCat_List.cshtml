@@ -24,7 +24,7 @@
 
 
                                         <tr>
-                                            <th>&nbsp; Att.</th>
+                                            <th>&nbsp; ABB.</th>
                                             <th>&nbsp; Name</th>
                                             <th>&nbsp; Description</th>
                                             <th>&nbsp; Action</th>
@@ -41,7 +41,7 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">
-                                                            Delete FAQ
+                                                            Delete FAQ Category
                                                         </h5>
                                                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">×</span>
@@ -49,7 +49,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         Select "Delete" below if you are
-                                                        deleting this FAQ.
+                                                        deleting this FAQ Category.
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -68,8 +68,8 @@
                                             <td>
                                                 <div>
                                                     <a asp-page="/Education/FAQDetail" asp-route-id="@item.FAQCatId"><i class="fa-solid fa-circle-info"></i>Detail</a>
-                                                    <a asp-page="/Education/Edit" asp-route-id="@item.FAQCatId" style="color:#3563E9; margin-left:30px;" class="card-link mb-2"><i class="fas fa-pencil-alt"></i>Edit</a>
-                                                    <a class="card-link" asp-page="/Education/Index" asp-page-handler="PublishFAQ" asp-route-id="@item.FAQCatId" style="margin-left:50px;"><i class="fa-solid fa-upload"></i>Publish</a>
+                                                    <a asp-page="/Education/Edit_Cat" asp-route-id="@item.FAQCatId" style="color:#3563E9; margin-left:30px;" class="card-link mb-2"><i class="fas fa-pencil-alt"></i>Edit</a>
+                                                    @*<a class="card-link" asp-page="/Education/Index" asp-page-handler="PublishFAQ" asp-route-id="@item.FAQCatId" style="margin-left:50px;"><i class="fa-solid fa-upload"></i>Publish</a>*@
                                                     <a data-toggle="modal" data-target="#deletestaff" class="card-link" style="color: darkred;" asp-page-handler="DeleteFAQ" asp-route-id="@item.FAQCatId">
                                                         <i class="far fa-trash-alt"></i>
                                                         Delete

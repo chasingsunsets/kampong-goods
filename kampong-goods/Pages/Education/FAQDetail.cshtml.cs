@@ -28,7 +28,7 @@ namespace kampong_goods.Pages.Education
 
 
         public AppUser user { get; set; } = new();
-        public FAQ myFAQ { get; set; }
+        public FAQ myFAQ { get; set; } = new();
         public static List<FAQCategory> FAQCatlist { get; set; } = new();
 
         public IActionResult OnGet(string ID)
@@ -72,15 +72,20 @@ namespace kampong_goods.Pages.Education
         //    return Page();
         //}
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string ID)
         {
+            //get FAQ
+            FAQ? FAQ = _FAQService.GetFAQById(ID);
+            myFAQ = FAQ;
+
+
             //gets the logged in user
             var userId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
             user = await _userManager.Users.FirstAsync(u => u.Id == userId);
 
-            string emailAddress = user.Email;
-            string title = "Report from User " + user.Id;
-            string content = "you receive a report on FAQ id: " + myFAQ.FAQId;
+            string? emailAddress = user.Email;
+            string? title = "Report from User: " + user.Id;
+            string? content = "you receive a report on FAQ id: " + myFAQ.FAQId;
 
 
             MailMessage message = new MailMessage();
@@ -102,7 +107,7 @@ namespace kampong_goods.Pages.Education
             await client.SendMailAsync(message);
             TempData["FlashMessage.Type"] = "success";
             TempData["FlashMessage.Text"] = string.Format("Message send");
-            return Redirect("/Education/Index");
+            return Redirect("/Education/List_Cust");
         }
 
     }
