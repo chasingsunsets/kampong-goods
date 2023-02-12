@@ -38,9 +38,9 @@
                             <tr>
                                 <th>&nbsp;Question</th>
                                 <th>&nbsp;Answer</th>
-                                <th>&nbsp;Reference</th>
                                 <th>&nbsp;Category</th>
                                 <th>&nbsp;Thread</th>
+                                <th>&nbsp;Report time</th>
 
                                 <th>&nbsp;Action</th>
                             </tr>
@@ -77,9 +77,9 @@
                             <tr>
                                 <td>@item.Question</td>
                                 <td>&nbsp;<a asp-page="/Education/FAQDetail_Staff" asp-route-id="@item.FAQId">View</a></td>
-                                <td><a href="@item.URL">&nbsp;@item.URL</a></td>
                                 <td>&nbsp;@item.FAQCatId</td>
                                 <td>&nbsp;@item.ClickTime</td>
+                                <td>&nbsp;@item.ReportCount</td>
 
 
                                 <td>
