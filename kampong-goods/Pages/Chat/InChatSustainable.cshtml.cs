@@ -13,7 +13,7 @@ namespace kampong_goods.Pages.Chat
 
     //only authenticated can access this page
     [Authorize]
-    public class ChatIndexModel : PageModel
+    public class InChatSustainableModel : PageModel
     {
         //get current user
         private readonly UserManager<AppUser> _userManager;
@@ -24,7 +24,7 @@ namespace kampong_goods.Pages.Chat
         //gets the message db
         private readonly CustomerService _custService;
 
-        public ChatIndexModel(UserManager<AppUser> userManager, AppUsersDbContext context, CustomerService custService)
+        public InChatSustainableModel(UserManager<AppUser> userManager, AppUsersDbContext context, CustomerService custService)
         {
             _userManager = userManager;
             _context = context;
@@ -49,7 +49,7 @@ namespace kampong_goods.Pages.Chat
 
         public AppUser Receiver { get; set; } = new();
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             //see the logged in user
             Sender = await _userManager.GetUserAsync(User);
@@ -60,15 +60,44 @@ namespace kampong_goods.Pages.Chat
             //customer list
             CustomerList = _custService.GetAll();
 
-            //get all the users from the database and make them into a list
-            Users = _userManager.Users.ToList()
-                .Select(a => new SelectListItem { Text = a.UserName, Value = a.UserName })
-                .OrderBy(s => s.Text).ToList();
+            //get receiver
+            Receiver = _custService.GetCustomerById(id);
 
-            Debug.WriteLine(Sender);
+            Debug.WriteLine("Sender " + Sender);
 
             return Page();
         }
+
+        //public async Task<IActionResult> OnPostAsync(string id)
+        //{
+        //    Debug.WriteLine("Hello");
+
+        //    //see the logged in user
+        //    Sender = await _userManager.GetUserAsync(User);
+
+        //    //gets the whole list of messages
+        //    messages = _custService.GetAllMessages();
+
+        //    //customer list
+        //    CustomerList = _custService.GetAll();
+
+        //    //get receiver
+        //    Receiver = _custService.GetCustomerById(id);
+
+        //    MyMessage.UserName = Sender.UserName;
+        //    MyMessage.UserId = Sender.Id;
+        //    MyMessage.Sender = Sender;
+
+        //    //CHECK
+        //    Debug.WriteLine("Sender Username " + MyMessage.UserName);
+        //    Debug.WriteLine("Sender Username" + MyMessage.UserId);
+
+        //    await _context.Messages.AddAsync(MyMessage);
+        //    await _context.SaveChangesAsync();
+
+        //    return Page();
+        //}
+
 
         //public async Task<IActionResult> Index()
         //{
