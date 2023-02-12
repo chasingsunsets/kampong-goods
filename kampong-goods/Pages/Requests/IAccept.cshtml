@@ -1,7 +1,7 @@
 ﻿@page
+@model kampong_goods.Pages.Requests.IAcceptModel
 @using Microsoft.AspNetCore.Identity;
 @using kampong_goods.Models;
-@model kampong_goods.Pages.Requests.AllRequestsModel
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 @{
@@ -12,40 +12,35 @@
 @{
 	if (SignInManager.IsSignedIn(User))
 	{
-	<div class="container">
-							<div class="subforum">
-								<div class="subforum-title">
-								<h1>All Requests  <a class="btn registerBtn" style="float:right" asp-area="" asp-page="/Requests/AddRequest" style="color: white;"><i class="fa-solid fa-plus"></i> Add Request</a>
-						<a class="btn" style="float:right" asp-area="" asp-page="/Requests/MyRequests"><i class="fa-solid fa-user"></i> My Requests</a>
-						<a class="btn" style="float:right" asp-area="" asp-page="/Requests/IAccept"><i class="fa-sharp fa-solid fa-check-double"></i> Requests I Accepted</a>
-						<a class="btn" style="float:right" asp-area="" asp-page="/Requests/MyAccepted"><i class="fa-solid fa-check"></i> My Accepted Requests</a>
+		{
+			<div class="container">
+				<div class="subforum">
+					<div class="subforum-title">
+						<h1>
+							Requests I Accepted  <a class="btn registerBtn" style="float:right" asp-area="" asp-page="/Requests/AddRequest" style="color: white;"><i class="fa-solid fa-plus"></i> Add Request</a>
+							<a class="btn" style="float:right" asp-area="" asp-page="/Requests/MyRequests"><i class="fa-solid fa-user"></i> My Requests</a>
+							<a class="btn" style="float:right" asp-area="" asp-page="/Requests/MyAccepted"><i class="fa-solid fa-check"></i>My Accepted Requests</a>
+							<a class="btn" style="float:right" asp-area="" asp-page="/Requests/AllRequests"><i class="fa-sharp fa-solid fa-globe"></i> All Requests</a>
 
-					</h1>
+						</h1>
 
-								</div>
-							</div>
-	</div>
+					</div>
+				</div>
+			</div>
+
+		}
 	}
 	
-	else
-	{
-	<div class="container">
-						<div class="subforum">
-							<div class="subforum-title">
-								<h1>All Requests</h1>
-							</div>
-						</div>
-	</div>
-	}
+
 }
 
 	           
 <div class="row">
 	@{
-		if (Model.exclRequestList!=null && Model.exclRequestList.Any())
+		if (Model.RequestList!=null && Model.RequestList.Any())
 		{
 
-			@foreach (var item in Model.exclRequestList)
+			@foreach (var item in Model.RequestList)
 		{
 							<div class="col-md-3">
 								<figure class="card card-product-grid">
@@ -86,8 +81,9 @@
 
 						     }
 
+
 						}
-								<a asp-page-handler="Accept" asp-route-id="@item.ID" class="btn btn-outline-primary btn-block">  Accept </a>
+								<a asp-page-handler="UnAccept" asp-route-id="@item.ID" class="btn btn-outline-primary btn-block">  Unaccept </a>
 						
 									</figcaption>
 								</figure>
@@ -97,7 +93,7 @@
 				else
 				{
 
-							<h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No Requests</h3>
+							<h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No Requests Accepted</h3>
 				}
 				}
 	</div>

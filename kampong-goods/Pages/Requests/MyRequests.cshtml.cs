@@ -30,14 +30,18 @@ namespace kampong_goods.Pages.Requests
 
         public void OnGet()
         {
-            RequestList = _requestService.GetAll();
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            System.Diagnostics.Debug.WriteLine("me" + userid);
+            if (userid != null)
+            { RequestList = _requestService.GetMyNotA(userid); }
+
+
             CustList = _customerService.GetAll();
             CategoryList = _categoryService.GetAll();
 
         }
 
-
-        public async Task<IActionResult> OnGetDelete(int id)
+        public async Task<IActionResult> OnGetDeleteR(int id)
         {
             if (id == null)
             {

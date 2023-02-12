@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Security.Claims;
 
 namespace kampong_goods.Pages.Staff
 {
@@ -94,11 +95,11 @@ namespace kampong_goods.Pages.Staff
 
             var user = _customerService.GetCustomerById(id);
             System.Diagnostics.Debug.WriteLine("await" + user);
-
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (user != null)
             {
-                if (user.Id != id)
+                if (userid != id)
                 {
 
                     TempData["FlashMessage.Type"] = "danger";
