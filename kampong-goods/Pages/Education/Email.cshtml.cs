@@ -15,17 +15,33 @@ namespace kampong_goods.Pages.Education
     public class EmailModel : PageModel
     {
         private readonly FAQService _FAQService;
-        public List<FAQ> FAQList { get; set; } = new();
 
         public EmailModel(FAQService faqService)
         {
             _FAQService = faqService;
         }
 
-        public void OnGet()
+        public FAQ myFAQ { get; set; }
+        public static List<FAQCategory> FAQCatlist { get; set; } = new();
+
+        public IActionResult OnGet(string ID)
         {
 /*            FAQlist = _FAQService.GetAll();
 */        }
+            FAQ? FAQ = _FAQService.GetFAQById(ID);
+
+            if (FAQ != null)
+            {
+                return Page();
+            }
+            else
+            {
+                TempData["FlashMessage.Type"] = "danger";
+                TempData["FlashMessage.Text"] = string.Format(
+                "FAQ({0}) not found", ID);
+                return Redirect("/Educaion/List_Cust");
+            }
+        }
 
         public async Task<IActionResult> OnPostAsync()
         {

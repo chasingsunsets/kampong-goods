@@ -6,7 +6,6 @@
 
 <h1 class="display-4">Details: </h1>
 
-<form class="mt-3" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="row mb-3">
@@ -50,12 +49,18 @@
     <h5>If you like this Article, Please Press Thumbs up, it helps us a lot. Thank you</h5>
     <div class="row mb-3">
         <a class="btn btn-secondary col-sm-2" style="margin-left:20px;" href="/Education/List_Cust">Back</a>
-        <a asp-page-handler="ClickTimeCount" asp-route-id="@Model.myFAQ.FAQId" asp-page="/Education/FAQDetail" class="col-sm-2"  style="margin-left:20px;">
-        <h5 id="clicks" style="text-align:center; margin-top:10px;">@Model.myFAQ.ClickTime<i id="thumbsUp" class="@thumbState"></i></h5>
-            </a>
-        
-        </div>
-</form>
+        <a asp-page-handler="ClickTimeCount" asp-route-id="@Model.myFAQ.FAQId" asp-page="/Education/FAQDetail" class="col-sm-2" style="margin-left:20px;">
+            <h5 id="clicks" style="text-align:center; margin-top:10px;">@Model.myFAQ.ClickTime<i id="thumbsUp" class="@thumbState"></i></h5>
+        </a>
+
+        <form class="mt-3" method="post">
+            <input class="form-control" type="" asp-for="myFAQ.FAQId" value="@Model.myFAQ.FAQId" oninput="this.value" />
+            <input type="submit" value="Send Report" class="btn text-danger" />
+        </form>
+
+    </div>
+    
+    
 
 @section Scripts {
     @{

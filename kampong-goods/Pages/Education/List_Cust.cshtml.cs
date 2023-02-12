@@ -33,9 +33,14 @@ namespace kampong_goods.Pages.Education
             FAQlist_sorted = FAQlist.OrderByDescending(x => x.ClickTime).ToList();
 
             if (FAQlist_sorted.Count != 0) {
-                foreach (var item in FAQlist_sorted) {
-                    FAQlist_top5.Add(item);
+                for (var i = 0; i < 5; i++)
+                {
+                    FAQlist_top5.Add(FAQlist_sorted[i]);
                 }
+
+                //foreach (var item in FAQlist_sorted) {
+                //    FAQlist_top5.Add(item);
+                //}
             }
             
         }

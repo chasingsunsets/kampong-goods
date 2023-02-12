@@ -21,8 +21,12 @@ namespace kampong_goods.Pages.Education
         public FAQ myFAQ { get; set; } = new();
 
 
+        public static List<FAQCategory> FAQCatlist { get; set; } = new();
+
+
         public IActionResult OnGet(string ID)
         {
+            FAQCatlist = _faqCatService.GetAll();
             FAQ? FAQ = _faqService.GetFAQById(ID);
             if (FAQ != null)
             {
@@ -41,10 +45,9 @@ namespace kampong_goods.Pages.Education
 
         public IActionResult OnPost()
         {
-
-
             if (ModelState.IsValid)
             {
+                myFAQ.Publish = false;
                 _faqService.UpdateFAQ(myFAQ);
                 TempData["FlashMessage.Type"] = "success";
                 TempData["FlashMessage.Text"] = string.Format("FAQ {0} is Edited", myFAQ.Question);
@@ -52,16 +55,5 @@ namespace kampong_goods.Pages.Education
             }
             return Page();
         }
-    }
-}
-
-
-namespace EDP_AssN.Pages.Materials
-{
-    public class DetailsModel : PageModel
-    {
-
-        
-
     }
 }
