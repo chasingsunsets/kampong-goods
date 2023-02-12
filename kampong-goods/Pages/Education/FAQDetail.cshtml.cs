@@ -89,7 +89,7 @@ namespace kampong_goods.Pages.Education
 
 
             MailMessage message = new MailMessage();
-            message.To.Add("q2467231710@gmail.com");
+            message.To.Add(emailAddress);
             message.Subject = title;
             message.Body = content;
             message.IsBodyHtml = false;
