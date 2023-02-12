@@ -33,7 +33,7 @@
                     <td>
                         <a asp-page="/Vouchers/VoucherDetails" asp-route-id="@item.VoucherId">View</a>
 
-                        <a data-toggle="modal" class="btn btn-danger btn-block" data-target="#deleteProduct">  Delete </a>
+                        <a data-toggle="modal" class="btn btn-danger btn-block" data-target="#deleteModal_@item.VoucherId">  Delete </a>
 
                         <!-- Delete -->
 						<div class="modal fade" id="deleteModal_@item.VoucherId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

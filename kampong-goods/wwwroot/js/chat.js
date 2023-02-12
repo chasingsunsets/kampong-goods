@@ -7,9 +7,25 @@ $("#sendMessage").prop('disabled', true);
 connection.on("ReceiveMessage", function (user, message) {
     var msg = message.replace(/&/g, "&").replace(/</g, "<").replace(/>/g, ">");
     var encodedMsg = user + ": says " + msg;
-    var li = document.createElement("li");
-    li.textContent = encodedMsg;
-    $("#messagesList").append(li);
+    var list = document.createElement("datalist");
+
+    if (user == "nat") {
+        list.textContent = encodedMsg;
+        console.log("list" + encodedMsg);
+        var li = document.createElement("li");
+        li.style.textAlign = "right";
+        li.textContent = encodedMsg;
+        $("#messagesList").append(li);
+    }
+
+    else if (user == "test") {
+        list.textContent = encodedMsg;
+        console.log("list" + encodedMsg);
+        var li = document.createElement("li");
+        li.style.textAlign = "left";
+        li.textContent = encodedMsg;
+        $("#messagesList").append(li);
+    }
 });
 
 connection.start().then(function () {
