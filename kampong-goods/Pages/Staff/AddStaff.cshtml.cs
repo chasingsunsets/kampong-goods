@@ -18,6 +18,9 @@ namespace kampong_goods.Pages.Staff
         private readonly RoleManager<IdentityRole> roleManager;
 
         private readonly StaffService _staffService;
+        
+        private readonly IMailService mailService;
+
 
 
         [BindProperty]
@@ -27,12 +30,15 @@ namespace kampong_goods.Pages.Staff
 
         public AddStaffModel(StaffService staffService, UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager,
-        RoleManager<IdentityRole> roleManager)
+        RoleManager<IdentityRole> roleManager,
+        IMailService mailService)
         {
                 _staffService = staffService;
                 this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this.mailService = mailService;
+
 
         }
         public void OnGet()
@@ -105,10 +111,20 @@ namespace kampong_goods.Pages.Staff
 /*                                createuser = await userManager.AddToRoleAsync(user, "Customer");
 */                                await userManager.AddToRoleAsync(user, "Staff");
                                 _staffService.AddStaff(staff);
-                                TempData["FlashMessage.Type"] = "success";
-                                TempData["FlashMessage.Text"] = string.Format("Account {0} successfully added.", AModel.Username);
+
+
+                            string code = await userManager.GenerateEmailConfirmationTokenAsync(user);
+                            var callbackurl = Url.PageLink("ConfirmStaffEmail", null, new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+
+                            System.Diagnostics.Debug.WriteLine(callbackurl);
+/*                            await userManager.SetEmailAsync()
+*/                            await mailService.SendEmailAsync(user.Email, "Confirm your account", "Please confirm your account by clicking " +
+                                                        "<a href=\"" + callbackurl + "\">here</a>");
+
+                            TempData["FlashMessage.Type"] = "success";
+                                TempData["FlashMessage.Text"] = string.Format("Account {0} added, tell staff to check email and confirm account before logging in.", AModel.Username);
 /*                                await signInManager.SignInAsync(user, false); ///???
-*/                                return RedirectToPage("Dashboard");
+*/                                return RedirectToPage("StaffList");
                             }
 
                             foreach (var error in createuser.Errors)

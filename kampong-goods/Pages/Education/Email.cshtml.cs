@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace kampong_goods.Pages.Education
 {
-	public class EmailModel : PageModel
+    public class EmailModel : PageModel
     {
         private readonly FAQService _FAQService;
         public List<FAQ> FAQList { get; set; } = new();
@@ -24,8 +24,8 @@ namespace kampong_goods.Pages.Education
 
         public void OnGet()
         {
-            FAQlist = _FAQService.GetAll();
-        }
+/*            FAQlist = _FAQService.GetAll();
+*/        }
 
         public async Task<IActionResult> OnPostAsync()
         {

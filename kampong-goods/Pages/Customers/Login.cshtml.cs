@@ -38,6 +38,8 @@ namespace kampong_goods.Pages.Customers
                 {
 
 
+                    
+
                     bool isDisabledStaff = await userManager.IsInRoleAsync(useracc, "StaffDisabled");
                     bool isDisabledCust = await userManager.IsInRoleAsync(useracc, "CustomerDisabled");
 
@@ -49,6 +51,15 @@ namespace kampong_goods.Pages.Customers
                         TempData["FlashMessage.Text"] = string.Format("Account is disabled. Contact Staff for help.");
                         return Page();
 
+                    }
+
+                    if (!await userManager.IsEmailConfirmedAsync(useracc))
+                    {
+                        /*                        string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
+                        */
+                        TempData["FlashMessage.Type"] = "danger";
+                        TempData["FlashMessage.Text"] = string.Format("Please check your email and confirm your email before you can log in.");
+                        return Page();
                     }
 
                     var identityResult = await signInManager.PasswordSignInAsync(LModel.UserName, LModel.Password, LModel.RememberMe, false);

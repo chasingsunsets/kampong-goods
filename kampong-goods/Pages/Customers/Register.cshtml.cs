@@ -1,4 +1,5 @@
 using kampong_goods.Models;
+using kampong_goods.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,6 +15,8 @@ namespace kampong_goods.Pages.Customers
 
         private readonly RoleManager<IdentityRole> roleManager;
 
+        private readonly IMailService mailService;
+
         [BindProperty]
         public Register RModel { get; set; }
 
@@ -21,11 +24,13 @@ namespace kampong_goods.Pages.Customers
 
         public RegisterModel(UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager,
-        RoleManager<IdentityRole> roleManager)
+        RoleManager<IdentityRole> roleManager,
+        IMailService mailService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this.mailService = mailService;
 
         }
         public void OnGet()
@@ -72,10 +77,24 @@ namespace kampong_goods.Pages.Customers
                         //Add users to Admin Role
                         result = await userManager.AddToRoleAsync(user, "Customer");
 
+                        string code = await userManager.GenerateEmailConfirmationTokenAsync(user);
+
+
+
+                        var callbackurl = Url.PageLink("ConfirmEmail", null, new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+
+                        System.Diagnostics.Debug.WriteLine(callbackurl);
+/*                        await userManager.SetEmailAsync()
+*/                        await mailService.SendEmailAsync(user.Email, "Confirm your account", "Please confirm your account by clicking " +
+                            "<a href=\"" + callbackurl + "\">here</a>");
+
+
+
+
                         TempData["FlashMessage.Type"] = "success";
-                        TempData["FlashMessage.Text"] = string.Format("Account {0} successfully registered.", RModel.Username);
-                        await signInManager.SignInAsync(user, false);
-                        return RedirectToPage("Profile");
+                        TempData["FlashMessage.Text"] = string.Format("Account {0} registered, Please check your email to confirm your account before logging in.", RModel.Username);
+/*                        await signInManager.SignInAsync(user, false);
+*/                        return RedirectToPage("Login");
                     }
 
                     foreach (var error in result.Errors)

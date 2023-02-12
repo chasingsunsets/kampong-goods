@@ -28,6 +28,7 @@ namespace kampong_goods.Pages.Staff
             this.signInManager = signInManager;
             this.roleManager = roleManager;
 
+
         }
         public async Task<IActionResult> OnGetAsync()
         {
@@ -51,6 +52,8 @@ namespace kampong_goods.Pages.Staff
                     
                     UserName = "mainstaff",
                     Email = "kamponggoods@gmail.com",
+                    EmailConfirmed = true,
+
 
                     LName = "Main",
                     FName = "Staff",
@@ -78,6 +81,8 @@ namespace kampong_goods.Pages.Staff
                 }
 
             }
+
+
             return Page();
 
         }
@@ -108,7 +113,14 @@ namespace kampong_goods.Pages.Staff
                     bool isStaff = await userManager.IsInRoleAsync(useracc, "Staff");
                     if (isStaff)
                     {
-
+                        if (!await userManager.IsEmailConfirmedAsync(useracc))
+                        {
+                            /*                        string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account-Resend");
+                            */
+                            TempData["FlashMessage.Type"] = "danger";
+                            TempData["FlashMessage.Text"] = string.Format("Please check your email and confirm your email before you can log in.");
+                            return Page();
+                        }
 
                         var identityResult = await signInManager.PasswordSignInAsync(LModel.UserName, LModel.Password, LModel.RememberMe, false);
                         if (identityResult.Succeeded)
