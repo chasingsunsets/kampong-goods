@@ -14,11 +14,15 @@ namespace kampong_goods.Pages.Products
     {
         private readonly ProductService _productService;
         private readonly UserManager<AppUser> _userManager;
+        private readonly ConditionService _conditionService;
+        private readonly CategoryService _categoryService;
 
-        public IndexModel(ProductService productService, UserManager<AppUser> userManager)
+        public IndexModel(ProductService productService, UserManager<AppUser> userManager, ConditionService conditionService, CategoryService categoryService)
         {
             _productService = productService;
             _userManager = userManager;
+            _conditionService = conditionService;
+            _categoryService = categoryService;
         }
 
         public List<Product> ProductList { get; set; } = new();
@@ -29,6 +33,10 @@ namespace kampong_goods.Pages.Products
 
         public List<Product> soldProducts { get; set; } = new();
 
+        public List<Condition> ConditionList { get; set; } = new();
+
+        public List<Category> CategoryList { get; set; } = new();
+
         public AppUser user { get; set; } = new();
 
         public async Task<IActionResult> OnGetAsync()
@@ -38,9 +46,11 @@ namespace kampong_goods.Pages.Products
             user = await _userManager.Users.FirstAsync(u => u.Id == userId);
 
             ProductList = _productService.GetAll();
+            ConditionList = _conditionService.GetAll();
+            CategoryList = _categoryService.GetAll();
 
             //sorts the products into its availablity
-            foreach(var productItem in ProductList)
+            foreach (var productItem in ProductList)
             {
                 if(productItem.UserId == user.Id)
                 {

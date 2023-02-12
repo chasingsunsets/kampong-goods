@@ -324,22 +324,22 @@
                                 <ul class="m-b-0">
                                     @foreach(var message in Model.messages)
                                     {
-                                        @if(message.UserId == Model.Sender.Id)
+                                        @if(message.Sender.Id == Model.Sender.Id)
                                         {
                                             <li class="clearfix">
                                                 <div class="message-data text-right">
-                                                    <span class="message-data-time">@message.When</span>
+                                                    <span class="message-data-time">@message.Sender.UserName @message.When</span>
                                                 <img src="/images/seventeen-wonwoo-1.jpg" style="width: 50px; height: 50px;" alt="avatar">
                                                 </div>
                                                 <div class="message other-message float-right"> @message.Text </div>
                                             </li>
                                         }
 
-                                        @if(message.UserId != Model.Sender.Id)
+                                        @if(message.UserId != Model.Sender.Id && message.UserId == Model.Receiver.Id)
                                         {
                                             <li class="clearfix">
                                                 <div class="message-data">
-                                                    <span class="message-data-time">@message.When</span>
+                                                    <span class="message-data-time">@message.Sender.UserName @message.When</span>
                                                 <img src="/images/seventeen-wonwoo-1.jpg" style="width: 50px; height: 50px; float: left;" alt="avatar">
                                                 </div>
                                                 <div class="message my-message">@message.Text</div>
