@@ -73,7 +73,7 @@ namespace kampong_goods.Pages.Staff
             var stafflist = _staffService.GetAll();
             int inputcheck = 0;
 
-
+            if (Profile.User != null) { 
             if (!Regex.IsMatch(Profile.User.Email, @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"))
             {
                 inputcheck += 1;
@@ -219,6 +219,7 @@ namespace kampong_goods.Pages.Staff
 
 
                 /*}*/
+            }
             }
 
             return Page();

@@ -67,7 +67,7 @@
                                                                                                     @{
                                         var staff= _staffService.GetICById(item.Id);
                                                                                                     }
-                                                                                                            <td>&nbsp;@staff.NRIC</td>
+                                                                                                            <td>&nbsp;@staff.NRIC.Remove(1,4).Insert(1,"*****")</td>
                                                                                                     <td>&nbsp;@item.Email</td>
                                                                                                     <td>&nbsp;@item.Address</td>
 

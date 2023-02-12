@@ -38,7 +38,7 @@ namespace kampong_goods.Pages.Staff
 
         }
 
-        public async Task<IActionResult> OnGetDelete(string id)
+        public async Task<IActionResult> OnGetDeleteS(string id)
         {
             if (id == null)
             {
@@ -75,7 +75,7 @@ namespace kampong_goods.Pages.Staff
                         await signInManager.SignOutAsync();
                         TempData["FlashMessage.Type"] = "success";
                         TempData["FlashMessage.Text"] = string.Format("Account deleted.");
-                        return RedirectToPage("/StaffLogin");
+                        return RedirectToPage("/Staff/StaffLogin");
                     }
                 }
 
