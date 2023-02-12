@@ -23,7 +23,7 @@ namespace kampong_goods.Services
 
         public List<Request> GetNotMy(string userid)
         {
-            return _db.Requests.Where(m => m.UserId != userid && m.Status != "Available").ToList();
+            return _db.Requests.Where(m => m.UserId != userid && m.Status == "Available").ToList();
 
         }
 

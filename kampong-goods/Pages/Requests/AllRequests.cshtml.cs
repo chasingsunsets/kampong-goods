@@ -36,7 +36,9 @@ namespace kampong_goods.Pages.Requests
             var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
             System.Diagnostics.Debug.WriteLine("me"+userid);
             if (userid != null) 
-            { exclRequestList = _requestService.GetNotMy(userid); }
+            { exclRequestList = _requestService.GetNotMy(userid);
+                System.Diagnostics.Debug.WriteLine("xx");
+            }
 
             else { exclRequestList = _requestService.GetAll();
                 System.Diagnostics.Debug.WriteLine("here");

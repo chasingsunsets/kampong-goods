@@ -2,6 +2,7 @@ using kampong_goods.Models;
 using kampong_goods.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics;
 using System.Security.Claims;
 
 namespace kampong_goods.Pages.Requests
@@ -42,7 +43,42 @@ namespace kampong_goods.Pages.Requests
         }
 
 
+        public async Task<IActionResult> OnGetDeleteA(int id)
+        {
+            if (id == null)
+            {
+                return Page();
+            }
 
+
+            var request = _requestService.GetRequestById(id);
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
+            Debug.WriteLine(userid);
+            var user = _customerService.GetCustomerById(userid);
+
+
+            if (request != null)
+            {
+                if (request.UserId != userid)
+                {
+
+                    TempData["FlashMessage.Type"] = "danger";
+                    TempData["FlashMessage.Text"] = string.Format("Invalid access, you can only delete the request your account have.");
+                    return Page();
+                }
+
+                else
+                {
+                    _requestService.DeleteRequest(request);
+                    TempData["FlashMessage.Type"] = "success";
+                    TempData["FlashMessage.Text"] = string.Format("Request deleted.");
+                    return Page();
+                }
+            }
+            return RedirectToPage();
+
+
+        }
 
     }
 }
