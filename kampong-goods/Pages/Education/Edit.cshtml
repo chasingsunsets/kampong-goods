@@ -49,11 +49,11 @@
         </div>
     </div>
 
-    <input class="form-control" type="" asp-for="myFAQ.FAQId" value="@Model.myFAQ.FAQId" oninput="this.value" />
-    <input class="form-control" type="" asp-for="myFAQ.Creator" value="@Model.myFAQ.Creator" oninput="this.value" />
-    <input class="form-control" type="" asp-for="myFAQ.Editor" value="@UserManager.GetUserName(User)" oninput="this.value" />
-    <input class="form-control" type="" asp-for="myFAQ.Date_Created" value="myFAQ.Date_Created" oninput="this.value" />
-    <input class="form-control" type="" asp-for="myFAQ.Date_Modified" value="@currentDate" oninput="this.value" />
+    <input class="form-control" type="hidden" asp-for="myFAQ.FAQId" value="@Model.myFAQ.FAQId" oninput="this.value" />
+    <input class="form-control" type="hidden" asp-for="myFAQ.Creator" value="@Model.myFAQ.Creator" oninput="this.value" />
+    <input class="form-control" type="hidden" asp-for="myFAQ.Editor" value="@UserManager.GetUserName(User)" oninput="this.value" />
+    <input class="form-control" type="hidden" asp-for="myFAQ.Date_Created" value="myFAQ.Date_Created" oninput="this.value" />
+    <input class="form-control" type="hidden" asp-for="myFAQ.Date_Modified" value="@currentDate" oninput="this.value" />
 
     </div>
     <div class="row mb-3">

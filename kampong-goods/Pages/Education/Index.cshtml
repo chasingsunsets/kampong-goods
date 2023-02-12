@@ -100,6 +100,7 @@
                                     </div>
                                     <div>
                                         <a class="card-link" asp-page="/Education/Index" asp-page-handler="PublishFAQ" asp-route-id="@item.FAQId" style="margin-left:50px; float:right"><i class="fa-solid fa-upload"></i>Publish</a>
+                                        <a class="card-link" asp-page="/Education/Index" asp-page-handler="PullFAQ" asp-route-id="@item.FAQId" style="margin-left:50px; float:right"><i class="fa-solid fa-upload"></i>Pull</a>
                                         <a data-toggle="modal" data-target="#deletestaff" class="card-link" style="color: darkred; float:right" asp-page-handler="DeleteFAQ" asp-route-id="@item.FAQId">
                                             <i class="far fa-trash-alt"></i>
                                             Delete

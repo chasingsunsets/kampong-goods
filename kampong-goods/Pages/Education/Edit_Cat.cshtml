@@ -32,10 +32,13 @@
             <span asp-validation-for="myFAQCat.FAQCatDescription" class="text-danger"></span>
         </div>
     </div>
+
+    <input class="form-control" type="hidden" asp-for="myFAQCat.Id" value="@Model.myFAQCat.Id" oninput="this.value" />
+
     <div class="row mb-3">
         <a class="btn btn-secondary col-sm-2" href="/Education/FAQCat_List" style="margin-left:30%;">Cancel</a>
         <input type="submit" value="Save" class="btn btn-primary  col-sm-2" style="margin-right:30%; margin-left:5%;" />
     </div>
-    </form>
+</form>
 
 
