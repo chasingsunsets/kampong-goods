@@ -3,9 +3,83 @@
 @{
     ViewData["Title"] = "Register";
 
+
 }
 
-<h1 class="mb-3">@ViewData["Title"]</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <style>
+
+        .rbtn {
+            background-color: #3563E9;
+            ;
+            color:white;
+            float:right;
+        }
+        .accountbtn {
+            background-color: #8BAD97;
+            /* Green */
+            border: none;
+            color: black;
+            padding: 10px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 60px;
+        }
+
+        .centered {
+            text-align: center;
+        }
+
+        .accountform {
+            width: 50%;
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .spacing1 {
+            margin-left: 9%
+        }
+
+        .spacing2 {
+            margin-left: 15%
+        }
+
+        .spacing1o {
+            margin-left: 27%
+        }
+
+        .spacing2o {
+            margin-left: 15%
+        }
+
+        .cenform {
+            margin-left: 40%;
+            margin-right: 40%;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+<div class="col-md-6 mx-auto">
+ <div class="card card-body">
+                <h1 class="mb-3">@ViewData["Title"]</h1>
+
 <form class="mt-3" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
 
@@ -70,7 +144,11 @@
         </div>
     </div>
     <div>
-        <input type="submit" value="Register" class="btn btn-primary" />
+        <input type="submit" value="Register" class="btn rbtn" />
     </div>
 </form>
-
+</div>
+</div>
+</div>
+</body>
+</html>
