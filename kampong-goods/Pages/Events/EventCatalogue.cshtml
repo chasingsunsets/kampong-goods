@@ -1,0 +1,24 @@
+﻿@page
+@model kampong_goods.Pages.Events.EventCatalogueModel
+@{
+    ViewData["Title"] = "Events";
+}
+<h1 class="display-4">@ViewData["Title"]</h1>
+@{
+    @foreach (var item in Model.EventList)
+    {
+        <article class="card mb-4"> 
+            <div class="card-body"> 
+                <h5 class="card-title">@item.EventName</h5> 
+                <p>Description: @item.EventDesc</p> 
+                <p>Type of event: @item.EventType</p> 
+                <p>From: @item.EventStart.ToString("dd/MM/yyyy HH:mm") to @item.EventEnd.ToString("dd/MM/yyyy HH:mm")</p> 
+                <p>Address: @item.EventLocation</p> 
+                <p>Postal Code: @item.PostalCode</p> 
+                <p>Suitable for: @item.EventSuitability</p> 
+                <p>Organisers: @item.EventOrganiser</p> 
+
+            </div> 
+        </article>
+    }
+}

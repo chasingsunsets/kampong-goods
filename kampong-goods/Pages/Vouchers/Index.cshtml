@@ -31,7 +31,7 @@
                     <td>@item.VoucherCode</td>
                     <td>@item.VoucherExpDate.ToString("dd/MM/yyyy")</td>
                     <td>
-                        <a asp-page="/Vouchers/VoucherDetails" asp-route-id="@item.VoucherId">View</a>
+                        <a class="btn btn-outline-primary btn-block" asp-page="/Vouchers/VoucherDetails" asp-route-id="@item.VoucherId">Edit</a>
 
                         <a data-toggle="modal" class="btn btn-danger btn-block" data-target="#deleteModal_@item.VoucherId">  Delete </a>
 
