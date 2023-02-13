@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace kampong_goods.Pages.Vouchers
 {
-    //[Authorize(Roles ="Staff")]
+    [Authorize(Roles = "Staff")]
     public class IndexModel : PageModel
     {
         private readonly VoucherService _voucherService;
@@ -49,16 +49,16 @@ namespace kampong_goods.Pages.Vouchers
                 if (voucher.VoucherId.ToString() != id)
                 {
 
-                    //TempData["FlashMessage.Type"] = "danger";
-                    //TempData["FlashMessage.Text"] = string.Format("Invalid access, you can only delete the product you logged in with.");
+                    TempData["FlashMessage.Type"] = "danger";
+                    TempData["FlashMessage.Text"] = string.Format("Invalid access");
                     return Page();
                 }
 
                 else
                 {
                     _voucherService.DeleteVoucher(voucher);
-                    //TempData["FlashMessage.Type"] = "success";
-                    //TempData["FlashMessage.Text"] = string.Format("Product {0} is deleted", product.ProductName);
+                    TempData["FlashMessage.Type"] = "success";
+                    TempData["FlashMessage.Text"] = string.Format("Voucher {0} is deleted", voucher.VoucherName);
                 }
 
             }
