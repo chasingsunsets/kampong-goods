@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using kampong_goods.Models;
 using kampong_goods.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace kampong_goods.Pages.Events
 {
+    [Authorize(Roles = "Customer, Staff")]
     public class EventCatalogueModel : PageModel
     {
         private readonly EventService _eventService;

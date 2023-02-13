@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace kampong_goods.Pages.Vouchers
 {
-    [Authorize(Roles = "Customer, Staff")]
+    [Authorize(Roles = "Staff")]
     public class DetailsModel : PageModel
     {
         private readonly VoucherService _voucherService;

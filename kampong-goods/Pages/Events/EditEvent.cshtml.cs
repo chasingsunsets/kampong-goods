@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace kampong_goods.Pages.Events
 {
-    [Authorize(Roles = "Customer, Staff")]
+    [Authorize(Roles = "Staff")]
 
     public class EditEventModel : PageModel
     {
