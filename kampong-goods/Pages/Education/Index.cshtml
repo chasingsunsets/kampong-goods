@@ -12,112 +12,112 @@
 @{           if(Model.FAQlist!=null){
 
     <div class="container-fluid">
-                                        
+                                                
 
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3" style="background-color:#3563E9;">
-                <h5 class="m-0 font-weight-bold" style="color:white;">FAQ List</h5>
-            </div>
-            <div class="card-body">
-                <form class="form-row" method="post">
-                    <div class="col-8">
-                        <input class="form-control" asp-for="searchItem" placeholder="Enter the keyword here" type="text">
-                    </div> <!-- col.// -->
-                    <div class="col-4">
-                        <input type="submit" value="Search" class="btn btn-primary" />
-                    </div> <!-- col.// -->
-                </form>
-                <a class="" asp-page="/Education/Index" asp-page-handler="SortFAQAesc">Created Date from Newset</a>
-                <a style="margin-left:10px;" class="" asp-page="/Education/Index" asp-page-handler="SortFAQDesc">Created Date from Oldest</a>
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead style="background-color: #F1EDE5;">
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3" style="background-color:#3563E9;">
+                        <h5 class="m-0 font-weight-bold" style="color:white;">FAQ List</h5>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-row" method="post">
+                            <div class="col-8">
+                                <input class="form-control" asp-for="searchItem" placeholder="Enter the keyword here" type="text">
+                            </div> <!-- col.// -->
+                            <div class="col-4">
+                                <input type="submit" value="Search" class="btn btn-primary" />
+                            </div> <!-- col.// -->
+                        </form>
+                        <a class="" asp-page="/Education/Index" asp-page-handler="SortFAQAesc">Created Date from Newset</a>
+                        <a style="margin-left:10px;" class="" asp-page="/Education/Index" asp-page-handler="SortFAQDesc">Created Date from Oldest</a>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead style="background-color: #F1EDE5;">
 
 
-                            <tr>
-                                <th>&nbsp;Question</th>
-                                <th>&nbsp;Answer</th>
-                                <th>&nbsp;Category</th>
-                                <th>&nbsp;Thread</th>
-                                <th>&nbsp;Report time</th>
+                                    <tr>
+                                        <th>&nbsp;Question</th>
+                                        <th>&nbsp;Answer</th>
+                                        <th>&nbsp;Published</th>
+                                        <th>&nbsp;Thread</th>
+                                        <th>&nbsp;Report time</th>
 
-                                <th>&nbsp;Action</th>
-                            </tr>
-                        </thead>
-                        @foreach (var item in Model.FAQlist)
+                                        <th>&nbsp;Action</th>
+                                    </tr>
+                                </thead>
+                                @foreach (var item in Model.FAQlist)
                         {
 
 
-                            <!-- Delete Modal-->
-                            <div class="modal fade" id="deletestaff" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                Delete FAQ
-                                            </h5>
-                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Select "Delete" below if you are
-                                            deleting this FAQ.
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                            <a class="btn btn-primary" asp-page-handler="DeleteFAQ" asp-route-id="@item.FAQId">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <tr>
-                                <td>@item.Question</td>
-                                <td>&nbsp;<a asp-page="/Education/FAQDetail_Staff" asp-route-id="@item.FAQId">View</a></td>
-                                <td>&nbsp;@item.FAQCatId</td>
-                                <td>&nbsp;@item.ClickTime</td>
-                                <td>&nbsp;@item.ReportCount</td>
-
-
-                                <td>
-                                    <div>
-
-                                        <a class="nav-link collapsed" style="font-size:90%; float:left;" href="#" data-toggle="collapse" data-target="#collapseFAQs" aria-expanded="true"
-                                           aria-controls="collapseFAQs">
-                                            <span>More Action</span>
-                                        </a>
-                                        <div id="collapseFAQs" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                                            <div class="bg-white py-2 collapse-inner rounded">
-                                                <a asp-page="/Education/FAQDetail_Staff" asp-route-id="@item.FAQId"><i class="fa-solid fa-circle-info"></i>Detail</a>
-                                                <a asp-page="/Education/Edit" asp-route-id="@item.FAQId" style="color:#3563E9" class="card-link mb-2"><i class="fas fa-pencil-alt"></i>Edit</a>
-
+                                    <!-- Delete Modal-->
+                                    <div class="modal fade" id="deletestaff" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                        Delete FAQ
+                                                    </h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Select "Delete" below if you are
+                                                    deleting this FAQ.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                    <a class="btn btn-primary" asp-page-handler="DeleteFAQ" asp-route-id="@item.FAQId">Delete</a>
+                                                </div>
                                             </div>
                                         </div>
-
                                     </div>
-                                    <div>
-                                        <a class="card-link" asp-page="/Education/Index" asp-page-handler="PublishFAQ" asp-route-id="@item.FAQId" style="margin-left:50px; float:right"><i class="fa-solid fa-upload"></i>Publish</a>
-                                        <a class="card-link" asp-page="/Education/Index" asp-page-handler="PullFAQ" asp-route-id="@item.FAQId" style="margin-left:50px; float:right"><i class="fa-solid fa-upload"></i>Pull</a>
-                                        <a data-toggle="modal" data-target="#deletestaff" class="card-link" style="color: darkred; float:right" asp-page-handler="DeleteFAQ" asp-route-id="@item.FAQId">
-                                            <i class="far fa-trash-alt"></i>
-                                            Delete
-                                        </a>
 
-                                    </div>
-                                </td>
-                            </tr>
+                                    <tr>
+                                        <td>@item.Question</td>
+                                        <td>&nbsp;<a asp-page="/Education/FAQDetail_Staff" asp-route-id="@item.FAQId">View</a></td>
+                                        <td>&nbsp;@item.Publish</td>
+                                        <td>&nbsp;@item.ClickTime</td>
+                                        <td>&nbsp;@item.ReportCount</td>
+
+
+                                        <td>
+                                            <div>
+
+                                                <a class="nav-link collapsed" style="font-size:90%; float:left;" href="#" data-toggle="collapse" data-target="#collapseFAQs" aria-expanded="true"
+                                                   aria-controls="collapseFAQs">
+                                                    <span>More Action</span>
+                                                </a>
+                                                <div id="collapseFAQs" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                    <div class="bg-white py-2 collapse-inner rounded">
+                                                        <a asp-page="/Education/FAQDetail_Staff" asp-route-id="@item.FAQId"><i class="fa-solid fa-circle-info"></i>Detail</a>
+                                                        <a asp-page="/Education/Edit" asp-route-id="@item.FAQId" style="color:#3563E9; margin-left: 37px;" class="card-link mb-2"><i class="fas fa-pencil-alt"></i>Edit</a>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div>
+                                                <a class="card-link" asp-page="/Education/Index" asp-page-handler="PublishFAQ" asp-route-id="@item.FAQId" style="margin-left:50px; float:right"><i class="fa-solid fa-upload"></i>Publish</a>
+                                                    <a class="card-link" asp-page="/Education/Index" asp-page-handler="PullFAQ" asp-route-id="@item.FAQId" style="margin-left:50px; float:right"><i class="fa-solid fa-download"></i>Pull</a>
+                                                <a data-toggle="modal" data-target="#deletestaff" class="card-link" style="color: darkred; float:right" asp-page-handler="DeleteFAQ" asp-route-id="@item.FAQId">
+                                                    <i class="far fa-trash-alt"></i>
+                                                    Delete
+                                                </a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
 
 
                         }
-                    </table>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-</div>
+    </div>
 
             
         
@@ -125,7 +125,7 @@
 
     else{
 
-<h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No FAQ</h3>
+    <h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No FAQ</h3>
     }
 }
 
