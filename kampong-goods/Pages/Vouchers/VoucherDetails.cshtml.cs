@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using kampong_goods.Models;
 using kampong_goods.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace kampong_goods.Pages.Vouchers
 {
+    [Authorize(Roles = "Customer, Staff")]
     public class DetailsModel : PageModel
     {
         private readonly VoucherService _voucherService;
@@ -34,6 +36,8 @@ namespace kampong_goods.Pages.Vouchers
             {
                 //Voucher? voucher = MyVoucher;
                 _voucherService.UpdateVoucher(MyVoucher);
+                TempData["FlashMessage.Type"] = "success";
+                TempData["FlashMessage.Text"] = string.Format("{0} is updated", MyVoucher.VoucherName);
                 return Redirect("/Vouchers");
             }
             return Page();

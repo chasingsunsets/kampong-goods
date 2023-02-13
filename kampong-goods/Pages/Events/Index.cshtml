@@ -41,7 +41,7 @@
                     <td>@item.EventOrganiser</td>
 
                     <td>
-                        <a asp-page="/Events/EventDetails" asp-route-id="@item.EventId">View</a>
+                        <a class="btn btn-outline-primary btn-block" asp-page="/Events/EditEvent" asp-route-id="@item.EventId">Edit</a>
                         <a data-toggle="modal" class="btn btn-danger btn-block" data-target="#deleteEvent_@item.EventId">  Delete </a>
                         <!-- Delete -->
                         <div class="modal fade" id="deleteEvent_@item.EventId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -71,4 +71,3 @@
 </table>
 
 <a class="btn btn-primary mt-3" href="/Events/AddEvent">Add Event</a>
-<a class="btn btn-primary mt-3" href="/Events">Customer View</a>
