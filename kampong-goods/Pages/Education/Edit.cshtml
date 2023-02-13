@@ -5,7 +5,7 @@
 @inject UserManager<AppUser> UserManager
 @model kampong_goods.Pages.Education.EditModel
 @{
-    ViewData["Title"] = "Add FAQ Category";
+    ViewData["Title"] = "Edit FAQ";
     Guid myuuid = Guid.NewGuid();
     var FAQID = myuuid.ToString();
 
@@ -58,7 +58,7 @@
     </div>
     <div class="row mb-3">
         <a class="btn btn-secondary col-sm-2" href="/Education" style="margin-left:30%;">Cancel</a>
-        <input type="submit" value="Add" class="btn btn-primary  col-sm-2" style="margin-right:30%; margin-left:5%;" />
+        <input type="submit" value="Save" class="btn btn-primary  col-sm-2" style="margin-right:30%; margin-left:5%;" />
     </div>
 </form>
 @section Scripts {

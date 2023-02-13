@@ -12,8 +12,8 @@ using kampong_goods;
 namespace kampong_goods.Migrations.FAQDb
 {
     [DbContext(typeof(FAQDbContext))]
-    [Migration("20230212101020_initialCreate")]
-    partial class initialCreate
+    [Migration("20230213001445_FAQDb")]
+    partial class FAQDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,6 +67,9 @@ namespace kampong_goods.Migrations.FAQDb
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("ReportCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("URL")
                         .IsRequired()

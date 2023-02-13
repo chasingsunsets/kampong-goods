@@ -66,6 +66,9 @@ namespace kampong_goods.Migrations.FAQDb
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("ReportCount")
+                        .HasColumnType("int");
+
                     b.Property<string>("URL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

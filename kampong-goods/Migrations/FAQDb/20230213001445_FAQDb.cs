@@ -4,7 +4,7 @@
 
 namespace kampong_goods.Migrations.FAQDb
 {
-    public partial class initialCreate : Migration
+    public partial class FAQDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,7 +38,8 @@ namespace kampong_goods.Migrations.FAQDb
                     Date_Created = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date_Modified = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Publish = table.Column<bool>(type: "bit", nullable: false),
-                    ClickTime = table.Column<int>(type: "int", nullable: false)
+                    ClickTime = table.Column<int>(type: "int", nullable: false),
+                    ReportCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
