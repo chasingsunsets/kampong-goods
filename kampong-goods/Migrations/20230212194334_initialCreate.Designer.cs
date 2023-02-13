@@ -12,7 +12,7 @@ using kampong_goods;
 namespace kampong_goods.Migrations
 {
     [DbContext(typeof(AppUsersDbContext))]
-    [Migration("20230211115247_initialCreate")]
+    [Migration("20230212194334_initialCreate")]
     partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

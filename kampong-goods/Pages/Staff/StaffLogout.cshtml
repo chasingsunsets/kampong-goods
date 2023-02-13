@@ -2,12 +2,31 @@
 @model kampong_goods.Pages.Staff.StaffLogoutModel
 @{
 	Layout = "~/Pages/Shared/_StaffLayout.cshtml";
+		ViewData["Title"] = "Logout";
 
 }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style>
+		.rebtn {
+			background-color: #3563E9;
+			;
+			color: white;
+			float: right;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div class="container" style="height:500px;">
+		<div class="col-md-6 mx-auto">
+			<div class="card card-body">
+				<h1 class="mb-3">@ViewData["Title"]</h1>
 <form method="post">
-	<div class="container mt-5">
-		<div class="row justify-content-center">
-			<div class="col-sm-12 col-md-12 col-lg-4">
+
 				<p> Are you sure you want to logout? </p>
 				<p>
 					<button class="btn" style="color: white; background: #3563E9;" asp-page-handler="StaffLogout">
@@ -15,7 +34,11 @@
 					</button>
 					<button class="btn btn-light ml-5 border-dark" asp-page-handler="StaffDontLogout">No</button>
 				</p>
+
+</form>
+
 			</div>
 		</div>
 	</div>
-</form>
+</body>
+</html>

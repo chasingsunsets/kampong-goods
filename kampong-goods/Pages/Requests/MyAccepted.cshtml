@@ -1,0 +1,130 @@
+﻿@page
+@model kampong_goods.Pages.Requests.MyAcceptedModel
+@using Microsoft.AspNetCore.Identity;
+@using kampong_goods.Models;
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+@{
+
+}
+ 
+
+@{
+	if (SignInManager.IsSignedIn(User))
+	{
+		<div class="container">
+			<div class="subforum">
+				<div class="subforum-title">
+					<h1>
+					 My Accepted Requests  <a class="btn registerBtn" style="float:right" asp-area="" asp-page="/Requests/AddRequest" style="color: white;"><i class="fa-solid fa-plus"></i> Add Request</a>
+						<a class="btn" style="float:right" asp-area="" asp-page="/Requests/MyRequests"><i class="fa-solid fa-user"></i> My Requests</a>
+						<a class="btn" style="float:right" asp-area="" asp-page="/Requests/IAccept"><i class="fa-sharp fa-solid fa-check-double"></i> Requests I Accepted</a>
+						<a class="btn" style="float:right" asp-area="" asp-page="/Requests/AllRequests"><i class="fa-sharp fa-solid fa-globe"></i> All Requests</a>
+
+					</h1>
+
+				</div>
+			</div>
+		</div>
+	}
+	
+
+}
+
+	           
+<div class="row">
+	@{
+		if (Model.RequestList!=null && Model.RequestList.Any())
+		{
+
+			@foreach (var item in Model.RequestList)
+		{
+							<div class="col-md-3">
+								<figure class="card card-product-grid">
+
+									<figcaption class="info-wrap">
+										<h3>Title: @item.ReqTitle</h3>
+										<div class="price-wrap">
+											<span class="price">Budget: $@item.Budget</span>
+										</div> <!-- price-wrap.// -->
+										@foreach (var cat in AllRequestsModel.CategoryList) //use id catid get cat name
+						{
+							if (item.categoryId == cat.CategoryId)
+							{
+							//<p class="text-muted ">Requester: @cust.UserName</p>
+												<p class="mb-3">
+													<span class="tag"> @cat.CategoryName </span>
+												</p>
+
+
+							}
+						}
+
+										<hr>
+
+
+										<p class="title mb-2">Description: @item.Description</p>
+
+
+										<hr>
+
+										@foreach (var cust in Model.CustList) //use userid to get user name
+						{
+							if (item.Status == cust.Id)
+							{
+								//<p class="text-muted ">Requester: @cust.UserName</p>
+												<p><b>Accepted by</b> @cust.UserName </p>
+
+
+						     }
+
+						}
+							<!-- Delete Modal-->
+							<div class="modal fade" id="deR_@item.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+					 	aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">
+												Delete
+											</h5>
+											<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">×</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											Select "Delete" below if you are
+											deleting your request.
+										</div>
+										<div class="modal-footer">
+											<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+											<a class="btn btn-primary" asp-page-handler="DeleteA" asp-route-id="@item.ID">Delete</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<a data-toggle="modal" data-target="#deR_@item.ID" class="card-link"
+				   	style="color: darkred;float: right;">
+								<i class="far fa-trash-alt"></i>
+								Delete
+							</a>
+						
+									</figcaption>
+								</figure>
+							</div> 
+		}
+			}
+				else
+				{
+
+							<h3 class="m-0 font-weight-bold" style="padding-left:20px ;">No Requests</h3>
+				}
+				}
+	</div>
+
+
+
+
+
+		

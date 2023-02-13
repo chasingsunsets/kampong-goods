@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Security.Claims;
 
 namespace kampong_goods.Pages.Staff
 {
@@ -38,7 +39,7 @@ namespace kampong_goods.Pages.Staff
 
         }
 
-        public async Task<IActionResult> OnGetDelete(string id)
+        public async Task<IActionResult> OnGetDeleteS(string id)
         {
             if (id == null)
             {
@@ -75,7 +76,7 @@ namespace kampong_goods.Pages.Staff
                         await signInManager.SignOutAsync();
                         TempData["FlashMessage.Type"] = "success";
                         TempData["FlashMessage.Text"] = string.Format("Account deleted.");
-                        return RedirectToPage("/StaffLogin");
+                        return RedirectToPage("/Staff/StaffLogin");
                     }
                 }
 
@@ -83,6 +84,47 @@ namespace kampong_goods.Pages.Staff
 
             return RedirectToPage();
         }
+
+
+        public async Task<IActionResult> OnGetChangePWS(string id)
+        {
+            if (id == null)
+            {
+                return Page();
+            }
+
+            var user = _customerService.GetCustomerById(id);
+            System.Diagnostics.Debug.WriteLine("await" + user);
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (user != null)
+            {
+                if (userid != id)
+                {
+
+                    TempData["FlashMessage.Type"] = "danger";
+                    TempData["FlashMessage.Text"] = string.Format("Invalid access, you can only change password of the account you logged in with.");
+                    return Page();
+                }
+
+                else
+                {
+
+                    var code = await userManager.GeneratePasswordResetTokenAsync(user);
+                    var callbackurl = Url.PageLink("ChangePWS", null, new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+
+                    System.Diagnostics.Debug.WriteLine(callbackurl);
+                    return Redirect(callbackurl);
+
+
+                }
+            }
+            TempData["FlashMessage.Type"] = "danger";
+            TempData["FlashMessage.Text"] = string.Format("No user found.");
+
+            return RedirectToPage();
+        }
+
 
     }
 }

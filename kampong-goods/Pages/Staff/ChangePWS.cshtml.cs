@@ -1,12 +1,16 @@
 using kampong_goods.Models;
-using kampong_goods.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 
-namespace kampong_goods.Pages.Customers
+namespace kampong_goods.Pages.Staff
 {
-    public class ResetPasswordModel : PageModel
+    [Authorize(Roles = "Staff")]
+
+    public class ChangePWSModel : PageModel
     {
         private UserManager<AppUser> userManager { get; }
         private SignInManager<AppUser> signInManager { get; }
@@ -15,9 +19,9 @@ namespace kampong_goods.Pages.Customers
 
 
         [BindProperty]
-        public ResetPassword ReModel { get; set; }
+        public ChangePassword ChModel { get; set; }
 
-        public ResetPasswordModel(UserManager<AppUser> userManager,
+        public ChangePWSModel(UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager,
         RoleManager<IdentityRole> roleManager)
         {
@@ -32,7 +36,7 @@ namespace kampong_goods.Pages.Customers
             {
                 TempData["FlashMessage.Type"] = "danger";
                 TempData["FlashMessage.Text"] = string.Format("Error occurred while processing your request.");
-                return RedirectToPage("ForgotPassword");
+                return RedirectToPage("Profile");
             }
 
             return Page();
@@ -43,33 +47,30 @@ namespace kampong_goods.Pages.Customers
             if (ModelState.IsValid)
             {
 
-                var user = await userManager.FindByEmailAsync(ReModel.Email);
+                var user = await userManager.FindByIdAsync(ChModel.Id);
 
                 if (user != null)
                 {
-                    System.Diagnostics.Debug.WriteLine(ReModel.Code);
-                    var result = await userManager.ResetPasswordAsync(user, ReModel.Code, ReModel.Password);
+                    System.Diagnostics.Debug.WriteLine(ChModel.Code);
+                    var result = await userManager.ResetPasswordAsync(user, ChModel.Code, ChModel.Password);
                     if (result.Succeeded)
                     {
+
+                        await signInManager.SignOutAsync();
+                        await HttpContext.SignOutAsync("AdminAuth");
                         TempData["FlashMessage.Type"] = "success";
-                        TempData["FlashMessage.Text"] = string.Format("Password resetted successfully, you can now try logging in.");
-                        return RedirectToPage("Login");
+                        TempData["FlashMessage.Text"] = string.Format("Password changed successfully, you can now try logging in.");
+                        return RedirectToPage("StaffLogin");
                     }
 
-                    else
-                    {
-                        TempData["FlashMessage.Type"] = "danger";
-                        TempData["FlashMessage.Text"] = string.Format("Current reset password link is not for this account");
-                        return Page();
 
-                    }
 
 
 
                 }
 
                 TempData["FlashMessage.Type"] = "danger";
-                TempData["FlashMessage.Text"] = string.Format("No account with this email has registered with us.");
+                TempData["FlashMessage.Text"] = string.Format("No user found.");
             }
             return Page();
         }

@@ -26,7 +26,7 @@ namespace kampong_goods.Pages.Events
             if (ModelState.IsValid)
             {
                 Event? myEvent = _eventService.GetEventById(MyEvent.EventId);
-                if(myEvent == null)
+                if(myEvent != null)
                 {
                     ModelState.AddModelError("MyEvent.EventId", "Event ID already exists.");
                     return Page();
@@ -35,7 +35,7 @@ namespace kampong_goods.Pages.Events
                 _eventService.AddEvent(MyEvent);
                 TempData["FlashMessage.Type"] = "success";
                 TempData["FlashMessage.Text"] = string.Format("Event {0} is added", MyEvent.EventName);
-                return Redirect("/Employees");
+                return Redirect("/Events/Index");
             }
             return Page();
         }

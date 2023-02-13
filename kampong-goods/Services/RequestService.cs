@@ -21,7 +21,29 @@ namespace kampong_goods.Services
 
         }
 
+        public List<Request> GetNotMy(string userid)
+        {
+            return _db.Requests.Where(m => m.UserId != userid && m.Status == "Available").ToList();
 
+        }
+
+        public List<Request> GetIAccepted(string userid)
+        {
+            return _db.Requests.Where(m=>m.Status==userid).ToList();
+
+        }
+
+        public List<Request> GetMyA(string userid)
+        {
+            return _db.Requests.Where(m => m.UserId == userid && m.Status!="Available" ).ToList();
+
+        }
+
+        public List<Request> GetMyNotA(string userid)
+        {
+            return _db.Requests.Where(m => m.UserId == userid && m.Status == "Available").ToList();
+
+        }
         public Request? GetRequestById(int id)
         {
 

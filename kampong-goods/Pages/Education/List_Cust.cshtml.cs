@@ -32,7 +32,7 @@ namespace kampong_goods.Pages.Education
             FAQCatlist = _FAQCatService.GetAll();
             FAQlist_sorted = FAQlist.OrderByDescending(x => x.ClickTime).ToList();
 
-            if (FAQlist_sorted.Count != 0) {
+            if (FAQlist_sorted.Count > 5) {
                 for (var i = 0; i < 5; i++)
                 {
                     FAQlist_top5.Add(FAQlist_sorted[i]);

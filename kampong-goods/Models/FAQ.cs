@@ -35,5 +35,6 @@ namespace kampong_goods.Models
         //status
         public bool Publish { get; set; }
         public int ClickTime { get; set; }
+        public int ReportCount { get; set; }
     }
 }

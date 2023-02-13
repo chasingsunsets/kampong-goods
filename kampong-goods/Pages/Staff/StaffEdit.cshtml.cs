@@ -1,12 +1,16 @@
 using kampong_goods.Models;
 using kampong_goods.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 using System.Text.RegularExpressions;
 
 namespace kampong_goods.Pages.Staff
 {
+    [Authorize(Roles = "Staff")]
+
     public class StaffEditModel : PageModel
     {
         private UserManager<AppUser> userManager { get; }
@@ -73,7 +77,7 @@ namespace kampong_goods.Pages.Staff
             var stafflist = _staffService.GetAll();
             int inputcheck = 0;
 
-
+            if (Profile.User != null) { 
             if (!Regex.IsMatch(Profile.User.Email, @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"))
             {
                 inputcheck += 1;
@@ -101,6 +105,15 @@ namespace kampong_goods.Pages.Staff
                 ModelState.AddModelError("", "Last Name can only be in alphabets.");
 
             }
+
+            if (!Regex.IsMatch(Profile.NRIC, @"^[STFG]\d{7}[A-Z]$"))
+                {
+                    inputcheck += 1;
+                    ModelState.AddModelError("", "Invalid NRIC format.");
+
+             }
+
+
 
 
 
@@ -219,6 +232,7 @@ namespace kampong_goods.Pages.Staff
 
 
                 /*}*/
+            }
             }
 
             return Page();

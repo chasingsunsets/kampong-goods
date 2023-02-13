@@ -57,30 +57,34 @@ namespace kampong_goods.Pages.Requests
 
                 var userid = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
                 Debug.WriteLine(userid);
-                
-/*                AppUser test = await userManager.GetUserAsync(HttpContext.User);
-                Debug.WriteLine("tbc"test.Id);*/
 
+                /*                AppUser test = await userManager.GetUserAsync(HttpContext.User);
+                                Debug.WriteLine("tbc"test.Id);*/
 
-                var user = _customerService.GetCustomerById(userid);
-
-                var req = new Request()
+                if (ReqModel.Budget >=0)
                 {
+                    var user = _customerService.GetCustomerById(userid);
 
-                    ReqTitle = ReqModel.ReqTitle,
-                    Description = ReqModel.Description,
-                    categoryId = ReqModel.CategoryId,
-                    Budget = ReqModel.Budget,
-                    User = user,
+                    var req = new Request()
+                    {
 
-                };
+                        ReqTitle = ReqModel.ReqTitle,
+                        Description = ReqModel.Description,
+                        categoryId = ReqModel.CategoryId,
+                        Budget = ReqModel.Budget,
+                        User = user,
 
-                _requestService.AddRequest(req);
-                TempData["FlashMessage.Type"] = "success";
-                TempData["FlashMessage.Text"] = string.Format("Request {0} successfully published.", ReqModel.ReqTitle);
-                return Redirect("/Requests/AllRequests");
+                    };
 
-              
+                    _requestService.AddRequest(req);
+                    TempData["FlashMessage.Type"] = "success";
+                    TempData["FlashMessage.Text"] = string.Format("Request {0} successfully published.", ReqModel.ReqTitle);
+                    return Redirect("/Requests/MyRequests");
+                }
+
+                TempData["FlashMessage.Type"] = "danger";
+                TempData["FlashMessage.Text"] = string.Format("Budget cannot be less than $0");
+
             }
             return Page();
         }

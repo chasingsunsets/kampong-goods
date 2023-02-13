@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
+using SendGrid.Helpers.Mail;
 
 namespace kampong_goods.Pages.Products
 {

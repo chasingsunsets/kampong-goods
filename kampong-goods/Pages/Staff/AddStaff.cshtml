@@ -7,6 +7,28 @@
 
 }
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <style>
+
+        .rbtn {
+            background-color: #3563E9;
+            ;
+            color: white;
+            float: right;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+            <div class="card card-body">
 <h1 class="mb-3">@ViewData["Title"]</h1>
 <form class="mt-3" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -81,11 +103,14 @@
         </div>
     </div>
    
-        <input type="submit" value="Add" class="btn btn-primary" />
+        <input type="submit" value="Add" class="btn rbtn" />
         <a class="btn btn-secondary ms-2" href="/Staff/Stafflist">Cancel</a>
-    </div>
 </form>
 
+</div>
+</div>
+</body>
+</html>
 
 
 @section Scripts {

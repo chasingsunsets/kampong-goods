@@ -66,6 +66,7 @@ namespace kampong_goods.Pages.Education
 
                 myFAQ.ClickTime = 0;
                 myFAQ.Publish = false;
+                myFAQ.ReportCount = 0;
 /*                myFAQ.FAQCatId = _faqCatService.GetIdByFAQCat();*/
                 _faqService.AddFAQ(myFAQ);
                 TempData["FlashMessage.Type"] = "success";

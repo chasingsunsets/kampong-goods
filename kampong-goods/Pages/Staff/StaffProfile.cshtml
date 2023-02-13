@@ -22,7 +22,7 @@
     {
 
     <!-- Delete Modal-->
-    <div class="modal fade" id="deletecustprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="deletestaffprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -40,7 +40,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" asp-page-handler="Delete" asp-route-id="@user.Id">Delete</a>
+                            <a class="btn btn-primary" asp-page-handler="DeleteS" asp-route-id="@user.Id">Delete</a>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                                         <div class="col-xl-12 order-xl-1">
                                             <div class="card shadow ">
                                                 <div class="card-header bg-white border-0">
-                                <a class="btn" style="color:white;background: #3563E9; float: right;font-size:h4;" asp-page="/Staff/StaffEdit" asp-route-id="@user.Id">Edit</a>
+                                <a class="btn" style="color:white;background: #3563E9; float: right;font-size:h4;" asp-page="/Staff/StaffEdit" asp-route-id="@user.Id"><i class="fa-sharp fa-solid fa-pencil"></i> Edit</a>
 
                                    
                                    <div class="row align-items-center">
@@ -115,14 +115,15 @@
                                                     </div>
 
 
-                                <a data-toggle="modal" data-target="#deletecustprofile" class="card-link"
-                               style="color: darkred;float: left;">
+                                <a data-toggle="modal" data-target="#deletestaffprofile" class="card-link"
+                               style="color: darkred;">
                                     <i class="far fa-trash-alt"></i>
                                     Delete Account
                                 </a>
+                            <a asp-page-handler="ChangePWS" asp-route-id="@user.Id" style="color:#3563E9; padding-left:15px"><i class="fa-solid fa-gear"></i> Change Password</a>
 
 
-                                <a class="btn" style="float: right; color: white; background: #3563E9;" asp-area="" asp-page="/Staff/StaffLogout">Logout</a>
+                            <a class="btn" style="float: right; color: white; background: #3563E9;" asp-area="" asp-page="/Staff/StaffLogout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
 
                                                 </div>
 

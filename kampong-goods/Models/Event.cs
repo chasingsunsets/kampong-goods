@@ -6,7 +6,7 @@ namespace kampong_goods.Models
     public class Event
     {
         [Display(Name = "Event Id")]
-        public string EventId { get; set; } = string.Empty;
+        public string EventId { get; set; }
 
         [Required, MinLength(3, ErrorMessage = "Enter at least 3 characters."), MaxLength(30)]
         [Display(Name = "Event Name")]

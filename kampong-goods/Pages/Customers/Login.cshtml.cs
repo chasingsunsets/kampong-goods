@@ -76,7 +76,7 @@ namespace kampong_goods.Pages.Customers
 
                         /*                    var userId = signInManager.UserManager.Users.FirstOrDefault()?.Id; 
                         */
-                        return RedirectToPage("Profile");
+                        return RedirectToPage("/Index");
                     }
 
 
