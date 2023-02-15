@@ -22,6 +22,28 @@ namespace kampong_goods.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("kampong_goods.Connection", b =>
+                {
+                    b.Property<string>("ConnectionID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("Connected")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserAgent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ConnectionID");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Connections");
+                });
+
             modelBuilder.Entity("kampong_goods.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -334,6 +356,13 @@ namespace kampong_goods.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("kampong_goods.Connection", b =>
+                {
+                    b.HasOne("kampong_goods.Models.AppUser", null)
+                        .WithMany("Connections")
+                        .HasForeignKey("AppUserId");
+                });
+
             modelBuilder.Entity("kampong_goods.Models.Message", b =>
                 {
                     b.HasOne("kampong_goods.Models.AppUser", "Sender")
@@ -420,6 +449,8 @@ namespace kampong_goods.Migrations
 
             modelBuilder.Entity("kampong_goods.Models.AppUser", b =>
                 {
+                    b.Navigation("Connections");
+
                     b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618

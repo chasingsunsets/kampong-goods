@@ -3,6 +3,8 @@ using kampong_goods.Hubss;
 using kampong_goods.Models;
 using kampong_goods.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -117,11 +119,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseStatusCodePagesWithRedirects("/error/{0}");
-
 app.UseRouting();
-
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 //end point

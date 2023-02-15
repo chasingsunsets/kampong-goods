@@ -1,6 +1,8 @@
 ﻿using kampong_goods.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace kampong_goods
 {
@@ -48,5 +50,4 @@ namespace kampong_goods
 
         public DbSet<Message> Messages { get; set; }
     }
-
 }

@@ -97,28 +97,6 @@ namespace kampong_goods.Pages.Chat
 
             return Page();
         }
-
-
-        //public async Task<IActionResult> Index()
-        //{
-        //    var currentUser = _userManager.GetUserAsync(User);
-        //    var messages = await _context.Messages.ToListAsync();
-        //    return Page();
-        //}
-
-        //public async Task<IActionResult> Create(Message message)
-        //{
-        //    if(ModelState.IsValid)
-        //    {
-        //        message.UserName = User.Identity.Name;
-        //        var sender = await _userManager.GetUserAsync(User);
-        //        message.UserId = sender.Id;
-        //        await _context.Messages.AddAsync(message);
-        //        await _context.SaveChangesAsync();
-        //        return Page();
-        //    }
-        //    return Page();
-        //}
     }
 
 }

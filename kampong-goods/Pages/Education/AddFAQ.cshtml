@@ -51,8 +51,8 @@
 
     <input class="form-control" type="hidden" asp-for="myFAQ.FAQCatId" value="null" oninput="this.value"/>
     <input class="form-control" type="hidden" asp-for="myFAQ.FAQId" value="@FAQID" oninput="this.value" />
-    <input class="form-control" type="" asp-for="myFAQ.Creator" value="@UserManager.GetUserName(User)" oninput="this.value" />
-    <input class="form-control" type="" asp-for="myFAQ.Editor" value="@UserManager.GetUserName(User)" oninput="this.value" />
+    <input class="form-control" type="hidden" asp-for="myFAQ.Creator" value="@UserManager.GetUserName(User)" oninput="this.value" />
+    <input class="form-control" type="hidden" asp-for="myFAQ.Editor" value="@UserManager.GetUserName(User)" oninput="this.value" />
     <input class="form-control" type="hidden" asp-for="myFAQ.Date_Created" value="@currentDate" oninput="this.value" />
     <input class="form-control" type="hidden" asp-for="myFAQ.Date_Modified" value="@currentDate" oninput="this.value" />
 

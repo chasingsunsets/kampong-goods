@@ -68,35 +68,32 @@ namespace kampong_goods.Pages.Chat
             return Page();
         }
 
-        //public async Task<IActionResult> OnPostAsync(string id)
-        //{
-        //    Debug.WriteLine("Hello");
+        public async Task<IActionResult> OnPostAsync(string id)
+        {
+            Debug.WriteLine("Hello");
 
-        //    //see the logged in user
-        //    Sender = await _userManager.GetUserAsync(User);
+            //see the logged in user
+            Sender = await _userManager.GetUserAsync(User);
 
-        //    //gets the whole list of messages
-        //    messages = _custService.GetAllMessages();
+            //gets the whole list of messages
+            messages = _custService.GetAllMessages();
 
-        //    //customer list
-        //    CustomerList = _custService.GetAll();
+            //customer list
+            CustomerList = _custService.GetAll();
 
-        //    //get receiver
-        //    Receiver = _custService.GetCustomerById(id);
+            MyMessage.UserName = Sender.UserName;
+            MyMessage.UserId = Sender.Id;
+            MyMessage.Sender = Sender;
 
-        //    MyMessage.UserName = Sender.UserName;
-        //    MyMessage.UserId = Sender.Id;
-        //    MyMessage.Sender = Sender;
+            //CHECK
+            Debug.WriteLine("Sender Username " + MyMessage.UserName);
+            Debug.WriteLine("Sender Username" + MyMessage.UserId);
 
-        //    //CHECK
-        //    Debug.WriteLine("Sender Username " + MyMessage.UserName);
-        //    Debug.WriteLine("Sender Username" + MyMessage.UserId);
+            await _context.Messages.AddAsync(MyMessage);
+            await _context.SaveChangesAsync();
 
-        //    await _context.Messages.AddAsync(MyMessage);
-        //    await _context.SaveChangesAsync();
-
-        //    return Page();
-        //}
+            return Page();
+        }
 
 
         //public async Task<IActionResult> Index()

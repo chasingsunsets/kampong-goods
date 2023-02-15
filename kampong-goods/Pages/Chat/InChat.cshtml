@@ -151,7 +151,7 @@
     }
 
     .chat .chat-history .my-message {
-        background: #efefef
+        background: lightgray;
     }
 
     .chat .chat-history .my-message:after {
@@ -163,18 +163,18 @@
         width: 0;
         position: absolute;
         pointer-events: none;
-        border-bottom-color: #efefef;
+        border-bottom-color: lightgray;
         border-width: 10px;
         margin-left: -10px
     }
 
     .chat .chat-history .other-message {
-        background: #e8f1f3;
+        background: #add8e6;
         text-align: right
     }
 
     .chat .chat-history .other-message:after {
-        border-bottom-color: #e8f1f3;
+        border-bottom-color: #add8e6;
         left: 93%
     }
 
@@ -306,9 +306,9 @@
 
                                         @*get the users in account*@
                                         <div class="row">
-                                            <div class="col-7">@Model.Receiver</div>
+                                            <div class="col-8">@Model.Receiver</div>
                                         </div>
-                                            <small>Last seen: 2 hours ago</small>
+                                        <p><i class="fa fa-circle online"></i>Online</p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 hidden-sm text-right">
@@ -340,17 +340,22 @@
                                             <li class="clearfix">
                                                 <div class="message-data">
                                                     <span class="message-data-time">@message.Sender.UserName @message.When</span>
-                                                <img src="/images/seventeen-wonwoo-1.jpg" style="width: 50px; height: 50px; float: left;" alt="avatar">
                                                 </div>
                                                 <div class="message my-message">@message.Text</div>
                                             </li>
                                         }
                                     }
                                 </ul>
+
+                                <br />
+
+                                <ul class="m-b-0">
+                                    <li id="receiveMessagesList"></li>
+                                </ul>
                             </div>
 
                         <div class="chat-message clearfix">
-                            <form method="post">
+                            <form method="post" id="formId">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="input-group mb-0">
                                     <input type="hidden" asp-for="MyMessage.UserName" class="form-control" value="Username" />
@@ -366,7 +371,7 @@
 
                                 <div class="input-group mb-0">
                                     <input type="text" id="message" asp-for="MyMessage.Text" class="form-control" placeholder="Enter text here...">
-                                    <button class="btn btn-primary" value="Submit">Submit</button>
+                                    <button class="btn btn-primary" id="sendMessage">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -384,3 +389,32 @@
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js" asp-append-version="true"></script>
 }
+
+<script>
+
+    // When DOM is loaded this
+    // function will get executed
+    $(() => {
+        // function will get executed
+        // on click of submit button
+            $("#sendMessage").click(function (ev) {
+            var form = $("#formId");
+            var url = form.attr('Post');
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(),
+                success: function (data) {
+
+                    // Ajax call completed successfully
+                    console.log("Form Submited Successfully");
+                },
+                error: function (data) {
+
+                    // Some error in ajax call
+                    alert("some Error");
+                }
+            });
+        });
+    });
+</script>
