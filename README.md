@@ -14,3 +14,9 @@
 - Mei Ling: Accounts Management, requesting service
 - Andrea: Voucher, events management
 - Zhi Yi: FAQs
+
+### What We Used?
+- ASP.NET Core 6 framework
+- SignalR
+- SendGrid API
+- ASP.NET Core Identity
