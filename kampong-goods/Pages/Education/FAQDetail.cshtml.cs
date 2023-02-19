@@ -102,8 +102,8 @@ namespace kampong_goods.Pages.Education
             client.EnableSsl = true;
 
 
-
-            client.Credentials = new NetworkCredential("q2467231710@gmail.com", "nqwiqatsrtbvybjr");
+            //(account,  Third Party Password)
+            client.Credentials = new NetworkCredential("", "");
             await client.SendMailAsync(message);
             TempData["FlashMessage.Type"] = "success";
             TempData["FlashMessage.Text"] = string.Format("Message send");
